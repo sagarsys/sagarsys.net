@@ -15,3 +15,16 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister()
+
+// React findNode warning hack
+;(() => {
+    const oldLogError = console.error
+    console.error = function (...args) {
+        if (
+            typeof args[0] !== 'string' ||
+            args[0].indexOf('is deprecated in StrictMode') === -1
+        ) {
+            oldLogError.apply(console, args)
+        }
+    }
+})()
