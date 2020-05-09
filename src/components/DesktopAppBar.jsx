@@ -1,16 +1,32 @@
 import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import NavBar from './NavBar'
 import Logo from './Logo'
+import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import FlexSpacer from './FlexSpacer'
 
-export default function DesktopAppBar(props) {
+const useStyles = makeStyles({
+    root: {
+        flexGrow: 1,
+    },
+})
+
+export default function DesktopAppBar() {
+    const classes = useStyles()
     return (
-        <AppBar position="sticky">
-            <Toolbar variant="dense">
-                <Logo />
-                <NavBar />
-            </Toolbar>
-        </AppBar>
+        <div className={classes.root}>
+            <AppBar position="sticky">
+                <Toolbar>
+                    <Logo />
+                    <FlexSpacer />
+                    <nav>
+                        <Button color="inherit">Portfolio</Button>
+                        <Button color="inherit">Projects</Button>
+                        <Button color="inherit">About</Button>
+                    </nav>
+                </Toolbar>
+            </AppBar>
+        </div>
     )
 }
