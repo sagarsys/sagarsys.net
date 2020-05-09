@@ -3,8 +3,8 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Logo from './Logo'
 import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import FlexSpacer from './FlexSpacer'
+import NavBar from './NavBar'
 
 const useStyles = makeStyles({
     root: {
@@ -17,14 +17,10 @@ export default function DesktopAppBar() {
     return (
         <div className={classes.root}>
             <AppBar position="sticky">
-                <Toolbar>
+                <Toolbar variant="dense">
                     <Logo />
                     <FlexSpacer />
-                    <nav>
-                        <Button color="inherit">Portfolio</Button>
-                        <Button color="inherit">Projects</Button>
-                        <Button color="inherit">About</Button>
-                    </nav>
+                    <NavBar />
                 </Toolbar>
             </AppBar>
         </div>
