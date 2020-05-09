@@ -1,22 +1,21 @@
-import { useState, useEffect } from 'react'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { useTheme } from '@material-ui/core'
+import { useEffect, useState } from 'react'
 
 export default function useResizer() {
-    const theme = useTheme()
-    const matches = useMediaQuery(theme.breakpoints.down('xs'))
-    const [isMobile, setIsMobile] = useState(matches)
+    const mobileBreakpoint = 640
+    const [isMobile, setIsMobile] = useState(
+        window.innerWidth < mobileBreakpoint
+    )
 
     useEffect(() => {
         function handleSizeChange() {
-            return setIsMobile(matches)
+            return setIsMobile(window.innerWidth < mobileBreakpoint)
         }
 
         window.addEventListener('resize', handleSizeChange)
         return () => {
             window.removeEventListener('resize', handleSizeChange)
         }
-    }, [matches])
+    }, [isMobile])
 
     return isMobile
 }
