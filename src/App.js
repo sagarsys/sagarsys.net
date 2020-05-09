@@ -7,7 +7,7 @@ import {
     responsiveFontSizes,
     ThemeProvider,
 } from '@material-ui/core/styles'
-import Routes from './components/Routes'
+import Main from './components/Main'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 export default function App() {
@@ -20,7 +20,7 @@ export default function App() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Routes />
+            <Main />
         </ThemeProvider>
     )
 }
