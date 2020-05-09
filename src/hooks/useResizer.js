@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { useTheme } from '@material-ui/styles'
+import { useTheme } from '@material-ui/core'
 
 export default function useResizer() {
     const theme = useTheme()
