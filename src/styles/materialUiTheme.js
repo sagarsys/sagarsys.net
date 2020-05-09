@@ -1,12 +1,9 @@
-import React from 'react'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 import grey from '@material-ui/core/colors/grey'
 import red from '@material-ui/core/colors/red'
 
-let theme = createMuiTheme({
+export const themeOptions = ({ prefersDarkMode }) => ({
     palette: {
-        type: 'dark',
+        type: prefersDarkMode ? 'dark' : 'light',
         primary: {
             main: grey[900],
         },
@@ -14,10 +11,13 @@ let theme = createMuiTheme({
             main: red[900],
         },
     },
+    typography: {
+        fontSize: 12,
+    },
+    spacing: [0, 4, 8, 16, 32, 64],
     status: {
         danger: 'orange',
     },
 })
-theme = responsiveFontSizes(theme)
 
-export default theme
+export default themeOptions
