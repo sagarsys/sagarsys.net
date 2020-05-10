@@ -38,6 +38,22 @@ export default function Portfolio() {
         <FullHeightSection id="portfolio">
             <Container fixed>
                 <Typography variant="h2">Portfolio</Typography>
+                <Typography variant="body1">
+                    This section is dedicated to some of my best work in my
+                    career as a web developer
+                </Typography>
+                {error ? (
+                    <Typography
+                        className={classes.error}
+                        variant="body2"
+                        color="error"
+                    >
+                        Something went wrong: {error.message}. Please try again
+                        later.
+                    </Typography>
+                ) : (
+                    <PortfolioList loading={isLoading} items={portfolio} />
+                )}
             </Container>
         </FullHeightSection>
     )
