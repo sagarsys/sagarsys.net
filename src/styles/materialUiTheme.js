@@ -18,7 +18,7 @@ export const themeOptions = ({ prefersDarkMode }) => ({
     typography: {
         fontSize: 12,
     },
-    spacing: [0, 4, 8, 16, 32, 64],
+    spacing: [0, 4, 8, 16, 24, 32, 40, 50, 64, 80, 128],
     status: {
         danger: 'orange',
     },
