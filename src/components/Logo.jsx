@@ -1,11 +1,17 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
+import { Link, useTheme } from '@material-ui/core'
 
 export default function Logo(props) {
-    const siteTitle = 'sagarsys'
+    const siteTitle = 'SAGARSYS'
+    const theme = useTheme()
+    const { dark } = props || false
+    const color = dark ? theme.palette.common.black : theme.palette.common.white
     return (
-        <Typography variant="h6" {...props}>
-            {siteTitle}
-        </Typography>
+        <Link href="/#" style={{ color }}>
+            <Typography variant="h5" {...props}>
+                {siteTitle}
+            </Typography>
+        </Link>
     )
 }
