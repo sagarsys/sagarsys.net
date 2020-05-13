@@ -20,6 +20,7 @@ const useStyles = makeStyles({
 })
 
 export default function NavBar({ onClick }) {
+    const navItems = ['portfolio', 'projects', 'about']
     const isMobile = useResizer()
     const classes = useStyles()
     return (
@@ -28,7 +29,7 @@ export default function NavBar({ onClick }) {
             component="nav"
             aria-label="main site navigation"
         >
-            {['portfolio', 'projects', 'about'].map((navItem) => (
+            {navItems.map((navItem) => (
                 <ListItemLink
                     key={navItem}
                     href={`#${navItem}`}
