@@ -1,9 +1,9 @@
-import { blueGrey, red } from '@material-ui/core/colors'
+import { blueGrey, deepOrange, red } from '@material-ui/core/colors'
 import { darken } from '@material-ui/core'
 
 const fonts = {
     primary: ['Titillium Web', 'sans-serif'].join(','),
-    secondary: ['Abel', 'sans-serif'].join(','),
+    secondary: ['Play', 'sans-serif'].join(','),
 }
 
 export const themeOptions = ({ prefersDarkMode }) => ({
@@ -13,7 +13,7 @@ export const themeOptions = ({ prefersDarkMode }) => ({
             main: blueGrey[900],
         },
         secondary: {
-            main: red[900],
+            main: deepOrange[500],
         },
         background: {
             default: darken(blueGrey[900], 0.125),
@@ -45,7 +45,7 @@ export const themeOptions = ({ prefersDarkMode }) => ({
     },
     spacing: [0, 4, 8, 16, 24, 32, 40, 50, 64, 80, 128],
     status: {
-        danger: 'orange',
+        danger: red[900],
     },
     // custom variables \\
     navBarHeight: '60px',
