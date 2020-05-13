@@ -1,9 +1,22 @@
 import React from 'react'
 import { Box } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        height: 'auto',
+        minHeight: `calc(100vh - ${theme.navBarHeight})`,
+    },
+}))
 
 export default function FullHeightSection(props) {
-    const navBarHeight = '60px'
+    const { height } = props
+    const classes = useStyles()
     return (
-        <Box style={{ height: `calc(100vh - ${navBarHeight})` }} {...props} />
+        <Box
+            className={classes.root}
+            style={height ? { height, minHeight: 'unset' } : null}
+            {...props}
+        />
     )
 }
