@@ -8,11 +8,15 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import InstagramIcon from '@material-ui/icons/Instagram'
 import CodeIcon from '@material-ui/icons/Code'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         textAlign: 'right',
+        [theme.breakpoints.down('sm')]: {
+            textAlign: 'center',
+            paddingTop: theme.spacing(2),
+        },
     },
-})
+}))
 
 export default function SocialLinks({ data }) {
     const classes = useStyles()
