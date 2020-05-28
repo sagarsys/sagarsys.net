@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export function Contact() {
+export default function Contact() {
     const classes = useStyles()
     return (
         <Container className={classes.root} disableGutters>
