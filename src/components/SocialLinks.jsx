@@ -8,14 +8,26 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import InstagramIcon from '@material-ui/icons/Instagram'
 import CodeIcon from '@material-ui/icons/Code'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         textAlign: 'right',
+        [theme.breakpoints.down('sm')]: {
+            textAlign: 'center',
+            paddingTop: theme.spacing(2),
+        },
     },
-})
+}))
 
-export default function SocialLinks() {
+export default function SocialLinks({ data }) {
     const classes = useStyles()
+    const {
+        github,
+        instagram,
+        linkedIn,
+        twitter,
+        stackblitz,
+        codeSandbox,
+    } = data
     return (
         <Box className={classes.root}>
             <IconButton
@@ -23,7 +35,7 @@ export default function SocialLinks() {
                 aria-label="Link to Github"
                 title="Link to Github"
                 component="a"
-                href="https://github.com/sagarsys"
+                href={github}
                 target="_blank"
                 rel="noreferrer"
             >
@@ -34,7 +46,7 @@ export default function SocialLinks() {
                 aria-label="Link to Twitter"
                 title="Link to Twitter"
                 component="a"
-                href="https://twitter.com/sagarsys"
+                href={twitter}
                 target="_blank"
                 rel="noreferrer"
             >
@@ -45,7 +57,7 @@ export default function SocialLinks() {
                 aria-label="Link to LinkedIn"
                 title="Link to LinkedIn"
                 component="a"
-                href="https://linkedin.com/in/sagarsys/"
+                href={linkedIn}
                 target="_blank"
                 rel="noreferrer"
             >
@@ -56,7 +68,7 @@ export default function SocialLinks() {
                 aria-label="Link to Instagram"
                 title="Link to Instagram"
                 component="a"
-                href="https://instagram.com/sagarsys"
+                href={instagram}
                 target="_blank"
                 rel="noreferrer"
             >
@@ -67,7 +79,7 @@ export default function SocialLinks() {
                 aria-label="Link to Stackblitz"
                 title="Link to Stackblitz"
                 component="a"
-                href="https://stackblitz.com/@sagarsys"
+                href={stackblitz}
                 target="_blank"
                 rel="noreferrer"
             >
@@ -78,7 +90,7 @@ export default function SocialLinks() {
                 aria-label="Link to CodeSandbox"
                 title="Link to CodeSandbox"
                 component="a"
-                href="https://codesandbox.io/u/sagarsys/"
+                href={codeSandbox}
                 target="_blank"
                 rel="noreferrer"
             >
