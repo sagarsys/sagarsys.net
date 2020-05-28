@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
 export default function ErrorMessage({ error }) {
     const classes = useStyles()
     return (
-        <Typography className={classes.error} variant="body2" color="error">
-            Something went wrong: {error.message}.
+        <Typography className={classes.error} variant="body1" color="error">
+            Oops! Looks like something went wrong: {error.message}.
             <br />
             Please try again later.
         </Typography>
