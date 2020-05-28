@@ -27,7 +27,7 @@ export default function SocialLinks() {
                 target="_blank"
                 rel="noreferrer"
             >
-                <GitHubIcon />
+                <GitHubIcon fontSize="large" />
             </IconButton>
             <IconButton
                 color="secondary"
@@ -38,7 +38,7 @@ export default function SocialLinks() {
                 target="_blank"
                 rel="noreferrer"
             >
-                <TwitterIcon />
+                <TwitterIcon fontSize="large" />
             </IconButton>
             <IconButton
                 color="secondary"
@@ -49,7 +49,7 @@ export default function SocialLinks() {
                 target="_blank"
                 rel="noreferrer"
             >
-                <LinkedInIcon />
+                <LinkedInIcon fontSize="large" />
             </IconButton>
             <IconButton
                 color="secondary"
@@ -60,7 +60,7 @@ export default function SocialLinks() {
                 target="_blank"
                 rel="noreferrer"
             >
-                <InstagramIcon />
+                <InstagramIcon fontSize="large" />
             </IconButton>
             <IconButton
                 color="secondary"
@@ -71,7 +71,7 @@ export default function SocialLinks() {
                 target="_blank"
                 rel="noreferrer"
             >
-                <CodeIcon />
+                <CodeIcon fontSize="large" />
             </IconButton>
             <IconButton
                 color="secondary"
