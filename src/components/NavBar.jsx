@@ -30,7 +30,9 @@ export default function NavBar({ onClick }) {
         const anchor = (event.target.ownerDocument || document).getElementById(
             navItem
         )
-        const scrollY = anchor.offsetTop - navBarHeight
+        const scrollY = isMobile
+            ? anchor.offsetTop
+            : anchor.offsetTop - navBarHeight
         window.scrollTo(0, scrollY)
         onClick && onClick()
     }
