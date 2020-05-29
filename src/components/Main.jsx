@@ -10,11 +10,20 @@ import ScrollTop from './ScrollTop'
 import Fab from '@material-ui/core/Fab'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import Toolbar from '@material-ui/core/Toolbar'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles({
+    anchor: {
+        minHeight: 'unset',
+        height: 0,
+    },
+})
 
 function Main(props) {
+    const classes = useStyles()
     return (
         <Container maxWidth={false} disableGutters={true}>
-            <Toolbar id="back-to-top-anchor" />
+            <Toolbar id="back-to-top-anchor" className={classes.anchor} />
             <AppBar />
             <HeroBanner />
             <Portfolio />
