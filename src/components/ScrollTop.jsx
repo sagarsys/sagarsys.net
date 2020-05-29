@@ -1,6 +1,7 @@
 import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { useScrollTrigger, Zoom } from '@material-ui/core'
+import { removeHash } from '../helpers/url'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,9 +23,9 @@ export default function ScrollTop(props) {
         const anchor = (event.target.ownerDocument || document).querySelector(
             '#back-to-top-anchor'
         )
-        console.log(anchor)
 
         if (anchor) {
+            removeHash()
             anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
         }
     }
