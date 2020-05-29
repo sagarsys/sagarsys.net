@@ -1,7 +1,7 @@
 import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import { useScrollTrigger, Zoom } from '@material-ui/core'
-import { removeHash } from '../helpers/url'
+import { handleScrollToTop } from '../helpers/scrolling'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,22 +18,10 @@ export default function ScrollTop(props) {
         disableHysteresis: true,
         threshold: 100,
     })
-
-    const handleClick = (event) => {
-        const anchor = (event.target.ownerDocument || document).querySelector(
-            '#back-to-top-anchor'
-        )
-
-        if (anchor) {
-            removeHash()
-            anchor.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        }
-    }
-
     return (
         <Zoom in={trigger}>
             <div
-                onClick={handleClick}
+                onClick={handleScrollToTop}
                 role="presentation"
                 className={classes.root}
             >
