@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
     root: {
         height: 'auto',
-        minHeight: `calc(100vh - ${theme.navBarHeight})`,
+        minHeight: `calc(100vh - ${theme.navBarHeight}px)`,
     },
 }))
 
