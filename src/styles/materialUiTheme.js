@@ -48,7 +48,7 @@ export const themeOptions = ({ prefersDarkMode }) => ({
         danger: red[900],
     },
     // custom variables \\
-    navBarHeight: '60px',
+    navBarHeight: 60,
 })
 
 export default themeOptions

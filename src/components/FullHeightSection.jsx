@@ -1,17 +1,20 @@
 import React from 'react'
 import { Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import useResizer from '../hooks/useResizer'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         height: 'auto',
-        minHeight: `calc(100vh - ${theme.navBarHeight})`,
+        minHeight: ({ isMobile }) =>
+            isMobile ? `100vh` : `calc(100vh - ${theme.navBarHeight}px)`,
     },
 }))
 
 export default function FullHeightSection(props) {
     const { height } = props
-    const classes = useStyles()
+    const isMobile = useResizer()
+    const classes = useStyles({ isMobile })
     return (
         <Box
             className={classes.root}
