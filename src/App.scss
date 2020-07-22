@@ -1,4 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;500;700&display=swap'); // primary font
+@font-face {
+    font-family: 'neuropol_nova_cnd';
+    src: url('/fonts/neuropol_nova_cnd_bold-webfont.eot');
+    src: url('/fonts/neuropol_nova_cnd_bold-webfont.eot?#iefix')
+            format('embedded-opentype'),
+        url('/fonts/neuropol_nova_cnd_bold-webfont.woff2') format('woff2'),
+        url('/fonts/neuropol_nova_cnd_bold-webfont.woff') format('woff'),
+        url('/fonts/neuropol_nova_cnd_bold-webfont.ttf') format('truetype'),
+        url('/fonts/neuropol_nova_cnd_bold-webfont.svg#neuropol_nova_cndbold')
+            format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
 @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
 //@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
 //@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400&display=swap');
