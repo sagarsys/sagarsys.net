@@ -11,6 +11,7 @@ import Fab from '@material-ui/core/Fab'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import Toolbar from '@material-ui/core/Toolbar'
 import { makeStyles } from '@material-ui/core/styles'
+import Career from './Career'
 
 const useStyles = makeStyles({
     anchor: {
@@ -29,6 +30,7 @@ function Main(props) {
             <Portfolio />
             <Projects />
             <About />
+            <Career />
             <Footer />
             <ScrollTop {...props}>
                 <Fab
