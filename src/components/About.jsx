@@ -7,6 +7,7 @@ import useFetchData from '../hooks/useFetchData'
 import AboutSkeleton from './AboutSkeleton'
 import { makeStyles } from '@material-ui/core/styles'
 import ErrorMessage from './ErrorMessage'
+import Career from './Career'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,6 +41,7 @@ export default function About() {
                 {isLoading && <AboutSkeleton />}
                 {error && <ErrorMessage error={error} />}
             </Container>
+            <Career />
         </FullHeightSection>
     )
 }
