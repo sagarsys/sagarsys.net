@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import ErrorMessage from './ErrorMessage'
 import Timeline from './Timeline'
+import { Skeleton } from '@material-ui/lab'
 
 const useStyles = makeStyles({
     root: {},
@@ -21,8 +22,11 @@ export default function Career() {
     return (
         <FullHeightSection id="career" className={classes.root}>
             <Container fixed>
-                <Typography variant="h2">Career</Typography>
+                <Typography variant="h3">Career</Typography>
                 {data && <Timeline events={data} />}
+                {isLoading && (
+                    <Skeleton variant="rect" width="100%" height={500} />
+                )}
                 {error && <ErrorMessage error={error} />}
             </Container>
         </FullHeightSection>
