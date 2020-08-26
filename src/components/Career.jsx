@@ -5,7 +5,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import ErrorMessage from './ErrorMessage'
-import Timeline from './Timeline'
+import CareerTimeline from './CareerTimeline'
 import { Skeleton } from '@material-ui/lab'
 
 const useStyles = makeStyles({
@@ -23,7 +23,7 @@ export default function Career() {
         <FullHeightSection id="career" className={classes.root}>
             <Container fixed>
                 <Typography variant="h3">Career</Typography>
-                {data && <Timeline events={data} />}
+                {data && <CareerTimeline events={data} />}
                 {isLoading && (
                     <Skeleton variant="rect" width="100%" height={500} />
                 )}
