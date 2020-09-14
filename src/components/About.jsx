@@ -1,6 +1,5 @@
 import React from 'react'
 import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
 import FullHeightSection from './FullHeightSection'
 import Contact from './Contact'
 import useFetchData from '../hooks/useFetchData'
@@ -8,6 +7,7 @@ import AboutSkeleton from './AboutSkeleton'
 import { makeStyles } from '@material-ui/core/styles'
 import ErrorMessage from './ErrorMessage'
 import Career from './Career'
+import AboutContent from './AboutContent'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,22 +26,12 @@ export default function About() {
     return (
         <FullHeightSection id="about" className={classes.root}>
             <Container fixed>
-                <Typography variant="h2">About</Typography>
-                {data && (
-                    <>
-                        <Typography color="secondary" variant="h6">
-                            {data.name}: {data.title}
-                        </Typography>
-                        <Typography variant="body1">
-                            {data.description}
-                        </Typography>
-                        <Contact data={data} />
-                    </>
-                )}
+                <AboutContent data={data} />
                 {isLoading && <AboutSkeleton />}
                 {error && <ErrorMessage error={error} />}
+                <Career />
+                {data && <Contact data={data} />}
             </Container>
-            <Career />
         </FullHeightSection>
     )
 }
