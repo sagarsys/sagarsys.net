@@ -1,0 +1,66 @@
+[
+  {
+    "startDate": "2014",
+    "endDate": "Present",
+    "title": "Web designer & developer",
+    "company": "Freelance",
+    "location": "Worldwide",
+    "description": "- Graphic design\n- Web development\n- Frontend consulting\n - Wordpress, Banners, Brochures, Logo design, Custom webapp development"
+  },
+  {
+    "startDate": "Jun 2019",
+    "endDate": "Present",
+    "title": "Software developer (Frontend)",
+    "company": "Maureva",
+    "location": "Ebene, Mauritius",
+    "description": "- Technologies: Angular, Typescript, Java, AWS\n- In-house revenue accounting application development (Edgar)\n- Migration of existing system with complex business logic onto new technologies (Angular/Java)\n- Development of reusable frontend libraries\n- Frontend Project architecture and consulting (Angular) \n- UI/UX focus\n- Research & Development (Cross functional team)"
+  },
+  {
+    "startDate": "Nov 2018",
+    "endDate": "May 2019",
+    "title": "Fullstack developer (remote)",
+    "company": "Bfast System",
+    "location": "Port Louis, Mauritius",
+    "description": "- Technologies: ElectronJs, NodeJs, Express, MongoDB, VueJs, Sequelize, MySQL, SQLite\n- Interactive kiosk (touch-based) application development\n- Restful API development\n- Peripheral device integration (POS, Ticket Printer, QR Code scanner)\n- Deployment of application onto remote devices (remote debugging, testing & support)\n - Middleware development for integration of existing systems (TCPOS) onto our applications"
+  },
+  {
+    "startDate": "Aug 2018",
+    "endDate": "Oct 2018",
+    "title": "Software developer (Freelance)",
+    "company": "Multiply Labs",
+    "location": "Grand Baie, Mauritius",
+    "description": "- Technologies: VueJs, Typescript, Python (Flask), PostgreSQL\n- Real time, data driven application development\n- UI/UX focus\n- Test driven development\n - Restful API development"
+  },
+  {
+    "startDate": "Sep 2017",
+    "endDate": "Aug 2018",
+    "title": "Senior Frontend developer",
+    "company": "Digital Fourteen Ltd",
+    "location": "Quatre Bornes, Mauritius",
+    "description": "- Lead Frontend developer\n- Angular Website & Web App Development\n- Document Virtualization Platform Development\n- AngularJS Website development & Maintenance\n- In house JS plugins development\n- Accessibility and Web Performance Focus\n- Code review | Consulting (Frontend) | R&D\n- Working with Symfony and Elastic Search"
+  },
+  {
+    "startDate": "Jun 2016",
+    "endDate": "Sep 2017",
+    "title": "Frontend developer",
+    "company": "Proximity BBDO Indian Ocean",
+    "location": "Quatre Bornes, Mauritius",
+    "description": "- Sitecore & Drupal theme development\n- Website Development\n- UI/UX Focus | R&D\n- Maintenance of existing Websites\n- Gulp/Webpack automation & workflow optimization\n- Node & Express JS Frontend Development environment setup\n- Acting Frontend Team Lead\n- Working with Backend technologies PHP and C#"
+  },
+  {
+    "startDate": "May 2016",
+    "endDate": "Jun 2016",
+    "title": "Frontend developer",
+    "company": "Extension Interactive",
+    "location": "Quatre Bornes, Mauritius",
+    "description": "- Website Development\n- Web Application Development\n- Research and Development\n- Maintenance of existing Website Applications\n"
+  },
+  {
+    "startDate": "Nov 2015",
+    "endDate": "Apr 2016",
+    "title": "Webmaster / integrator",
+    "company": "Webmarket",
+    "location": "Tamarin, Mauritius",
+    "description": "- Front-end development with focus on responsive designs\n- Integration of Photoshop designs\n- Custom WP Theme and Plugin development\n- Integration of back-end services onto front-end templates\n- Website Creation and Maintenance tasks\n- Graphics Editing and Manipulation using Photoshop"
+  }
+]
