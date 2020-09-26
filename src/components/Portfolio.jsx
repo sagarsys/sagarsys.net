@@ -7,7 +7,7 @@ import useFetchData from '../hooks/useFetchData'
 import ErrorMessage from './ErrorMessage'
 
 export default function Portfolio() {
-    const apiUrl = `/data/mock/portfolio.json`
+    const apiUrl = `/data/portfolio.json`
     const { data, error, isLoading } = useFetchData(apiUrl, 'portfolio')
 
     return (
@@ -15,8 +15,8 @@ export default function Portfolio() {
             <Container fixed>
                 <Typography variant="h2">Portfolio</Typography>
                 <Typography variant="body1">
-                    This section is dedicated to some of my best work in my
-                    career as a web developer
+                    Dedicated to some of the best work through my career as a
+                    web developer
                 </Typography>
                 {error ? (
                     <ErrorMessage error={error} />
