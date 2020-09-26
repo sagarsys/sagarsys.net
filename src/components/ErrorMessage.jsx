@@ -14,7 +14,7 @@ export default function ErrorMessage({ error }) {
         <Typography className={classes.error} variant="body1" color="error">
             Oops! Looks like something went wrong: {error.message}.
             <br />
-            Please try again later.
+            Please try again later, by refreshing the page.
         </Typography>
     )
 }
