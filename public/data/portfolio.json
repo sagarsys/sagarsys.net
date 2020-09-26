@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "title": "PubliSpeak",
+    "titleLink": "https://www.ipedis.com/en/publispeak",
+    "live": [
+      {
+        "title": "Publicis Groupe - 2018 CSR Report",
+        "link": "https://publicis-groupe.publispeak.com/2018-registration-document/page/C1/",
+        "thumb": "images/csr-en.png"
+      },
+      {
+        "title": "Airliquide - 2018 Annual report",
+        "link": "https://airliquide.publispeak.com/2018-annual-report/page/C1/",
+        "thumb": "images/air-liquide.png"
+      },
+      {
+        "title": "BNP Paribas - 2018 Integrated report",
+        "link": "http://integrated-report.bnpparibas/2018/doc/article/C1/",
+        "thumb": "images/paribas.png"
+      },
+      {
+        "title": "L'Oreal - 2019 Letter to shareholders",
+        "link": "https://loreal-finance.publispeak.com/letter-to-shareholders-73/doc/article/1/",
+        "thumb": "images/loreal.png"
+      }
+    ],
+    "description": "PubliSpeak is the first PDF document virtualization solution that is fully accessible (compliant with the WCAG 2.1 accessibility standards). It uses patented technology that extracts content from a standard PDF file to convert it into HTML support that fits any screen. This technology is made possible thanks to accessibility work put in place to make all content and services available online for all.",
+    "tech": ["Angular", "TypeScript", "CSS3", "Symfony (PHP)"],
+    "images": {
+      "thumb": "images/publispeak.png",
+      "mobile": "http://placehold.it/300x5000",
+      "tablet": "http://placehold.it/1000x5000",
+      "desktop": "http://placehold.it/1600x5000"
+    },
+    "client": "Ipedis",
+    "clientLink": "https://www.ipedis.com/",
+    "role": "Senior frontend developer",
+    "roleDescription": "Together with a team of 3 developers and a CTO, our role was to migrate an older flash version of PubliSpeak to modern web technologies, accessible across multiple devices (screen sizes) and within accessibility standards. As a senior frontend developer, my task was to use CSS3 and Angular to make this work, while interacting with and integrating the backend APIs.",
+    "challenges": [
+      "First challenge",
+      "Second challenge",
+      "Lorem ipsum dolor sit amet etcetera"
+    ]
+  }
+]
