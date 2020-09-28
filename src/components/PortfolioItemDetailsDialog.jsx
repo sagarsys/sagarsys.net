@@ -11,7 +11,7 @@ import Divider from '@material-ui/core/Divider'
 import PortfolioItemDetailsDialogContent from './PortfolioItemDetailsDialogContent'
 import { LinkOrText } from './LinkOrText'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
     appBar: {
         position: 'relative',
     },
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     close: {
         marginLeft: 'auto',
     },
-}))
+})
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />
@@ -34,6 +34,7 @@ export default function PortfolioItemDetailsDialog({
     item,
 }) {
     const classes = useStyles()
+    const { title, titleLink } = item
     return (
         <Dialog
             open={open}
@@ -45,8 +46,8 @@ export default function PortfolioItemDetailsDialog({
             <div className={classes.title}>
                 <DialogTitle variant="h6">
                     <LinkOrText
-                        link={item.titleLink}
-                        title={item.title}
+                        link={titleLink}
+                        title={title}
                         color="secondary"
                     />
                 </DialogTitle>
