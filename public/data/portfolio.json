@@ -38,9 +38,52 @@
     "role": "Senior frontend developer",
     "roleDescription": "Together with a team of 3 developers and a CTO, our role was to migrate an older flash version of PubliSpeak to modern web technologies, accessible across multiple devices (screen sizes) and within accessibility standards. As a senior frontend developer, my task was to use CSS3 and Angular to make this work, while interacting with and integrating the backend APIs.",
     "challenges": [
-      "First challenge",
-      "Second challenge",
-      "Lorem ipsum dolor sit amet etcetera"
+      "Due to accessibility requirements, we could not use existing plugins/libraries to add functionality to the platform. This implied developing our own in-house libraries, such as an infinite scroll engine, a carousel, and others. I learned quite a bit through this as I had to study the code for existing plugins/libraries such as angular-material to recreate our own flavour of the library.",
+      "Multi-tenant platform: PubliSpeak was designed to be used by many clients. This implied that each client could customize the platform to match their branding. On the development side of things, I had to introduce CSS variables that could be used to change the look and feel of the whole platform when modified.",
+      "Some pdf are 500 pages long. The backend (PHP) converts the whole pdf to html using patented technology. However, on the frontend we cannot load the html all at once into the DOM as this would overload the browser. The infinite scroll engine was responsible for the switch between an image representation of the page to the html view for pages in focus. As for the html of the pdf, it was broken down into smaller chunks (chapters) and lazy loaded over the network when needed.",
+      "Formation/training of junior developers as the company started to expand."
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Kaufman & Broad",
+    "titleLink": "https://www.kaufmanbroad.fr/",
+    "live": [
+      {
+        "title": "Kaufman & Broad",
+        "link": "https://www.kaufmanbroad.fr/",
+        "thumb": "images/kaufman/kaufman-thumb.jpg"
+      },
+      {
+        "title": "Espace client - Kaufman & Broad",
+        "link": "https://www.mon-espace.kaufmanbroad.fr/",
+        "thumb": "images/kaufman/espace-kaufman-thumb.jpg"
+      }
+    ],
+    "description": "Rework of a real-estate website for Kaufman & Broad, which is a publicly traded real estate development and construction company headquartered in France. Users can use the website to search for properties, learn about new opportunities & promos, or find useful information to guide them through their journey to acquiring properties.",
+    "tech": [
+      "Vanilla JS",
+      "Gulp",
+      "Foundation",
+      "JQuery",
+      "CSS3",
+      "Drupal CMS (PHP)"
+    ],
+    "images": {
+      "thumb": "images/kaufman/kaufman-thumb.jpg",
+      "mobile": "images/kaufman/kaufman-mobile.jpg",
+      "tablet": "images/kaufman/kaufman-tablet.jpg",
+      "desktop": "images/kaufman/kaufman-desktop.jpg"
+    },
+    "client": "Proximity BBDO Indian Ocean / Kaufman & Broad",
+    "clientLink": "https://www.proximity.mu/",
+    "role": "Frontend Lead developer",
+    "roleDescription": "Together with a small team of four developers, our job was to restyle, rework and modernize the website. As the frontend lead, my task was to setup the project architecture, automate the developers' workflow using Gulp/webpack, establish development guidelines, analyze requirements & make time estimates, setup the foundation for core project modules, ensure that code meets those standards through code reviews, train junior developers, liaise with the backend to establish API contracts, liaise with the UX designer to discuss feasibility, and participate in client meetings & development.",
+    "challenges": [
+      "Fast-paced client demands - changing requirements and design",
+      "Integration of external service providers (e.g 3D guided tours)",
+      "Migration from a legacy codebase - unrealistic client expectations leading to tight deadlines",
+      "Onboarding and training of newcomers to the project"
     ]
   }
 ]
