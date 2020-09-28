@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -10,6 +10,7 @@ import { Grid } from '@material-ui/core'
 import { truncateMultiLineString } from '../helpers/string'
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt'
 import { makeStyles } from '@material-ui/core/styles'
+import PortfolioItemDetailsDialog from './PortfolioItemDetailsDialog'
 
 export const usePortfolioItemStyles = makeStyles((theme) => ({
     root: {
@@ -32,20 +33,37 @@ export const usePortfolioItemStyles = makeStyles((theme) => ({
 
 export default function PortfolioItem({ item }) {
     const classes = usePortfolioItemStyles()
-
+    const [open, setOpen] = useState(false)
+    const handleClickOpen = () => {
+        setOpen(true)
+    }
+    const handleClose = () => {
+        setOpen(false)
+    }
+    const thumb = (item.images && item.images.thumb) || null
     return (
         <Grid item sm={12} md={4} zeroMinWidth className={classes.root}>
-            <Card raised={true} className={classes.card}>
-                <CardActionArea href={`/portfolio/${item.id}`}>
+            <Card
+                raised={true}
+                className={classes.card}
+                onClick={handleClickOpen}
+                title="Click to learn more"
+            >
+                <CardActionArea>
                     <CardMedia
                         component="img"
                         alt={item.title}
                         height="240"
-                        image={item.image}
+                        image={thumb}
                         title="Learn more"
                     />
                     <CardContent className={classes.content}>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography
+                            gutterBottom
+                            variant="h5"
+                            component="h2"
+                            color="secondary"
+                        >
                             {item.title}
                         </Typography>
                         <Typography
@@ -68,6 +86,11 @@ export default function PortfolioItem({ item }) {
                     </Button>
                 </CardActions>
             </Card>
+            <PortfolioItemDetailsDialog
+                open={open}
+                handleClose={handleClose}
+                item={item}
+            />
         </Grid>
     )
 }
