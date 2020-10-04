@@ -95,8 +95,8 @@
     "description": "Desktop-based \"mini-game\" applications for interactive kiosks. Applications developed revolved around the concept of data collection. In exchange for the opportunity to win various prizes in mini-games, users participating agreed to submit their data or answer survey questions. The collected data is extracted afterwards for marketing purposes. The prizes are randomly distributed for the period of time for which the event will last. There can be many variations between clients (in terms of design, UX, content), but the core principle for mini-game kiosk applications remained the same.",
     "tech": ["Node Js", "Express", "Electron", "SQLite", "Vue JS"],
     "images": {
-      "thumb": "images/bfast/bfast_thumb.jpg",
-      "desktop": "images/bfast/bfast_desktop.jpg"
+      "thumb": "images/bfast/bfast-thumb.jpg",
+      "desktop": "images/bfast/bfast-desktop.jpg"
     },
     "client": "BFAST System",
     "clientLink": "https://www.bfast-system.com/",
