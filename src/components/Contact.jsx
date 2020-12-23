@@ -13,8 +13,10 @@ const useStyles = makeStyles((theme) => ({
         height: desktopHeight,
         position: 'relative',
         overflow: 'hidden',
+        marginBottom: theme.spacing(6),
         [theme.breakpoints.down('sm')]: {
             height: mobileHeight,
+            marginBottom: theme.spacing(2),
         },
     },
     link: {
@@ -79,7 +81,7 @@ export default function Contact({ data }) {
     const { social } = data
     const { email } = social
     return (
-        <>
+        <section id="contact">
             <Container className={classes.root} disableGutters>
                 <Link
                     color="secondary"
@@ -138,6 +140,6 @@ export default function Contact({ data }) {
                 </svg>
             </Container>
             <SocialLinks data={social} />
-        </>
+        </section>
     )
 }

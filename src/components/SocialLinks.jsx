@@ -12,9 +12,11 @@ import YouTubeIcon from '@material-ui/icons/YouTube'
 const useStyles = makeStyles((theme) => ({
     root: {
         textAlign: 'right',
+        marginBottom: theme.spacing(4),
         [theme.breakpoints.down('sm')]: {
             textAlign: 'center',
             paddingTop: theme.spacing(2),
+            marginBottom: theme.spacing(1),
         },
     },
 }))
