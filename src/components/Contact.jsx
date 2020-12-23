@@ -33,15 +33,14 @@ const useStyles = makeStyles((theme) => ({
     },
     contactInfo: {
         position: 'absolute',
-        top: '55%',
-        right: '2%',
+        top: '5%',
+        left: 0,
         [theme.breakpoints.down('sm')]: {
             width: '100%',
             textAlign: 'center',
-            top: 'unset',
+            top: 0,
             right: 'unset',
             left: 0,
-            bottom: 0,
         },
     },
     mail: {
