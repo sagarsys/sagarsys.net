@@ -15,7 +15,7 @@ import PortfolioItemDetailsDialog from './PortfolioItemDetailsDialog'
 export const usePortfolioItemStyles = makeStyles((theme) => ({
     root: {
         marginTop: theme.spacing(3),
-        marginBottom: theme.spacing(2),
+        marginBottom: theme.spacing(4),
     },
     card: {
         margin: theme.spacing(0, 'auto'),

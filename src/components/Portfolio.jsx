@@ -15,8 +15,8 @@ export default function Portfolio() {
             <Container fixed>
                 <Typography variant="h2">Portfolio</Typography>
                 <Typography variant="body1">
-                    Dedicated to some of the best work through my career as a
-                    web developer
+                    Dedicated to some of the best professional work through my
+                    career as a web developer
                 </Typography>
                 {error ? (
                     <ErrorMessage error={error} />
