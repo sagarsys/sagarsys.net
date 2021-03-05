@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "title": "Project name",
+    "description": "PubliSpeak is the first PDF document virtualization solution that is fully accessible (compliant with the WCAG 2.1 accessibility standards). It uses patented technology that extracts content from a standard PDF file to convert it into HTML support that fits any screen. This technology is made possible thanks to accessibility work put in place to make all content and services available online for all.",
+    "tech": ["Angular", "TypeScript", "CSS3", "Symfony (PHP)"],
+    "images": {
+      "thumb": "images/pesawheel/desktop.png",
+      "mobile": "images/publispeak/publispeak-mobile.jpg",
+      "desktop": "images/pesawheel/desktop.png"
+    }
+  }
+]

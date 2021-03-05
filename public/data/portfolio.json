@@ -161,5 +161,44 @@
       "Visual regression testing - in order to avoid styling regression, PhantomJs and Selenium were used to detect regression issues.",
       "Fast-paced client demands - working under pressure to deliver on time"
     ]
+  },
+  {
+    "id": "5",
+    "title": "Biocom",
+    "titleLink": "https://biocom.mu/",
+    "live": [
+      {
+        "title": "Biocom",
+        "link": "https://biocom.mu/",
+        "thumb": "images/p&g/ariel-thumb.jpg"
+      }
+    ],
+    "description": "Founded in 1995 Biocom is a wholesale distributor of pharmaceutical products in Mauritius, the region, and its global network of healthcare professionals. Biocom’s major clients involve medical organisations, pharmacies, governmental, and embodied institutions.",
+    "tech": [
+      "React JS",
+      "AWS",
+      "React Material UI",
+      "Next JS - SSR",
+      "CSS Preprocessor - SCSS",
+      "Google Maps API"
+    ],
+    "images": {
+      "thumb": "images/p&g/ariel-thumb.jpg",
+      "mobile": "images/p&g/ariel-mobile.jpg",
+      "tablet": "images/p&g/ariel-tablet.jpg",
+      "desktop": "images/p&g/ariel-desktop.jpg"
+    },
+    "client": "Biocom Mauritius",
+    "clientLink": "https://biocom.mu/",
+    "role": "Fullstack developer / Designer / Consultant",
+    "roleDescription": "As a fullstack developer and designer, my role was to assist the client from start to finish throughout the project's lifecycle: conception, design, content recommendation, development, deployment, hosting, optimization & SEO, accessibility",
+    "challenges": [
+      "Working with a large pre-existing codebase, that requires an understanding of the existing code in order to adapt it to our needs",
+      "Extreme focus on user experience (UX) across devices and platforms - heavy testing on mobile phones, tablets and desktop, on Windows, Mac, Android & IPhone (Safari, IE, Firefox, Chrome, Opera)",
+      "Development with a library of generic pre-made components with no possibility to modify its source - specific workarounds had to be devised sometimes to achieve the requirements for a specific brand",
+      "Styling scopes considerations: due to the large amount of existing css classes used within the Sitecore components, extra care had to be taken to not cause unforeseen regressions.",
+      "Visual regression testing - in order to avoid styling regression, PhantomJs and Selenium were used to detect regression issues.",
+      "Fast-paced client demands - working under pressure to deliver on time"
+    ]
   }
 ]
