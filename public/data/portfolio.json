@@ -194,7 +194,7 @@
     "role": "Fullstack developer / Designer / Consultant",
     "roleDescription": "As a fullstack developer and designer, my role was to assist the client from start to finish throughout the project's lifecycle: conception, prototyping, design, content recommendation, development, deployment, hosting, optimization & SEO (Search Engine Optimization), accessibility",
     "challenges": [
-      "Project was started from scratch. Biocom has been operating for 25 years and needed a rebranding to transition to the web. It was both challenging and fun to figure out how to tell their brand story effectively - with the principle guideline from the director - simplicity. We went through a lot of brainstorming in order to create a digital identity for Biocom.",
+      "Project was started from scratch. Biocom has been operating for 25 years and needed a rebranding to transition to the web. It was both challenging and fun to figure out how to tell their brand story effectively with the principle guideline from the director - simplicity. We went through a lot of brainstorming and iterations in order to create a digital identity for Biocom.",
       "React was used as the UI framework in order to create the subtle user interactions on the website. React Material UI complements this choice by giving the website a clean look. Also note that from a technical perspective, the website uses the latest React hook APIs.",
       "In order to make the website as lightweight as possible, it was pre-rendered and statically hosted. This implies careful use of browser APIs within the source code.",
       "A contact form within the static website was an issue that needed to be resolved.",
