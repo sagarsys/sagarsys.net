@@ -1,13 +1,25 @@
 [
   {
     "id": 1,
-    "title": "Project name",
-    "description": "PubliSpeak is the first PDF document virtualization solution that is fully accessible (compliant with the WCAG 2.1 accessibility standards). It uses patented technology that extracts content from a standard PDF file to convert it into HTML support that fits any screen. This technology is made possible thanks to accessibility work put in place to make all content and services available online for all.",
-    "tech": ["Angular", "TypeScript", "CSS3", "Symfony (PHP)"],
+    "title": "Pesawheel - React Spin and Win game",
+    "description": "React spin the wheel game using react hooks, featuring animations. This app is server side rendered and interacts with a custom api using next js.",
+    "tech": ["React", "NextJs", "CSS3", "Animate CSS"],
     "images": {
-      "thumb": "images/pesawheel/desktop.png",
-      "mobile": "images/publispeak/publispeak-mobile.jpg",
-      "desktop": "images/pesawheel/desktop.png"
+      "thumb": "images/pesawheel/pesawheel-desktop.jpg",
+      "mobile": "images/pesawheel/pesawheel-mobile.jpg",
+      "desktop": "images/pesawheel/pesawheel-desktop.jpg"
+    }
+  },
+  {
+    "id": 2,
+    "title": "ACME Bank",
+    "description": "Fullstack project using NodeJS and React to simulate a banking application. The app communicates with the backend API to retrieve user info, the user can make withdrawals, deposits & manage his multiple bank accounts.",
+    "tech": ["Node Js", "Express", "React", "Materialize CSS", "Express"],
+    "images": {
+      "thumb": "images/acme/acme-thumb.jpg",
+      "mobile": "images/acme/acme-mobile.jpg",
+      "tablet": "images/acme/acme-tablet.jpg",
+      "desktop": "images/acme/acme-desktop.jpg"
     }
   }
 ]
