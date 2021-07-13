@@ -22,7 +22,7 @@ export default function PortfolioList({ items, loading }) {
             <Grid
                 container
                 spacing={3}
-                justify={isMobile ? 'center' : 'flex-start'}
+                justifyContent={isMobile ? 'center' : 'flex-start'}
             >
                 {loading &&
                     [1, 2, 3].map((i) => <PortfolioItemSkeleton key={i} />)}

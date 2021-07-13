@@ -6,9 +6,9 @@ const fonts = {
     secondary: ['Play', 'sans-serif'].join(','),
 }
 
-export const themeOptions = ({ prefersDarkMode }) => ({
+export const themeOptions = () => ({
     palette: {
-        type: prefersDarkMode ? 'dark' : 'light',
+        type: 'dark',
         primary: {
             main: blueGrey[900],
         },
