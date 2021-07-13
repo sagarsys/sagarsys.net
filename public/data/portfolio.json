@@ -38,9 +38,169 @@
     "role": "Senior frontend developer",
     "roleDescription": "Together with a team of 3 developers and a CTO, our role was to migrate an older flash version of PubliSpeak to modern web technologies, accessible across multiple devices (screen sizes) and within accessibility standards. As a senior frontend developer, my task was to use CSS3 and Angular to make this work, while interacting with and integrating the backend APIs.",
     "challenges": [
-      "First challenge",
-      "Second challenge",
-      "Lorem ipsum dolor sit amet etcetera"
+      "Due to accessibility requirements, we could not use existing plugins/libraries to add functionality to the platform. This implied developing our own in-house libraries, such as an infinite scroll engine, a carousel, and others. I learned quite a bit through this as I had to study the code for existing plugins/libraries such as angular-material to recreate our own flavour of the library.",
+      "Multi-tenant platform: PubliSpeak was designed to be used by many clients. This implied that each client could customize the platform to match their branding. On the development side of things, I had to introduce CSS variables that could be used to change the look and feel of the whole platform when modified.",
+      "Some pdf are 500 pages long. The backend (PHP) converts the whole pdf to html using patented technology. However, on the frontend we cannot load the html all at once into the DOM as this would overload the browser. The infinite scroll engine was responsible for the switch between an image representation of the page to the html view for pages in focus. As for the html of the pdf, it was broken down into smaller chunks (chapters) and lazy loaded over the network when needed.",
+      "Fully responsive design - focus on UI/Ux, coupled with accessibility constraints",
+      "Formation/training of junior developers as the company started to expand."
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Kaufman & Broad",
+    "titleLink": "https://www.kaufmanbroad.fr/",
+    "live": [
+      {
+        "title": "Kaufman & Broad",
+        "link": "https://www.kaufmanbroad.fr/",
+        "thumb": "images/kaufman/kaufman-thumb.jpg"
+      },
+      {
+        "title": "Espace client - Kaufman & Broad",
+        "link": "https://www.mon-espace.kaufmanbroad.fr/",
+        "thumb": "images/kaufman/espace-kaufman-thumb.jpg"
+      }
+    ],
+    "description": "Rework of a real-estate website for Kaufman & Broad, which is a publicly traded real estate development and construction company headquartered in France. Users can use the website to search for properties, learn about new opportunities & promos, or find useful information to guide them through their journey to acquiring properties.",
+    "tech": [
+      "Vanilla JS",
+      "Gulp",
+      "Foundation",
+      "JQuery",
+      "CSS3",
+      "Drupal CMS (PHP)"
+    ],
+    "images": {
+      "thumb": "images/kaufman/kaufman-thumb.jpg",
+      "mobile": "images/kaufman/kaufman-mobile.jpg",
+      "tablet": "images/kaufman/kaufman-tablet.jpg",
+      "desktop": "images/kaufman/kaufman-desktop.jpg"
+    },
+    "client": "Proximity BBDO Indian Ocean / Kaufman & Broad",
+    "clientLink": "https://www.proximity.mu/",
+    "role": "Frontend Lead developer",
+    "roleDescription": "Together with a small team of four developers, our job was to restyle, rework and modernize the website. As the frontend lead, my task was to setup the project architecture, automate the developers' workflow using Gulp/webpack, establish development guidelines, analyze requirements & make time estimates, setup the foundation for core project modules, ensure that code meets those standards through code reviews, train junior developers, liaise with the backend to establish API contracts, liaise with the UX designer to discuss feasibility, and participate in client meetings & development.",
+    "challenges": [
+      "Fast-paced client demands - changing requirements and design",
+      "Integration of external service providers (e.g 3D guided tours)",
+      "Migration from a legacy codebase - unrealistic client expectations leading to tight deadlines",
+      "Cross platform and cross device considerations",
+      "Onboarding and training of newcomers to the project"
+    ]
+  },
+  {
+    "id": "3",
+    "title": "BFAST System",
+    "titleLink": "https://www.bfast-system.com/",
+    "description": "Desktop-based \"mini-game\" applications for interactive kiosks. Applications developed revolved around the concept of data collection. In exchange for the opportunity to win various prizes in mini-games, users participating agreed to submit their data or answer survey questions. The collected data is extracted afterwards for marketing purposes. The prizes are randomly distributed for the period of time for which the event will last. There can be many variations between clients (in terms of design, UX, content), but the core principle for mini-game kiosk applications remained the same.",
+    "tech": ["Node Js", "Express", "Electron", "SQLite", "Vue JS"],
+    "images": {
+      "thumb": "images/bfast/bfast-thumb.jpg",
+      "desktop": "images/bfast/bfast-desktop.jpg"
+    },
+    "client": "BFAST System",
+    "clientLink": "https://www.bfast-system.com/",
+    "role": "Fullstack developer",
+    "roleDescription": "As a fullstack developer, I had to participate in the full lifecycle of the project - from design to deployment & support. Together with my frontend colleague, we were free to choose the tech-stack. After one or two applications, we started to develop a generic reusable library from which we could quickly build future applications, for instance the emulated keyboard. I was also responsible for the deployment and testing of applications on the remote kiosks. Finally, after the game ended, I had to export the collected data in CSV format for the client.",
+    "challenges": [
+      "Remote debugging and live support worldwide - working at odd hours when needed due to timezone differences",
+      "Tactile UI/UX considerations - for instance no physical keyboard, an emulated keyboard was used instead",
+      "Peripheral devices integration - printers, QR/barcode scanners",
+      "Hidden mechanism to access the administration interface - for debugging purposes, to reprint tickets, to export collected data",
+      "Devising a standard way to build and deploy electron app with the required peripheral device drivers",
+      "Applications had to be delivered in a timely manner - for events or festive periods, e.g christmas. BFAST assembles the kiosk themselves for their clients - as such we have to build and test our applications before they are physically shipped to the client. There can be no delays/deadline extensions for the events!"
+    ]
+  },
+  {
+    "id": "4",
+    "title": "Procter & Gamble (P&G)",
+    "titleLink": "https://www.pg.co.uk/brands/",
+    "live": [
+      {
+        "title": "Ariel",
+        "link": "https://www.ariel.co.uk/",
+        "thumb": "images/p&g/ariel-thumb.jpg"
+      },
+      {
+        "title": "Super Savvy Me",
+        "link": "https://www.supersavvyme.co.uk/",
+        "thumb": "images/p&g/supersavvyme-thumb.jpg"
+      },
+      {
+        "title": "Pampers",
+        "link": "https://www.pampers.co.uk/",
+        "thumb": "images/p&g/pampers-thumb.jpg"
+      }
+    ],
+    "description": "The Procter & Gamble Company is an American multinational consumer goods corporation. It features a cluster of brands such as Ariel, Olay, OldSpice, Pampers; each branch having their own website. The websites are based on a Sitecore backend (CMS) that can be structured, injected with content and themed individually to match the branding of their products.",
+    "tech": [
+      "CSS Preprocessor - SCSS / LESS",
+      "Bootstrap",
+      "Vanilla JS",
+      "Knockout JS",
+      "JQuery",
+      "Gulp",
+      "Dotnet (C#)",
+      "Sitecore"
+    ],
+    "images": {
+      "thumb": "images/p&g/ariel-thumb.jpg",
+      "mobile": "images/p&g/ariel-mobile.jpg",
+      "tablet": "images/p&g/ariel-tablet.jpg",
+      "desktop": "images/p&g/ariel-desktop.jpg"
+    },
+    "client": "Proximity BBDO Indian Ocean / Procter & Gamble (P&G)",
+    "clientLink": "https://www.proximity.mu/",
+    "role": "Frontend developer",
+    "roleDescription": "As a frontend developer, my principal role on this project was to stylize the website using CSS pre-processors, and make it adaptive to devices. There were also minor adjustments to make in terms of behavior using JS. Finally, I was also solicited for the integration of the frontend to the final CSHTML files within Sitecore.",
+    "challenges": [
+      "Working with a large pre-existing codebase, that requires an understanding of the existing code in order to adapt it to our needs",
+      "Extreme focus on user experience (UX) across devices and platforms - heavy testing on mobile phones, tablets and desktop, on Windows, Mac, Android & IPhone (Safari, IE, Firefox, Chrome, Opera)",
+      "Development with a library of generic pre-made components with no possibility to modify its source - specific workarounds had to be devised sometimes to achieve the requirements for a specific brand",
+      "Styling scopes considerations: due to the large amount of existing css classes used within the Sitecore components, extra care had to be taken to not cause unforeseen regressions.",
+      "Visual regression testing - in order to avoid styling regression, PhantomJs and Selenium were used to detect regression issues.",
+      "Fast-paced client demands - working under pressure to deliver on time"
+    ]
+  },
+  {
+    "id": "5",
+    "title": "Biocom",
+    "titleLink": "https://biocom.mu/",
+    "live": [
+      {
+        "title": "Biocom",
+        "link": "https://biocom.mu/",
+        "thumb": "images/biocom/biocom-thumb.jpg"
+      }
+    ],
+    "description": "Founded in 1995 Biocom is a wholesale distributor of pharmaceutical products in Mauritius, the region, and its global network of healthcare professionals. Biocom’s major clients involve medical organizations, pharmacies, governmental, and embodied institutions.",
+    "tech": [
+      "React JS",
+      "React Material UI",
+      "Next JS",
+      "JavaScript",
+      "CSS Preprocessor - SCSS",
+      "AWS",
+      "Google Maps API"
+    ],
+    "images": {
+      "thumb": "images/biocom/biocom-thumb.jpg",
+      "mobile": "images/biocom/biocom-mobile.jpg",
+      "tablet": "images/biocom/biocom-tablet.jpg",
+      "desktop": "images/biocom/biocom-desktop.jpg"
+    },
+    "client": "Biocom Mauritius",
+    "clientLink": "https://biocom.mu/",
+    "role": "Fullstack developer / Designer / Consultant",
+    "roleDescription": "As a fullstack developer and designer, my role was to assist the client from start to finish throughout the project's lifecycle: conception, prototyping, design, content recommendation, development, deployment, hosting, optimization & SEO (Search Engine Optimization), accessibility",
+    "challenges": [
+      "Project was started from scratch. Biocom has been operating for 25 years and needed a rebranding to transition to the web. It was both challenging and fun to figure out how to tell their brand story effectively with the principle guideline from the director - simplicity. We went through a lot of brainstorming and iterations in order to create a digital identity for Biocom.",
+      "React was used as the UI framework in order to create the subtle user interactions on the website. React Material UI complements this choice by giving the website a clean look. Also note that from a technical perspective, the website uses the latest React hook APIs.",
+      "In order to make the website as lightweight as possible, it was pre-rendered and statically hosted. This implies careful use of browser APIs within the source code.",
+      "A contact form within the static website was an issue that needed to be resolved.",
+      "The website is hosted on an AWS S3 bucket, and cached/served by worldwide AWS CloudFront distributions to optimize load times for viewers throughout the world. ",
+      "The website has a score of 80+ on Google Lighthouse - it is optimized to modern web standards, including accessibility, SEO, and PWA (Progressive Web App)",
+      "Responsive design and extreme focus on user experience (UX) across devices and platforms - heavy testing on mobile phones, tablets and desktop, on Windows, Mac, Android & IPhone (Safari, IE, Firefox, Chrome, Opera)"
     ]
   }
 ]

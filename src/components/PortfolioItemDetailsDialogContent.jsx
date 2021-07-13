@@ -119,7 +119,7 @@ export default function PortfolioItemDetailsDialogContent({ item }) {
                         <Typography
                             variant="body1"
                             paragraph={true}
-                            component="p"
+                            component="div"
                             color="secondary"
                         >
                             Challenges:{' '}

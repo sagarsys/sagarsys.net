@@ -6,8 +6,7 @@ import useResizer from '../hooks/useResizer'
 const useStyles = makeStyles((theme) => ({
     root: {
         height: 'auto',
-        minHeight: ({ isMobile }) =>
-            isMobile ? `100vh` : `calc(100vh - ${theme.navBarHeight}px)`,
+        minHeight: ({ isMobile }) => (isMobile ? `100vh` : `auto`),
     },
 }))
 

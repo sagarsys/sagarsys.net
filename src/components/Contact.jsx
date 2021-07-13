@@ -13,8 +13,10 @@ const useStyles = makeStyles((theme) => ({
         height: desktopHeight,
         position: 'relative',
         overflow: 'hidden',
+        marginBottom: theme.spacing(6),
         [theme.breakpoints.down('sm')]: {
             height: mobileHeight,
+            marginBottom: theme.spacing(2),
         },
     },
     link: {
@@ -33,15 +35,14 @@ const useStyles = makeStyles((theme) => ({
     },
     contactInfo: {
         position: 'absolute',
-        top: '55%',
-        right: '2%',
+        top: '5%',
+        left: 0,
         [theme.breakpoints.down('sm')]: {
             width: '100%',
             textAlign: 'center',
-            top: 'unset',
+            top: 0,
             right: 'unset',
             left: 0,
-            bottom: 0,
         },
     },
     mail: {
@@ -80,7 +81,7 @@ export default function Contact({ data }) {
     const { social } = data
     const { email } = social
     return (
-        <>
+        <section id="contact">
             <Container className={classes.root} disableGutters>
                 <Link
                     color="secondary"
@@ -139,6 +140,6 @@ export default function Contact({ data }) {
                 </svg>
             </Container>
             <SocialLinks data={social} />
-        </>
+        </section>
     )
 }
