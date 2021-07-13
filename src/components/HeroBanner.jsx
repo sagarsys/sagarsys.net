@@ -4,6 +4,7 @@ import { lighten, makeStyles } from '@material-ui/core/styles'
 import FullHeightSection from './FullHeightSection'
 import Container from '@material-ui/core/Container'
 import { generateTextLineChangeKeyFrameAnimation } from '../helpers/animations'
+import useResizer from '../hooks/useResizer'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,7 +25,8 @@ const useStyles = makeStyles((theme) => ({
     },
     tagline: {
         color: theme.palette.common.white,
-        height: (props) => props.tagline.fontSize,
+        height: ({ tagline, isMobile }) =>
+            isMobile ? 'auto' : tagline.fontSize,
         lineHeight: (props) => `${props.tagline.fontSize}px`,
         overflow: 'hidden',
         display: 'flex',
@@ -36,10 +38,20 @@ const useStyles = makeStyles((theme) => ({
             content: '"]"',
         },
         '&:before, &:after': {
-            fontSize: (props) => `${props.tagline.fontSize - 2}px`,
+            position: 'relative',
+            fontSize: ({ tagline, isMobile }) =>
+                isMobile
+                    ? `${(tagline.fontSize - 4) * 2}px`
+                    : `${tagline.fontSize - 2}px`,
+            top: ({ isMobile }) => (isMobile ? 10 : -2),
             animation: `opacity 2s infinite`,
         },
     },
+    listWrap: ({ isMobile, tagline }) => ({
+        height: tagline.fontSize,
+        overflowY: isMobile ? 'hidden' : 'none',
+        width: isMobile ? 150 : 'auto',
+    }),
     list: {
         margin: 0,
         transform: `translate(0, 1px)`,
@@ -60,8 +72,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function HeroBanner() {
     const listItems = ['Passionate', 'Creative', 'Innovative', 'Dedicated']
+    const isMobile = useResizer()
     const classes = useStyles({
         tagline: { fontSize: 24, numLines: listItems.length },
+        isMobile,
     })
     return (
         <FullHeightSection id="home" height="60vh">
@@ -81,11 +95,13 @@ export default function HeroBanner() {
                 </div>
                 <div className={classes.wrapper}>
                     <Typography variant="h6" className={classes.tagline}>
-                        <ul className={classes.list}>
-                            {listItems.map((item, i) => (
-                                <li key={i}>{item}</li>
-                            ))}
-                        </ul>
+                        <div className={classes.listWrap}>
+                            <ul className={classes.list}>
+                                {listItems.map((item, i) => (
+                                    <li key={i}>{item}</li>
+                                ))}
+                            </ul>
+                        </div>
                         <span className={classes.fixed}>
                             web developer striving to make the web a better
                             place
