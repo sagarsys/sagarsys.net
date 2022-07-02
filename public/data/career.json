@@ -4,13 +4,13 @@
     "endDate": "Present",
     "title": "Web designer & developer",
     "company": "Freelance",
-    "location": "Worldwide",
-    "description": "- Graphic design\n- Web development (specializing in NodeJs)\n- Frontend consulting\n - Wordpress, Banners, Brochures, Logo design, Custom webapp development"
+    "location": "",
+    "description": "- Graphic design\n- Web development (specializing in NodeJs)\n- Frontend consulting\n - Custom webapp development"
   },
   {
     "startDate": "Jan 2021",
     "endDate": "Present",
-    "title": "React developer",
+    "title": "Senior React developer",
     "company": "Providus",
     "location": "Ebene, Mauritius",
     "description": "- Technologies: React, Firebase\n- Virtual games application development\n- Live match simulations\n - Manage large and complex datasets in realtime\n - Migrate to new react versions\n- Focus on UI/UX & speed\n- Research & Development"

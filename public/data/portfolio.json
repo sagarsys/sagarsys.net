@@ -47,6 +47,37 @@
   },
   {
     "id": "2",
+    "title": "Stadium TV",
+    "titleLink": "https://stadium-tv.bet9ja.com/",
+    "live": [
+      {
+        "title": "Publicis Groupe - 2018 CSR Report",
+        "link": "https://publicis-groupe.publispeak.com/2018-registration-document/page/C1/",
+        "thumb": "images/publispeak/csr-en.png"
+      }
+    ],
+    "description": "PubliSpeak is the first PDF document virtualization solution that is fully accessible (compliant with the WCAG 2.1 accessibility standards). It uses patented technology that extracts content from a standard PDF file to convert it into HTML support that fits any screen. This technology is made possible thanks to accessibility work put in place to make all content and services available online for all.",
+    "tech": ["Angular", "TypeScript", "CSS3", "Symfony (PHP)"],
+    "images": {
+      "thumb": "images/publispeak/publispeak.png",
+      "mobile": "images/publispeak/publispeak-mobile.jpg",
+      "tablet": "images/publispeak/publispeak-tablet.jpg",
+      "desktop": "images/publispeak/publispeak-desktop.jpg"
+    },
+    "client": "Ipedis",
+    "clientLink": "https://www.ipedis.com/",
+    "role": "Senior frontend developer",
+    "roleDescription": "Together with a team of 3 developers and a CTO, our role was to migrate an older flash version of PubliSpeak to modern web technologies, accessible across multiple devices (screen sizes) and within accessibility standards. As a senior frontend developer, my task was to use CSS3 and Angular to make this work, while interacting with and integrating the backend APIs.",
+    "challenges": [
+      "Due to accessibility requirements, we could not use existing plugins/libraries to add functionality to the platform. This implied developing our own in-house libraries, such as an infinite scroll engine, a carousel, and others. I learned quite a bit through this as I had to study the code for existing plugins/libraries such as angular-material to recreate our own flavour of the library.",
+      "Multi-tenant platform: PubliSpeak was designed to be used by many clients. This implied that each client could customize the platform to match their branding. On the development side of things, I had to introduce CSS variables that could be used to change the look and feel of the whole platform when modified.",
+      "Some pdf are 500 pages long. The backend (PHP) converts the whole pdf to html using patented technology. However, on the frontend we cannot load the html all at once into the DOM as this would overload the browser. The infinite scroll engine was responsible for the switch between an image representation of the page to the html view for pages in focus. As for the html of the pdf, it was broken down into smaller chunks (chapters) and lazy loaded over the network when needed.",
+      "Fully responsive design - focus on UI/Ux, coupled with accessibility constraints",
+      "Formation/training of junior developers as the company started to expand."
+    ]
+  },
+  {
+    "id": "3",
     "title": "Kaufman & Broad",
     "titleLink": "https://www.kaufmanbroad.fr/",
     "live": [
@@ -89,7 +120,7 @@
     ]
   },
   {
-    "id": "3",
+    "id": "4",
     "title": "BFAST System",
     "titleLink": "https://www.bfast-system.com/",
     "description": "Desktop-based \"mini-game\" applications for interactive kiosks. Applications developed revolved around the concept of data collection. In exchange for the opportunity to win various prizes in mini-games, users participating agreed to submit their data or answer survey questions. The collected data is extracted afterwards for marketing purposes. The prizes are randomly distributed for the period of time for which the event will last. There can be many variations between clients (in terms of design, UX, content), but the core principle for mini-game kiosk applications remained the same.",
@@ -112,7 +143,7 @@
     ]
   },
   {
-    "id": "4",
+    "id": "5",
     "title": "Procter & Gamble (P&G)",
     "titleLink": "https://www.pg.co.uk/brands/",
     "live": [
@@ -163,7 +194,7 @@
     ]
   },
   {
-    "id": "5",
+    "id": "6",
     "title": "Biocom",
     "titleLink": "https://biocom.mu/",
     "live": [
