@@ -4,6 +4,7 @@ import { Container } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import { makeStyles } from '@material-ui/core/styles'
+import EmailBanner from './EmailBanner'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,6 +24,8 @@ export default function Footer() {
     const year = new Date().getFullYear()
     return (
         <Container maxWidth={false} className={classes.root} color="primary">
+            <EmailBanner />
+    
             <Toolbar variant="dense" className={classes.content}>
                 <Typography className={classes.copyright} variant="subtitle1">
                     &copy; {year} - Designed & developed by
