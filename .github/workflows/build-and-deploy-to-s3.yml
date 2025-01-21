@@ -19,7 +19,7 @@ jobs:
           node-version: '16'  # Specify the Node.js version you're using
 
       - name: Install dependencies
-        run: npm i -g pnpm && pnpm i
+        run: npm ci
 
       - name: Build project
         run: npm run build  # Assumes your build script is named "build"
