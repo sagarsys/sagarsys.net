@@ -8,8 +8,32 @@
     "description": "- Graphic design\n- Web development (specializing in NodeJs)\n- Frontend consulting\n - Wordpress, Banners, Brochures, Logo design, Custom webapp development"
   },
   {
-    "startDate": "Jan 2021",
+    "startDate": "Jan 2025",
     "endDate": "Present",
+    "title": "Software Specialist (Senior Frontend Consultant)",
+    "company": "iO Digital",
+    "location": "Amsterdam, NL",
+    "description": "- Technologies: React, JavaScript, TypeScript\n- Consultancy"
+  },
+  {
+    "startDate": "Oct 2022",
+    "endDate": "Nov 2024",
+    "title": "Full-stack JavaScript developer",
+    "company": "Talpa eCommerce",
+    "location": "Amsterdam, NL",
+    "description": "- Technologies: React, NextJS, Jest, TypeScript, Tailwind CSS, Redux, Fastify, NodeJS, DevOps (AWS, Docker, Kubernetes, GHA)\n- eCommerce platform\n- Focus on UX, user engagement and performance \n - Migrate to new react versions"
+  },
+  {
+    "startDate": "Aug 2022",
+    "endDate": "Oct 2022",
+    "title": "Full-stack developer",
+    "company": "Corel Corporation",
+    "location": "Ebene, Mauritius / Remote",
+    "description": "- Technologies: Vanilla JS, Algorithms, JS Animations, JQuery UI\n- Mind mapping software development\n- Large and complex codebase \n- Focus on UI/UX & speed\n- Research & Development"
+  },
+  {
+    "startDate": "Jan 2021",
+    "endDate": "June 2022",
     "title": "React developer",
     "company": "Providus",
     "location": "Ebene, Mauritius",
@@ -17,7 +41,7 @@
   },
   {
     "startDate": "Jun 2019",
-    "endDate": "December 2020",
+    "endDate": "Dec 2020",
     "title": "Software developer (Frontend)",
     "company": "Maureva",
     "location": "Ebene, Mauritius",
@@ -43,7 +67,7 @@
     "startDate": "Sep 2017",
     "endDate": "Aug 2018",
     "title": "Senior Frontend developer",
-    "company": "Digital Fourteen Ltd",
+    "company": "IPEDIS / Digital Fourteen Ltd",
     "location": "Quatre Bornes, Mauritius",
     "description": "- Lead Frontend developer\n- Angular Website & Web App Development\n- Document Virtualization Platform Development\n- AngularJS Website development & Maintenance\n- In house JS plugins development\n- Accessibility and Web Performance Focus\n- Code review | Consulting (Frontend) | R&D\n- Working with Symfony and Elastic Search"
   },
