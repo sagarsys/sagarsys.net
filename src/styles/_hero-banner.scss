@@ -1,3 +1,4 @@
+@use "sass:math";
 $fontSize: 8rem;
 $mobileFontSize: 4rem;
 
@@ -26,26 +27,26 @@ $mobileFontSize: 4rem;
         @for $i from 0 through 100 {
             $key: $i + 1;
             &:nth-child(#{$key}) {
-                $row: floor($i / 20);
+                $row: math.floor(math.div($i, 20));
                 color: rgb(255, 87, 34);
                 clip-path: polygon(
-                    floor($i / 2) * 10% - $row * 100% $row * 50%,
-                    floor($key / 2) *
+                    math.floor(math.div($i, 2)) * 10% - $row * 100% $row * 50%,
+                    math.floor(math.div($key, 2)) *
                         10% -
                         $row *
                         100%
-                        ceil($key % 2) *
+                        math.ceil($key % 2) *
                         50% +
                         ($row * 50%),
-                    ceil($key / 2) * 10% - $row * 100% ($row + 1) * 50%
+                    math.ceil(math.div($key, 2)) * 10% - $row * 100% ($row + 1) * 50%
                 );
-                transform-origin: random(100) -
+                transform-origin: math.random(100) -
                     50 +
-                    floor($i / 2) *
+                    math.floor(math.div($i, 2)) *
                     10% -
                     $row *
                     100%
-                    random(100) -
+                    math.random(100) -
                     50 +
                     $row *
                     50%;
@@ -58,10 +59,10 @@ $mobileFontSize: 4rem;
                     alternate;
 
                 @keyframes fly#{$key} {
-                    $initX: random(1000) - 500;
-                    $initY: random(1000) - 500;
-                    $initZ: random(1000) - 500;
-                    $initDepth: random(3000) - 2500;
+                    $initX: math.random(1000) - 500;
+                    $initY: math.random(1000) - 500;
+                    $initZ: math.random(1000) - 500;
+                    $initDepth: math.random(3000) - 2500;
                     0% {
                         opacity: 0;
                         transform: translate(-50%, -50%) rotateX(#{$initX}deg)
