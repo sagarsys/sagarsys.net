@@ -3,14 +3,15 @@ import Container from '@material-ui/core/Container'
 import HeroBanner from './HeroBanner'
 import AppBar from './AppBar'
 import Portfolio from './Portfolio'
-import Projects from './Projects'
 import About from './About'
+import Contact from './Contact'
 import Footer from './Footer'
 import ScrollTop from './ScrollTop'
 import Fab from '@material-ui/core/Fab'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import Toolbar from '@material-ui/core/Toolbar'
 import { makeStyles } from '@material-ui/core/styles'
+import Career from './Career'
 
 const useStyles = makeStyles({
     anchor: {
@@ -26,9 +27,10 @@ function Main(props) {
             <Toolbar id="back-to-top-anchor" className={classes.anchor} />
             <AppBar />
             <HeroBanner />
-            <Portfolio />
-            <Projects />
             <About />
+            <Portfolio />
+            <Career />
+            <Contact />
             <Footer />
             <ScrollTop {...props}>
                 <Fab

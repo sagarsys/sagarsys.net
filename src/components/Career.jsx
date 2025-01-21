@@ -21,7 +21,7 @@ export default function Career() {
         'career section data'
     )
     return (
-        <Container id="career" className={classes.root}>
+        <Container fixed id="career" className={classes.root}>
             <Typography variant="h3">Career</Typography>
             {data && <CareerTimeline events={data} />}
             {isLoading && <Skeleton variant="rect" width="100%" height={500} />}

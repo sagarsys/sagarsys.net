@@ -1,17 +1,16 @@
 import React from 'react'
 import Container from '@material-ui/core/Container'
 import FullHeightSection from './FullHeightSection'
-import Contact from './Contact'
 import useFetchData from '../hooks/useFetchData'
 import AboutSkeleton from './AboutSkeleton'
 import { makeStyles } from '@material-ui/core/styles'
 import ErrorMessage from './ErrorMessage'
-import Career from './Career'
 import AboutContent from './AboutContent'
 
 const useStyles = makeStyles((theme) => ({
     root: {
         paddingBottom: theme.spacing(3),
+        marginBottom: theme.spacing(5),
     },
 }))
 
@@ -29,8 +28,6 @@ export default function About() {
                 <AboutContent data={data} />
                 {isLoading && <AboutSkeleton />}
                 {error && <ErrorMessage error={error} />}
-                <Career />
-                {data && <Contact data={data} />}
             </Container>
         </FullHeightSection>
     )
