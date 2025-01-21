@@ -33,6 +33,6 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws s3 sync build/ s3://testghas3 --delete
-          # Optional: Invalidate CloudFront distribution
-          # aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"
+          aws s3 sync build/ s3://${{ secrets.AWS_BUCKET_NAME }} --delete
+          # Invalidate CloudFront distribution
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/*"
