@@ -33,7 +33,6 @@ export default function AboutContent({ data }) {
 
     return (
         <>
-            <Typography variant="h2">About</Typography>
             <Typography color="secondary" variant="h6">
                 {name}: {title}
             </Typography>

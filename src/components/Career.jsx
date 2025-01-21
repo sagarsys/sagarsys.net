@@ -22,7 +22,7 @@ export default function Career() {
     )
     return (
         <Container fixed id="career" className={classes.root}>
-            <Typography variant="h3">Career</Typography>
+            <Typography variant="h2">Career</Typography>
             {data && <CareerTimeline events={data} />}
             {isLoading && <Skeleton variant="rect" width="100%" height={500} />}
             {error && <ErrorMessage error={error} />}

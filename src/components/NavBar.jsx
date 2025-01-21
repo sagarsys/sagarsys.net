@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 })
 
 export default function NavBar({ onClick }) {
-    const navItems = ['portfolio', 'projects', 'about', 'contact']
+    const navItems = ['about', 'portfolio', 'career', 'contact']
     const isMobile = useResizer()
     const classes = useStyles()
     const theme = useTheme()
