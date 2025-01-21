@@ -6,13 +6,20 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
     description: {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
+            marginTop: theme.spacing(2),
+        }
     },
     avatar: {
         width: '100px',
         height: '100px',
         marginRight: theme.spacing(4),
+        [theme.breakpoints.down('sm')]: {
+            marginBottom: theme.spacing(4),
+        }
     }
 }))
 
