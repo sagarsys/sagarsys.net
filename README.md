@@ -1,6 +1,6 @@
 # sagarsys.net
 
-This is my personal developer website built using React.
+This is my personal developer website built using React and Material UI.
 ![sagarsys.net screenshot.png](public/sagarsys.net%20screenshot.png)
 
 This project was bootstrapped with
