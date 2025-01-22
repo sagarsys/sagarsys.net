@@ -3,8 +3,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import useResizer from '../hooks/useResizer'
-import DOMPurify from 'isomorphic-dompurify'
-import { safeParseHtmlString } from '../helpers/html'
+import { CareerTimelineItemDetails } from './CareerTimelineItemDetails'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,6 +25,7 @@ export default function CareerTimelineItemContent({ event }) {
     const isMobile = useResizer()
     const classes = useStyles({ isMobile })
     const { title, company, location, description, details } = event
+    const displayedTitle = `${title} - ${company} (${location})`;
 
     return (
         <Paper elevation={3} className={classes.root}>
@@ -34,12 +34,12 @@ export default function CareerTimelineItemContent({ event }) {
                 variant="h6"
                 color="secondary"
             >
-                {title} - {company} ({location})
+                {displayedTitle}
             </Typography>
             <Typography className={classes.description}>
                 {description}
             </Typography>
-            {details && (<Typography className={classes.description} dangerouslySetInnerHTML={safeParseHtmlString(details)} />)}
+            {details && (<CareerTimelineItemDetails title={displayedTitle} details={details} />)}
         </Paper>
     )
 }
