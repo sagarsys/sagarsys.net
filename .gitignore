@@ -29,5 +29,5 @@ debug.log
 .code
 
 .next/
-.specstory/
+.specstory/*
 .cursorindexingignore
