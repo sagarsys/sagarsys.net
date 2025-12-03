@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "neuropol_nova_cnd";
+  src: url("/fonts/neuropol_nova_cnd_bold-webfont.eot");
+  src: url("/fonts/neuropol_nova_cnd_bold-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("/fonts/neuropol_nova_cnd_bold-webfont.woff2") format("woff2"),
+    url("/fonts/neuropol_nova_cnd_bold-webfont.woff") format("woff"),
+    url("/fonts/neuropol_nova_cnd_bold-webfont.ttf") format("truetype"),
+    url("/fonts/neuropol_nova_cnd_bold-webfont.svg#neuropol_nova_cndbold")
+      format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@theme {
+  --color-background: oklch(20% 0.02 220);
+  --color-foreground: oklch(100% 0 0);
+  --color-card: oklch(20% 0.02 220);
+  --color-card-foreground: oklch(100% 0 0);
+  --color-popover: oklch(20% 0.02 220);
+  --color-popover-foreground: oklch(100% 0 0);
+  --color-primary: #263238;
+  --color-primary-foreground: oklch(100% 0 0);
+  --color-secondary: #ff5722;
+  --color-secondary-foreground: oklch(100% 0 0);
+  --color-muted: oklch(25% 0.02 220);
+  --color-muted-foreground: oklch(70% 0 0);
+  --color-accent: oklch(30% 0.02 220);
+  --color-accent-foreground: oklch(100% 0 0);
+  --color-destructive: oklch(60% 0.2 10);
+  --color-destructive-foreground: oklch(100% 0 0);
+  --color-border: oklch(30% 0.02 220);
+  --color-input: oklch(30% 0.02 220);
+  --color-ring: oklch(57% 0.2 10);
+  --radius: 0.5rem;
+
+  --font-family-primary: "Titillium Web", sans-serif;
+  --font-family-secondary: "Play", sans-serif;
+  --font-family-neuropol: "neuropol_nova_cnd", sans-serif;
+
+  --spacing-nav-bar: 60px;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  --font-primary: "Titillium Web", sans-serif;
+  --font-secondary: "Play", sans-serif;
+  --font-neuropol: "neuropol_nova_cnd", sans-serif;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: #1e2529;
+    color: var(--color-foreground);
+    font-family: var(--font-primary), "Titillium Web", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-secondary), "Play", sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-primary {
+    font-family: var(--font-primary), "Titillium Web", sans-serif;
+  }
+  .font-secondary {
+    font-family: var(--font-secondary), "Play", sans-serif;
+  }
+  .font-neuropol {
+    font-family: "neuropol_nova_cnd", sans-serif;
+  }
+}
+
+@keyframes opacity {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes change-text {
+  0%,
+  12.66%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  16.66%,
+  29.32% {
+    transform: translate3d(0, -25%, 0);
+  }
+  33.32%,
+  45.98% {
+    transform: translate3d(0, -50%, 0);
+  }
+  49.98%,
+  62.64% {
+    transform: translate3d(0, -75%, 0);
+  }
+  66.64%,
+  79.3% {
+    transform: translate3d(0, -50%, 0);
+  }
+  83.3%,
+  95.96% {
+    transform: translate3d(0, -25%, 0);
+  }
+}
+
+/* Hero Banner Styles */
+#home {
+  background: transparent;
+  perspective: 800px;
+  overflow: hidden;
+}
+
+#banner .sagarsys {
+  font-family: "neuropol_nova_cnd", sans-serif;
+  position: absolute;
+  font-size: 8rem;
+  color: rgb(255, 87, 34);
+  line-height: 8rem;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+
+@media screen and (max-width: 650px) {
+  #banner .sagarsys {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+}
+
+/* Hero banner tagline with brackets */
+.tagline-hero::before {
+  content: "[";
+  position: relative;
+  font-size: 22px;
+  top: -2px;
+  animation: opacity 2s infinite;
+}
+
+.tagline-hero::after {
+  content: "]";
+  position: relative;
+  font-size: 22px;
+  top: -2px;
+  animation: opacity 2s infinite;
+}
+
+@media screen and (max-width: 640px) {
+  .tagline-hero::before,
+  .tagline-hero::after {
+    font-size: 44px;
+    top: 10px;
+  }
+}
+
+/* Hero banner fly animations will be generated via JavaScript */
