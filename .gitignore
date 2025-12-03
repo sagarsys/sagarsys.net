@@ -27,3 +27,7 @@ debug.log
 .idea
 .vscode
 .code
+
+.next/
+.specstory/
+.cursorindexingignore
