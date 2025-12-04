@@ -19,15 +19,13 @@ tags:
 order: 6
 ---
 
-Interactive kiosk application development - driving marketing campaigns in a fun
-and interactive way, offering users a chance to win prizes interactively, and
-engineering templates & libraries for faster development of new campaigns.
+Interactive kiosk application development - driving marketing campaigns in a fun and interactive way, offering users a chance to win prizes interactively, and engineering templates & libraries for faster development of new campaigns.
 
 **Key Achievements:**
 
--   Interactive kiosk (touch-based) application development
--   RESTful API development
--   Peripheral device integration (POS, Ticket Printer, QR Code scanner)
--   Deployment onto remote devices (remote debugging, testing & support)
--   Middleware development for integration of existing systems (TCPOS)
--   Developed reusable templates for rapid campaign development
+- Interactive kiosk (touch-based) application development
+- RESTful API development
+- Peripheral device integration (POS, Ticket Printer, QR Code scanner)
+- Deployment onto remote devices (remote debugging, testing & support)
+- Middleware development for integration of existing systems (TCPOS)
+- Developed reusable templates for rapid campaign development

@@ -26,24 +26,17 @@ order: 1
 featured: true
 ---
 
-Building and innovating internal tools that empower non-technical teams at iO.
-Gathering requirements directly from stakeholders, I design and deliver
-solutions that solve real problems—while pushing boundaries with AI-augmented
-interfaces. In between, I also worked as support on client projects such as
-Philips Evnia and level up my skills.
+Building and innovating internal tools that empower non-technical teams at iO. Gathering requirements directly from stakeholders, I design and deliver solutions that solve real problems—while pushing boundaries with AI-augmented interfaces. In between, I also worked as support on client projects such as Philips Evnia and level up my skills.
 
 **Key Achievements:**
 
--   Integrated AI agents (LLMs) directly into UIs to enhance platform
-    capabilities
--   Full ownership from discovery to deployment
--   Continuous learning culture: Frontend Masters certifications, workshops,
-    conferences, and knowledge sharing through blog posts
--   Complex CSS animations for Philips EVNIA
+- Integrated AI agents (LLMs) directly into UIs to enhance platform capabilities
+- Full ownership from discovery to deployment
+- Continuous learning culture: Frontend Masters certifications, workshops, conferences, and knowledge sharing through blog posts
+- Complex CSS animations for Philips EVNIA
 
 **Continuous Learning:**
 
--   Regular attendee at tech meetups and conferences across the Netherlands
--   Certifications from Frontend Masters, Egghead.io, Udemy
--   Share knowledge through blog posts on iO's Tech Hub:
-    <https://techhub.iodigital.com/author/sagar-sawuck>
+- Regular attendee at tech meetups and conferences across the Netherlands
+- Certifications from Frontend Masters, Egghead.io, Udemy
+- Share knowledge through blog posts on iO's Tech Hub: <https://techhub.iodigital.com/author/sagar-sawuck>

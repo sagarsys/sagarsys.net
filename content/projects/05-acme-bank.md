@@ -14,15 +14,13 @@ order: 5
 
 ## Overview
 
-Fullstack project using Node.js and React to simulate a banking application. The
-app communicates with a backend API to manage user accounts, transactions, and
-financial operations.
+Fullstack project using Node.js and React to simulate a banking application. The app communicates with a backend API to manage user accounts, transactions, and financial operations.
 
 ## Features
 
--   User authentication and authorization
--   Account management (multiple accounts per user)
--   Withdraw and deposit operations
--   Transaction history
--   RESTful API backend
--   Responsive design with Materialize CSS
+- User authentication and authorization
+- Account management (multiple accounts per user)
+- Withdraw and deposit operations
+- Transaction history
+- RESTful API backend
+- Responsive design with Materialize CSS

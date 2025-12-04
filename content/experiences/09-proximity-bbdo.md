@@ -21,16 +21,15 @@ tags:
 order: 9
 ---
 
-Developed and maintained websites for P&G consumer brands and real estate
-clients, automating workflows for developer efficiency.
+Developed and maintained websites for P&G consumer brands and real estate clients, automating workflows for developer efficiency.
 
 **Key Achievements:**
 
--   Sitecore & Drupal theme development
--   Website Development for major brands
--   UI/UX Focus & Research & Development
--   Gulp/Webpack automation & workflow optimization
--   Node & Express JS Frontend Development environment setup
--   Acting Frontend Team Lead
--   Working with Backend technologies: PHP and C#
--   Maintenance of existing websites
+- Sitecore & Drupal theme development
+- Website Development for major brands
+- UI/UX Focus & Research & Development
+- Gulp/Webpack automation & workflow optimization
+- Node & Express JS Frontend Development environment setup
+- Acting Frontend Team Lead
+- Working with Backend technologies: PHP and C#
+- Maintenance of existing websites

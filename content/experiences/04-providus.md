@@ -21,13 +21,12 @@ tags:
 order: 4
 ---
 
-Built a real-time virtual soccer betting platform serving **11 million Nigerian
-users** with live updates and animated game simulations.
+Built a real-time virtual soccer betting platform serving **11 million Nigerian users** with live updates and animated game simulations.
 
 **Key Achievements:**
 
--   Virtual games application development with live match simulations
--   Managed large and complex datasets in real-time
--   Migrated to new React versions
--   Focus on UI/UX & performance optimization
--   Research & Development
+- Virtual games application development with live match simulations
+- Managed large and complex datasets in real-time
+- Migrated to new React versions
+- Focus on UI/UX & performance optimization
+- Research & Development

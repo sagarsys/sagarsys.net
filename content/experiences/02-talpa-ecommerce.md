@@ -24,12 +24,11 @@ tags:
 order: 2
 ---
 
-React/Next.js ninja for a high-traffic e-commerce platform serving millions of
-users. Focused on engagement, performance, and developer productivity.
+React/Next.js ninja for a high-traffic e-commerce platform serving millions of users. Focused on engagement, performance, and developer productivity.
 
 **Key Achievements:**
 
--   Enhanced UX and performance, driving higher user engagement
--   Improved code maintainability and developer experience across the team
--   Built REST APIs alongside frontend features for seamless integration
--   Migrated to new React versions
+- Enhanced UX and performance, driving higher user engagement
+- Improved code maintainability and developer experience across the team
+- Built REST APIs alongside frontend features for seamless integration
+- Migrated to new React versions

@@ -13,14 +13,12 @@ order: 4
 
 ## Overview
 
-React spin the wheel game featuring smooth animations and server-side rendering
-with Next.js. The app interacts with a custom API to handle game logic and prize
-distribution.
+React spin the wheel game featuring smooth animations and server-side rendering with Next.js. The app interacts with a custom API to handle game logic and prize distribution.
 
 ## Features
 
--   Server-side rendering for optimal performance
--   Smooth wheel spinning animations
--   React Hooks architecture
--   Custom API integration
--   Responsive design
+- Server-side rendering for optimal performance
+- Smooth wheel spinning animations
+- React Hooks architecture
+- Custom API integration
+- Responsive design

@@ -9,7 +9,7 @@ tags: ['JavaScript', 'HTML', 'CSS']
 order: 10
 ---
 
--   Website Development
--   Web Application Development
--   Research and Development
--   Maintenance of existing Website Applications
+- Website Development
+- Web Application Development
+- Research and Development
+- Maintenance of existing Website Applications
