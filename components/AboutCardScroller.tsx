@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { renderMarkdown } from '@/lib/simple-markdown'
 import { useColorGradient } from '@/hooks/useColorGradient'
 import AboutCardScrollerMobile from './AboutCardScrollerMobile'
+import CardNavigationArrows from './CardNavigationArrows'
+import CardDotNavigation from './CardDotNavigation'
 
 interface AboutCard {
     title: string
@@ -93,6 +93,7 @@ export default function AboutCardScroller({ content }: AboutCardScrollerProps) {
                 ['--scroll-color-to' as any]: gradientColors.via,
             }}
         >
+            {/* Scrollable Cards */}
             <div
                 ref={scrollContainerRef}
                 className="overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth"
@@ -125,50 +126,20 @@ export default function AboutCardScroller({ content }: AboutCardScrollerProps) {
                 </div>
             </div>
 
-            {/* Navigation Arrows */}
-            {activeCard > 0 && (
-                <motion.button
-                    onClick={() => scrollToCard(activeCard - 1)}
-                    className="absolute -left-16 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all z-20"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                >
-                    <ChevronLeft className="w-6 h-6 text-white" />
-                </motion.button>
-            )}
+            {/* Navigation Components */}
+            <CardNavigationArrows
+                activeCard={activeCard}
+                totalCards={cards.length}
+                onPrev={() => scrollToCard(activeCard - 1)}
+                onNext={() => scrollToCard(activeCard + 1)}
+            />
 
-            {activeCard < cards.length - 1 && (
-                <motion.button
-                    onClick={() => scrollToCard(activeCard + 1)}
-                    className="absolute -right-16 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all z-20"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                >
-                    <ChevronRight className="w-6 h-6 text-white" />
-                </motion.button>
-            )}
-
-            {/* Dot Navigation */}
-            <div className="flex justify-center gap-2 mt-8">
-                {cards.map((_, index) => (
-                    <motion.button
-                        key={index}
-                        onClick={() => scrollToCard(index)}
-                        className={`h-2 rounded-full transition-all ${
-                            index === activeCard
-                                ? 'w-8 bg-secondary'
-                                : 'w-2 bg-slate-600 hover:bg-slate-500'
-                        }`}
-                        whileHover={{ scale: 1.2 }}
-                        whileTap={{ scale: 0.9 }}
-                    />
-                ))}
-            </div>
-
-            {/* Card Counter */}
-            <div className="text-center mt-4 text-sm text-gray-500">
-                {activeCard + 1} / {cards.length}
-            </div>
+            <CardDotNavigation
+                totalCards={cards.length}
+                activeCard={activeCard}
+                onNavigate={scrollToCard}
+                cardTitles={cards.map((c) => c.title)}
+            />
         </div>
     )
 }
