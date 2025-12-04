@@ -32,6 +32,15 @@ export default function AboutCardScrollerMobile({
         }
     }
 
+    const handleDragEnd = (event: any, info: { offset: { x: number } }) => {
+        const swipeThreshold = 50
+        if (info.offset.x < -swipeThreshold) {
+            paginate(1) // Swipe left = next
+        } else if (info.offset.x > swipeThreshold) {
+            paginate(-1) // Swipe right = previous
+        }
+    }
+
     const cardVariants = {
         enter: (dir: number) => ({
             x: dir > 0 ? 300 : -300,
@@ -68,6 +77,11 @@ export default function AboutCardScrollerMobile({
                             x: { type: 'spring', stiffness: 300, damping: 30 },
                             opacity: { duration: 0.2 },
                         }}
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={0.2}
+                        onDragEnd={handleDragEnd}
+                        className="cursor-grab active:cursor-grabbing"
                     >
                         <div className="bg-slate-800/60 backdrop-blur-md border border-slate-700/60 rounded-3xl p-6 flex flex-col shadow-2xl">
                             <h3 className="text-2xl font-bold mb-4">
