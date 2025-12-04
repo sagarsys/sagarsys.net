@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { renderMarkdown } from '@/lib/simple-markdown'
+import CardDotNavigation from './CardDotNavigation'
 
 interface AboutCard {
     title: string
@@ -22,28 +23,11 @@ export default function AboutCardScrollerMobile({
     const [activeCard, setActiveCard] = useState(0)
     const [direction, setDirection] = useState(0)
 
-    const nextCard = () => {
-        if (activeCard < cards.length - 1) {
-            setActiveCard(activeCard + 1)
-        }
-    }
-
-    const prevCard = () => {
-        if (activeCard > 0) {
-            setActiveCard(activeCard - 1)
-        }
-    }
-
-    const goToCard = (index: number) => {
-        setActiveCard(index)
-    }
-
     const paginate = (newDirection: number) => {
         setDirection(newDirection)
-        if (newDirection === 1) {
-            nextCard()
-        } else {
-            prevCard()
+        const newCard = newDirection === 1 ? activeCard + 1 : activeCard - 1
+        if (newCard >= 0 && newCard < cards.length) {
+            setActiveCard(newCard)
         }
     }
 
@@ -103,11 +87,12 @@ export default function AboutCardScrollerMobile({
                 </AnimatePresence>
             </div>
 
-            {/* Navigation Arrows */}
+            {/* Mobile Arrow Navigation (top position) */}
             {activeCard > 0 && (
                 <button
                     onClick={() => paginate(-1)}
                     className="absolute left-2 top-4 w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center z-20"
+                    aria-label="Previous card"
                 >
                     <ChevronLeft className="w-5 h-5 text-white" />
                 </button>
@@ -117,30 +102,19 @@ export default function AboutCardScrollerMobile({
                 <button
                     onClick={() => paginate(1)}
                     className="absolute right-2 top-4 w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center z-20"
+                    aria-label="Next card"
                 >
                     <ChevronRight className="w-5 h-5 text-white" />
                 </button>
             )}
 
-            {/* Dot Navigation */}
-            <div className="flex justify-center gap-2 mt-6">
-                {cards.map((_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => goToCard(index)}
-                        className={`h-2 rounded-full transition-all ${
-                            index === activeCard
-                                ? 'w-8 bg-secondary'
-                                : 'w-2 bg-slate-600'
-                        }`}
-                    />
-                ))}
-            </div>
-
-            {/* Card Counter */}
-            <div className="text-center mt-3 text-sm text-gray-500">
-                {activeCard + 1} / {cards.length}
-            </div>
+            {/* Reusable Dot Navigation */}
+            <CardDotNavigation
+                totalCards={cards.length}
+                activeCard={activeCard}
+                onNavigate={setActiveCard}
+                cardTitles={cards.map((c) => c.title)}
+            />
         </div>
     )
 }
