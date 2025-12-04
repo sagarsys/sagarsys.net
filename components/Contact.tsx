@@ -1,8 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail } from 'lucide-react'
 import SectionHeading from './SectionHeading'
+import EmailCard from './EmailCard'
 import ContactForm from './ContactForm'
 import SocialLinks from './SocialLinks'
 import { useColorGradient } from '@/hooks/useColorGradient'
