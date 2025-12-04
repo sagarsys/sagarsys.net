@@ -16,22 +16,19 @@ import {
 import SectionHeading from './SectionHeading'
 import { Button } from './ui/button'
 import { useColorGradient } from '@/hooks/useColorGradient'
+import type { ContactInfo } from '@/types'
 
 interface ContactProps {
-    email?: string
-    github?: string
-    linkedin?: string
+    contactInfo?: ContactInfo
 }
 
-export default function Contact({
-    email = 'sagar.sawuck@gmail.com',
-    github = 'https://github.com/sagarsys',
-    linkedin = 'https://linkedin.com/in/sagarsys/',
-}: ContactProps) {
+export default function Contact({ contactInfo }: ContactProps) {
     const { colors, mounted } = useColorGradient()
     const gradientColors = mounted
         ? colors
         : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' }
+
+    const email = contactInfo?.email || 'sagar.sawuck@gmail.com'
 
     const [formData, setFormData] = useState({
         name: '',
@@ -41,7 +38,6 @@ export default function Contact({
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        // Construct mailto link with form data
         const subject = encodeURIComponent(
             `Portfolio Contact from ${formData.name}`
         )
@@ -51,56 +47,59 @@ export default function Contact({
         window.location.href = `mailto:${email}?subject=${subject}&body=${body}`
     }
 
-    const socialLinks = [
-        {
-            name: 'GitHub',
-            url: github,
-            icon: Github,
-            hoverColor: 'hover:bg-white hover:text-gray-900',
-        },
-        {
-            name: 'LinkedIn',
-            url: linkedin,
-            icon: Linkedin,
-            hoverColor: 'hover:bg-[#0A66C2] hover:text-white',
-        },
-        {
-            name: 'Twitter',
-            url: 'https://twitter.com/sagarsys',
-            icon: Twitter,
-            hoverColor: 'hover:bg-[#1DA1F2] hover:text-white',
-        },
-        {
-            name: 'Instagram',
-            url: 'https://instagram.com/sagarsys',
-            icon: Instagram,
-            hoverColor: 'hover:bg-[#E4405F] hover:text-white',
-        },
-        {
-            name: 'YouTube',
-            url: 'https://www.youtube.com/channel/UCZmvx7n2wV69KSXeH8VZcZg',
-            icon: Youtube,
-            hoverColor: 'hover:bg-[#FF0000] hover:text-white',
-        },
-        {
-            name: 'SoundCloud',
-            url: 'https://soundcloud.com/sagarsys',
-            icon: Music,
-            hoverColor: 'hover:bg-[#FF5500] hover:text-white',
-        },
-        {
-            name: 'StackBlitz',
-            url: 'https://stackblitz.com/@sagarsys',
-            icon: Code,
-            hoverColor: 'hover:bg-[#1389FD] hover:text-white',
-        },
-        {
-            name: 'CodeSandbox',
-            url: 'https://codesandbox.io/u/sagarsys/',
-            icon: Code,
-            hoverColor: 'hover:bg-black hover:text-white',
-        },
-    ]
+    // Social links from contact.md
+    const socialLinks = contactInfo
+        ? [
+              {
+                  name: 'GitHub',
+                  url: contactInfo.github,
+                  icon: Github,
+                  hoverColor: 'hover:bg-white hover:text-gray-900',
+              },
+              {
+                  name: 'LinkedIn',
+                  url: contactInfo.linkedin,
+                  icon: Linkedin,
+                  hoverColor: 'hover:bg-[#0A66C2] hover:text-white',
+              },
+              {
+                  name: 'Twitter',
+                  url: contactInfo.twitter,
+                  icon: Twitter,
+                  hoverColor: 'hover:bg-[#1DA1F2] hover:text-white',
+              },
+              {
+                  name: 'Instagram',
+                  url: contactInfo.instagram,
+                  icon: Instagram,
+                  hoverColor: 'hover:bg-[#E4405F] hover:text-white',
+              },
+              {
+                  name: 'YouTube',
+                  url: contactInfo.youtube,
+                  icon: Youtube,
+                  hoverColor: 'hover:bg-[#FF0000] hover:text-white',
+              },
+              {
+                  name: 'SoundCloud',
+                  url: contactInfo.soundcloud,
+                  icon: Music,
+                  hoverColor: 'hover:bg-[#FF5500] hover:text-white',
+              },
+              {
+                  name: 'StackBlitz',
+                  url: contactInfo.stackblitz,
+                  icon: Code,
+                  hoverColor: 'hover:bg-[#1389FD] hover:text-white',
+              },
+              {
+                  name: 'CodeSandbox',
+                  url: contactInfo.codeSandbox,
+                  icon: Code,
+                  hoverColor: 'hover:bg-black hover:text-white',
+              },
+          ]
+        : []
 
     return (
         <section id="contact" className="py-20 md:py-32 px-6 relative">
