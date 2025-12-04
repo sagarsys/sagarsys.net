@@ -15,39 +15,79 @@
 }
 
 @theme {
-  --color-background: oklch(20% 0.02 220);
-  --color-foreground: oklch(100% 0 0);
-  --color-card: oklch(20% 0.02 220);
-  --color-card-foreground: oklch(100% 0 0);
-  --color-popover: oklch(20% 0.02 220);
-  --color-popover-foreground: oklch(100% 0 0);
-  --color-primary: #263238;
-  --color-primary-foreground: oklch(100% 0 0);
+  /* Light Mode Colors - High contrast like Tailwind/GitHub */
+  --color-background: #ffffff;
+  --color-foreground: #1f2937;
+  --color-card: rgba(255, 255, 255, 0.9);
+  --color-card-foreground: #1f2937;
+  --color-popover: rgba(255, 255, 255, 0.98);
+  --color-popover-foreground: #1f2937;
+  --color-primary: #1e40af;
+  --color-primary-foreground: #ffffff;
   --color-secondary: #ff5722;
-  --color-secondary-foreground: oklch(100% 0 0);
-  --color-muted: oklch(25% 0.02 220);
-  --color-muted-foreground: oklch(70% 0 0);
-  --color-accent: oklch(30% 0.02 220);
-  --color-accent-foreground: oklch(100% 0 0);
-  --color-destructive: oklch(60% 0.2 10);
-  --color-destructive-foreground: oklch(100% 0 0);
-  --color-border: oklch(30% 0.02 220);
-  --color-input: oklch(30% 0.02 220);
-  --color-ring: oklch(57% 0.2 10);
+  --color-secondary-foreground: #ffffff;
+  --color-muted: #f3f4f6;
+  --color-muted-foreground: #6b7280;
+  --color-accent: #f9fafb;
+  --color-accent-foreground: #1f2937;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-input: rgba(255, 255, 255, 0.95);
+  --color-ring: #ff5722;
   --radius: 0.5rem;
 
+  /* Gradient Colors */
+  --gradient-start: #dbeafe;
+  --gradient-mid: #f5f3ff;
+  --gradient-end: #fce7f3;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.1);
+
+  /* Font Variables */
   --font-family-primary: "Titillium Web", sans-serif;
   --font-family-secondary: "Play", sans-serif;
   --font-family-neuropol: "neuropol_nova_cnd", sans-serif;
-
-  --spacing-nav-bar: 60px;
-
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-
   --font-primary: "Titillium Web", sans-serif;
   --font-secondary: "Play", sans-serif;
   --font-neuropol: "neuropol_nova_cnd", sans-serif;
+
+  /* Spacing */
+  --spacing-nav-bar: 60px;
+
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+/* Dark Mode Theme Variables */
+.dark {
+  --color-background: #0a0a0f;
+  --color-foreground: #e5e5e5;
+  --color-card: rgba(20, 25, 35, 0.6);
+  --color-card-foreground: #e5e5e5;
+  --color-popover: rgba(20, 25, 35, 0.9);
+  --color-popover-foreground: #e5e5e5;
+  --color-primary: #1e293b;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #ff6b47;
+  --color-secondary-foreground: #ffffff;
+  --color-muted: #1e293b;
+  --color-muted-foreground: #94a3b8;
+  --color-accent: #334155;
+  --color-accent-foreground: #e5e5e5;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-input: rgba(51, 65, 85, 0.5);
+  --color-ring: #ff6b47;
+
+  /* Dark Mode Gradients */
+  --gradient-start: #0f0a1e;
+  --gradient-mid: #1a0f2e;
+  --gradient-end: #0f0a1e;
+  --glass-bg: rgba(20, 25, 35, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 @keyframes accordion-down {
@@ -71,18 +111,23 @@
 @layer base {
   * {
     border-color: var(--color-border);
+    transition: border-color 0.3s ease, background-color 0.3s ease,
+      color 0.3s ease;
   }
+
   body {
-    background-color: #1e2529;
+    background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-primary), "Titillium Web", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   h1,
   h2,
   h3,
@@ -90,6 +135,28 @@
   h5,
   h6 {
     font-family: var(--font-secondary), "Play", sans-serif;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #667eea, #764ba2);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #764ba2, #667eea);
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8b5cf6, #ec4899);
   }
 }
 
@@ -168,29 +235,17 @@
   }
 }
 
-/* Hero banner tagline with brackets */
-.tagline-hero::before {
-  content: "[";
-  position: relative;
-  font-size: 22px;
-  top: -2px;
-  animation: opacity 2s infinite;
-}
-
-.tagline-hero::after {
-  content: "]";
-  position: relative;
-  font-size: 22px;
-  top: -2px;
-  animation: opacity 2s infinite;
-}
-
-@media screen and (max-width: 640px) {
-  .tagline-hero::before,
-  .tagline-hero::after {
-    font-size: 44px;
-    top: 10px;
+/* Gradient Animation */
+@keyframes gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
 }
 
-/* Hero banner fly animations will be generated via JavaScript */
+.animate-gradient {
+  animation: gradient 8s ease infinite;
+}

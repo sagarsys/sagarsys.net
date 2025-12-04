@@ -1,170 +1,344 @@
 'use client'
 
+import { motion, useMotionValue, useTransform } from 'framer-motion'
+import {
+    Download,
+    ArrowDown,
+    Github,
+    Linkedin,
+    Mail,
+    Sparkles,
+} from 'lucide-react'
 import { useEffect } from 'react'
-import FullHeightSection from './FullHeightSection'
+import { staggerContainer, staggerItem } from '@/lib/animations'
+import { useColorGradient } from '@/hooks/useColorGradient'
 
-export default function HeroBanner() {
-    const listItems = ['Passionate', 'Creative', 'Innovative', 'Dedicated']
-    const taglineFontSize = 24
+interface HeroBannerProps {
+    email?: string
+    github?: string
+    linkedin?: string
+}
+
+export default function HeroBanner({
+    email = 'sagar.sawuck@gmail.com',
+    github = 'https://github.com/sagarsys',
+    linkedin = 'https://linkedin.com/in/sagarsys/',
+}: HeroBannerProps) {
+    const { colors } = useColorGradient()
+    const mouseX = useMotionValue(0)
+    const mouseY = useMotionValue(0)
+
+    // Create parallax effect for gradient orbs (safe for SSR)
+    const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 1920
+    const windowHeight =
+        typeof window !== 'undefined' ? window.innerHeight : 1080
+
+    const orb1X = useTransform(mouseX, [0, windowWidth], [-20, 20])
+    const orb1Y = useTransform(mouseY, [0, windowHeight], [-20, 20])
+    const orb2X = useTransform(mouseX, [0, windowWidth], [20, -20])
+    const orb2Y = useTransform(mouseY, [0, windowHeight], [20, -20])
 
     useEffect(() => {
-        // Generate fly animations for banner text
-        // Simplified to avoid blocking - using static CSS with dynamic values
-        if (typeof window === 'undefined') return
-
-        let cancelled = false
-
-        const generateAnimations = () => {
-            if (cancelled) return
-
-            const style = document.createElement('style')
-            style.id = 'hero-banner-animations'
-            style.type = 'text/css'
-
-            // Remove existing style if present
-            const existing = document.getElementById('hero-banner-animations')
-            if (existing && existing.parentNode) {
-                existing.parentNode.removeChild(existing)
-            }
-
-            let styleContent = ''
-
-            // Simplified: Generate animations for 20 elements instead of 40 for better performance
-            for (let i = 0; i < 20; i++) {
-                const key = i + 1
-                const row = Math.floor(i / 10)
-                const colFloor = Math.floor(i / 2)
-                const colCeil = Math.ceil(key / 2)
-
-                // Generate pseudo-random but consistent values
-                const seed = i * 123.456
-                const random1 = ((Math.sin(seed) + 1) * 500) % 100
-                const random2 = ((Math.cos(seed * 2) + 1) * 500) % 100
-                const random3 = ((Math.sin(seed * 3) + 1) * 500) % 100
-                const random4 = ((Math.cos(seed * 4) + 1) * 1500) % 3000
-
-                const initX = random1 - 500
-                const initY = random2 - 500
-                const initZ = random3 - 500
-                const initDepth = random4 - 2500
-
-                const transformOriginX =
-                    random1 - 50 + colFloor * 10 - row * 100
-                const transformOriginY = random2 - 50 + row * 50
-
-                const x1 = colFloor * 10 - row * 100
-                const y1 = row * 50
-                const x2 = colCeil * 10 - row * 100
-                const y2 = row * 50 + (key % 2) * 50
-                const x3 = colCeil * 10 - row * 100
-                const y3 = (row + 1) * 50
-
-                styleContent += `#banner .sagarsys:nth-child(${key}) {
-  clip-path: polygon(${x1}% ${y1}%, ${x2}% ${y2}%, ${x3}% ${y3}%);
-  transform-origin: ${transformOriginX}% ${transformOriginY}%;
-  animation: fly${key} 5000ms ${
-                    i * 80
-                }ms cubic-bezier(0.36, 0.1, 0.16, 1) infinite alternate;
-}
-@keyframes fly${key} {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) rotateX(${initX}deg) rotateY(${initY}deg) rotateZ(${initZ}deg) translateZ(${initDepth}px);
-  }
-  10% {
-    opacity: 0;
-    transform: translate(-50%, -50%) rotateX(${initX}deg) rotateY(${initY}deg) rotateZ(${initZ}deg) translateZ(${initDepth}px);
-  }
-  90% {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg) rotateY(0deg) rotateZ(0deg) translateZ(0px);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg) rotateY(0deg) rotateZ(0deg) translateZ(0px);
-  }
-}
-`
-            }
-
-            if (!cancelled) {
-                style.textContent = styleContent
-                document.head.appendChild(style)
-            }
+        const handleMouseMove = (e: MouseEvent) => {
+            mouseX.set(e.clientX)
+            mouseY.set(e.clientY)
         }
 
-        // Defer animation generation to next frame to avoid blocking initial render
-        const timeoutId = setTimeout(() => {
-            requestAnimationFrame(generateAnimations)
-        }, 100)
+        window.addEventListener('mousemove', handleMouseMove)
+        return () => window.removeEventListener('mousemove', handleMouseMove)
+    }, [mouseX, mouseY])
 
-        return () => {
-            cancelled = true
-            clearTimeout(timeoutId)
-            const toRemove = document.getElementById('hero-banner-animations')
-            if (toRemove && toRemove.parentNode) {
-                toRemove.parentNode.removeChild(toRemove)
-            }
+    const handleDownloadCV = () => {
+        window.open('/cv.pdf', '_blank')
+    }
+
+    const scrollToProjects = () => {
+        const projectsSection = document.getElementById('projects')
+        if (projectsSection) {
+            projectsSection.scrollIntoView({ behavior: 'smooth' })
         }
-    }, [])
+    }
 
     return (
-        <FullHeightSection id="home" height="60vh">
-            <div className="flex flex-col h-full justify-center items-center px-6 text-center mt-[60px]">
-                <div id="banner" className="relative w-full h-full">
-                    {Array(20)
-                        .fill(0)
-                        .map((v, i) => (
-                            <h1
-                                key={i}
-                                className="sagarsys font-neuropol text-[4rem] md:text-[8rem] leading-[4rem] md:leading-[8rem] text-secondary opacity-0 absolute top-1/2 left-1/2 mix-blend-screen"
-                            >
-                                SAGARSYS
-                            </h1>
-                        ))}
-                </div>
-                <div
-                    className="relative mt-16"
-                    style={{ height: `${taglineFontSize * 2}px` }}
+        <section
+            id="home"
+            className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        >
+            {/* Animated Gradient Background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-purple-950/20 to-slate-950">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.1),transparent_50%)]" />
+                {/* Grid pattern */}
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
+            </div>
+
+            {/* Floating Gradient Orbs with mouse parallax */}
+            <motion.div
+                className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-full blur-3xl"
+                style={{ x: orb1X, y: orb1Y }}
+                animate={{
+                    scale: [1, 1.2, 1],
+                }}
+                transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                }}
+            />
+            <motion.div
+                className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-br from-blue-600/20 to-cyan-600/20 rounded-full blur-3xl"
+                style={{ x: orb2X, y: orb2Y }}
+                animate={{
+                    scale: [1, 1.3, 1],
+                }}
+                transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                }}
+            />
+
+            {/* Floating decorative elements */}
+            <motion.div
+                className="absolute top-1/4 right-1/4 opacity-20"
+                animate={{
+                    y: [0, -20, 0],
+                    rotate: [0, 5, 0],
+                }}
+                transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                }}
+            >
+                <Sparkles className="w-10 h-10 text-purple-500" />
+            </motion.div>
+
+            {/* Content */}
+            <motion.div
+                className="relative z-10 max-w-5xl mx-auto px-6 text-center"
+                variants={staggerContainer}
+                initial="hidden"
+                animate="show"
+            >
+                <motion.p
+                    className="text-secondary text-lg md:text-xl mb-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
                 >
-                    <h6
-                        className="text-white flex items-start overflow-hidden relative tagline-hero h-auto md:h-[24px]"
+                    Hi, my name is
+                </motion.p>
+
+                <motion.h1
+                    className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 0.8 }}
+                >
+                    <span
+                        className="bg-gradient-to-r bg-clip-text text-transparent bg-[length:200%_auto] transition-all duration-1000 inline-block"
                         style={{
-                            lineHeight: `${taglineFontSize}px`,
+                            backgroundImage: `linear-gradient(135deg, ${colors.from} 0%, ${colors.via} 50%, ${colors.to} 100%)`,
                         }}
                     >
-                        <div
-                            className="inline-block overflow-y-hidden w-[150px] md:w-auto"
-                            style={{
-                                height: `${taglineFontSize}px`,
-                            }}
-                        >
-                            <ul
-                                className="m-0 translate-y-[1px] pl-8 pr-4 list-none text-[#ff6b47] font-bold animate-[change-text_10s_infinite] inline-block"
-                                style={{
-                                    height: `${taglineFontSize}px`,
+                        Sagar Sawuck
+                    </span>
+                </motion.h1>
+
+                <motion.h2
+                    className="text-2xl md:text-4xl lg:text-5xl leading-[1.14] font-bold text-gray-800 dark:text-gray-400 mb-8 md:mb-12"
+                    variants={staggerItem}
+                >
+                    <motion.span
+                        className="inline-block"
+                        animate={{
+                            backgroundPosition: [
+                                '0% 50%',
+                                '100% 50%',
+                                '0% 50%',
+                            ],
+                        }}
+                        transition={{
+                            duration: 5,
+                            repeat: Infinity,
+                            ease: 'linear',
+                        }}
+                        style={{
+                            backgroundImage: `linear-gradient(90deg, ${colors.from}, ${colors.via}, ${colors.to}, ${colors.from})`,
+                            backgroundSize: '200% auto',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                        }}
+                    >
+                        Senior Fullstack Developer
+                    </motion.span>{' '}
+                    with 10+ years of experience. I build{' '}
+                    <motion.span
+                        className="inline-block"
+                        animate={{
+                            backgroundPosition: [
+                                '0% 50%',
+                                '100% 50%',
+                                '0% 50%',
+                            ],
+                        }}
+                        transition={{
+                            duration: 5,
+                            repeat: Infinity,
+                            ease: 'linear',
+                        }}
+                        style={{
+                            backgroundImage: `linear-gradient(90deg, ${colors.from}, ${colors.via}, ${colors.to}, ${colors.from})`,
+                            backgroundSize: '200% auto',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                        }}
+                    >
+                        exceptional digital experiences for people
+                    </motion.span>{' '}
+                    .
+                </motion.h2>
+
+                {/* Tech Stack Tags */}
+                <motion.div
+                    className="flex flex-wrap justify-center gap-3 mb-8 md:mb-12"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 1.6 }}
+                >
+                    {['TypeScript', 'React', 'Next.js', 'Node.js', 'AWS'].map(
+                        (tech, i) => (
+                            <motion.span
+                                key={tech}
+                                className="px-4 py-2 bg-slate-800/50 backdrop-blur-sm rounded-full text-sm font-medium border border-slate-700/50 shadow-sm hover:shadow-md transition-all cursor-default"
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{
+                                    delay: 1.8 + i * 0.15,
+                                    duration: 0.5,
+                                }}
+                                whileHover={{
+                                    y: -2,
+                                    boxShadow: `0 10px 30px ${colors.via}30`,
                                 }}
                             >
-                                {listItems.map((item, i) => (
-                                    <li
-                                        key={i}
-                                        style={{
-                                            height: `${taglineFontSize}px`,
-                                        }}
-                                    >
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <span className="pr-8">
-                            {' '}
-                            web developer striving to make the web a better
-                            place
+                                {tech}
+                            </motion.span>
+                        )
+                    )}
+                </motion.div>
+
+                {/* CTAs */}
+                <motion.div
+                    className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 2.5 }}
+                >
+                    <motion.button
+                        onClick={handleDownloadCV}
+                        className="relative inline-flex items-center gap-3 px-8 py-4 backdrop-blur-md rounded-full border shadow-lg hover:shadow-2xl transition-all duration-300 group overflow-hidden"
+                        style={{
+                            background: `linear-gradient(135deg, ${colors.from}, ${colors.via}, ${colors.to})`,
+                            borderColor: colors.via,
+                        }}
+                        whileHover={{ y: -5, scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <Download className="w-5 h-5 text-white relative z-10 group-hover:animate-bounce" />
+                        <span className="font-semibold text-white relative z-10">
+                            Download CV
                         </span>
-                    </h6>
+
+                        {/* Shimmer effect */}
+                        <motion.div
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                            animate={{ x: ['-200%', '200%'] }}
+                            transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: 'linear',
+                                repeatDelay: 1,
+                            }}
+                        />
+                    </motion.button>
+
+                    <motion.button
+                        onClick={scrollToProjects}
+                        className="inline-flex items-center gap-2 px-8 py-4 text-gray-300 hover:text-secondary transition-colors font-semibold"
+                        whileHover={{ x: 5 }}
+                    >
+                        View Projects
+                        <motion.span
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                        >
+                            →
+                        </motion.span>
+                    </motion.button>
+                </motion.div>
+
+                {/* Social Links */}
+                <motion.div
+                    className="flex items-center justify-center gap-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 2.8 }}
+                >
+                    <motion.a
+                        href={github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 rounded-full bg-slate-800/30 backdrop-blur-sm border border-slate-600/50 flex items-center justify-center hover:border-white transition-all"
+                        whileHover={{ scale: 1.15, y: -3 }}
+                        aria-label="GitHub"
+                    >
+                        <Github className="w-5 h-5" />
+                    </motion.a>
+
+                    <motion.a
+                        href={linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 rounded-full bg-slate-800/30 backdrop-blur-sm border border-slate-600/50 flex items-center justify-center hover:border-[#0A66C2] transition-all"
+                        whileHover={{ scale: 1.15, y: -3 }}
+                        aria-label="LinkedIn"
+                    >
+                        <Linkedin className="w-5 h-5" />
+                    </motion.a>
+
+                    <motion.a
+                        href={`mailto:${email}`}
+                        className="w-10 h-10 rounded-full bg-slate-800/30 backdrop-blur-sm border border-slate-600/50 flex items-center justify-center hover:border-secondary transition-all"
+                        whileHover={{ scale: 1.15, y: -3 }}
+                        aria-label="Email"
+                    >
+                        <Mail className="w-5 h-5" />
+                    </motion.a>
+                </motion.div>
+            </motion.div>
+
+            {/* Scroll Indicator */}
+            <motion.div
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-600 cursor-pointer"
+                animate={{ y: [0, 10, 0] }}
+                transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                }}
+                onClick={() => {
+                    const about = document.getElementById('about')
+                    about?.scrollIntoView({ behavior: 'smooth' })
+                }}
+            >
+                <div className="flex flex-col items-center gap-2">
+                    <span className="text-sm font-medium">Scroll Down</span>
+                    <ArrowDown className="w-6 h-6" />
                 </div>
-            </div>
-        </FullHeightSection>
+            </motion.div>
+        </section>
     )
 }
