@@ -1,19 +1,33 @@
 ---
-title: 'React developer'
-company: 'Providus'
-startDate: 'Jan 2021'
-endDate: 'June 2022'
+title: 'Senior React Developer'
+company: 'Providus Technologies Limited'
+startDate: 'Mar 2021'
+endDate: 'Jun 2022'
 location: 'Ebene, Mauritius'
 description:
-    'Virtual games application development with real-time data management'
-tags: ['React', 'Firebase', 'Real-time']
+    'Real-time virtual soccer betting platform serving 11 million users'
+tags:
+    [
+        'React',
+        'Redux',
+        'JavaScript',
+        'Webpack',
+        'Node.js',
+        'Firebase',
+        'GCP',
+        'CI/CD',
+        'Jenkins',
+    ]
 order: 4
 ---
 
--   Technologies: React, Firebase
--   Virtual games application development
--   Live match simulations
--   Manage large and complex datasets in realtime
--   Migrate to new react versions
--   Focus on UI/UX & speed
+Built a real-time virtual soccer betting platform serving **11 million Nigerian
+users** with live updates and animated game simulations.
+
+**Key Achievements:**
+
+-   Virtual games application development with live match simulations
+-   Managed large and complex datasets in real-time
+-   Migrated to new React versions
+-   Focus on UI/UX & performance optimization
 -   Research & Development

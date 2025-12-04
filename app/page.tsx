@@ -8,6 +8,7 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import ScrollTop from '@/components/ScrollTop'
 import ParticleBackground from '@/components/ParticleBackground'
+import ScrollbarSync from '@/components/ScrollbarSync'
 import { getContactInfo } from '@/lib/markdown'
 
 export default function Home() {
@@ -17,6 +18,9 @@ export default function Home() {
         <div className="min-h-screen relative">
             {/* Particle Background - subtle, throughout the page */}
             <ParticleBackground />
+
+            {/* Scrollbar color sync */}
+            <ScrollbarSync />
 
             {/* Fixed elements */}
             <div id="back-to-top-anchor" className="h-0 min-h-0" />

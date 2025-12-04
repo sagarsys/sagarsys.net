@@ -14,7 +14,10 @@ export default function SectionHeading({
     subtitle,
     centered = true,
 }: SectionHeadingProps) {
-    const { colors } = useColorGradient()
+    const { colors, mounted } = useColorGradient()
+    const gradientColors = mounted
+        ? colors
+        : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' }
 
     return (
         <motion.div
@@ -35,18 +38,18 @@ export default function SectionHeading({
                     <span
                         className="bg-gradient-to-r bg-clip-text text-transparent transition-all duration-1000"
                         style={{
-                            backgroundImage: `linear-gradient(135deg, ${colors.from} 0%, ${colors.via} 50%, ${colors.to} 100%)`,
+                            backgroundImage: `linear-gradient(135deg, ${gradientColors.from} 0%, ${gradientColors.via} 50%, ${gradientColors.to} 100%)`,
                         }}
                     >
                         {title}
                     </span>
                 </h2>
 
-                {/* Fixed width animated underline - centered under heading */}
+                {/* Fixed width animated underline */}
                 <motion.div
                     className="h-2 rounded-full mb-6 w-48 md:w-64"
                     style={{
-                        background: `linear-gradient(90deg, ${colors.from}, ${colors.via}, ${colors.to})`,
+                        background: `linear-gradient(90deg, ${gradientColors.from}, ${gradientColors.via}, ${gradientColors.to})`,
                     }}
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}

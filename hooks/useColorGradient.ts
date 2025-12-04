@@ -5,16 +5,14 @@ import { useTheme } from 'next-themes'
 import { COLOR_GRADIENTS, COLOR_ROTATION_INTERVAL } from '@/config/colors'
 
 export function useColorGradient() {
+    // Start with first gradient to match server render
     const [gradientIndex, setGradientIndex] = useState(0)
+    const [mounted, setMounted] = useState(false)
     const { theme } = useTheme()
     const isDark = theme === 'dark'
 
     useEffect(() => {
-        // Set initial index based on time
-        const now = Date.now()
-        const initialIndex =
-            Math.floor(now / COLOR_ROTATION_INTERVAL) % COLOR_GRADIENTS.length
-        setGradientIndex(initialIndex)
+        setMounted(true)
 
         // Update gradient index every 30 seconds
         const interval = setInterval(() => {
@@ -33,5 +31,6 @@ export function useColorGradient() {
         gradientIndex,
         cssGradient: `linear-gradient(135deg, ${colors.from} 0%, ${colors.via} 50%, ${colors.to} 100%)`,
         textGradientClasses: `from-[${colors.from}] via-[${colors.via}] to-[${colors.to}]`,
+        mounted,
     }
 }

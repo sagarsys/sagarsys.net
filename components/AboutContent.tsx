@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { renderMarkdown } from '@/lib/simple-markdown'
+import AboutCardScroller from './AboutCardScroller'
 import type { MarkdownContent, AboutFrontmatter } from '@/types'
 
 interface AboutContentProps {
@@ -12,17 +12,16 @@ export default function AboutContent({ data }: AboutContentProps) {
     if (!data) return null
 
     const { name, image = '/images/sagar.jpg' } = data.frontmatter
-    const content = renderMarkdown(data.content)
 
     return (
-        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-16">
             {/* Left: Image */}
             <motion.div
-                className="order-2 md:order-1"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                className="order-2 md:order-1 md:sticky md:top-24 md:h-fit"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
             >
                 <div className="relative aspect-square max-w-md mx-auto">
                     {/* Glow effect */}
@@ -38,7 +37,6 @@ export default function AboutContent({ data }: AboutContentProps) {
                     {/* Image container */}
                     <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-3xl overflow-hidden p-4 shadow-xl">
                         <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-700">
-                            {/* Using regular img tag for better compatibility */}
                             <img
                                 src={image}
                                 alt={name}
@@ -50,23 +48,15 @@ export default function AboutContent({ data }: AboutContentProps) {
                 </div>
             </motion.div>
 
-            {/* Right: Content */}
+            {/* Right: Card Scroller */}
             <motion.div
-                className="order-1 md:order-2"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                className="order-1 md:order-2 w-full"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
             >
-                <motion.div
-                    className="space-y-2"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                >
-                    {content}
-                </motion.div>
+                <AboutCardScroller content={data.content} />
             </motion.div>
         </div>
     )

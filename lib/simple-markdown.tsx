@@ -1,4 +1,4 @@
-// Lightweight markdown renderer - supports headings, lists, bold, italic
+// Lightweight markdown renderer - supports headings, lists, bold, italic, links
 // No external dependencies, keeps bundle size small
 import React from 'react'
 
@@ -29,6 +29,12 @@ export function renderMarkdown(markdown: string): React.ReactElement[] {
     }
 
     const parseInline = (text: string): string => {
+        // Links: [text](url) - do this FIRST before other replacements
+        text = text.replace(
+            /\[(.+?)\]\((.+?)\)/g,
+            '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline hover:text-orange-500 transition-colors">$1</a>'
+        )
+
         // Bold: **text** or __text__
         text = text.replace(
             /\*\*(.+?)\*\*/g,
@@ -38,10 +44,6 @@ export function renderMarkdown(markdown: string): React.ReactElement[] {
             /__(.+?)__/g,
             '<strong class="text-secondary font-semibold">$1</strong>'
         )
-
-        // Italic: *text* or _text_
-        text = text.replace(/\*(.+?)\*/g, '<em class="text-gray-300">$1</em>')
-        text = text.replace(/_(.+?)_/g, '<em class="text-gray-300">$1</em>')
 
         // Code: `code`
         text = text.replace(

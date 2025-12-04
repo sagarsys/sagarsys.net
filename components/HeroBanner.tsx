@@ -24,7 +24,12 @@ export default function HeroBanner({
     github = 'https://github.com/sagarsys',
     linkedin = 'https://linkedin.com/in/sagarsys/',
 }: HeroBannerProps) {
-    const { colors } = useColorGradient()
+    const { colors, mounted } = useColorGradient()
+
+    // Use fallback colors until mounted to prevent hydration mismatch
+    const gradientColors = mounted
+        ? colors
+        : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' }
     const mouseX = useMotionValue(0)
     const mouseY = useMotionValue(0)
 
@@ -49,7 +54,7 @@ export default function HeroBanner({
     }, [mouseX, mouseY])
 
     const handleDownloadCV = () => {
-        window.open('/cv.pdf', '_blank')
+        window.open('/assets/Sagar-Sawuck-CV-2025.pdf', '_blank')
     }
 
     const scrollToProjects = () => {
@@ -138,7 +143,7 @@ export default function HeroBanner({
                     <span
                         className="bg-gradient-to-r bg-clip-text text-transparent bg-[length:200%_auto] transition-all duration-1000 inline-block"
                         style={{
-                            backgroundImage: `linear-gradient(135deg, ${colors.from} 0%, ${colors.via} 50%, ${colors.to} 100%)`,
+                            backgroundImage: `linear-gradient(135deg, ${gradientColors.from} 0%, ${gradientColors.via} 50%, ${gradientColors.to} 100%)`,
                         }}
                     >
                         Sagar Sawuck
@@ -164,7 +169,7 @@ export default function HeroBanner({
                             ease: 'linear',
                         }}
                         style={{
-                            backgroundImage: `linear-gradient(90deg, ${colors.from}, ${colors.via}, ${colors.to}, ${colors.from})`,
+                            backgroundImage: `linear-gradient(90deg, ${gradientColors.from}, ${gradientColors.via}, ${gradientColors.to}, ${gradientColors.from})`,
                             backgroundSize: '200% auto',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
@@ -189,7 +194,7 @@ export default function HeroBanner({
                             ease: 'linear',
                         }}
                         style={{
-                            backgroundImage: `linear-gradient(90deg, ${colors.from}, ${colors.via}, ${colors.to}, ${colors.from})`,
+                            backgroundImage: `linear-gradient(90deg, ${gradientColors.from}, ${gradientColors.via}, ${gradientColors.to}, ${gradientColors.from})`,
                             backgroundSize: '200% auto',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
@@ -208,26 +213,31 @@ export default function HeroBanner({
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 1.6 }}
                 >
-                    {['TypeScript', 'React', 'Next.js', 'Node.js', 'AWS'].map(
-                        (tech, i) => (
-                            <motion.span
-                                key={tech}
-                                className="px-4 py-2 bg-slate-800/50 backdrop-blur-sm rounded-full text-sm font-medium border border-slate-700/50 shadow-sm hover:shadow-md transition-all cursor-default"
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{
-                                    delay: 1.8 + i * 0.15,
-                                    duration: 0.5,
-                                }}
-                                whileHover={{
-                                    y: -2,
-                                    boxShadow: `0 10px 30px ${colors.via}30`,
-                                }}
-                            >
-                                {tech}
-                            </motion.span>
-                        )
-                    )}
+                    {[
+                        'TypeScript',
+                        'Javascript',
+                        'React',
+                        'Next.js',
+                        'Node.js',
+                        'Prisma',
+                    ].map((tech, i) => (
+                        <motion.span
+                            key={tech}
+                            className="px-4 py-2 bg-slate-800/50 backdrop-blur-sm rounded-full text-sm font-medium border border-slate-700/50 shadow-sm hover:shadow-md transition-all cursor-default"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{
+                                delay: 1.8 + i * 0.15,
+                                duration: 0.5,
+                            }}
+                            whileHover={{
+                                y: -2,
+                                boxShadow: `0 10px 30px ${gradientColors.via}30`,
+                            }}
+                        >
+                            {tech}
+                        </motion.span>
+                    ))}
                 </motion.div>
 
                 {/* CTAs */}
@@ -241,8 +251,8 @@ export default function HeroBanner({
                         onClick={handleDownloadCV}
                         className="relative inline-flex items-center gap-3 px-8 py-4 backdrop-blur-md rounded-full border shadow-lg hover:shadow-2xl transition-all duration-300 group overflow-hidden"
                         style={{
-                            background: `linear-gradient(135deg, ${colors.from}, ${colors.via}, ${colors.to})`,
-                            borderColor: colors.via,
+                            background: `linear-gradient(135deg, ${gradientColors.from}, ${gradientColors.via}, ${gradientColors.to})`,
+                            borderColor: gradientColors.via,
                         }}
                         whileHover={{ y: -5, scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}

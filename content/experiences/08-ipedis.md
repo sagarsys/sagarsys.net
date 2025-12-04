@@ -1,19 +1,35 @@
 ---
-title: 'Senior Frontend developer'
-company: 'IPEDIS / Digital Fourteen Ltd'
-startDate: 'Sep 2017'
-endDate: 'Aug 2018'
+title: 'Senior Front-end Developer'
+company: 'IPEDIS'
+startDate: 'Sep 2018'
+endDate: 'Sep 2019'
 location: 'Quatre Bornes, Mauritius'
-description: 'Lead frontend developer for document virtualization platform'
-tags: ['Angular', 'AngularJS', 'Accessibility', 'Symfony', 'Elasticsearch']
+description: 'Lead frontend for accessible document virtualization platform'
+tags:
+    [
+        'Angular',
+        'TypeScript',
+        'CSS3',
+        'HTML5',
+        'Accessibility',
+        'Symfony',
+        'Elasticsearch',
+    ]
 order: 8
 ---
 
--   Lead Frontend developer
+Led frontend development for a document virtualization platform with a strong
+focus on accessibility, enabling organizations to customize and publish
+interactive annual reports online (from PDF to an online platform), pioneering
+custom in-house solutions & libraries as the front-end team lead with close
+collaboration of the CTO and stakeholders.
+
+**Key Achievements:**
+
+-   Lead Frontend developer for accessibility-first platform
 -   Angular Website & Web App Development
--   Document Virtualization Platform Development
--   AngularJS Website development & Maintenance
--   In house JS plugins development
--   Accessibility and Web Performance Focus
--   Code review | Consulting (Frontend) | R&D
--   Working with Symfony and Elastic Search
+-   Document Virtualization Platform (PDF to HTML)
+-   Developed custom in-house JS plugins and libraries
+-   Accessibility and Web Performance Focus (WCAG compliance)
+-   Code review, Frontend Consulting, R&D
+-   Working with Symfony and Elasticsearch

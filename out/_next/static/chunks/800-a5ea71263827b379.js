@@ -1,6 +1,6 @@
 'use strict'
 ;(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
-    [549],
+    [800],
     {
         42: (e, t, r) => {
             r.d(t, { W: () => n })
@@ -47,6 +47,12 @@
         296: (e, t, r) => {
             r.d(t, { L: () => n })
             let n = (0, r(2115).createContext)({})
+        },
+        368: (e, t, r) => {
+            r.d(t, { A: () => n })
+            let n = (0, r(1847).A)('chevron-left', [
+                ['path', { d: 'm15 18-6-6 6-6', key: '1wnfg3' }],
+            ])
         },
         508: (e, t, r) => {
             r.d(t, { A: () => n })
@@ -13154,6 +13160,12 @@
                 },
                 o = { ...i, transform: (e) => (0, n.q)(0, 1, e) },
                 s = { ...i, default: 1 }
+        },
+        7937: (e, t, r) => {
+            r.d(t, { A: () => n })
+            let n = (0, r(1847).A)('chevron-right', [
+                ['path', { d: 'm9 18 6-6-6-6', key: 'mthhwq' }],
+            ])
         },
         8041: (e, t, r) => {
             r.d(t, { $: () => n, V: () => i })

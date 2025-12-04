@@ -1,40 +1,476 @@
 ;(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([
     [974],
     {
-        1326: (e, a, t) => {
+        83: (e, t, a) => {
             'use strict'
-            t.d(a, { default: () => p })
-            var s = t(1983),
-                r = t(5849),
-                l = t(5155),
-                n = t(2115),
-                i = t(1075),
-                o = t(3664),
-                c = t(4684),
-                d = t(7333),
-                m = t(8085),
-                x = t(6639),
-                h = t(7003),
-                u = t(2063)
-            function p(e) {
+            a.d(t, { default: () => h })
+            var s = a(5155),
+                r = a(1075),
+                l = a(2115),
+                n = a(6497),
+                i = a(368),
+                o = a(7937),
+                c = a(7713),
+                d = a(2063)
+            function m(e) {
+                let { content: t } = e,
+                    [a, m] = (0, l.useState)(0),
+                    [h, x] = (0, l.useState)(!1),
+                    [u, f] = (0, l.useState)(0),
+                    p = (0, l.useRef)(null),
+                    { colors: g, mounted: b } = (0, d.X)(),
+                    v = b
+                        ? g
+                        : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' }
+                ;(0, l.useEffect)(() => {
+                    let e = () => x(window.innerWidth < 768)
+                    return (
+                        e(),
+                        window.addEventListener('resize', e),
+                        () => window.removeEventListener('resize', e)
+                    )
+                }, [])
+                let y = t
+                        .split(/(?=^## )/gm)
+                        .filter(Boolean)
+                        .map((e) => {
+                            let t = e.trim().split('\n'),
+                                a = t[0] || ''
+                            return a.startsWith('## ')
+                                ? {
+                                      title: a.replace('## ', ''),
+                                      content: t.slice(1).join('\n').trim(),
+                                  }
+                                : null
+                        })
+                        .filter((e) => null !== e),
+                    w = (e) => {
+                        f(e),
+                            1 === e
+                                ? a < y.length - 1 && m(a + 1)
+                                : a > 0 && m(a - 1)
+                    },
+                    j = (e) => {
+                        m(e)
+                        let t = p.current
+                        t &&
+                            t.scrollTo({
+                                left: t.clientWidth * e,
+                                behavior: 'smooth',
+                            })
+                    }
+                return h
+                    ? (0, s.jsxs)('div', {
+                          className: 'relative w-full',
+                          style: {
+                              '--scroll-color-from': v.from,
+                              '--scroll-color-to': v.via,
+                          },
+                          children: [
+                              (0, s.jsx)('div', {
+                                  className: 'relative min-h-[400px]',
+                                  children: (0, s.jsx)(n.N, {
+                                      initial: !1,
+                                      custom: u,
+                                      mode: 'wait',
+                                      children: (0, s.jsx)(
+                                          r.P.div,
+                                          {
+                                              custom: u,
+                                              variants: {
+                                                  enter: (e) => ({
+                                                      x: e > 0 ? 300 : -300,
+                                                      opacity: 0,
+                                                  }),
+                                                  center: { x: 0, opacity: 1 },
+                                                  exit: (e) => ({
+                                                      x: e > 0 ? -300 : 300,
+                                                      opacity: 0,
+                                                  }),
+                                              },
+                                              initial: 'enter',
+                                              animate: 'center',
+                                              exit: 'exit',
+                                              transition: {
+                                                  x: {
+                                                      type: 'spring',
+                                                      stiffness: 300,
+                                                      damping: 30,
+                                                  },
+                                                  opacity: { duration: 0.2 },
+                                              },
+                                              children: (0, s.jsxs)('div', {
+                                                  className:
+                                                      'bg-slate-800/60 backdrop-blur-md border border-slate-700/60 rounded-3xl p-6 flex flex-col shadow-2xl',
+                                                  children: [
+                                                      (0, s.jsx)('h3', {
+                                                          className:
+                                                              'text-2xl font-bold mb-4',
+                                                          children: (0, s.jsx)(
+                                                              'span',
+                                                              {
+                                                                  className:
+                                                                      'bg-gradient-to-r bg-clip-text text-transparent transition-all duration-1000',
+                                                                  style: {
+                                                                      backgroundImage:
+                                                                          'linear-gradient(135deg, '
+                                                                              .concat(
+                                                                                  v.from,
+                                                                                  ', '
+                                                                              )
+                                                                              .concat(
+                                                                                  v.via,
+                                                                                  ', '
+                                                                              )
+                                                                              .concat(
+                                                                                  v.to,
+                                                                                  ')'
+                                                                              ),
+                                                                  },
+                                                                  children:
+                                                                      y[a]
+                                                                          .title,
+                                                              }
+                                                          ),
+                                                      }),
+                                                      (0, s.jsx)('div', {
+                                                          className:
+                                                              'space-y-2',
+                                                          children: (0, c.G)(
+                                                              y[a].content
+                                                          ),
+                                                      }),
+                                                  ],
+                                              }),
+                                          },
+                                          a
+                                      ),
+                                  }),
+                              }),
+                              a > 0 &&
+                                  (0, s.jsx)('button', {
+                                      onClick: () => w(-1),
+                                      className:
+                                          'absolute left-2 top-4 w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center z-20',
+                                      children: (0, s.jsx)(i.A, {
+                                          className: 'w-5 h-5 text-white',
+                                      }),
+                                  }),
+                              a < y.length - 1 &&
+                                  (0, s.jsx)('button', {
+                                      onClick: () => w(1),
+                                      className:
+                                          'absolute right-2 top-4 w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center z-20',
+                                      children: (0, s.jsx)(o.A, {
+                                          className: 'w-5 h-5 text-white',
+                                      }),
+                                  }),
+                              (0, s.jsx)('div', {
+                                  className: 'flex justify-center gap-2 mt-6',
+                                  children: y.map((e, t) =>
+                                      (0, s.jsx)(
+                                          'button',
+                                          {
+                                              onClick: () => {
+                                                  m(t)
+                                              },
+                                              className:
+                                                  'h-2 rounded-full transition-all '.concat(
+                                                      t === a
+                                                          ? 'w-8 bg-secondary'
+                                                          : 'w-2 bg-slate-600'
+                                                  ),
+                                          },
+                                          t
+                                      )
+                                  ),
+                              }),
+                              (0, s.jsxs)('div', {
+                                  className:
+                                      'text-center mt-3 text-sm text-gray-500',
+                                  children: [a + 1, ' / ', y.length],
+                              }),
+                          ],
+                      })
+                    : (0, s.jsxs)('div', {
+                          className: 'relative w-full',
+                          style: {
+                              '--scroll-color-from': v.from,
+                              '--scroll-color-to': v.via,
+                          },
+                          children: [
+                              (0, s.jsx)('div', {
+                                  ref: p,
+                                  className:
+                                      'overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth',
+                                  onScroll: () => {
+                                      let e = p.current
+                                      e &&
+                                          m(
+                                              Math.round(
+                                                  e.scrollLeft / e.clientWidth
+                                              )
+                                          )
+                                  },
+                                  style: {
+                                      scrollbarWidth: 'none',
+                                      msOverflowStyle: 'none',
+                                  },
+                                  children: (0, s.jsx)('div', {
+                                      className: 'flex',
+                                      children: y.map((e, t) =>
+                                          (0, s.jsx)(
+                                              'div',
+                                              {
+                                                  className:
+                                                      'w-full flex-shrink-0 snap-center',
+                                                  children: (0, s.jsxs)('div', {
+                                                      className:
+                                                          'bg-slate-800/60 backdrop-blur-md border border-slate-700/60 rounded-3xl p-12 h-[600px] flex flex-col shadow-2xl',
+                                                      children: [
+                                                          (0, s.jsx)('h3', {
+                                                              className:
+                                                                  'text-4xl font-bold mb-6',
+                                                              children: (0,
+                                                              s.jsx)('span', {
+                                                                  className:
+                                                                      'bg-gradient-to-r bg-clip-text text-transparent transition-all duration-1000',
+                                                                  style: {
+                                                                      backgroundImage:
+                                                                          'linear-gradient(135deg, '
+                                                                              .concat(
+                                                                                  v.from,
+                                                                                  ', '
+                                                                              )
+                                                                              .concat(
+                                                                                  v.via,
+                                                                                  ', '
+                                                                              )
+                                                                              .concat(
+                                                                                  v.to,
+                                                                                  ')'
+                                                                              ),
+                                                                  },
+                                                                  children:
+                                                                      e.title,
+                                                              }),
+                                                          }),
+                                                          (0, s.jsx)('div', {
+                                                              className:
+                                                                  'space-y-3 flex-1 overflow-y-auto custom-scrollbar pr-2',
+                                                              children: (0,
+                                                              c.G)(e.content),
+                                                          }),
+                                                      ],
+                                                  }),
+                                              },
+                                              t
+                                          )
+                                      ),
+                                  }),
+                              }),
+                              a > 0 &&
+                                  (0, s.jsx)(r.P.button, {
+                                      onClick: () => j(a - 1),
+                                      className:
+                                          'absolute -left-16 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all z-20',
+                                      whileHover: { scale: 1.1 },
+                                      whileTap: { scale: 0.9 },
+                                      children: (0, s.jsx)(i.A, {
+                                          className: 'w-6 h-6 text-white',
+                                      }),
+                                  }),
+                              a < y.length - 1 &&
+                                  (0, s.jsx)(r.P.button, {
+                                      onClick: () => j(a + 1),
+                                      className:
+                                          'absolute -right-16 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center hover:bg-secondary hover:border-secondary transition-all z-20',
+                                      whileHover: { scale: 1.1 },
+                                      whileTap: { scale: 0.9 },
+                                      children: (0, s.jsx)(o.A, {
+                                          className: 'w-6 h-6 text-white',
+                                      }),
+                                  }),
+                              (0, s.jsx)('div', {
+                                  className: 'flex justify-center gap-2 mt-8',
+                                  children: y.map((e, t) =>
+                                      (0, s.jsx)(
+                                          r.P.button,
+                                          {
+                                              onClick: () => j(t),
+                                              className:
+                                                  'h-2 rounded-full transition-all '.concat(
+                                                      t === a
+                                                          ? 'w-8 bg-secondary'
+                                                          : 'w-2 bg-slate-600 hover:bg-slate-500'
+                                                  ),
+                                              whileHover: { scale: 1.2 },
+                                              whileTap: { scale: 0.9 },
+                                          },
+                                          t
+                                      )
+                                  ),
+                              }),
+                              (0, s.jsxs)('div', {
+                                  className:
+                                      'text-center mt-4 text-sm text-gray-500',
+                                  children: [a + 1, ' / ', y.length],
+                              }),
+                          ],
+                      })
+            }
+            function h(e) {
+                let { data: t } = e
+                if (!t) return null
+                let { name: a, image: l = '/images/sagar.jpg' } = t.frontmatter
+                return (0, s.jsxs)('div', {
+                    className: 'grid md:grid-cols-2 gap-8 md:gap-16',
+                    children: [
+                        (0, s.jsx)(r.P.div, {
+                            className:
+                                'order-2 md:order-1 md:sticky md:top-24 md:h-fit',
+                            initial: { opacity: 0, y: 20 },
+                            whileInView: { opacity: 1, y: 0 },
+                            viewport: { once: !0 },
+                            transition: { duration: 0.6 },
+                            children: (0, s.jsxs)('div', {
+                                className:
+                                    'relative aspect-square max-w-md mx-auto',
+                                children: [
+                                    (0, s.jsx)(r.P.div, {
+                                        className:
+                                            'absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-3xl blur-3xl',
+                                        animate: {
+                                            scale: [1, 1.1, 1],
+                                            opacity: [0.5, 0.7, 0.5],
+                                        },
+                                        transition: {
+                                            duration: 4,
+                                            repeat: 1 / 0,
+                                        },
+                                    }),
+                                    (0, s.jsx)('div', {
+                                        className:
+                                            'relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-3xl overflow-hidden p-4 shadow-xl',
+                                        children: (0, s.jsx)('div', {
+                                            className:
+                                                'relative w-full h-full rounded-2xl overflow-hidden bg-slate-700',
+                                            children: (0, s.jsx)('img', {
+                                                src: l,
+                                                alt: a,
+                                                className:
+                                                    'w-full h-full object-cover',
+                                                loading: 'eager',
+                                            }),
+                                        }),
+                                    }),
+                                ],
+                            }),
+                        }),
+                        (0, s.jsx)(r.P.div, {
+                            className: 'order-1 md:order-2 w-full',
+                            initial: { opacity: 0, y: 20 },
+                            whileInView: { opacity: 1, y: 0 },
+                            viewport: { once: !0 },
+                            transition: { duration: 0.6 },
+                            children: (0, s.jsx)(m, { content: t.content }),
+                        }),
+                    ],
+                })
+            }
+        },
+        1326: (e, t, a) => {
+            'use strict'
+            a.d(t, { default: () => y })
+            var s = a(1983),
+                r = a(5849),
+                l = a(5155),
+                n = a(2115),
+                i = a(1075),
+                o = a(4684),
+                c = a(7333),
+                d = a(7378),
+                m = a(7161),
+                h = a(64),
+                x = a(3586),
+                u = a(9602),
+                f = a(3664),
+                p = a(8085),
+                g = a(6639),
+                b = a(7003),
+                v = a(2063)
+            function y(e) {
                 let {
-                        email: a = 'sagar.sawuck@gmail.com',
-                        github: t = 'https://github.com/sagarsys',
-                        linkedin: p = 'https://linkedin.com/in/sagarsys/',
+                        email: t = 'sagar.sawuck@gmail.com',
+                        github: a = 'https://github.com/sagarsys',
+                        linkedin: y = 'https://linkedin.com/in/sagarsys/',
                     } = e,
-                    { colors: g } = (0, u.X)(),
-                    [f, b] = (0, n.useState)({
+                    { colors: w, mounted: j } = (0, v.X)(),
+                    N = j
+                        ? w
+                        : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' },
+                    [k, P] = (0, n.useState)({
                         name: '',
                         email: '',
                         message: '',
-                    })
+                    }),
+                    C = [
+                        {
+                            name: 'GitHub',
+                            url: a,
+                            icon: o.A,
+                            hoverColor: 'hover:bg-white hover:text-gray-900',
+                        },
+                        {
+                            name: 'LinkedIn',
+                            url: y,
+                            icon: c.A,
+                            hoverColor: 'hover:bg-[#0A66C2] hover:text-white',
+                        },
+                        {
+                            name: 'Twitter',
+                            url: 'https://twitter.com/sagarsys',
+                            icon: d.A,
+                            hoverColor: 'hover:bg-[#1DA1F2] hover:text-white',
+                        },
+                        {
+                            name: 'Instagram',
+                            url: 'https://instagram.com/sagarsys',
+                            icon: m.A,
+                            hoverColor: 'hover:bg-[#E4405F] hover:text-white',
+                        },
+                        {
+                            name: 'YouTube',
+                            url: 'https://www.youtube.com/channel/UCZmvx7n2wV69KSXeH8VZcZg',
+                            icon: h.A,
+                            hoverColor: 'hover:bg-[#FF0000] hover:text-white',
+                        },
+                        {
+                            name: 'SoundCloud',
+                            url: 'https://soundcloud.com/sagarsys',
+                            icon: x.A,
+                            hoverColor: 'hover:bg-[#FF5500] hover:text-white',
+                        },
+                        {
+                            name: 'StackBlitz',
+                            url: 'https://stackblitz.com/@sagarsys',
+                            icon: u.A,
+                            hoverColor: 'hover:bg-[#1389FD] hover:text-white',
+                        },
+                        {
+                            name: 'CodeSandbox',
+                            url: 'https://codesandbox.io/u/sagarsys/',
+                            icon: u.A,
+                            hoverColor: 'hover:bg-black hover:text-white',
+                        },
+                    ]
                 return (0, l.jsx)('section', {
                     id: 'contact',
                     className: 'py-20 md:py-32 px-6 relative',
                     children: (0, l.jsxs)('div', {
                         className: 'max-w-6xl mx-auto',
                         children: [
-                            (0, l.jsx)(x.default, {
+                            (0, l.jsx)(g.default, {
                                 title: 'Get In Touch',
                                 subtitle:
                                     "Let's build something amazing together",
@@ -50,12 +486,12 @@
                                         viewport: { once: !0 },
                                         children: [
                                             (0, l.jsx)(i.P.a, {
-                                                href: 'mailto:'.concat(a),
+                                                href: 'mailto:'.concat(t),
                                                 className: 'block',
                                                 whileHover: { y: -5 },
                                                 children: (0, l.jsx)('div', {
                                                     className:
-                                                        'bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-slate-700/50 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all group',
+                                                        'bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all group',
                                                     children: (0, l.jsxs)(
                                                         'div',
                                                         {
@@ -71,22 +507,22 @@
                                                                             background:
                                                                                 'linear-gradient(135deg, '
                                                                                     .concat(
-                                                                                        g.from,
+                                                                                        N.from,
                                                                                         ', '
                                                                                     )
                                                                                     .concat(
-                                                                                        g.via,
+                                                                                        N.via,
                                                                                         ', '
                                                                                     )
                                                                                     .concat(
-                                                                                        g.to,
+                                                                                        N.to,
                                                                                         ')'
                                                                                     ),
                                                                         },
                                                                         children:
                                                                             (0,
                                                                             l.jsx)(
-                                                                                o.A,
+                                                                                f.A,
                                                                                 {
                                                                                     className:
                                                                                         'w-6 h-6 text-white',
@@ -118,7 +554,7 @@
                                                                                         className:
                                                                                             'font-semibold text-lg text-white group-hover:text-secondary transition-colors',
                                                                                         children:
-                                                                                            a,
+                                                                                            t,
                                                                                     }
                                                                                 ),
                                                                             ],
@@ -139,46 +575,65 @@
                                                         children:
                                                             'Connect with me',
                                                     }),
-                                                    (0, l.jsxs)('div', {
-                                                        className: 'flex gap-3',
-                                                        children: [
-                                                            (0, l.jsx)(i.P.a, {
-                                                                href: t,
-                                                                target: '_blank',
-                                                                rel: 'noopener noreferrer',
-                                                                className:
-                                                                    'w-10 h-10 rounded-full bg-slate-700 text-gray-300 flex items-center justify-center hover:bg-white hover:text-gray-900 transition-all',
-                                                                whileHover: {
-                                                                    scale: 1.1,
-                                                                    y: -3,
-                                                                },
-                                                                'aria-label':
-                                                                    'GitHub',
-                                                                children: (0,
-                                                                l.jsx)(c.A, {
-                                                                    className:
-                                                                        'w-5 h-5',
-                                                                }),
-                                                            }),
-                                                            (0, l.jsx)(i.P.a, {
-                                                                href: p,
-                                                                target: '_blank',
-                                                                rel: 'noopener noreferrer',
-                                                                className:
-                                                                    'w-10 h-10 rounded-full bg-slate-700 text-gray-300 flex items-center justify-center hover:bg-[#0A66C2] hover:text-white transition-all',
-                                                                whileHover: {
-                                                                    scale: 1.1,
-                                                                    y: -3,
-                                                                },
-                                                                'aria-label':
-                                                                    'LinkedIn',
-                                                                children: (0,
-                                                                l.jsx)(d.A, {
-                                                                    className:
-                                                                        'w-5 h-5',
-                                                                }),
-                                                            }),
-                                                        ],
+                                                    (0, l.jsx)('div', {
+                                                        className:
+                                                            'flex flex-wrap justify-start gap-3',
+                                                        children: C.map(
+                                                            (e, t) => {
+                                                                let a = e.icon
+                                                                return (0,
+                                                                l.jsx)(
+                                                                    i.P.a,
+                                                                    {
+                                                                        href: e.url,
+                                                                        target: '_blank',
+                                                                        rel: 'noopener noreferrer',
+                                                                        className:
+                                                                            'w-12 h-12 rounded-full bg-slate-700 text-gray-300 flex items-center justify-center transition-all '.concat(
+                                                                                e.hoverColor
+                                                                            ),
+                                                                        initial:
+                                                                            {
+                                                                                opacity: 0,
+                                                                                scale: 0.8,
+                                                                            },
+                                                                        whileInView:
+                                                                            {
+                                                                                opacity: 1,
+                                                                                scale: 1,
+                                                                            },
+                                                                        viewport:
+                                                                            {
+                                                                                once: !0,
+                                                                            },
+                                                                        transition:
+                                                                            {
+                                                                                delay:
+                                                                                    0.05 *
+                                                                                    t,
+                                                                            },
+                                                                        whileHover:
+                                                                            {
+                                                                                scale: 1.1,
+                                                                                y: -3,
+                                                                            },
+                                                                        'aria-label':
+                                                                            e.name,
+                                                                        title: e.name,
+                                                                        children:
+                                                                            (0,
+                                                                            l.jsx)(
+                                                                                a,
+                                                                                {
+                                                                                    className:
+                                                                                        'w-5 h-5',
+                                                                                }
+                                                                            ),
+                                                                    },
+                                                                    e.name
+                                                                )
+                                                            }
+                                                        ),
                                                     }),
                                                 ],
                                             }),
@@ -191,26 +646,26 @@
                                         children: (0, l.jsxs)('form', {
                                             onSubmit: (e) => {
                                                 e.preventDefault()
-                                                let t = encodeURIComponent(
+                                                let a = encodeURIComponent(
                                                         'Portfolio Contact from '.concat(
-                                                            f.name
+                                                            k.name
                                                         )
                                                     ),
                                                     s = encodeURIComponent(
                                                         'From: '
                                                             .concat(
-                                                                f.name,
+                                                                k.name,
                                                                 '\nEmail: '
                                                             )
                                                             .concat(
-                                                                f.email,
+                                                                k.email,
                                                                 '\n\nMessage:\n'
                                                             )
-                                                            .concat(f.message)
+                                                            .concat(k.message)
                                                     )
                                                 window.location.href = 'mailto:'
-                                                    .concat(a, '?subject=')
-                                                    .concat(t, '&body=')
+                                                    .concat(t, '?subject=')
+                                                    .concat(a, '&body=')
                                                     .concat(s)
                                             },
                                             className: 'space-y-4',
@@ -227,14 +682,14 @@
                                                             type: 'text',
                                                             id: 'name',
                                                             required: !0,
-                                                            value: f.name,
+                                                            value: k.name,
                                                             onChange: (e) =>
-                                                                b(
+                                                                P(
                                                                     (0, r._)(
                                                                         (0,
                                                                         s._)(
                                                                             {},
-                                                                            f
+                                                                            k
                                                                         ),
                                                                         {
                                                                             name: e
@@ -244,7 +699,7 @@
                                                                     )
                                                                 ),
                                                             className:
-                                                                'w-full px-4 py-3 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all',
+                                                                'w-full px-4 py-3 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all text-white',
                                                             placeholder:
                                                                 'Your name',
                                                         }),
@@ -262,14 +717,14 @@
                                                             type: 'email',
                                                             id: 'email',
                                                             required: !0,
-                                                            value: f.email,
+                                                            value: k.email,
                                                             onChange: (e) =>
-                                                                b(
+                                                                P(
                                                                     (0, r._)(
                                                                         (0,
                                                                         s._)(
                                                                             {},
-                                                                            f
+                                                                            k
                                                                         ),
                                                                         {
                                                                             email: e
@@ -279,7 +734,7 @@
                                                                     )
                                                                 ),
                                                             className:
-                                                                'w-full px-4 py-3 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all',
+                                                                'w-full px-4 py-3 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all text-white',
                                                             placeholder:
                                                                 'your@email.com',
                                                         }),
@@ -297,14 +752,14 @@
                                                             id: 'message',
                                                             required: !0,
                                                             rows: 6,
-                                                            value: f.message,
+                                                            value: k.message,
                                                             onChange: (e) =>
-                                                                b(
+                                                                P(
                                                                     (0, r._)(
                                                                         (0,
                                                                         s._)(
                                                                             {},
-                                                                            f
+                                                                            k
                                                                         ),
                                                                         {
                                                                             message:
@@ -315,7 +770,7 @@
                                                                     )
                                                                 ),
                                                             className:
-                                                                'w-full px-4 py-3 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all resize-none',
+                                                                'w-full px-4 py-3 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all resize-none text-white',
                                                             placeholder:
                                                                 'Your message...',
                                                         }),
@@ -324,28 +779,28 @@
                                                 (0, l.jsx)(i.P.div, {
                                                     whileHover: { scale: 1.02 },
                                                     whileTap: { scale: 0.98 },
-                                                    children: (0, l.jsxs)(h.$, {
+                                                    children: (0, l.jsxs)(b.$, {
                                                         type: 'submit',
                                                         className:
-                                                            'w-full bg-secondary hover:bg-secondary/90 text-white py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all group',
+                                                            'w-full py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all group text-white',
                                                         style: {
                                                             background:
                                                                 'linear-gradient(135deg, '
                                                                     .concat(
-                                                                        g.from,
+                                                                        N.from,
                                                                         ', '
                                                                     )
                                                                     .concat(
-                                                                        g.via,
+                                                                        N.via,
                                                                         ', '
                                                                     )
                                                                     .concat(
-                                                                        g.to,
+                                                                        N.to,
                                                                         ')'
                                                                     ),
                                                         },
                                                         children: [
-                                                            (0, l.jsx)(m.A, {
+                                                            (0, l.jsx)(p.A, {
                                                                 className:
                                                                     'w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform',
                                                             }),
@@ -363,38 +818,38 @@
                 })
             }
         },
-        1527: (e, a, t) => {
+        1527: (e, t, a) => {
             'use strict'
-            t.d(a, { default: () => D })
-            var s = t(1983),
-                r = t(5849),
-                l = t(5155),
-                n = t(2115),
-                i = t(1075),
-                o = t(5239),
-                c = t(5880),
-                d = t(4684),
-                m = t(4033),
-                x = t(7476),
-                h = t(7389),
-                u = t(8714),
-                p = t(5229),
-                g = t(5016)
-            let f = u.bL
+            a.d(t, { default: () => H })
+            var s = a(1983),
+                r = a(5849),
+                l = a(5155),
+                n = a(2115),
+                i = a(1075),
+                o = a(5239),
+                c = a(5880),
+                d = a(4684),
+                m = a(4033),
+                h = a(7476),
+                x = a(7389),
+                u = a(8714),
+                f = a(5229),
+                p = a(5016)
+            let g = u.bL
             u.l9
             let b = u.ZL
             u.bm
-            let v = n.forwardRef((e, a) => {
-                var { className: t } = e,
-                    r = (0, h._)(e, ['className'])
+            let v = n.forwardRef((e, t) => {
+                var { className: a } = e,
+                    r = (0, x._)(e, ['className'])
                 return (0, l.jsx)(
                     u.hJ,
                     (0, s._)(
                         {
-                            ref: a,
-                            className: (0, g.cn)(
+                            ref: t,
+                            className: (0, p.cn)(
                                 'fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
-                                t
+                                a
                             ),
                         },
                         r
@@ -402,9 +857,9 @@
                 )
             })
             v.displayName = u.hJ.displayName
-            let y = n.forwardRef((e, a) => {
-                var { className: t, children: n } = e,
-                    i = (0, h._)(e, ['className', 'children'])
+            let y = n.forwardRef((e, t) => {
+                var { className: a, children: n } = e,
+                    i = (0, x._)(e, ['className', 'children'])
                 return (0, l.jsxs)(b, {
                     children: [
                         (0, l.jsx)(v, {}),
@@ -413,10 +868,10 @@
                             (0, r._)(
                                 (0, s._)(
                                     {
-                                        ref: a,
-                                        className: (0, g.cn)(
+                                        ref: t,
+                                        className: (0, p.cn)(
                                             'fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg',
-                                            t
+                                            a
                                         ),
                                     },
                                     i
@@ -428,7 +883,7 @@
                                             className:
                                                 'absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground',
                                             children: [
-                                                (0, l.jsx)(p.A, {
+                                                (0, l.jsx)(f.A, {
                                                     className: 'h-4 w-4',
                                                 }),
                                                 (0, l.jsx)('span', {
@@ -446,33 +901,33 @@
             })
             y.displayName = u.UC.displayName
             let w = (e) => {
-                var { className: a } = e,
-                    t = (0, h._)(e, ['className'])
+                var { className: t } = e,
+                    a = (0, x._)(e, ['className'])
                 return (0, l.jsx)(
                     'div',
                     (0, s._)(
                         {
-                            className: (0, g.cn)(
+                            className: (0, p.cn)(
                                 'flex flex-col space-y-1.5 text-center sm:text-left',
-                                a
+                                t
                             ),
                         },
-                        t
+                        a
                     )
                 )
             }
             w.displayName = 'DialogHeader'
-            let j = n.forwardRef((e, a) => {
-                var { className: t } = e,
-                    r = (0, h._)(e, ['className'])
+            let j = n.forwardRef((e, t) => {
+                var { className: a } = e,
+                    r = (0, x._)(e, ['className'])
                 return (0, l.jsx)(
                     u.hE,
                     (0, s._)(
                         {
-                            ref: a,
-                            className: (0, g.cn)(
+                            ref: t,
+                            className: (0, p.cn)(
                                 'text-lg font-semibold leading-none tracking-tight',
-                                t
+                                a
                             ),
                         },
                         r
@@ -480,36 +935,36 @@
                 )
             })
             ;(j.displayName = u.hE.displayName),
-                (n.forwardRef((e, a) => {
-                    var { className: t } = e,
-                        r = (0, h._)(e, ['className'])
+                (n.forwardRef((e, t) => {
+                    var { className: a } = e,
+                        r = (0, x._)(e, ['className'])
                     return (0, l.jsx)(
                         u.VY,
                         (0, s._)(
                             {
-                                ref: a,
-                                className: (0, g.cn)(
+                                ref: t,
+                                className: (0, p.cn)(
                                     'text-sm text-muted-foreground',
-                                    t
+                                    a
                                 ),
                             },
                             r
                         )
                     )
                 }).displayName = u.VY.displayName)
-            var N = t(4484)
+            var N = a(4484)
             let k = N.bL,
-                P = n.forwardRef((e, a) => {
-                    var { className: t } = e,
-                        r = (0, h._)(e, ['className'])
+                P = n.forwardRef((e, t) => {
+                    var { className: a } = e,
+                        r = (0, x._)(e, ['className'])
                     return (0, l.jsx)(
                         N.B8,
                         (0, s._)(
                             {
-                                ref: a,
-                                className: (0, g.cn)(
+                                ref: t,
+                                className: (0, p.cn)(
                                     'inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground',
-                                    t
+                                    a
                                 ),
                             },
                             r
@@ -517,17 +972,17 @@
                     )
                 })
             P.displayName = N.B8.displayName
-            let C = n.forwardRef((e, a) => {
-                var { className: t } = e,
-                    r = (0, h._)(e, ['className'])
+            let C = n.forwardRef((e, t) => {
+                var { className: a } = e,
+                    r = (0, x._)(e, ['className'])
                 return (0, l.jsx)(
                     N.l9,
                     (0, s._)(
                         {
-                            ref: a,
-                            className: (0, g.cn)(
+                            ref: t,
+                            className: (0, p.cn)(
                                 'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm',
-                                t
+                                a
                             ),
                         },
                         r
@@ -535,17 +990,17 @@
                 )
             })
             C.displayName = N.l9.displayName
-            let _ = n.forwardRef((e, a) => {
-                var { className: t } = e,
-                    r = (0, h._)(e, ['className'])
+            let _ = n.forwardRef((e, t) => {
+                var { className: a } = e,
+                    r = (0, x._)(e, ['className'])
                 return (0, l.jsx)(
                     N.UC,
                     (0, s._)(
                         {
-                            ref: a,
-                            className: (0, g.cn)(
+                            ref: t,
+                            className: (0, p.cn)(
                                 'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-                                t
+                                a
                             ),
                         },
                         r
@@ -553,16 +1008,16 @@
                 )
             })
             _.displayName = N.UC.displayName
-            var A = t(9451),
-                E = t(627),
-                I = t(2508)
-            function S(e) {
-                let { images: a } = e,
-                    { desktop: t, tablet: s, mobile: r } = a,
-                    n = [t, s, r].filter(Boolean).length
+            var A = a(9451),
+                S = a(627),
+                E = a(2508)
+            function I(e) {
+                let { images: t } = e,
+                    { desktop: a, tablet: s, mobile: r } = t,
+                    n = [a, s, r].filter(Boolean).length
                 if (0 === n) return null
                 if (1 === n) {
-                    let e = t || s || r
+                    let e = a || s || r
                     return (0, l.jsx)('div', {
                         className: 'my-8',
                         children: (0, l.jsx)('div', {
@@ -588,7 +1043,7 @@
                             (0, l.jsxs)(P, {
                                 className: 'grid w-full grid-cols-3 mb-6',
                                 children: [
-                                    t &&
+                                    a &&
                                         (0, l.jsxs)(C, {
                                             value: 'desktop',
                                             className:
@@ -610,7 +1065,7 @@
                                             className:
                                                 'flex items-center gap-2',
                                             children: [
-                                                (0, l.jsx)(E.A, {
+                                                (0, l.jsx)(S.A, {
                                                     className: 'w-4 h-4',
                                                 }),
                                                 (0, l.jsx)('span', {
@@ -626,7 +1081,7 @@
                                             className:
                                                 'flex items-center gap-2',
                                             children: [
-                                                (0, l.jsx)(I.A, {
+                                                (0, l.jsx)(E.A, {
                                                     className: 'w-4 h-4',
                                                 }),
                                                 (0, l.jsx)('span', {
@@ -638,14 +1093,14 @@
                                         }),
                                 ],
                             }),
-                            t &&
+                            a &&
                                 (0, l.jsx)(_, {
                                     value: 'desktop',
                                     children: (0, l.jsx)('div', {
                                         className:
                                             'relative w-full rounded-lg overflow-hidden border border-slate-700',
                                         children: (0, l.jsx)(o.default, {
-                                            src: '/'.concat(t),
+                                            src: '/'.concat(a),
                                             alt: 'Desktop view',
                                             width: 1200,
                                             height: 800,
@@ -690,10 +1145,10 @@
                     }),
                 })
             }
-            function F(e) {
-                let { item: a } = e,
+            function z(e) {
+                let { item: t } = e,
                     {
-                        images: t,
+                        images: a,
                         title: s,
                         description: r,
                         tech: n,
@@ -701,9 +1156,9 @@
                         clientLink: c,
                         role: d,
                         roleDescription: m,
-                        challenges: x,
-                        live: h,
-                    } = a
+                        challenges: h,
+                        live: x,
+                    } = t
                 return (0, l.jsxs)('div', {
                     className: 'space-y-6',
                     children: [
@@ -716,7 +1171,7 @@
                                         className:
                                             'relative w-full max-w-full max-h-[70vh]',
                                         children: (0, l.jsx)(o.default, {
-                                            src: '/'.concat(t.thumb),
+                                            src: '/'.concat(a.thumb),
                                             alt: s,
                                             width: 800,
                                             height: 600,
@@ -741,7 +1196,7 @@
                                                     (0, l.jsx)('span', {
                                                         className:
                                                             'text-foreground',
-                                                        children: (0, g.mD)(
+                                                        children: (0, p.mD)(
                                                             n
                                                         ).join(''),
                                                     }),
@@ -795,7 +1250,7 @@
                                                     }),
                                                 ],
                                             }),
-                                        x &&
+                                        h &&
                                             (0, l.jsxs)('div', {
                                                 className: 'text-secondary',
                                                 children: [
@@ -804,15 +1259,15 @@
                                                     (0, l.jsx)('ul', {
                                                         className:
                                                             'text-foreground list-disc list-inside mt-2 space-y-1',
-                                                        children: x.map(
-                                                            (e, a) =>
+                                                        children: h.map(
+                                                            (e, t) =>
                                                                 (0, l.jsx)(
                                                                     'li',
                                                                     {
                                                                         children:
                                                                             e,
                                                                     },
-                                                                    a
+                                                                    t
                                                                 )
                                                         ),
                                                     }),
@@ -822,8 +1277,8 @@
                                 }),
                             ],
                         }),
-                        h &&
-                            h.length > 0 &&
+                        x &&
+                            x.length > 0 &&
                             (0, l.jsxs)('div', {
                                 className: 'my-8',
                                 children: [
@@ -834,7 +1289,7 @@
                                     }),
                                     (0, l.jsx)('div', {
                                         className: 'grid grid-cols-2 gap-4',
-                                        children: h.map((e, a) =>
+                                        children: x.map((e, t) =>
                                             (0, l.jsxs)(
                                                 'a',
                                                 {
@@ -871,22 +1326,22 @@
                                                         }),
                                                     ],
                                                 },
-                                                a
+                                                t
                                             )
                                         ),
                                     }),
                                 ],
                             }),
-                        (0, l.jsx)(S, { images: t }),
+                        (0, l.jsx)(I, { images: a }),
                     ],
                 })
             }
-            function z(e) {
-                let { open: a, handleClose: t, item: s } = e,
+            function F(e) {
+                let { open: t, handleClose: a, item: s } = e,
                     { title: r, titleLink: n } = s
-                return (0, l.jsx)(f, {
-                    open: a,
-                    onOpenChange: t,
+                return (0, l.jsx)(g, {
+                    open: t,
+                    onOpenChange: a,
                     children: (0, l.jsxs)(y, {
                         className: 'max-w-6xl max-h-[90vh] overflow-y-auto',
                         children: [
@@ -908,36 +1363,36 @@
                             (0, l.jsx)('div', {
                                 className: 'border-t border-border my-4',
                             }),
-                            (0, l.jsx)(F, { item: s }),
+                            (0, l.jsx)(z, { item: s }),
                         ],
                     }),
                 })
             }
-            var H = t(7003)
-            function D(e) {
-                let { projects: a } = e,
-                    [t, h] = (0, n.useState)(null),
-                    [u, p] = (0, n.useState)(!1),
-                    g = u ? a : a.slice(0, 9),
-                    f = a.length > 9
+            var D = a(7003)
+            function H(e) {
+                let { projects: t } = e,
+                    [a, x] = (0, n.useState)(null),
+                    [u, f] = (0, n.useState)(!1),
+                    p = u ? t : t.slice(0, 9),
+                    g = t.length > 9
                 return (0, l.jsxs)(l.Fragment, {
                     children: [
                         (0, l.jsx)(i.P.div, {
                             className:
                                 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8',
-                            variants: x.bK,
+                            variants: h.bK,
                             initial: 'hidden',
                             whileInView: 'show',
                             viewport: { once: !0, margin: '-100px' },
-                            children: g.map((e) => {
-                                var a
+                            children: p.map((e) => {
+                                var t
                                 return (0, l.jsx)(
                                     i.P.div,
                                     {
                                         className: 'group cursor-pointer',
-                                        variants: x.Rf,
+                                        variants: h.Rf,
                                         whileHover: { y: -10 },
-                                        onClick: () => h(e),
+                                        onClick: () => x(e),
                                         children: (0, l.jsxs)('div', {
                                             className:
                                                 'relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all',
@@ -947,11 +1402,11 @@
                                                         'relative h-48 md:h-56 overflow-hidden bg-gray-200 dark:bg-slate-700',
                                                     children: [
                                                         (null ==
-                                                        (a =
+                                                        (t =
                                                             e.frontmatter
                                                                 .images)
                                                             ? void 0
-                                                            : a.thumb) &&
+                                                            : t.thumb) &&
                                                             (0, l.jsx)(
                                                                 o.default,
                                                                 {
@@ -1133,22 +1588,23 @@
                                 )
                             }),
                         }),
-                        f &&
+                        g &&
                             !u &&
                             (0, l.jsx)(i.P.div, {
                                 className: 'flex justify-center mt-12',
                                 initial: { opacity: 0, y: 20 },
                                 whileInView: { opacity: 1, y: 0 },
                                 viewport: { once: !0 },
-                                children: (0, l.jsxs)(H.$, {
-                                    onClick: () => p(!0),
+                                children: (0, l.jsxs)(D.$, {
+                                    onClick: () => f(!0),
                                     variant: 'outline',
                                     size: 'lg',
                                     className: 'group',
                                     children: [
                                         'Load More Projects (',
-                                        a.length - 9,
-                                        ' more)',
+                                        t.length - 9,
+                                        ' ',
+                                        'more)',
                                         (0, l.jsx)(m.A, {
                                             className:
                                                 'ml-2 h-4 h-4 group-hover:translate-y-1 transition-transform',
@@ -1156,24 +1612,24 @@
                                     ],
                                 }),
                             }),
-                        t &&
-                            (0, l.jsx)(z, {
-                                open: !!t,
-                                handleClose: () => h(null),
+                        a &&
+                            (0, l.jsx)(F, {
+                                open: !!a,
+                                handleClose: () => x(null),
                                 item: (0, r._)(
-                                    (0, s._)({ id: t.slug }, t.frontmatter),
-                                    { description: t.content }
+                                    (0, s._)({ id: a.slug }, a.frontmatter),
+                                    { description: a.content }
                                 ),
                             }),
                     ],
                 })
             }
         },
-        2063: (e, a, t) => {
+        2063: (e, t, a) => {
             'use strict'
-            t.d(a, { X: () => n })
-            var s = t(2115),
-                r = t(5379)
+            a.d(t, { X: () => n })
+            var s = a(2115),
+                r = a(5379)
             let l = [
                 {
                     name: 'purple-pink',
@@ -1202,62 +1658,65 @@
                 },
             ]
             function n() {
-                let [e, a] = (0, s.useState)(0),
-                    { theme: t } = (0, r.D)()
+                let [e, t] = (0, s.useState)(0),
+                    [a, n] = (0, s.useState)(!1),
+                    { theme: i } = (0, r.D)()
                 ;(0, s.useEffect)(() => {
-                    a(Math.floor(Date.now() / 3e4) % l.length)
+                    n(!0)
                     let e = setInterval(() => {
-                        a((e) => (e + 1) % l.length)
+                        t((e) => (e + 1) % l.length)
                     }, 3e4)
                     return () => clearInterval(e)
                 }, [])
-                let n = l[e],
-                    i = 'dark' === t ? n.dark : n.light
+                let o = l[e],
+                    c = 'dark' === i ? o.dark : o.light
                 return {
-                    gradient: n,
-                    colors: i,
+                    gradient: o,
+                    colors: c,
                     gradientIndex: e,
                     cssGradient: 'linear-gradient(135deg, '
-                        .concat(i.from, ' 0%, ')
-                        .concat(i.via, ' 50%, ')
-                        .concat(i.to, ' 100%)'),
+                        .concat(c.from, ' 0%, ')
+                        .concat(c.via, ' 50%, ')
+                        .concat(c.to, ' 100%)'),
                     textGradientClasses: 'from-['
-                        .concat(i.from, '] via-[')
-                        .concat(i.via, '] to-[')
-                        .concat(i.to, ']'),
+                        .concat(c.from, '] via-[')
+                        .concat(c.via, '] to-[')
+                        .concat(c.to, ']'),
+                    mounted: a,
                 }
             }
         },
-        3447: (e, a, t) => {
-            Promise.resolve().then(t.bind(t, 6320)),
-                Promise.resolve().then(t.bind(t, 4539)),
-                Promise.resolve().then(t.bind(t, 9891)),
-                Promise.resolve().then(t.bind(t, 1326)),
-                Promise.resolve().then(t.bind(t, 8743)),
-                Promise.resolve().then(t.bind(t, 8892)),
-                Promise.resolve().then(t.bind(t, 7864)),
-                Promise.resolve().then(t.bind(t, 1527)),
-                Promise.resolve().then(t.bind(t, 7874)),
-                Promise.resolve().then(t.bind(t, 6639)),
-                Promise.resolve().then(t.bind(t, 9252))
+        2683: (e, t, a) => {
+            Promise.resolve().then(a.bind(a, 83)),
+                Promise.resolve().then(a.bind(a, 4539)),
+                Promise.resolve().then(a.bind(a, 9891)),
+                Promise.resolve().then(a.bind(a, 1326)),
+                Promise.resolve().then(a.bind(a, 8743)),
+                Promise.resolve().then(a.bind(a, 8892)),
+                Promise.resolve().then(a.bind(a, 7864)),
+                Promise.resolve().then(a.bind(a, 1527)),
+                Promise.resolve().then(a.bind(a, 8709)),
+                Promise.resolve().then(a.bind(a, 7874)),
+                Promise.resolve().then(a.bind(a, 6639)),
+                Promise.resolve().then(a.bind(a, 9252))
         },
-        4539: (e, a, t) => {
+        4539: (e, t, a) => {
             'use strict'
-            t.d(a, { default: () => E })
-            var s = t(5155),
-                r = t(2115),
-                l = t(5993),
-                n = t(508),
-                i = t(9602),
-                o = t(9633),
-                c = t(8734),
-                d = t(3664),
-                m = t(9540),
-                x = t(1543),
-                h = t(1075),
-                u = t(5016)
-            function p() {
-                return (0, s.jsxs)(h.P.a, {
+            a.d(t, { default: () => S })
+            var s = a(5155),
+                r = a(2115),
+                l = a(5993),
+                n = a(508),
+                i = a(9602),
+                o = a(9633),
+                c = a(8734),
+                d = a(3664),
+                m = a(9540),
+                h = a(1543),
+                x = a(1075),
+                u = a(5016)
+            function f() {
+                return (0, s.jsxs)(x.P.a, {
                     onClick: u.IK,
                     className:
                         'font-neuropol text-3xl md:text-4xl cursor-pointer relative group',
@@ -1269,7 +1728,7 @@
                                 'bg-gradient-to-r from-secondary via-orange-500 to-secondary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient',
                             children: 'SAGARSYS',
                         }),
-                        (0, s.jsx)(h.P.div, {
+                        (0, s.jsx)(x.P.div, {
                             className:
                                 'absolute inset-0 blur-xl bg-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity -z-10',
                             animate: { scale: [1, 1.1, 1] },
@@ -1278,32 +1737,32 @@
                     ],
                 })
             }
-            var g = t(1983),
-                f = t(5849),
-                b = t(7389),
-                v = t(8714),
-                y = t(3101),
-                w = t(5229)
+            var p = a(1983),
+                g = a(5849),
+                b = a(7389),
+                v = a(8714),
+                y = a(3101),
+                w = a(5229)
             let j = v.bL,
                 N = v.l9
             v.bm
             let k = v.ZL,
-                P = r.forwardRef((e, a) => {
-                    var { className: t } = e,
+                P = r.forwardRef((e, t) => {
+                    var { className: a } = e,
                         r = (0, b._)(e, ['className'])
                     return (0, s.jsx)(
                         v.hJ,
-                        (0, f._)(
-                            (0, g._)(
+                        (0, g._)(
+                            (0, p._)(
                                 {
                                     className: (0, u.cn)(
                                         'fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
-                                        t
+                                        a
                                     ),
                                 },
                                 r
                             ),
-                            { ref: a }
+                            { ref: t }
                         )
                     )
                 })
@@ -1322,20 +1781,20 @@
                         defaultVariants: { side: 'right' },
                     }
                 ),
-                _ = r.forwardRef((e, a) => {
-                    var { side: t = 'right', className: r, children: l } = e,
+                _ = r.forwardRef((e, t) => {
+                    var { side: a = 'right', className: r, children: l } = e,
                         n = (0, b._)(e, ['side', 'className', 'children'])
                     return (0, s.jsxs)(k, {
                         children: [
                             (0, s.jsx)(P, {}),
                             (0, s.jsxs)(
                                 v.UC,
-                                (0, f._)(
-                                    (0, g._)(
+                                (0, g._)(
+                                    (0, p._)(
                                         {
-                                            ref: a,
+                                            ref: t,
                                             className: (0, u.cn)(
-                                                C({ side: t }),
+                                                C({ side: a }),
                                                 r
                                             ),
                                         },
@@ -1369,46 +1828,46 @@
                     })
                 })
             ;(_.displayName = v.UC.displayName),
-                (r.forwardRef((e, a) => {
-                    var { className: t } = e,
+                (r.forwardRef((e, t) => {
+                    var { className: a } = e,
                         r = (0, b._)(e, ['className'])
                     return (0, s.jsx)(
                         v.hE,
-                        (0, g._)(
+                        (0, p._)(
                             {
-                                ref: a,
+                                ref: t,
                                 className: (0, u.cn)(
                                     'text-lg font-semibold text-foreground',
-                                    t
+                                    a
                                 ),
                             },
                             r
                         )
                     )
                 }).displayName = v.hE.displayName),
-                (r.forwardRef((e, a) => {
-                    var { className: t } = e,
+                (r.forwardRef((e, t) => {
+                    var { className: a } = e,
                         r = (0, b._)(e, ['className'])
                     return (0, s.jsx)(
                         v.VY,
-                        (0, g._)(
+                        (0, p._)(
                             {
-                                ref: a,
+                                ref: t,
                                 className: (0, u.cn)(
                                     'text-sm text-muted-foreground',
-                                    t
+                                    a
                                 ),
                             },
                             r
                         )
                     )
                 }).displayName = v.VY.displayName)
-            var A = t(7003)
-            function E() {
-                let [e, a] = (0, r.useState)(!1),
-                    [t, u] = (0, r.useState)(!0),
-                    [g, f] = (0, r.useState)(0),
-                    { scrollY: b } = (0, x.L)(),
+            var A = a(7003)
+            function S() {
+                let [e, t] = (0, r.useState)(!1),
+                    [a, u] = (0, r.useState)(!0),
+                    [p, g] = (0, r.useState)(0),
+                    { scrollY: b } = (0, h.L)(),
                     v = [
                         { name: 'home', label: 'Home', icon: l.A },
                         { name: 'about', label: 'About', icon: n.A },
@@ -1419,26 +1878,26 @@
                     ]
                 ;(0, r.useEffect)(() => {
                     let e = b.on('change', (e) => {
-                        let a = e - g
-                        e < 100 ? u(!0) : a > 5 ? u(!1) : a < -5 && u(!0), f(e)
+                        let t = e - p
+                        e < 100 ? u(!0) : t > 5 ? u(!1) : t < -5 && u(!0), g(e)
                     })
                     return () => e()
-                }, [b, g])
-                let y = (e, t) => {
+                }, [b, p])
+                let y = (e, a) => {
                     e.preventDefault()
-                    let s = document.getElementById(t)
+                    let s = document.getElementById(a)
                     if (s) {
                         let e =
                             window.innerWidth < 768
                                 ? s.offsetTop
                                 : s.offsetTop - 60
-                        window.scrollTo({ top: e, behavior: 'smooth' }), a(!1)
+                        window.scrollTo({ top: e, behavior: 'smooth' }), t(!1)
                     }
                 }
-                return (0, s.jsx)(h.P.header, {
+                return (0, s.jsx)(x.P.header, {
                     className: 'sticky top-0 left-0 right-0 z-50',
                     initial: { y: 0 },
-                    animate: { y: t ? 0 : -100 },
+                    animate: { y: a ? 0 : -100 },
                     transition: { duration: 0.3 },
                     children: (0, s.jsx)('div', {
                         className:
@@ -1449,17 +1908,17 @@
                             children: [
                                 (0, s.jsx)('div', {
                                     className: 'flex-shrink-0',
-                                    children: (0, s.jsx)(p, {}),
+                                    children: (0, s.jsx)(f, {}),
                                 }),
                                 (0, s.jsx)('div', {
                                     className:
                                         'hidden md:flex items-center gap-1',
                                     children: v.map((e) =>
                                         (0, s.jsxs)(
-                                            h.P.a,
+                                            x.P.a,
                                             {
                                                 href: '#'.concat(e.name),
-                                                onClick: (a) => y(a, e.name),
+                                                onClick: (t) => y(t, e.name),
                                                 className:
                                                     'flex items-center gap-2 px-4 py-2 text-gray-300 hover:text-secondary transition-colors cursor-pointer font-medium rounded-lg hover:bg-secondary/5',
                                                 whileHover: { y: -2 },
@@ -1481,7 +1940,7 @@
                                         'md:hidden flex items-center gap-2',
                                     children: (0, s.jsxs)(j, {
                                         open: e,
-                                        onOpenChange: a,
+                                        onOpenChange: t,
                                         children: [
                                             (0, s.jsx)(N, {
                                                 asChild: !0,
@@ -1512,9 +1971,9 @@
                                                                 href: '#'.concat(
                                                                     e.name
                                                                 ),
-                                                                onClick: (a) =>
+                                                                onClick: (t) =>
                                                                     y(
-                                                                        a,
+                                                                        t,
                                                                         e.name
                                                                     ),
                                                                 className:
@@ -1550,24 +2009,24 @@
                 })
             }
         },
-        5016: (e, a, t) => {
+        5016: (e, t, a) => {
             'use strict'
-            t.d(a, { IK: () => i, cn: () => l, mD: () => n })
-            var s = t(2821),
-                r = t(5889)
+            a.d(t, { IK: () => i, cn: () => l, mD: () => n })
+            var s = a(2821),
+                r = a(5889)
             function l() {
-                for (var e = arguments.length, a = Array(e), t = 0; t < e; t++)
-                    a[t] = arguments[t]
-                return (0, r.QP)((0, s.$)(a))
+                for (var e = arguments.length, t = Array(e), a = 0; a < e; a++)
+                    t[a] = arguments[a]
+                return (0, r.QP)((0, s.$)(t))
             }
             function n(e) {
-                let a =
+                let t =
                         arguments.length > 1 && void 0 !== arguments[1]
                             ? arguments[1]
                             : ', ',
-                    t = e.length
+                    a = e.length
                 return e.map((e, s) =>
-                    s !== t - 1 ? ''.concat(e).concat(a) : ''.concat(e)
+                    s !== a - 1 ? ''.concat(e).concat(t) : ''.concat(e)
                 )
             }
             let i = (e) => {
@@ -1575,20 +2034,20 @@
                     let e = document.querySelector('#back-to-top-anchor')
                     e
                         ? ((function () {
-                              let { location: e, history: a } = window
+                              let { location: e, history: t } = window
                               try {
-                                  if ('pushState' in a)
-                                      a.pushState(
+                                  if ('pushState' in t)
+                                      t.pushState(
                                           null,
                                           document.title,
                                           e.pathname + e.search
                                       )
                                   else {
-                                      let a = document.body.scrollTop,
-                                          t = document.body.scrollLeft
+                                      let t = document.body.scrollTop,
+                                          a = document.body.scrollLeft
                                       ;(e.hash = ''),
-                                          (document.body.scrollTop = a),
-                                          (document.body.scrollLeft = t)
+                                          (document.body.scrollTop = t),
+                                          (document.body.scrollLeft = a)
                                   }
                               } catch (e) {
                                   console.warn(
@@ -1607,219 +2066,18 @@
                 }
             }
         },
-        6320: (e, a, t) => {
+        6639: (e, t, a) => {
             'use strict'
-            t.d(a, { default: () => l })
-            var s = t(5155),
-                r = t(1075)
-            function l(e) {
-                let { data: a } = e
-                if (!a) return null
-                let { name: t, image: l = '/images/sagar.jpg' } = a.frontmatter,
-                    n = (function (e) {
-                        let a = e.split('\n'),
-                            t = [],
-                            r = [],
-                            l = 0,
-                            n = () => {
-                                r.length > 0 &&
-                                    (t.push(
-                                        (0, s.jsx)(
-                                            'ul',
-                                            {
-                                                className: 'space-y-2 my-4',
-                                                children: r.map((e, a) =>
-                                                    (0, s.jsxs)(
-                                                        'li',
-                                                        {
-                                                            className:
-                                                                'flex gap-3',
-                                                            children: [
-                                                                (0, s.jsx)(
-                                                                    'span',
-                                                                    {
-                                                                        className:
-                                                                            'text-secondary mt-1',
-                                                                        children:
-                                                                            '→',
-                                                                    }
-                                                                ),
-                                                                (0, s.jsx)(
-                                                                    'span',
-                                                                    {
-                                                                        dangerouslySetInnerHTML:
-                                                                            {
-                                                                                __html: i(
-                                                                                    e
-                                                                                ),
-                                                                            },
-                                                                    }
-                                                                ),
-                                                            ],
-                                                        },
-                                                        a
-                                                    )
-                                                ),
-                                            },
-                                            'list-'.concat(l++)
-                                        )
-                                    ),
-                                    (r = []))
-                            },
-                            i = (e) =>
-                                (e = (e = (e = (e = (e = e.replace(
-                                    /\*\*(.+?)\*\*/g,
-                                    '<strong class="text-secondary font-semibold">$1</strong>'
-                                )).replace(
-                                    /__(.+?)__/g,
-                                    '<strong class="text-secondary font-semibold">$1</strong>'
-                                )).replace(
-                                    /\*(.+?)\*/g,
-                                    '<em class="text-gray-300">$1</em>'
-                                )).replace(
-                                    /_(.+?)_/g,
-                                    '<em class="text-gray-300">$1</em>'
-                                )).replace(
-                                    /`(.+?)`/g,
-                                    '<code class="px-2 py-1 bg-slate-700 rounded text-sm text-secondary">$1</code>'
-                                ))
-                        for (let e = 0; e < a.length; e++) {
-                            let o = a[e].trim()
-                            if (o) {
-                                if (o.startsWith('## ')) {
-                                    n()
-                                    let e = o.replace('## ', '')
-                                    t.push(
-                                        (0, s.jsx)(
-                                            'h3',
-                                            {
-                                                className:
-                                                    'text-2xl font-bold text-white mt-8 mb-4',
-                                                children: e,
-                                            },
-                                            'h3-'.concat(l++)
-                                        )
-                                    )
-                                    continue
-                                }
-                                if (o.startsWith('### ')) {
-                                    n()
-                                    let e = o.replace('### ', '')
-                                    t.push(
-                                        (0, s.jsx)(
-                                            'h4',
-                                            {
-                                                className:
-                                                    'text-xl font-bold text-white mt-6 mb-3',
-                                                children: e,
-                                            },
-                                            'h4-'.concat(l++)
-                                        )
-                                    )
-                                    continue
-                                }
-                                if (o.startsWith('- ') || o.startsWith('* ')) {
-                                    let e = o.replace(/^[-*] /, '')
-                                    r.push(e)
-                                    continue
-                                }
-                                n(),
-                                    t.push(
-                                        (0, s.jsx)(
-                                            'p',
-                                            {
-                                                className:
-                                                    'text-gray-300 leading-relaxed mb-4',
-                                                dangerouslySetInnerHTML: {
-                                                    __html: i(o),
-                                                },
-                                            },
-                                            'p-'.concat(l++)
-                                        )
-                                    )
-                            }
-                        }
-                        return n(), t
-                    })(a.content)
-                return (0, s.jsxs)('div', {
-                    className:
-                        'grid md:grid-cols-2 gap-12 md:gap-16 items-center',
-                    children: [
-                        (0, s.jsx)(r.P.div, {
-                            className: 'order-2 md:order-1',
-                            initial: { opacity: 0, x: -50 },
-                            whileInView: { opacity: 1, x: 0 },
-                            viewport: { once: !0, margin: '-100px' },
-                            transition: {
-                                duration: 0.6,
-                                ease: [0.25, 0.1, 0.25, 1],
-                            },
-                            children: (0, s.jsxs)('div', {
-                                className:
-                                    'relative aspect-square max-w-md mx-auto',
-                                children: [
-                                    (0, s.jsx)(r.P.div, {
-                                        className:
-                                            'absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-3xl blur-3xl',
-                                        animate: {
-                                            scale: [1, 1.1, 1],
-                                            opacity: [0.5, 0.7, 0.5],
-                                        },
-                                        transition: {
-                                            duration: 4,
-                                            repeat: 1 / 0,
-                                        },
-                                    }),
-                                    (0, s.jsx)('div', {
-                                        className:
-                                            'relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-3xl overflow-hidden p-4 shadow-xl',
-                                        children: (0, s.jsx)('div', {
-                                            className:
-                                                'relative w-full h-full rounded-2xl overflow-hidden bg-slate-700',
-                                            children: (0, s.jsx)('img', {
-                                                src: l,
-                                                alt: t,
-                                                className:
-                                                    'w-full h-full object-cover',
-                                                loading: 'eager',
-                                            }),
-                                        }),
-                                    }),
-                                ],
-                            }),
-                        }),
-                        (0, s.jsx)(r.P.div, {
-                            className: 'order-1 md:order-2',
-                            initial: { opacity: 0, x: 50 },
-                            whileInView: { opacity: 1, x: 0 },
-                            viewport: { once: !0, margin: '-100px' },
-                            transition: {
-                                duration: 0.6,
-                                ease: [0.25, 0.1, 0.25, 1],
-                            },
-                            children: (0, s.jsx)(r.P.div, {
-                                className: 'space-y-2',
-                                initial: { opacity: 0 },
-                                whileInView: { opacity: 1 },
-                                viewport: { once: !0 },
-                                transition: { delay: 0.3 },
-                                children: n,
-                            }),
-                        }),
-                    ],
-                })
-            }
-            t(2115)
-        },
-        6639: (e, a, t) => {
-            'use strict'
-            t.r(a), t.d(a, { default: () => n })
-            var s = t(5155),
-                r = t(1075),
-                l = t(2063)
+            a.r(t), a.d(t, { default: () => n })
+            var s = a(5155),
+                r = a(1075),
+                l = a(2063)
             function n(e) {
-                let { title: a, subtitle: t, centered: n = !0 } = e,
-                    { colors: i } = (0, l.X)()
+                let { title: t, subtitle: a, centered: n = !0 } = e,
+                    { colors: i, mounted: o } = (0, l.X)(),
+                    c = o
+                        ? i
+                        : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' }
                 return (0, s.jsxs)(r.P.div, {
                     className: n
                         ? 'text-center mb-16 md:mb-24'
@@ -1843,11 +2101,11 @@
                                         style: {
                                             backgroundImage:
                                                 'linear-gradient(135deg, '
-                                                    .concat(i.from, ' 0%, ')
-                                                    .concat(i.via, ' 50%, ')
-                                                    .concat(i.to, ' 100%)'),
+                                                    .concat(c.from, ' 0%, ')
+                                                    .concat(c.via, ' 50%, ')
+                                                    .concat(c.to, ' 100%)'),
                                         },
-                                        children: a,
+                                        children: t,
                                     }),
                                 }),
                                 (0, s.jsx)(r.P.div, {
@@ -1855,9 +2113,9 @@
                                         'h-2 rounded-full mb-6 w-48 md:w-64',
                                     style: {
                                         background: 'linear-gradient(90deg, '
-                                            .concat(i.from, ', ')
-                                            .concat(i.via, ', ')
-                                            .concat(i.to, ')'),
+                                            .concat(c.from, ', ')
+                                            .concat(c.via, ', ')
+                                            .concat(c.to, ')'),
                                     },
                                     initial: { scaleX: 0 },
                                     whileInView: { scaleX: 1 },
@@ -1866,25 +2124,25 @@
                                 }),
                             ],
                         }),
-                        t &&
+                        a &&
                             (0, s.jsx)('p', {
                                 className: 'text-lg md:text-xl text-gray-400',
-                                children: t,
+                                children: a,
                             }),
                     ],
                 })
             }
         },
-        7003: (e, a, t) => {
+        7003: (e, t, a) => {
             'use strict'
-            t.d(a, { $: () => m })
-            var s = t(1983),
-                r = t(7389),
-                l = t(5155),
-                n = t(2115),
-                i = t(2467),
-                o = t(3101),
-                c = t(5016)
+            a.d(t, { $: () => m })
+            var s = a(1983),
+                r = a(7389),
+                l = a(5155),
+                n = a(2115),
+                i = a(2467),
+                o = a(3101),
+                c = a(5016)
             let d = (0, o.F)(
                     'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
                     {
@@ -1914,38 +2172,38 @@
                         },
                     }
                 ),
-                m = n.forwardRef((e, a) => {
+                m = n.forwardRef((e, t) => {
                     var {
-                            className: t,
+                            className: a,
                             variant: n,
                             size: o,
                             asChild: m = !1,
                         } = e,
-                        x = (0, r._)(e, [
+                        h = (0, r._)(e, [
                             'className',
                             'variant',
                             'size',
                             'asChild',
                         ])
-                    let h = m ? i.DX : 'button'
+                    let x = m ? i.DX : 'button'
                     return (0, l.jsx)(
-                        h,
+                        x,
                         (0, s._)(
                             {
                                 className: (0, c.cn)(
-                                    d({ variant: n, size: o, className: t })
+                                    d({ variant: n, size: o, className: a })
                                 ),
-                                ref: a,
+                                ref: t,
                             },
-                            x
+                            h
                         )
                     )
                 })
             m.displayName = 'Button'
         },
-        7476: (e, a, t) => {
+        7476: (e, t, a) => {
             'use strict'
-            t.d(a, { Rf: () => r, bK: () => s })
+            a.d(t, { Rf: () => r, bK: () => s })
             let s = {
                     hidden: { opacity: 0 },
                     show: {
@@ -1961,22 +2219,142 @@
                     show: { opacity: 1, y: 0 },
                 }
         },
-        7864: (e, a, t) => {
+        7713: (e, t, a) => {
             'use strict'
-            t.d(a, { default: () => n })
-            var s = t(5155),
-                r = t(2115),
-                l = t(5379)
+            a.d(t, { G: () => r })
+            var s = a(5155)
+            function r(e) {
+                let t = e.split('\n'),
+                    a = [],
+                    r = [],
+                    l = 0,
+                    n = () => {
+                        r.length > 0 &&
+                            (a.push(
+                                (0, s.jsx)(
+                                    'ul',
+                                    {
+                                        className: 'space-y-2 my-4',
+                                        children: r.map((e, t) =>
+                                            (0, s.jsxs)(
+                                                'li',
+                                                {
+                                                    className: 'flex gap-3',
+                                                    children: [
+                                                        (0, s.jsx)('span', {
+                                                            className:
+                                                                'text-secondary mt-1',
+                                                            children: '→',
+                                                        }),
+                                                        (0, s.jsx)('span', {
+                                                            dangerouslySetInnerHTML:
+                                                                {
+                                                                    __html: i(
+                                                                        e
+                                                                    ),
+                                                                },
+                                                        }),
+                                                    ],
+                                                },
+                                                t
+                                            )
+                                        ),
+                                    },
+                                    'list-'.concat(l++)
+                                )
+                            ),
+                            (r = []))
+                    },
+                    i = (e) =>
+                        (e = (e = (e = (e = e.replace(
+                            /\[(.+?)\]\((.+?)\)/g,
+                            '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-secondary hover:underline hover:text-orange-500 transition-colors">$1</a>'
+                        )).replace(
+                            /\*\*(.+?)\*\*/g,
+                            '<strong class="text-secondary font-semibold">$1</strong>'
+                        )).replace(
+                            /__(.+?)__/g,
+                            '<strong class="text-secondary font-semibold">$1</strong>'
+                        )).replace(
+                            /`(.+?)`/g,
+                            '<code class="px-2 py-1 bg-slate-700 rounded text-sm text-secondary">$1</code>'
+                        ))
+                for (let e = 0; e < t.length; e++) {
+                    let o = t[e].trim()
+                    if (o) {
+                        if (o.startsWith('## ')) {
+                            n()
+                            let e = o.replace('## ', '')
+                            a.push(
+                                (0, s.jsx)(
+                                    'h3',
+                                    {
+                                        className:
+                                            'text-2xl font-bold text-white mt-8 mb-4',
+                                        children: e,
+                                    },
+                                    'h3-'.concat(l++)
+                                )
+                            )
+                            continue
+                        }
+                        if (o.startsWith('### ')) {
+                            n()
+                            let e = o.replace('### ', '')
+                            a.push(
+                                (0, s.jsx)(
+                                    'h4',
+                                    {
+                                        className:
+                                            'text-xl font-bold text-white mt-6 mb-3',
+                                        children: e,
+                                    },
+                                    'h4-'.concat(l++)
+                                )
+                            )
+                            continue
+                        }
+                        if (o.startsWith('- ') || o.startsWith('* ')) {
+                            let e = o.replace(/^[-*] /, '')
+                            r.push(e)
+                            continue
+                        }
+                        n(),
+                            a.push(
+                                (0, s.jsx)(
+                                    'p',
+                                    {
+                                        className:
+                                            'text-gray-300 leading-relaxed mb-4',
+                                        dangerouslySetInnerHTML: {
+                                            __html: i(o),
+                                        },
+                                    },
+                                    'p-'.concat(l++)
+                                )
+                            )
+                    }
+                }
+                return n(), a
+            }
+            a(2115)
+        },
+        7864: (e, t, a) => {
+            'use strict'
+            a.d(t, { default: () => n })
+            var s = a(5155),
+                r = a(2115),
+                l = a(5379)
             function n() {
                 let e = (0, r.useRef)(null),
-                    { theme: a } = (0, l.D)(),
-                    t = (0, r.useRef)([]),
+                    { theme: t } = (0, l.D)(),
+                    a = (0, r.useRef)([]),
                     n = (0, r.useRef)({ x: 0, y: 0 }),
                     i = (0, r.useRef)(0),
                     o = (0, r.useRef)(0)
                 return (
                     (0, r.useEffect)(() => {
-                        let a,
+                        let t,
                             s = e.current
                         if (!s) return
                         let r = s.getContext('2d')
@@ -1987,9 +2365,9 @@
                         }
                         l()
                         let c = window.innerWidth < 768 ? 30 : 60
-                        if (0 === t.current.length)
+                        if (0 === a.current.length)
                             for (let e = 0; e < c; e++)
-                                t.current.push({
+                                a.current.push({
                                     x: Math.random() * s.width,
                                     y: Math.random() * s.height,
                                     vx: (Math.random() - 0.5) * 0.3,
@@ -2006,7 +2384,7 @@
                                             window.innerHeight))
                             r.clearRect(0, 0, s.width, s.height),
                                 (o.current = (o.current + 0.1) % 360),
-                                t.current.forEach((e, a) => {
+                                a.current.forEach((e, t) => {
                                     ;(e.x += e.vx),
                                         (e.y += e.vy),
                                         (e.x < 0 || e.x > s.width) &&
@@ -2021,7 +2399,7 @@
                                             0,
                                             Math.min(s.height, e.y)
                                         )),
-                                        (e.hue = (o.current + 6 * a) % 360)
+                                        (e.hue = (o.current + 6 * t) % 360)
                                     let n = 'hsla('
                                         .concat(
                                             260 +
@@ -2036,13 +2414,13 @@
                                         r.arc(e.x, e.y, 2, 0, 2 * Math.PI),
                                         (r.fillStyle = n),
                                         r.fill(),
-                                        t.current.forEach((t, s) => {
-                                            if (a === s) return
-                                            let n = e.x - t.x,
-                                                i = e.y - t.y,
+                                        a.current.forEach((a, s) => {
+                                            if (t === s) return
+                                            let n = e.x - a.x,
+                                                i = e.y - a.y,
                                                 o = Math.sqrt(n * n + i * i)
                                             if (o < 120) {
-                                                let a = 'hsla('
+                                                let t = 'hsla('
                                                     .concat(
                                                         260 +
                                                             40 *
@@ -2059,14 +2437,14 @@
                                                     )
                                                 r.beginPath(),
                                                     r.moveTo(e.x, e.y),
-                                                    r.lineTo(t.x, t.y),
-                                                    (r.strokeStyle = a),
+                                                    r.lineTo(a.x, a.y),
+                                                    (r.strokeStyle = t),
                                                     (r.lineWidth = 0.5),
                                                     r.stroke()
                                             }
                                         })
                                 }),
-                                (a = requestAnimationFrame(e))
+                                (t = requestAnimationFrame(e))
                         })()
                         let d = () => {
                                 l()
@@ -2074,7 +2452,7 @@
                             m = () => {
                                 i.current = window.scrollY
                             },
-                            x = (e) => {
+                            h = (e) => {
                                 n.current = { x: e.clientX, y: e.clientY }
                             }
                         return (
@@ -2084,17 +2462,17 @@
                             window.addEventListener('scroll', m, {
                                 passive: !0,
                             }),
-                            window.addEventListener('mousemove', x, {
+                            window.addEventListener('mousemove', h, {
                                 passive: !0,
                             }),
                             () => {
-                                cancelAnimationFrame(a),
+                                cancelAnimationFrame(t),
                                     window.removeEventListener('resize', d),
                                     window.removeEventListener('scroll', m),
-                                    window.removeEventListener('mousemove', x)
+                                    window.removeEventListener('mousemove', h)
                             }
                         )
-                    }, [a]),
+                    }, [t]),
                     (0, s.jsx)('canvas', {
                         ref: e,
                         className: 'fixed inset-0 pointer-events-none z-0',
@@ -2103,34 +2481,34 @@
                 )
             }
         },
-        7874: (e, a, t) => {
+        7874: (e, t, a) => {
             'use strict'
-            t.d(a, { default: () => d })
-            var s = t(5155),
-                r = t(2115),
-                l = t(6497),
-                n = t(1075),
-                i = t(5016),
-                o = t(7003),
-                c = t(2108)
+            a.d(t, { default: () => d })
+            var s = a(5155),
+                r = a(2115),
+                l = a(6497),
+                n = a(1075),
+                i = a(5016),
+                o = a(7003),
+                c = a(2108)
             function d(e) {
-                let { children: a } = e,
-                    [t, d] = (0, r.useState)(!1)
+                let { children: t } = e,
+                    [a, d] = (0, r.useState)(!1)
                 return (
                     (0, r.useEffect)(() => {
                         let e = window.scrollY,
-                            a = !1,
-                            t = () => {
-                                let t = window.scrollY
-                                t > 100 && t > e ? d(!0) : t <= 100 && d(!1),
-                                    (e = t),
-                                    (a = !1)
+                            t = !1,
+                            a = () => {
+                                let a = window.scrollY
+                                a > 100 && a > e ? d(!0) : a <= 100 && d(!1),
+                                    (e = a),
+                                    (t = !1)
                             },
                             s = () => {
-                                a || (window.requestAnimationFrame(t), (a = !0))
+                                t || (window.requestAnimationFrame(a), (t = !0))
                             }
                         return (
-                            t(),
+                            a(),
                             window.addEventListener('scroll', s, {
                                 passive: !0,
                             }),
@@ -2139,7 +2517,7 @@
                     }, []),
                     (0, s.jsx)(l.N, {
                         children:
-                            t &&
+                            a &&
                             (0, s.jsx)(n.P.div, {
                                 initial: { opacity: 0, scale: 0 },
                                 animate: { opacity: 1, scale: 1 },
@@ -2149,7 +2527,7 @@
                                 onClick: i.IK,
                                 role: 'presentation',
                                 children:
-                                    a ||
+                                    t ||
                                     (0, s.jsx)(o.$, {
                                         size: 'icon',
                                         variant: 'secondary',
@@ -2165,75 +2543,61 @@
                 )
             }
         },
-        8743: (e, a, t) => {
+        8709: (e, t, a) => {
             'use strict'
-            t.d(a, { default: () => u })
-            var s = t(5155),
-                r = t(1075),
-                l = t(4684),
-                n = t(7333),
-                i = t(7378),
-                o = t(7161),
-                c = t(64),
-                d = t(3586),
-                m = t(9602),
-                x = t(2063)
-            let h = {
-                github: l.A,
-                linkedin: n.A,
-                twitter: i.A,
-                instagram: o.A,
-                youtube: c.A,
-                soundcloud: d.A,
-                stackblitz: m.A,
-                codeSandbox: m.A,
+            a.d(t, { default: () => l })
+            var s = a(2115),
+                r = a(2063)
+            function l() {
+                let { colors: e } = (0, r.X)()
+                return (
+                    (0, s.useEffect)(() => {
+                        document.documentElement.style.setProperty(
+                            '--scroll-color-from',
+                            e.from
+                        ),
+                            document.documentElement.style.setProperty(
+                                '--scroll-color-to',
+                                e.via
+                            )
+                    }, [e]),
+                    null
+                )
             }
-            function u(e) {
-                let { contactInfo: a } = e,
-                    { colors: t } = (0, x.X)(),
-                    l = a
+        },
+        8743: (e, t, a) => {
+            'use strict'
+            a.d(t, { default: () => d })
+            var s = a(5155),
+                r = a(1075),
+                l = a(4684),
+                n = a(7333),
+                i = a(3664),
+                o = a(2063)
+            let c = { github: l.A, linkedin: n.A, email: i.A }
+            function d(e) {
+                let { contactInfo: t } = e,
+                    { colors: a, mounted: l } = (0, o.X)(),
+                    n = l
+                        ? a
+                        : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' },
+                    i = t
                         ? [
-                              { name: 'GitHub', key: 'github', url: a.github },
+                              { name: 'GitHub', key: 'github', url: t.github },
                               {
                                   name: 'LinkedIn',
                                   key: 'linkedin',
-                                  url: a.linkedin,
+                                  url: t.linkedin,
                               },
                               {
-                                  name: 'Twitter',
-                                  key: 'twitter',
-                                  url: a.twitter,
-                              },
-                              {
-                                  name: 'Instagram',
-                                  key: 'instagram',
-                                  url: a.instagram,
-                              },
-                              {
-                                  name: 'YouTube',
-                                  key: 'youtube',
-                                  url: a.youtube,
-                              },
-                              {
-                                  name: 'SoundCloud',
-                                  key: 'soundcloud',
-                                  url: a.soundcloud,
-                              },
-                              {
-                                  name: 'StackBlitz',
-                                  key: 'stackblitz',
-                                  url: a.stackblitz,
-                              },
-                              {
-                                  name: 'CodeSandbox',
-                                  key: 'codeSandbox',
-                                  url: a.codeSandbox,
+                                  name: 'Email',
+                                  key: 'email',
+                                  url: 'mailto:'.concat(t.email),
                               },
                           ]
                         : []
                 return (0, s.jsx)('footer', {
-                    className:
-                        'relative py-12 px-6 border-t border-gray-200 dark:border-slate-800',
+                    className: 'relative py-12 px-6 border-t border-slate-800',
                     children: (0, s.jsxs)('div', {
                         className: 'max-w-7xl mx-auto',
                         children: [
@@ -2243,9 +2607,9 @@
                                 initial: { opacity: 0, y: 20 },
                                 whileInView: { opacity: 1, y: 0 },
                                 viewport: { once: !0 },
-                                children: l.map((e, a) => {
-                                    let t = h[e.key]
-                                    return t
+                                children: i.map((e, t) => {
+                                    let a = c[e.key]
+                                    return a
                                         ? (0, s.jsx)(
                                               r.P.a,
                                               {
@@ -2264,7 +2628,7 @@
                                                   },
                                                   viewport: { once: !0 },
                                                   transition: {
-                                                      delay: 0.05 * a,
+                                                      delay: 0.05 * t,
                                                   },
                                                   whileHover: {
                                                       scale: 1.1,
@@ -2272,7 +2636,7 @@
                                                   },
                                                   title: e.name,
                                                   'aria-label': e.name,
-                                                  children: (0, s.jsx)(t, {
+                                                  children: (0, s.jsx)(a, {
                                                       className:
                                                           'w-5 h-5 text-gray-300 group-hover:text-white transition-colors',
                                                   }),
@@ -2301,11 +2665,11 @@
                                                     backgroundImage:
                                                         'linear-gradient(90deg, '
                                                             .concat(
-                                                                t.from,
+                                                                n.from,
                                                                 ', '
                                                             )
-                                                            .concat(t.via, ', ')
-                                                            .concat(t.to, ')'),
+                                                            .concat(n.via, ', ')
+                                                            .concat(n.to, ')'),
                                                 },
                                                 children: 'Sagar Sawuck',
                                             }),
@@ -2325,47 +2689,50 @@
                 })
             }
         },
-        8892: (e, a, t) => {
+        8892: (e, t, a) => {
             'use strict'
-            t.d(a, { default: () => g })
-            var s = t(5155),
-                r = t(3350),
-                l = t(9770),
-                n = t(1075),
-                i = t(5740),
-                o = t(9867),
-                c = t(4684),
-                d = t(7333),
-                m = t(3664),
-                x = t(8803),
-                h = t(2115),
-                u = t(7476),
-                p = t(2063)
-            function g(e) {
+            a.d(t, { default: () => p })
+            var s = a(5155),
+                r = a(3350),
+                l = a(9770),
+                n = a(1075),
+                i = a(5740),
+                o = a(9867),
+                c = a(4684),
+                d = a(7333),
+                m = a(3664),
+                h = a(8803),
+                x = a(2115),
+                u = a(7476),
+                f = a(2063)
+            function p(e) {
                 let {
-                        email: a = 'sagar.sawuck@gmail.com',
-                        github: t = 'https://github.com/sagarsys',
-                        linkedin: g = 'https://linkedin.com/in/sagarsys/',
+                        email: t = 'sagar.sawuck@gmail.com',
+                        github: a = 'https://github.com/sagarsys',
+                        linkedin: p = 'https://linkedin.com/in/sagarsys/',
                     } = e,
-                    { colors: f } = (0, p.X)(),
-                    b = (0, r.d)(0),
-                    v = (0, r.d)(0),
-                    y = window.innerWidth,
-                    w = window.innerHeight,
-                    j = (0, l.G)(b, [0, y], [-20, 20]),
-                    N = (0, l.G)(v, [0, w], [-20, 20]),
-                    k = (0, l.G)(b, [0, y], [20, -20]),
-                    P = (0, l.G)(v, [0, w], [20, -20])
+                    { colors: g, mounted: b } = (0, f.X)(),
+                    v = b
+                        ? g
+                        : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' },
+                    y = (0, r.d)(0),
+                    w = (0, r.d)(0),
+                    j = window.innerWidth,
+                    N = window.innerHeight,
+                    k = (0, l.G)(y, [0, j], [-20, 20]),
+                    P = (0, l.G)(w, [0, N], [-20, 20]),
+                    C = (0, l.G)(y, [0, j], [20, -20]),
+                    _ = (0, l.G)(w, [0, N], [20, -20])
                 return (
-                    (0, h.useEffect)(() => {
+                    (0, x.useEffect)(() => {
                         let e = (e) => {
-                            b.set(e.clientX), v.set(e.clientY)
+                            y.set(e.clientX), w.set(e.clientY)
                         }
                         return (
                             window.addEventListener('mousemove', e),
                             () => window.removeEventListener('mousemove', e)
                         )
-                    }, [b, v]),
+                    }, [y, w]),
                     (0, s.jsxs)('section', {
                         id: 'home',
                         className:
@@ -2388,7 +2755,7 @@
                             (0, s.jsx)(n.P.div, {
                                 className:
                                     'absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-full blur-3xl',
-                                style: { x: j, y: N },
+                                style: { x: k, y: P },
                                 animate: { scale: [1, 1.2, 1] },
                                 transition: {
                                     duration: 8,
@@ -2399,7 +2766,7 @@
                             (0, s.jsx)(n.P.div, {
                                 className:
                                     'absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-br from-blue-600/20 to-cyan-600/20 rounded-full blur-3xl',
-                                style: { x: k, y: P },
+                                style: { x: C, y: _ },
                                 animate: { scale: [1, 1.3, 1] },
                                 transition: {
                                     duration: 10,
@@ -2450,9 +2817,9 @@
                                             style: {
                                                 backgroundImage:
                                                     'linear-gradient(135deg, '
-                                                        .concat(f.from, ' 0%, ')
-                                                        .concat(f.via, ' 50%, ')
-                                                        .concat(f.to, ' 100%)'),
+                                                        .concat(v.from, ' 0%, ')
+                                                        .concat(v.via, ' 50%, ')
+                                                        .concat(v.to, ' 100%)'),
                                             },
                                             children: 'Sagar Sawuck',
                                         }),
@@ -2480,13 +2847,13 @@
                                                     backgroundImage:
                                                         'linear-gradient(90deg, '
                                                             .concat(
-                                                                f.from,
+                                                                v.from,
                                                                 ', '
                                                             )
-                                                            .concat(f.via, ', ')
-                                                            .concat(f.to, ', ')
+                                                            .concat(v.via, ', ')
+                                                            .concat(v.to, ', ')
                                                             .concat(
-                                                                f.from,
+                                                                v.from,
                                                                 ')'
                                                             ),
                                                     backgroundSize: '200% auto',
@@ -2499,7 +2866,8 @@
                                                 children:
                                                     'Senior Fullstack Developer',
                                             }),
-                                            ' with 10+ years of experience. I build',
+                                            ' ',
+                                            'with 10+ years of experience. I build',
                                             ' ',
                                             (0, s.jsx)(n.P.span, {
                                                 className: 'inline-block',
@@ -2519,13 +2887,13 @@
                                                     backgroundImage:
                                                         'linear-gradient(90deg, '
                                                             .concat(
-                                                                f.from,
+                                                                v.from,
                                                                 ', '
                                                             )
-                                                            .concat(f.via, ', ')
-                                                            .concat(f.to, ', ')
+                                                            .concat(v.via, ', ')
+                                                            .concat(v.to, ', ')
                                                             .concat(
-                                                                f.from,
+                                                                v.from,
                                                                 ')'
                                                             ),
                                                     backgroundSize: '200% auto',
@@ -2553,11 +2921,12 @@
                                         },
                                         children: [
                                             'TypeScript',
+                                            'Javascript',
                                             'React',
                                             'Next.js',
                                             'Node.js',
-                                            'AWS',
-                                        ].map((e, a) =>
+                                            'Prisma',
+                                        ].map((e, t) =>
                                             (0, s.jsx)(
                                                 n.P.span,
                                                 {
@@ -2572,14 +2941,14 @@
                                                         scale: 1,
                                                     },
                                                     transition: {
-                                                        delay: 1.8 + 0.15 * a,
+                                                        delay: 1.8 + 0.15 * t,
                                                         duration: 0.5,
                                                     },
                                                     whileHover: {
                                                         y: -2,
                                                         boxShadow:
                                                             '0 10px 30px '.concat(
-                                                                f.via,
+                                                                v.via,
                                                                 '30'
                                                             ),
                                                     },
@@ -2602,7 +2971,7 @@
                                             (0, s.jsxs)(n.P.button, {
                                                 onClick: () => {
                                                     window.open(
-                                                        '/cv.pdf',
+                                                        '/assets/Sagar-Sawuck-CV-2025.pdf',
                                                         '_blank'
                                                     )
                                                 },
@@ -2612,12 +2981,12 @@
                                                     background:
                                                         'linear-gradient(135deg, '
                                                             .concat(
-                                                                f.from,
+                                                                v.from,
                                                                 ', '
                                                             )
-                                                            .concat(f.via, ', ')
-                                                            .concat(f.to, ')'),
-                                                    borderColor: f.via,
+                                                            .concat(v.via, ', ')
+                                                            .concat(v.to, ')'),
+                                                    borderColor: v.via,
                                                 },
                                                 whileHover: {
                                                     y: -5,
@@ -2693,7 +3062,7 @@
                                         },
                                         children: [
                                             (0, s.jsx)(n.P.a, {
-                                                href: t,
+                                                href: a,
                                                 target: '_blank',
                                                 rel: 'noopener noreferrer',
                                                 className:
@@ -2708,7 +3077,7 @@
                                                 }),
                                             }),
                                             (0, s.jsx)(n.P.a, {
-                                                href: g,
+                                                href: p,
                                                 target: '_blank',
                                                 rel: 'noopener noreferrer',
                                                 className:
@@ -2723,7 +3092,7 @@
                                                 }),
                                             }),
                                             (0, s.jsx)(n.P.a, {
-                                                href: 'mailto:'.concat(a),
+                                                href: 'mailto:'.concat(t),
                                                 className:
                                                     'w-10 h-10 rounded-full bg-slate-800/30 backdrop-blur-sm border border-slate-600/50 flex items-center justify-center hover:border-secondary transition-all',
                                                 whileHover: {
@@ -2761,7 +3130,7 @@
                                             className: 'text-sm font-medium',
                                             children: 'Scroll Down',
                                         }),
-                                        (0, s.jsx)(x.A, {
+                                        (0, s.jsx)(h.A, {
                                             className: 'w-6 h-6',
                                         }),
                                     ],
@@ -2772,150 +3141,99 @@
                 )
             }
         },
-        9252: (e, a, t) => {
+        9252: (e, t, a) => {
             'use strict'
-            t.d(a, { default: () => d })
-            var s = t(5155),
-                r = t(1075),
-                l = t(7476),
-                n = t(6639),
-                i = t(2063),
-                o = t(457)
-            let c = [
-                {
-                    name: 'Next.js',
-                    icon: o.wlC,
-                    color: '#000000',
-                    darkColor: '#FFFFFF',
-                },
-                {
-                    name: 'React',
-                    icon: o.GWR,
-                    color: '#61DAFB',
-                    darkColor: '#61DAFB',
-                },
-                {
-                    name: 'TypeScript',
-                    icon: o.cyb,
-                    color: '#3178C6',
-                    darkColor: '#3178C6',
-                },
-                {
-                    name: 'Tailwind CSS',
-                    icon: o.IR8,
-                    color: '#06B6D4',
-                    darkColor: '#06B6D4',
-                },
-                {
-                    name: 'JavaScript',
-                    icon: o.AeH,
-                    color: '#F7DF1E',
-                    darkColor: '#F7DF1E',
-                },
-                {
-                    name: 'HTML5',
-                    icon: o.$gB,
-                    color: '#E34F26',
-                    darkColor: '#E34F26',
-                },
-                {
-                    name: 'CSS3',
-                    icon: o.jrh,
-                    color: '#1572B6',
-                    darkColor: '#1572B6',
-                },
-                {
-                    name: 'Node.js',
-                    icon: o.h$$,
-                    color: '#339933',
-                    darkColor: '#339933',
-                },
-                {
-                    name: 'Express',
-                    icon: o.t5I,
-                    color: '#000000',
-                    darkColor: '#FFFFFF',
-                },
-                {
-                    name: 'GraphQL',
-                    icon: o.S9M,
-                    color: '#E10098',
-                    darkColor: '#E10098',
-                },
-                {
-                    name: 'PostgreSQL',
-                    icon: o.$Wy,
-                    color: '#4169E1',
-                    darkColor: '#4169E1',
-                },
-                {
-                    name: 'MongoDB',
-                    icon: o.$pK,
-                    color: '#47A248',
-                    darkColor: '#47A248',
-                },
-                {
-                    name: 'AWS',
-                    icon: o.gqN,
-                    color: '#FF9900',
-                    darkColor: '#FF9900',
-                },
-                {
-                    name: 'Docker',
-                    icon: o.tih,
-                    color: '#2496ED',
-                    darkColor: '#2496ED',
-                },
-                {
-                    name: 'Git',
-                    icon: o.rYG,
-                    color: '#F05032',
-                    darkColor: '#F05032',
-                },
-                {
-                    name: 'Figma',
-                    icon: o.lNO,
-                    color: '#F24E1E',
-                    darkColor: '#F24E1E',
-                },
+            a.d(t, { default: () => h })
+            var s = a(5155),
+                r = a(2115),
+                l = a(1075),
+                n = a(4033),
+                i = a(6639),
+                o = a(2063),
+                c = a(7003),
+                d = a(457)
+            let m = [
+                { name: 'TypeScript', icon: d.cyb, color: '#3178C6' },
+                { name: 'JavaScript', icon: d.AeH, color: '#F7DF1E' },
+                { name: 'React', icon: d.GWR, color: '#61DAFB' },
+                { name: 'HTML5', icon: d.$gB, color: '#E34F26' },
+                { name: 'CSS3', icon: d.jrh, color: '#1572B6' },
+                { name: 'Next.js', icon: d.wlC, color: '#ffffff' },
+                { name: 'Node.js', icon: d.h$$, color: '#339933' },
+                { name: 'Express', icon: d.t5I, color: '#ffffff' },
+                { name: 'Prisma', icon: d.bzD, color: '#2D3748' },
+                { name: 'Jest', icon: d.tT5, color: '#C21325' },
+                { name: 'Vitest', icon: d.yep, color: '#6E9F18' },
+                { name: 'Cypress', icon: d.CCo, color: '#ffffff' },
+                { name: 'GitHub Actions', icon: d.R6r, color: '#2088FF' },
+                { name: 'Webpack', icon: d.Kkd, color: '#8DD6F9' },
+                { name: 'AWS', icon: d.jNz, color: '#FF9900' },
+                { name: 'Docker', icon: d.tih, color: '#2496ED' },
+                { name: 'Git', icon: d.rYG, color: '#F05032' },
+                { name: 'Angular', icon: d.h47, color: '#DD0031' },
+                { name: 'Vue.js', icon: d.Zmg, color: '#4FC08D' },
+                { name: 'Svelte', icon: d.Qmm, color: '#FF3E00' },
+                { name: 'NestJS', icon: d.Owm, color: '#E0234E' },
+                { name: 'Fastify', icon: d.pdj, color: '#fffff0' },
+                { name: 'OpenAPI', icon: d.hgj, color: '#6BA539' },
+                { name: 'Jasmine', icon: d.et2, color: '#8A4182' },
+                { name: 'MongoDB', icon: d.$pK, color: '#47A248' },
+                { name: 'DynamoDB', icon: d.F8G, color: '#4053D6' },
+                { name: 'MySQL', icon: d.z33, color: '#4479A1' },
+                { name: 'PostgreSQL', icon: d.$Wy, color: '#4169E1' },
+                { name: 'Sequelize', icon: d.uw, color: '#52B0E7' },
+                { name: 'GCP', icon: d.lpS, color: '#4285F4' },
+                { name: 'Kubernetes', icon: d.tev, color: '#326CE5' },
+                { name: 'Helm', icon: d.hOD, color: '#0F1689' },
+                { name: 'GitLab CI', icon: d.k4g, color: '#FC6D26' },
+                { name: 'Vite', icon: d.zUm, color: '#646CFF' },
+                { name: 'npm', icon: d.cC7, color: '#CB3837' },
+                { name: 'Yarn', icon: d.$mD, color: '#2C8EBB' },
+                { name: 'pnpm', icon: d.MdY, color: '#F69220' },
+                { name: 'WebStorm', icon: d.Ewh, color: '#6e6' },
+                { name: 'IntelliJ', icon: d.PHd, color: '#fff' },
             ]
-            function d() {
-                let { colors: e } = (0, i.X)()
+            function h() {
+                let { colors: e } = (0, o.X)(),
+                    [t, a] = (0, r.useState)(!1),
+                    d = t ? m : m.slice(0, 16),
+                    h = m.length > 16
                 return (0, s.jsx)('section', {
                     id: 'skills',
                     className: 'py-20 md:py-32 px-6 relative',
                     children: (0, s.jsxs)('div', {
                         className: 'max-w-7xl mx-auto',
                         children: [
-                            (0, s.jsx)(n.default, {
+                            (0, s.jsx)(i.default, {
                                 title: 'Skills & Technologies',
                                 subtitle:
                                     'The magical tools I use to bring ideas to life',
                             }),
-                            (0, s.jsx)(r.P.div, {
+                            (0, s.jsx)('div', {
                                 className:
-                                    'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 md:gap-6',
-                                variants: l.bK,
-                                initial: 'hidden',
-                                whileInView: 'show',
-                                viewport: { once: !0, margin: '-100px' },
-                                children: c.map((e, a) => {
-                                    let t = e.icon
+                                    'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-4',
+                                children: d.map((e, t) => {
+                                    let a = e.icon
                                     return (0, s.jsx)(
-                                        r.P.div,
+                                        l.P.div,
                                         {
                                             className: 'group relative',
-                                            variants: l.Rf,
-                                            children: (0, s.jsxs)(r.P.div, {
+                                            initial: { opacity: 0, scale: 0.8 },
+                                            animate: { opacity: 1, scale: 1 },
+                                            transition: {
+                                                delay: 0.02 * t,
+                                                duration: 0.3,
+                                            },
+                                            children: (0, s.jsxs)(l.P.div, {
                                                 className:
-                                                    'relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl md:rounded-2xl p-3 md:p-8 flex flex-col items-center justify-center aspect-square hover:shadow-lg hover:shadow-purple-500/10 transition-all cursor-pointer overflow-hidden',
+                                                    'relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl md:rounded-2xl p-2 md:p-4 flex flex-col items-center justify-center aspect-square hover:shadow-lg hover:shadow-purple-500/10 transition-all cursor-pointer overflow-hidden',
                                                 whileHover: {
                                                     scale: 1.05,
                                                     y: -5,
                                                 },
                                                 transition: { duration: 0.2 },
                                                 children: [
-                                                    (0, s.jsx)(r.P.div, {
+                                                    (0, s.jsx)(l.P.div, {
                                                         className:
                                                             'absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300',
                                                         style: {
@@ -2926,9 +3244,9 @@
                                                                 ),
                                                         },
                                                     }),
-                                                    (0, s.jsx)(r.P.div, {
+                                                    (0, s.jsx)(l.P.div, {
                                                         className:
-                                                            'text-3xl md:text-5xl mb-1 md:mb-3 relative z-10',
+                                                            'text-3xl md:text-4xl mb-1 md:mb-2 relative z-10',
                                                         whileHover: {
                                                             rotate: [
                                                                 0, -5, 5, 0,
@@ -2939,24 +3257,24 @@
                                                             duration: 0.3,
                                                         },
                                                         children: (0, s.jsx)(
-                                                            t,
+                                                            a,
                                                             {
                                                                 style: {
                                                                     color: e.color,
                                                                 },
                                                                 className:
-                                                                    'dark:opacity-90',
+                                                                    'opacity-90',
                                                             }
                                                         ),
                                                     }),
                                                     (0, s.jsx)('span', {
                                                         className:
-                                                            'text-xs md:text-base font-medium text-gray-300 relative z-10 text-center',
+                                                            'text-sm pt-1 font-medium text-gray-300 relative z-10 text-center leading-tight',
                                                         children: e.name,
                                                     }),
-                                                    (0, s.jsx)(r.P.div, {
+                                                    (0, s.jsx)(l.P.div, {
                                                         className:
-                                                            'absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-white/10 to-transparent opacity-0 group-hover:opacity-100',
+                                                            'absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100',
                                                         animate: {
                                                             x: [
                                                                 '-100%',
@@ -2976,20 +3294,45 @@
                                     )
                                 }),
                             }),
+                            h &&
+                                !t &&
+                                (0, s.jsx)(l.P.div, {
+                                    className: 'flex justify-center mt-12',
+                                    initial: { opacity: 0, y: 20 },
+                                    whileInView: { opacity: 1, y: 0 },
+                                    viewport: { once: !0 },
+                                    children: (0, s.jsxs)(c.$, {
+                                        onClick: () => a(!0),
+                                        variant: 'outline',
+                                        size: 'lg',
+                                        className: 'group',
+                                        children: [
+                                            'Show More Skills (',
+                                            m.length - 16,
+                                            ' more)',
+                                            (0, s.jsx)(n.A, {
+                                                className:
+                                                    'ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform',
+                                            }),
+                                        ],
+                                    }),
+                                }),
                         ],
                     }),
                 })
             }
         },
-        9891: (e, a, t) => {
+        9891: (e, t, a) => {
             'use strict'
-            t.d(a, { default: () => d })
-            var s = t(5155),
-                r = t(2115),
-                l = t(9633),
-                n = t(1075)
-            function i(e) {
-                let { event: a, content: t, isLast: r } = e
+            a.d(t, { default: () => m })
+            var s = a(5155),
+                r = a(2115),
+                l = a(9633),
+                n = a(1075),
+                i = a(7713)
+            function o(e) {
+                let { event: t, content: a, isLast: r } = e,
+                    o = (0, i.G)(a)
                 return (0, s.jsxs)('div', {
                     className: 'flex items-start mb-8 w-full relative',
                     children: [
@@ -3028,9 +3371,9 @@
                                                 className:
                                                     'text-secondary text-lg font-secondary font-semibold',
                                                 children: [
-                                                    a.startDate,
+                                                    t.startDate,
                                                     ' - ',
-                                                    a.endDate,
+                                                    t.endDate,
                                                 ],
                                             }),
                                         }),
@@ -3042,34 +3385,34 @@
                                                 (0, s.jsx)('h6', {
                                                     className:
                                                         'text-xl font-bold mb-2 text-white',
-                                                    children: a.title,
+                                                    children: t.title,
                                                 }),
                                                 (0, s.jsxs)('h6', {
                                                     className:
                                                         'text-secondary text-lg mb-4',
                                                     children: [
-                                                        a.company,
+                                                        t.company,
                                                         ' • ',
-                                                        a.location,
+                                                        t.location,
                                                     ],
                                                 }),
                                                 (0, s.jsx)('div', {
                                                     className:
-                                                        'text-sm text-gray-400 whitespace-pre-wrap mb-4',
-                                                    children: t,
+                                                        'text-sm space-y-2 mb-4',
+                                                    children: o,
                                                 }),
-                                                a.tags &&
-                                                    a.tags.length > 0 &&
+                                                t.tags &&
+                                                    t.tags.length > 0 &&
                                                     (0, s.jsx)('div', {
                                                         className:
                                                             'flex flex-wrap gap-2',
-                                                        children: a.tags.map(
+                                                        children: t.tags.map(
                                                             (e) =>
                                                                 (0, s.jsx)(
                                                                     'span',
                                                                     {
                                                                         className:
-                                                                            'px-3 py-1 text-xs bg-secondary/10 dark:bg-secondary/20 text-secondary rounded-full font-medium',
+                                                                            'px-3 py-1 text-xs bg-secondary/10 text-secondary rounded-full font-medium',
                                                                         children:
                                                                             e,
                                                                     },
@@ -3092,9 +3435,9 @@
                                         className:
                                             'text-secondary text-xl font-secondary font-semibold',
                                         children: [
-                                            a.startDate,
+                                            t.startDate,
                                             ' - ',
-                                            a.endDate,
+                                            t.endDate,
                                         ],
                                     }),
                                 }),
@@ -3131,33 +3474,33 @@
                                             (0, s.jsx)('h6', {
                                                 className:
                                                     'text-2xl font-bold mb-2 text-white',
-                                                children: a.title,
+                                                children: t.title,
                                             }),
                                             (0, s.jsxs)('h6', {
                                                 className:
                                                     'text-secondary text-lg mb-4',
                                                 children: [
-                                                    a.company,
+                                                    t.company,
                                                     ' • ',
-                                                    a.location,
+                                                    t.location,
                                                 ],
                                             }),
                                             (0, s.jsx)('div', {
                                                 className:
-                                                    'text-sm text-gray-400 whitespace-pre-wrap mb-4',
-                                                children: t,
+                                                    'text-sm space-y-2 mb-4',
+                                                children: o,
                                             }),
-                                            a.tags &&
-                                                a.tags.length > 0 &&
+                                            t.tags &&
+                                                t.tags.length > 0 &&
                                                 (0, s.jsx)('div', {
                                                     className:
                                                         'flex flex-wrap gap-2',
-                                                    children: a.tags.map((e) =>
+                                                    children: t.tags.map((e) =>
                                                         (0, s.jsx)(
                                                             'span',
                                                             {
                                                                 className:
-                                                                    'px-3 py-1 text-xs bg-secondary/10 dark:bg-secondary/20 text-secondary rounded-full font-medium',
+                                                                    'px-3 py-1 text-xs bg-secondary/10 text-secondary rounded-full font-medium',
                                                                 children: e,
                                                             },
                                                             e
@@ -3172,18 +3515,18 @@
                     ],
                 })
             }
-            var o = t(7003),
-                c = t(4033)
-            function d(e) {
-                let { experiences: a } = e,
-                    [t, l] = (0, r.useState)(!1),
-                    d = t ? a : a.slice(0, 5),
-                    m = a.length > 5
+            var c = a(7003),
+                d = a(4033)
+            function m(e) {
+                let { experiences: t } = e,
+                    [a, l] = (0, r.useState)(!1),
+                    i = a ? t : t.slice(0, 5),
+                    m = t.length > 5
                 return (0, s.jsxs)('div', {
                     children: [
                         (0, s.jsx)('div', {
                             className: 'flex flex-col',
-                            children: d.map((e, r) =>
+                            children: i.map((e, r) =>
                                 (0, s.jsx)(
                                     n.P.div,
                                     {
@@ -3193,12 +3536,12 @@
                                             delay: 0.1 * r,
                                             duration: 0.5,
                                         },
-                                        children: (0, s.jsx)(i, {
+                                        children: (0, s.jsx)(o, {
                                             event: e.frontmatter,
                                             content: e.content,
-                                            isLast: t
-                                                ? r === a.length - 1
-                                                : r === d.length - 1,
+                                            isLast: a
+                                                ? r === t.length - 1
+                                                : r === i.length - 1,
                                         }),
                                     },
                                     e.slug
@@ -3206,22 +3549,22 @@
                             ),
                         }),
                         m &&
-                            !t &&
+                            !a &&
                             (0, s.jsx)(n.P.div, {
                                 className: 'flex justify-center mt-12',
                                 initial: { opacity: 0, y: 20 },
                                 whileInView: { opacity: 1, y: 0 },
                                 viewport: { once: !0 },
-                                children: (0, s.jsxs)(o.$, {
+                                children: (0, s.jsxs)(c.$, {
                                     onClick: () => l(!0),
                                     variant: 'outline',
                                     size: 'lg',
                                     className: 'group',
                                     children: [
                                         'Show More Experiences (',
-                                        a.length - 5,
+                                        t.length - 5,
                                         ' more)',
-                                        (0, s.jsx)(c.A, {
+                                        (0, s.jsx)(d.A, {
                                             className:
                                                 'ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform',
                                         }),
@@ -3234,6 +3577,6 @@
         },
     },
     (e) => {
-        e.O(0, [362, 549, 441, 255, 358], () => e((e.s = 3447))), (_N_E = e.O())
+        e.O(0, [362, 800, 441, 255, 358], () => e((e.s = 2683))), (_N_E = e.O())
     },
 ])

@@ -2,6 +2,7 @@
 
 import { Briefcase } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { renderMarkdown } from '@/lib/simple-markdown'
 import type { ExperienceFrontmatter } from '@/types'
 
 interface CareerTimelineItemProps {
@@ -15,6 +16,8 @@ export default function CareerTimelineItem({
     content,
     isLast,
 }: CareerTimelineItemProps) {
+    const renderedContent = renderMarkdown(content)
+
     return (
         <div className="flex items-start mb-8 w-full relative">
             {/* Mobile layout (left-aligned) */}
@@ -49,15 +52,15 @@ export default function CareerTimelineItem({
                         <h6 className="text-secondary text-lg mb-4">
                             {event.company} • {event.location}
                         </h6>
-                        <div className="text-sm text-gray-400 whitespace-pre-wrap mb-4">
-                            {content}
+                        <div className="text-sm space-y-2 mb-4">
+                            {renderedContent}
                         </div>
                         {event.tags && event.tags.length > 0 && (
                             <div className="flex flex-wrap gap-2">
                                 {event.tags.map((tag) => (
                                     <span
                                         key={tag}
-                                        className="px-3 py-1 text-xs bg-secondary/10 dark:bg-secondary/20 text-secondary rounded-full font-medium"
+                                        className="px-3 py-1 text-xs bg-secondary/10 text-secondary rounded-full font-medium"
                                     >
                                         {tag}
                                     </span>
@@ -102,15 +105,15 @@ export default function CareerTimelineItem({
                         <h6 className="text-secondary text-lg mb-4">
                             {event.company} • {event.location}
                         </h6>
-                        <div className="text-sm text-gray-400 whitespace-pre-wrap mb-4">
-                            {content}
+                        <div className="text-sm space-y-2 mb-4">
+                            {renderedContent}
                         </div>
                         {event.tags && event.tags.length > 0 && (
                             <div className="flex flex-wrap gap-2">
                                 {event.tags.map((tag) => (
                                     <span
                                         key={tag}
-                                        className="px-3 py-1 text-xs bg-secondary/10 dark:bg-secondary/20 text-secondary rounded-full font-medium"
+                                        className="px-3 py-1 text-xs bg-secondary/10 text-secondary rounded-full font-medium"
                                     >
                                         {tag}
                                     </span>

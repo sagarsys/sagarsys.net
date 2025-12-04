@@ -1,27 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import {
-    Github,
-    Linkedin,
-    Twitter,
-    Instagram,
-    Youtube,
-    Music,
-    Code,
-} from 'lucide-react'
+import { Github, Linkedin, Mail } from 'lucide-react'
 import { useColorGradient } from '@/hooks/useColorGradient'
 import type { ContactInfo } from '@/types'
 
 const socialIcons: Record<string, React.FC<{ className?: string }>> = {
     github: Github,
     linkedin: Linkedin,
-    twitter: Twitter,
-    instagram: Instagram,
-    youtube: Youtube,
-    soundcloud: Music,
-    stackblitz: Code,
-    codeSandbox: Code,
+    email: Mail,
 }
 
 interface FooterProps {
@@ -29,39 +16,25 @@ interface FooterProps {
 }
 
 export default function Footer({ contactInfo }: FooterProps) {
-    const { colors } = useColorGradient()
+    const { colors, mounted } = useColorGradient()
+    const gradientColors = mounted
+        ? colors
+        : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' }
 
     const socialLinks = contactInfo
         ? [
               { name: 'GitHub', key: 'github', url: contactInfo.github },
               { name: 'LinkedIn', key: 'linkedin', url: contactInfo.linkedin },
-              { name: 'Twitter', key: 'twitter', url: contactInfo.twitter },
               {
-                  name: 'Instagram',
-                  key: 'instagram',
-                  url: contactInfo.instagram,
-              },
-              { name: 'YouTube', key: 'youtube', url: contactInfo.youtube },
-              {
-                  name: 'SoundCloud',
-                  key: 'soundcloud',
-                  url: contactInfo.soundcloud,
-              },
-              {
-                  name: 'StackBlitz',
-                  key: 'stackblitz',
-                  url: contactInfo.stackblitz,
-              },
-              {
-                  name: 'CodeSandbox',
-                  key: 'codeSandbox',
-                  url: contactInfo.codeSandbox,
+                  name: 'Email',
+                  key: 'email',
+                  url: `mailto:${contactInfo.email}`,
               },
           ]
         : []
 
     return (
-        <footer className="relative py-12 px-6 border-t border-gray-200 dark:border-slate-800">
+        <footer className="relative py-12 px-6 border-t border-slate-800">
             <div className="max-w-7xl mx-auto">
                 {/* Social Links */}
                 <motion.div
@@ -108,7 +81,7 @@ export default function Footer({ contactInfo }: FooterProps) {
                         <span
                             className="font-semibold bg-gradient-to-r bg-clip-text text-transparent transition-all duration-1000"
                             style={{
-                                backgroundImage: `linear-gradient(90deg, ${colors.from}, ${colors.via}, ${colors.to})`,
+                                backgroundImage: `linear-gradient(90deg, ${gradientColors.from}, ${gradientColors.via}, ${gradientColors.to})`,
                             }}
                         >
                             Sagar Sawuck

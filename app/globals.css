@@ -137,7 +137,7 @@
     font-family: var(--font-secondary), "Play", sans-serif;
   }
 
-  /* Custom Scrollbar */
+  /* Custom Global Scrollbar - uses dynamic gradient colors */
   ::-webkit-scrollbar {
     width: 8px;
   }
@@ -147,16 +147,51 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #667eea, #764ba2);
+    background: linear-gradient(
+      180deg,
+      var(--scroll-color-from, #8b5cf6),
+      var(--scroll-color-to, #ec4899)
+    );
     border-radius: 999px;
+    transition: background 1s ease;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #764ba2, #667eea);
+    opacity: 0.8;
   }
 
-  .dark ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #8b5cf6, #ec4899);
+  /* Hide scrollbar for horizontal card scroller */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Custom scrollbar for vertical content in cards - uses dynamic color */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(71, 85, 105, 0.3);
+    border-radius: 999px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      180deg,
+      var(--scroll-color-from, #8b5cf6),
+      var(--scroll-color-to, #ec4899)
+    );
+    border-radius: 999px;
+    transition: background 1s ease;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    opacity: 0.8;
   }
 }
 
