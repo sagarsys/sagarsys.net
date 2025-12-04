@@ -102,7 +102,7 @@ export default function SkillsShowcase() {
                             size="lg"
                             className="group"
                         >
-                            Show More Skills ({skills.length - displayCount}{' '}
+                            Show More Skills ({SKILLS.length - displayCount}{' '}
                             more)
                             <ChevronDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
                         </Button>
