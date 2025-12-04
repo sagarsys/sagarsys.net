@@ -3,116 +3,16 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import { staggerContainer, staggerItem } from '@/lib/animations'
 import SectionHeading from './SectionHeading'
-import { useColorGradient } from '@/hooks/useColorGradient'
 import { Button } from './ui/button'
-import {
-    SiJavascript,
-    SiTypescript,
-    SiHtml5,
-    SiCss3,
-    SiReact,
-    SiNextdotjs,
-    SiAngular,
-    SiVuedotjs,
-    SiSvelte,
-    SiNodedotjs,
-    SiExpress,
-    SiNestjs,
-    SiFastify,
-    SiOpenapiinitiative,
-    SiJest,
-    SiVitest,
-    SiJasmine,
-    SiCypress,
-    SiMongodb,
-    SiAmazondynamodb,
-    SiMysql,
-    SiPostgresql,
-    SiSequelize,
-    SiAmazon,
-    SiGooglecloud,
-    SiDocker,
-    SiKubernetes,
-    SiHelm,
-    SiGithubactions,
-    SiGitlab,
-    SiGit,
-    SiWebpack,
-    SiVite,
-    SiNpm,
-    SiYarn,
-    SiPnpm,
-    SiWebstorm,
-    SiIntellijidea,
-    SiPrisma,
-} from 'react-icons/si'
-
-// Comprehensive tech stack from CV
-const skills = [
-    { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
-    { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
-    { name: 'React', icon: SiReact, color: '#61DAFB' },
-    { name: 'HTML5', icon: SiHtml5, color: '#E34F26' },
-    { name: 'CSS3', icon: SiCss3, color: '#1572B6' },
-    { name: 'Next.js', icon: SiNextdotjs, color: '#ffffff' },
-    { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-    { name: 'Express', icon: SiExpress, color: '#ffffff' },
-    { name: 'Prisma', icon: SiPrisma, color: '#2D3748' },
-    { name: 'Jest', icon: SiJest, color: '#C21325' },
-    { name: 'Vitest', icon: SiVitest, color: '#6E9F18' },
-    { name: 'Cypress', icon: SiCypress, color: '#ffffff' },
-    { name: 'GitHub Actions', icon: SiGithubactions, color: '#2088FF' },
-    { name: 'Webpack', icon: SiWebpack, color: '#8DD6F9' },
-    { name: 'AWS', icon: SiAmazon, color: '#FF9900' },
-    { name: 'Docker', icon: SiDocker, color: '#2496ED' },
-    { name: 'Git', icon: SiGit, color: '#F05032' },
-    // Core Stack
-
-    // Frameworks
-    { name: 'Angular', icon: SiAngular, color: '#DD0031' },
-    { name: 'Vue.js', icon: SiVuedotjs, color: '#4FC08D' },
-    { name: 'Svelte', icon: SiSvelte, color: '#FF3E00' },
-
-    // Backend
-    { name: 'NestJS', icon: SiNestjs, color: '#E0234E' },
-    { name: 'Fastify', icon: SiFastify, color: '#fffff0' },
-    { name: 'OpenAPI', icon: SiOpenapiinitiative, color: '#6BA539' },
-
-    // Testing
-    { name: 'Jasmine', icon: SiJasmine, color: '#8A4182' },
-
-    // Databases
-    { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
-    { name: 'DynamoDB', icon: SiAmazondynamodb, color: '#4053D6' },
-    { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
-    { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
-    { name: 'Sequelize', icon: SiSequelize, color: '#52B0E7' },
-
-    // Cloud & DevOps
-    { name: 'GCP', icon: SiGooglecloud, color: '#4285F4' },
-    { name: 'Kubernetes', icon: SiKubernetes, color: '#326CE5' },
-    { name: 'Helm', icon: SiHelm, color: '#0F1689' },
-    { name: 'GitLab CI', icon: SiGitlab, color: '#FC6D26' },
-
-    // Tooling
-    { name: 'Vite', icon: SiVite, color: '#646CFF' },
-    { name: 'npm', icon: SiNpm, color: '#CB3837' },
-    { name: 'Yarn', icon: SiYarn, color: '#2C8EBB' },
-    { name: 'pnpm', icon: SiPnpm, color: '#F69220' },
-    { name: 'WebStorm', icon: SiWebstorm, color: '#6e6' },
-    { name: 'IntelliJ', icon: SiIntellijidea, color: '#fff' },
-]
+import { SKILLS } from '@/config/skills'
 
 export default function SkillsShowcase() {
-    const { colors } = useColorGradient()
     const [showAll, setShowAll] = useState(false)
 
-    // Show first 18 skills initially (enough for 2-3 rows depending on screen)
     const displayCount = 16
-    const displayedSkills = showAll ? skills : skills.slice(0, displayCount)
-    const hasMore = skills.length > displayCount
+    const displayedSkills = showAll ? SKILLS : SKILLS.slice(0, displayCount)
+    const hasMore = SKILLS.length > displayCount
 
     return (
         <section id="skills" className="py-20 md:py-32 px-6 relative">

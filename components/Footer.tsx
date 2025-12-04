@@ -1,15 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail } from 'lucide-react'
 import { useColorGradient } from '@/hooks/useColorGradient'
+import { getEssentialLinks } from '@/config/social-links'
 import type { ContactInfo } from '@/types'
-
-const socialIcons: Record<string, React.FC<{ className?: string }>> = {
-    github: Github,
-    linkedin: Linkedin,
-    email: Mail,
-}
 
 interface FooterProps {
     contactInfo?: ContactInfo
@@ -21,17 +15,7 @@ export default function Footer({ contactInfo }: FooterProps) {
         ? colors
         : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' }
 
-    const socialLinks = contactInfo
-        ? [
-              { name: 'GitHub', key: 'github', url: contactInfo.github },
-              { name: 'LinkedIn', key: 'linkedin', url: contactInfo.linkedin },
-              {
-                  name: 'Email',
-                  key: 'email',
-                  url: `mailto:${contactInfo.email}`,
-              },
-          ]
-        : []
+    const socialLinks = contactInfo ? getEssentialLinks(contactInfo) : []
 
     return (
         <footer className="relative py-12 px-6 border-t border-slate-800">
@@ -44,12 +28,11 @@ export default function Footer({ contactInfo }: FooterProps) {
                     viewport={{ once: true }}
                 >
                     {socialLinks.map((social, index) => {
-                        const Icon = socialIcons[social.key]
-                        if (!Icon) return null
+                        const Icon = social.icon
 
                         return (
                             <motion.a
-                                key={social.key}
+                                key={social.name}
                                 href={social.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
