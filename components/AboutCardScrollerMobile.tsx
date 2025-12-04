@@ -24,6 +24,11 @@ export default function AboutCardScrollerMobile({
     const [activeCard, setActiveCard] = useState(0)
     const [direction, setDirection] = useState(0)
 
+    // Handle empty cards array
+    if (!cards || cards.length === 0) {
+        return null
+    }
+
     const paginate = (newDirection: number) => {
         setDirection(newDirection)
         const newCard = newDirection === 1 ? activeCard + 1 : activeCard - 1
