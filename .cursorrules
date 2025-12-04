@@ -72,6 +72,7 @@ When responding to questions, use the Chain of Thought method. Outline a detaile
 **Avoid any kind of cleanup unless specifically instructed to.**
 **Accomplish the goal with the minimum amount of code changes.**
 **Code change = potential for bugs and technical debt.**
+**Always commit files logically when asked**
 
 * Follow user's requirements carefully & to the letter.
 * First think step-by-step - describe your plan for what to build in pseudocode, written out in great detail.
