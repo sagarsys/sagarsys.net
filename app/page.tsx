@@ -1,28 +1,46 @@
-'use client'
-
-import AppBar from '@/components/AppBar'
+import AppBarClient from '@/components/AppBarClient'
 import HeroBanner from '@/components/HeroBanner'
 import About from '@/components/About'
-import Portfolio from '@/components/Portfolio'
+import SkillsShowcase from '@/components/SkillsShowcase'
 import Career from '@/components/Career'
+import ProjectsShowcase from '@/components/ProjectsShowcase'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import ScrollTop from '@/components/ScrollTop'
+import ParticleBackground from '@/components/ParticleBackground'
+import ScrollbarSync from '@/components/ScrollbarSync'
+import { getContactInfo } from '@/lib/markdown'
 
 export default function Home() {
-  return (
-    <div className="min-h-screen">
-      <div id="back-to-top-anchor" className="h-0 min-h-0" />
-      <AppBar />
-      <HeroBanner />
-      <About />
-      <Portfolio />
-      <Career />
-      <Contact />
-      <Footer />
-      <ScrollTop />
-    </div>
-  )
+    const contactData = getContactInfo()
+
+    return (
+        <div className="min-h-screen relative">
+            {/* Particle Background - subtle, throughout the page */}
+            <ParticleBackground />
+
+            {/* Scrollbar color sync */}
+            <ScrollbarSync />
+
+            {/* Fixed elements */}
+            <div id="back-to-top-anchor" className="h-0 min-h-0" />
+            <AppBarClient />
+            <ScrollTop />
+
+            {/* Page content */}
+            <main className="relative z-10">
+                <HeroBanner
+                    email={contactData?.frontmatter.email}
+                    github={contactData?.frontmatter.github}
+                    linkedin={contactData?.frontmatter.linkedin}
+                />
+                <About />
+                <SkillsShowcase />
+                <Career />
+                <ProjectsShowcase />
+                <Contact contactInfo={contactData?.frontmatter} />
+                <Footer contactInfo={contactData?.frontmatter} />
+            </main>
+        </div>
+    )
 }
-
-

@@ -6,92 +6,118 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Monitor, Tablet, Smartphone } from 'lucide-react'
 
 interface DevicesPreviewProps {
-  images: {
-    mobile?: string
-    tablet?: string
-    desktop?: string
-  }
+    images: {
+        desktop?: string
+        tablet?: string
+        mobile?: string
+    }
 }
 
 export default function DevicesPreview({ images }: DevicesPreviewProps) {
-  const { mobile, tablet, desktop } = images
-  const startIndex = desktop ? 'desktop' : tablet ? 'tablet' : 'mobile'
-  const [value, setValue] = useState(startIndex)
+    const { desktop, tablet, mobile } = images
 
-  if (!desktop && !tablet && !mobile) return null
+    // If only one image type, show it directly
+    const imageCount = [desktop, tablet, mobile].filter(Boolean).length
 
-  return (
-    <div className="space-y-4">
-      <p className="text-secondary text-lg">Preview:</p>
-      <Tabs value={value} onValueChange={setValue} className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
-          {desktop && (
-            <TabsTrigger value="desktop" className="flex items-center gap-2">
-              <Monitor className="h-4 w-4" />
-              Desktop
-            </TabsTrigger>
-          )}
-          {tablet && (
-            <TabsTrigger value="tablet" className="flex items-center gap-2">
-              <Tablet className="h-4 w-4" />
-              Tablet
-            </TabsTrigger>
-          )}
-          {mobile && (
-            <TabsTrigger value="mobile" className="flex items-center gap-2">
-              <Smartphone className="h-4 w-4" />
-              Mobile
-            </TabsTrigger>
-          )}
-        </TabsList>
-        {desktop && (
-          <TabsContent value="desktop" className="mt-4">
-            <div className="flex justify-center">
-              <div className="relative w-full max-w-full">
-                <Image
-                  src={`/${desktop}`}
-                  alt="Desktop preview"
-                  width={1200}
-                  height={800}
-                  className="object-contain w-auto max-w-full"
-                />
-              </div>
+    if (imageCount === 0) return null
+
+    if (imageCount === 1) {
+        const singleImage = desktop || tablet || mobile
+        return (
+            <div className="my-8">
+                <div className="relative w-full rounded-lg overflow-hidden border border-slate-700">
+                    <Image
+                        src={`/${singleImage}`}
+                        alt="Project preview"
+                        width={1200}
+                        height={800}
+                        className="w-full h-auto"
+                        unoptimized
+                    />
+                </div>
             </div>
-          </TabsContent>
-        )}
-        {tablet && (
-          <TabsContent value="tablet" className="mt-4">
-            <div className="flex justify-center">
-              <div className="relative w-full max-w-full">
-                <Image
-                  src={`/${tablet}`}
-                  alt="Tablet preview"
-                  width={800}
-                  height={600}
-                  className="object-contain w-auto max-w-full"
-                />
-              </div>
-            </div>
-          </TabsContent>
-        )}
-        {mobile && (
-          <TabsContent value="mobile" className="mt-4">
-            <div className="flex justify-center">
-              <div className="relative w-full max-w-full">
-                <Image
-                  src={`/${mobile}`}
-                  alt="Mobile preview"
-                  width={400}
-                  height={600}
-                  className="object-contain w-auto max-w-full"
-                />
-              </div>
-            </div>
-          </TabsContent>
-        )}
-      </Tabs>
-    </div>
-  )
+        )
+    }
+
+    // Multiple images - show tabs
+    return (
+        <div className="my-8">
+            <Tabs defaultValue="desktop" className="w-full">
+                <TabsList className="grid w-full grid-cols-3 mb-6">
+                    {desktop && (
+                        <TabsTrigger
+                            value="desktop"
+                            className="flex items-center gap-2"
+                        >
+                            <Monitor className="w-4 h-4" />
+                            <span className="hidden sm:inline">Desktop</span>
+                        </TabsTrigger>
+                    )}
+                    {tablet && (
+                        <TabsTrigger
+                            value="tablet"
+                            className="flex items-center gap-2"
+                        >
+                            <Tablet className="w-4 h-4" />
+                            <span className="hidden sm:inline">Tablet</span>
+                        </TabsTrigger>
+                    )}
+                    {mobile && (
+                        <TabsTrigger
+                            value="mobile"
+                            className="flex items-center gap-2"
+                        >
+                            <Smartphone className="w-4 h-4" />
+                            <span className="hidden sm:inline">Mobile</span>
+                        </TabsTrigger>
+                    )}
+                </TabsList>
+
+                {desktop && (
+                    <TabsContent value="desktop">
+                        <div className="relative w-full rounded-lg overflow-hidden border border-slate-700">
+                            <Image
+                                src={`/${desktop}`}
+                                alt="Desktop view"
+                                width={1200}
+                                height={800}
+                                className="w-full h-auto"
+                                unoptimized
+                            />
+                        </div>
+                    </TabsContent>
+                )}
+
+                {tablet && (
+                    <TabsContent value="tablet">
+                        <div className="relative w-full max-w-2xl mx-auto rounded-lg overflow-hidden border border-slate-700">
+                            <Image
+                                src={`/${tablet}`}
+                                alt="Tablet view"
+                                width={768}
+                                height={1024}
+                                className="w-full h-auto"
+                                unoptimized
+                            />
+                        </div>
+                    </TabsContent>
+                )}
+
+                {mobile && (
+                    <TabsContent value="mobile">
+                        <div className="relative w-full max-w-md mx-auto rounded-lg overflow-hidden border border-slate-700">
+                            <Image
+                                src={`/${mobile}`}
+                                alt="Mobile view"
+                                width={375}
+                                height={812}
+                                className="w-full h-auto"
+                                unoptimized
+                            />
+                        </div>
+                    </TabsContent>
+                )}
+            </Tabs>
+        </div>
+    )
 }
-
-

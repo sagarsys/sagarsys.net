@@ -1,33 +1,19 @@
-'use client'
-
-import FullHeightSection from './FullHeightSection'
-import useFetchData from '@/hooks/useFetchData'
-import AboutSkeleton from './AboutSkeleton'
-import ErrorMessage from './ErrorMessage'
+import { getAbout } from '@/lib/markdown'
 import AboutContent from './AboutContent'
-
-interface AboutData {
-  name: string
-  title: string
-  description: string
-}
+import SectionHeading from './SectionHeading'
 
 export default function About() {
-  const apiUrl = `/data/about.json`
-  const { data, error, isLoading } = useFetchData<AboutData>(
-    apiUrl,
-    'about section data'
-  )
+    const about = getAbout()
 
-  return (
-    <FullHeightSection id="about" className="pb-12 mb-20">
-      <div className="max-w-7xl mx-auto px-4">
-        <AboutContent data={data} />
-        {isLoading && <AboutSkeleton />}
-        {error && <ErrorMessage error={error} />}
-      </div>
-    </FullHeightSection>
-  )
+    return (
+        <section id="about" className="py-20 md:py-32 px-6 relative">
+            <div className="max-w-6xl mx-auto">
+                <SectionHeading
+                    title="About Me"
+                    subtitle="Get to know me better"
+                />
+                <AboutContent data={about} />
+            </div>
+        </section>
+    )
 }
-
-

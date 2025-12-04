@@ -1,46 +1,63 @@
-import Image from 'next/image'
+'use client'
 
-interface AboutData {
-    name: string
-    title: string
-    description: string
-}
+import { motion } from 'framer-motion'
+import AboutCardScroller from './AboutCardScroller'
+import type { MarkdownContent, AboutFrontmatter } from '@/types'
 
 interface AboutContentProps {
-    data: AboutData | null
+    data: MarkdownContent<AboutFrontmatter> | null
 }
 
 export default function AboutContent({ data }: AboutContentProps) {
     if (!data) return null
-    const { name, title, description } = data
-    const descriptions = description.split('|')
+
+    const { name, image = '/images/sagar.jpg' } = data.frontmatter
 
     return (
-        <>
-            <h6 className="text-secondary text-xl mb-4">
-                {name}: {title}
-            </h6>
-
-            <div className="flex items-center flex-col md:flex-row mt-8 md:mt-0">
-                <div
-                    className="relative rounded-full overflow-hidden flex-shrink-0 mb-8 md:mb-0 md:mr-8"
-                    style={{ width: '100px', height: '100px' }}
-                >
-                    <Image
-                        src="/images/img/sagar.jpeg"
-                        alt="Sagar Sawuck"
-                        fill
-                        className="object-cover"
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16">
+            {/* Image - Top on mobile, left on desktop */}
+            <motion.div
+                className="md:sticky md:top-24 md:h-fit"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+            >
+                <div className="relative aspect-square max-w-md mx-auto">
+                    {/* Glow effect */}
+                    <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-3xl blur-3xl"
+                        animate={{
+                            scale: [1, 1.1, 1],
+                            opacity: [0.5, 0.7, 0.5],
+                        }}
+                        transition={{ duration: 4, repeat: Infinity }}
                     />
+
+                    {/* Image container */}
+                    <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-3xl overflow-hidden p-4 shadow-xl">
+                        <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-700">
+                            <img
+                                src={image}
+                                alt={name}
+                                className="w-full h-full object-cover"
+                                loading="eager"
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    {descriptions.map((item, index) => (
-                        <p key={`${item}-${index}`} className="mb-2">
-                            - {item}
-                        </p>
-                    ))}
-                </div>
-            </div>
-        </>
+            </motion.div>
+
+            {/* Right: Card Scroller */}
+            <motion.div
+                className="order-1 md:order-2 w-full"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+            >
+                <AboutCardScroller content={data.content} />
+            </motion.div>
+        </div>
     )
 }

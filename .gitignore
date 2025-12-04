@@ -31,3 +31,7 @@ debug.log
 .next/
 .specstory/*
 .cursorindexingignore
+
+build/
+out/
+dist/
