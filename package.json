@@ -26,7 +26,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier:cli": "prettier \"**/*.{js,jsx,ts,tsx,html,css,scss,json,md}\"",
+    "prettier:cli": "prettier \"**/*.{js,jsx,ts,tsx,html,css,scss,json}\"",
     "prettier:check": "npm run prettier:cli -- -l",
     "prettier:fix": "npm run prettier:cli -- --write"
   },

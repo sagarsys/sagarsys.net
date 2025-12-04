@@ -49,7 +49,7 @@ final-year project.
 ## Highlights
 
 **Founder of SagaVortex Art Photography** (October 2023) Photography is one of
-my greatest passions—now a registered business:
+my greatest passions — now also a registered business:
 [sagavortex.art](https://www.sagavortex.art/)
 
 **AI Agents Bootcamp** (October 2024) Completed an AI agent bootcamp on how to
