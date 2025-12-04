@@ -14,9 +14,9 @@ interface HeroBannerProps {
 }
 
 export default function HeroBanner({
-    email = 'sagar.sawuck@gmail.com',
-    github = 'https://github.com/sagarsys',
-    linkedin = 'https://linkedin.com/in/sagarsys/',
+    email,
+    github,
+    linkedin,
 }: HeroBannerProps) {
     const { colors, mounted } = useColorGradient()
     const gradientColors = mounted
