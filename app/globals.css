@@ -90,23 +90,7 @@
   --glass-border: rgba(255, 255, 255, 0.1);
 }
 
-@keyframes accordion-down {
-  from {
-    height: 0;
-  }
-  to {
-    height: var(--radix-accordion-content-height);
-  }
-}
-
-@keyframes accordion-up {
-  from {
-    height: var(--radix-accordion-content-height);
-  }
-  to {
-    height: 0;
-  }
-}
+@import "../styles/animations.css";
 
 @layer base {
   * {
@@ -152,44 +136,6 @@
   }
 }
 
-@keyframes opacity {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes change-text {
-  0%,
-  12.66%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  16.66%,
-  29.32% {
-    transform: translate3d(0, -25%, 0);
-  }
-  33.32%,
-  45.98% {
-    transform: translate3d(0, -50%, 0);
-  }
-  49.98%,
-  62.64% {
-    transform: translate3d(0, -75%, 0);
-  }
-  66.64%,
-  79.3% {
-    transform: translate3d(0, -50%, 0);
-  }
-  83.3%,
-  95.96% {
-    transform: translate3d(0, -25%, 0);
-  }
-}
-
 /* Hero Banner Styles */
 #home {
   background: transparent;
@@ -213,19 +159,4 @@
     font-size: 4rem;
     line-height: 4rem;
   }
-}
-
-/* Gradient Animation */
-@keyframes gradient {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.animate-gradient {
-  animation: gradient 8s ease infinite;
 }
