@@ -14,10 +14,10 @@ export default function AboutContent({ data }: AboutContentProps) {
     const { name, image = '/images/sagar.jpg' } = data.frontmatter
 
     return (
-        <div className="grid md:grid-cols-2 gap-8 md:gap-16">
-            {/* Left: Image */}
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16">
+            {/* Image - Top on mobile, left on desktop */}
             <motion.div
-                className="order-2 md:order-1 md:sticky md:top-24 md:h-fit"
+                className="md:sticky md:top-24 md:h-fit"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
