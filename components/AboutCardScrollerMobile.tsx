@@ -64,6 +64,37 @@ export default function AboutCardScrollerMobile({
                 ['--scroll-color-to' as any]: gradientColors.via,
             }}
         >
+            {/* Swipe Indicator + Arrow Navigation */}
+            <div className="flex items-center justify-between mb-4">
+                <button
+                    onClick={() => paginate(-1)}
+                    disabled={activeCard === 0}
+                    className="w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+                    aria-label="Previous card"
+                >
+                    <ChevronLeft className="w-5 h-5 text-white" />
+                </button>
+
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                    <span>Swipe</span>
+                    <motion.div
+                        animate={{ x: [-3, 3, -3] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                        ←→
+                    </motion.div>
+                </div>
+
+                <button
+                    onClick={() => paginate(1)}
+                    disabled={activeCard === cards.length - 1}
+                    className="w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+                    aria-label="Next card"
+                >
+                    <ChevronRight className="w-5 h-5 text-white" />
+                </button>
+            </div>
+
             <div className="relative min-h-[400px]">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                     <motion.div
