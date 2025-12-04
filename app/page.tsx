@@ -38,11 +38,7 @@ export default function Home() {
                 <SkillsShowcase />
                 <Career />
                 <ProjectsShowcase />
-                <Contact
-                    email={contactData?.frontmatter.email}
-                    github={contactData?.frontmatter.github}
-                    linkedin={contactData?.frontmatter.linkedin}
-                />
+                <Contact contactInfo={contactData?.frontmatter} />
                 <Footer contactInfo={contactData?.frontmatter} />
             </main>
         </div>
