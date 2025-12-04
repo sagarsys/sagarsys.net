@@ -35,7 +35,7 @@ export default function CareerTimelineItem({
                     )}
                 </div>
 
-                {/* TimelineContent - right side */}
+                {/* Content - right side */}
                 <div className="flex-1 min-w-0">
                     <div className="mb-4">
                         <h6 className="text-secondary text-lg font-secondary font-semibold">
@@ -71,17 +71,17 @@ export default function CareerTimelineItem({
                 </div>
             </div>
 
-            {/* Desktop layout (alternating) */}
+            {/* Desktop layout (left: dates 25%, middle: timeline, right: content 75%) */}
             <div className="hidden md:flex items-start w-full">
-                {/* TimelineOppositeContent - left side */}
-                <div className="flex-1 text-right pr-8 min-w-0">
+                {/* Dates - left side (25%) */}
+                <div className="w-1/4 text-right pr-8 min-w-0">
                     <h6 className="text-secondary text-xl font-secondary font-semibold">
                         {event.startDate} - {event.endDate}
                     </h6>
                 </div>
 
-                {/* TimelineSeparator - middle */}
-                <div className="flex flex-col items-center mx-4 relative z-10 flex-shrink-0">
+                {/* Timeline Separator - middle */}
+                <div className="flex flex-col items-center relative z-10 flex-shrink-0">
                     <motion.div
                         className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shadow-lg"
                         whileHover={{ scale: 1.1, rotate: 5 }}
@@ -93,8 +93,8 @@ export default function CareerTimelineItem({
                     )}
                 </div>
 
-                {/* TimelineContent - right side */}
-                <div className="flex-1 pl-8 min-w-0">
+                {/* Content - right side (75%) */}
+                <div className="w-3/4 pl-8 min-w-0">
                     <motion.div
                         className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all"
                         whileHover={{ y: -5 }}
