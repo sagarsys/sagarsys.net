@@ -107,12 +107,12 @@ export default function HeroBanner({
                 animate="show"
             >
                 <motion.p
-                    className="text-secondary text-lg md:text-xl mb-4"
+                    className="text-secondary text-xl md:text-2xl mb-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
                 >
-                    Hi there 👋 I'm
+                    Hi there 👋 &nbsp; I'm
                 </motion.p>
 
                 <motion.h1

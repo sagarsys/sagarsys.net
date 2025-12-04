@@ -46,4 +46,4 @@ Philips Evnia and level up my skills.
 -   Regular attendee at tech meetups and conferences across the Netherlands
 -   Certifications from Frontend Masters, Egghead.io, Udemy
 -   Share knowledge through blog posts on iO's Tech Hub:
-    https://techhub.iodigital.com/author/sagar-sawuck
+    <https://techhub.iodigital.com/author/sagar-sawuck>

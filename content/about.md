@@ -38,6 +38,14 @@ developers, collaborating with designers, or taking ownership.
 Graduated with honors. Developed an Android app and a front-end website as the
 final-year project.
 
+### Languages
+
+-   English (Native)
+-   French (Native)
+-   Dutch (A2-B1 level)
+-   Hindi (Fluent)
+-   Mauritian Kreole (Native)
+
 ## Highlights
 
 **Founder of SagaVortex Art Photography** (October 2023) Photography is one of
