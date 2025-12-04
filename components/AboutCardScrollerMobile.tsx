@@ -64,12 +64,12 @@ export default function AboutCardScrollerMobile({
                 ['--scroll-color-to' as any]: gradientColors.via,
             }}
         >
-            {/* Swipe Indicator + Arrow Navigation */}
+            {/* Top Navigation Bar with Arrows and Swipe Indicator */}
             <div className="flex items-center justify-between mb-4">
                 <button
                     onClick={() => paginate(-1)}
                     disabled={activeCard === 0}
-                    className="w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                     aria-label="Previous card"
                 >
                     <ChevronLeft className="w-5 h-5 text-white" />
@@ -88,13 +88,14 @@ export default function AboutCardScrollerMobile({
                 <button
                     onClick={() => paginate(1)}
                     disabled={activeCard === cards.length - 1}
-                    className="w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                     aria-label="Next card"
                 >
                     <ChevronRight className="w-5 h-5 text-white" />
                 </button>
             </div>
 
+            {/* Card Container */}
             <div className="relative min-h-[400px]">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                     <motion.div
@@ -115,7 +116,7 @@ export default function AboutCardScrollerMobile({
                         className="cursor-grab active:cursor-grabbing"
                     >
                         <div className="bg-slate-800/60 backdrop-blur-md border border-slate-700/60 rounded-3xl p-6 flex flex-col shadow-2xl">
-                            <h3 className="text-2xl font-bold mb-4">
+                            <h3 className="text-2xl font-bold mb-4 text-center">
                                 <GradientText
                                     gradientColors={gradientColors}
                                     className="transition-all duration-1000"
@@ -131,28 +132,6 @@ export default function AboutCardScrollerMobile({
                 </AnimatePresence>
             </div>
 
-            {/* Mobile Arrow Navigation (top position) */}
-            {activeCard > 0 && (
-                <button
-                    onClick={() => paginate(-1)}
-                    className="absolute left-2 top-4 w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center z-20"
-                    aria-label="Previous card"
-                >
-                    <ChevronLeft className="w-5 h-5 text-white" />
-                </button>
-            )}
-
-            {activeCard < cards.length - 1 && (
-                <button
-                    onClick={() => paginate(1)}
-                    className="absolute right-2 top-4 w-10 h-10 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center z-20"
-                    aria-label="Next card"
-                >
-                    <ChevronRight className="w-5 h-5 text-white" />
-                </button>
-            )}
-
-            {/* Reusable Dot Navigation */}
             <CardDotNavigation
                 totalCards={cards.length}
                 activeCard={activeCard}
