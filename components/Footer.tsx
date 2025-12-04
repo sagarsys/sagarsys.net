@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useColorGradient } from '@/hooks/useColorGradient'
-import { getEssentialLinks } from '@/config/social-links'
+import SocialLinks from './SocialLinks'
 import type { ContactInfo } from '@/types'
 
 interface FooterProps {
@@ -15,41 +15,24 @@ export default function Footer({ contactInfo }: FooterProps) {
         ? colors
         : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' }
 
-    const socialLinks = contactInfo ? getEssentialLinks(contactInfo) : []
-
     return (
         <footer className="relative py-12 px-6 border-t border-slate-800">
             <div className="max-w-7xl mx-auto">
-                {/* Social Links */}
-                <motion.div
-                    className="flex flex-wrap justify-center gap-4 mb-8"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
-                    {socialLinks.map((social, index) => {
-                        const Icon = social.icon
-
-                        return (
-                            <motion.a
-                                key={social.name}
-                                href={social.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-12 h-12 rounded-full bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 flex items-center justify-center hover:shadow-lg transition-all group"
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.05 }}
-                                whileHover={{ scale: 1.1, y: -3 }}
-                                title={social.name}
-                                aria-label={social.name}
-                            >
-                                <Icon className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
-                            </motion.a>
-                        )
-                    })}
-                </motion.div>
+                {/* Social Links - Essentials only */}
+                {contactInfo && (
+                    <motion.div
+                        className="flex justify-center mb-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <SocialLinks
+                            contactInfo={contactInfo}
+                            essentialsOnly={true}
+                            size="md"
+                        />
+                    </motion.div>
+                )}
 
                 {/* Copyright */}
                 <motion.div

@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 import { Mail } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 import ContactForm from './ContactForm'
+import SocialLinks from './SocialLinks'
 import { useColorGradient } from '@/hooks/useColorGradient'
-import { getSocialLinks } from '@/config/social-links'
 import type { ContactInfo } from '@/types'
 
 interface ContactProps {
@@ -19,7 +19,6 @@ export default function Contact({ contactInfo }: ContactProps) {
         : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' }
 
     const email = contactInfo?.email || 'sagar.sawuck@gmail.com'
-    const socialLinks = contactInfo ? getSocialLinks(contactInfo) : []
 
     return (
         <section id="contact" className="py-20 md:py-32 px-6 relative">
@@ -65,38 +64,19 @@ export default function Contact({ contactInfo }: ContactProps) {
                             </div>
                         </motion.a>
 
-                        {/* Social Links */}
-                        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 shadow-md">
-                            <p className="text-sm text-gray-400 mb-4">
-                                Connect with me
-                            </p>
-                            <div className="flex flex-wrap justify-start gap-3">
-                                {socialLinks.map((social, index) => {
-                                    const Icon = social.icon
-                                    return (
-                                        <motion.a
-                                            key={social.name}
-                                            href={social.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={`w-12 h-12 rounded-full bg-slate-700 text-gray-300 flex items-center justify-center transition-all ${social.hoverColor}`}
-                                            initial={{ opacity: 0, scale: 0.8 }}
-                                            whileInView={{
-                                                opacity: 1,
-                                                scale: 1,
-                                            }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: index * 0.05 }}
-                                            whileHover={{ scale: 1.1, y: -3 }}
-                                            aria-label={social.name}
-                                            title={social.name}
-                                        >
-                                            <Icon className="w-5 h-5" />
-                                        </motion.a>
-                                    )
-                                })}
+                        {/* Social Links - All platforms */}
+                        {contactInfo && (
+                            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 shadow-md">
+                                <p className="text-sm text-gray-400 mb-4">
+                                    Connect with me
+                                </p>
+                                <SocialLinks
+                                    contactInfo={contactInfo}
+                                    essentialsOnly={false}
+                                    size="md"
+                                />
                             </div>
-                        </div>
+                        )}
                     </motion.div>
 
                     {/* Right Column: Contact Form */}

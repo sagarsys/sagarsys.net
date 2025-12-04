@@ -1,17 +1,11 @@
 'use client'
 
 import { motion, useMotionValue, useTransform } from 'framer-motion'
-import {
-    Download,
-    ArrowDown,
-    Github,
-    Linkedin,
-    Mail,
-    Sparkles,
-} from 'lucide-react'
+import { Download, ArrowDown, Sparkles } from 'lucide-react'
 import { useEffect } from 'react'
 import { staggerContainer, staggerItem } from '@/lib/animations'
 import { useColorGradient } from '@/hooks/useColorGradient'
+import SocialLinks from './SocialLinks'
 
 interface HeroBannerProps {
     email?: string
@@ -25,15 +19,13 @@ export default function HeroBanner({
     linkedin = 'https://linkedin.com/in/sagarsys/',
 }: HeroBannerProps) {
     const { colors, mounted } = useColorGradient()
-
-    // Use fallback colors until mounted to prevent hydration mismatch
     const gradientColors = mounted
         ? colors
         : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' }
+
     const mouseX = useMotionValue(0)
     const mouseY = useMotionValue(0)
 
-    // Create parallax effect for gradient orbs (safe for SSR)
     const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 1920
     const windowHeight =
         typeof window !== 'undefined' ? window.innerHeight : 1080
@@ -69,20 +61,15 @@ export default function HeroBanner({
             id="home"
             className="relative min-h-screen flex items-center justify-center overflow-hidden"
         >
-            {/* Animated Gradient Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-purple-950/20 to-slate-950">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.1),transparent_50%)]" />
-                {/* Grid pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
             </div>
 
-            {/* Floating Gradient Orbs with mouse parallax */}
             <motion.div
                 className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-full blur-3xl"
                 style={{ x: orb1X, y: orb1Y }}
-                animate={{
-                    scale: [1, 1.2, 1],
-                }}
+                animate={{ scale: [1, 1.2, 1] }}
                 transition={{
                     duration: 8,
                     repeat: Infinity,
@@ -92,9 +79,7 @@ export default function HeroBanner({
             <motion.div
                 className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-br from-blue-600/20 to-cyan-600/20 rounded-full blur-3xl"
                 style={{ x: orb2X, y: orb2Y }}
-                animate={{
-                    scale: [1, 1.3, 1],
-                }}
+                animate={{ scale: [1, 1.3, 1] }}
                 transition={{
                     duration: 10,
                     repeat: Infinity,
@@ -102,23 +87,18 @@ export default function HeroBanner({
                 }}
             />
 
-            {/* Floating decorative elements */}
             <motion.div
                 className="absolute top-1/4 right-1/4 opacity-20"
-                animate={{
-                    y: [0, -20, 0],
-                    rotate: [0, 5, 0],
-                }}
+                animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
                 transition={{
                     duration: 6,
                     repeat: Infinity,
                     ease: 'easeInOut',
                 }}
             >
-                <Sparkles className="w-10 h-10 text-purple-500" />
+                <Sparkles className="w-16 h-16 text-purple-500" />
             </motion.div>
 
-            {/* Content */}
             <motion.div
                 className="relative z-10 max-w-5xl mx-auto px-6 text-center"
                 variants={staggerContainer}
@@ -151,9 +131,12 @@ export default function HeroBanner({
                 </motion.h1>
 
                 <motion.h2
-                    className="text-2xl md:text-4xl lg:text-5xl leading-[1.14] font-bold text-gray-800 dark:text-gray-400 mb-8 md:mb-12"
-                    variants={staggerItem}
+                    className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-400 mb-8 md:mb-12"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 1.2 }}
                 >
+                    I build{' '}
                     <motion.span
                         className="inline-block"
                         animate={{
@@ -176,71 +159,39 @@ export default function HeroBanner({
                             backgroundClip: 'text',
                         }}
                     >
-                        Senior Fullstack Developer
+                        exceptional
                     </motion.span>{' '}
-                    with 10+ years of experience. I build{' '}
-                    <motion.span
-                        className="inline-block"
-                        animate={{
-                            backgroundPosition: [
-                                '0% 50%',
-                                '100% 50%',
-                                '0% 50%',
-                            ],
-                        }}
-                        transition={{
-                            duration: 5,
-                            repeat: Infinity,
-                            ease: 'linear',
-                        }}
-                        style={{
-                            backgroundImage: `linear-gradient(90deg, ${gradientColors.from}, ${gradientColors.via}, ${gradientColors.to}, ${gradientColors.from})`,
-                            backgroundSize: '200% auto',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text',
-                        }}
-                    >
-                        exceptional digital experiences for people
-                    </motion.span>{' '}
-                    .
+                    digital experiences
                 </motion.h2>
 
-                {/* Tech Stack Tags */}
                 <motion.div
                     className="flex flex-wrap justify-center gap-3 mb-8 md:mb-12"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 1.6 }}
                 >
-                    {[
-                        'TypeScript',
-                        'Javascript',
-                        'React',
-                        'Next.js',
-                        'Node.js',
-                        'Prisma',
-                    ].map((tech, i) => (
-                        <motion.span
-                            key={tech}
-                            className="px-4 py-2 bg-slate-800/50 backdrop-blur-sm rounded-full text-sm font-medium border border-slate-700/50 shadow-sm hover:shadow-md transition-all cursor-default"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{
-                                delay: 1.8 + i * 0.15,
-                                duration: 0.5,
-                            }}
-                            whileHover={{
-                                y: -2,
-                                boxShadow: `0 10px 30px ${gradientColors.via}30`,
-                            }}
-                        >
-                            {tech}
-                        </motion.span>
-                    ))}
+                    {['TypeScript', 'React', 'Next.js', 'Node.js', 'AWS'].map(
+                        (tech, i) => (
+                            <motion.span
+                                key={tech}
+                                className="px-4 py-2 bg-slate-800/50 backdrop-blur-sm rounded-full text-sm font-medium border border-slate-700/50 shadow-sm hover:shadow-md transition-all cursor-default"
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{
+                                    delay: 1.8 + i * 0.15,
+                                    duration: 0.5,
+                                }}
+                                whileHover={{
+                                    y: -2,
+                                    boxShadow: `0 10px 30px ${gradientColors.via}30`,
+                                }}
+                            >
+                                {tech}
+                            </motion.span>
+                        )
+                    )}
                 </motion.div>
 
-                {/* CTAs */}
                 <motion.div
                     className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
                     initial={{ opacity: 0, y: 20 }}
@@ -262,7 +213,6 @@ export default function HeroBanner({
                             Download CV
                         </span>
 
-                        {/* Shimmer effect */}
                         <motion.div
                             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
                             animate={{ x: ['-200%', '200%'] }}
@@ -290,47 +240,22 @@ export default function HeroBanner({
                     </motion.button>
                 </motion.div>
 
-                {/* Social Links */}
-                <motion.div
-                    className="flex items-center justify-center gap-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 2.8 }}
-                >
-                    <motion.a
-                        href={github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full bg-slate-800/30 backdrop-blur-sm border border-slate-600/50 flex items-center justify-center hover:border-white transition-all"
-                        whileHover={{ scale: 1.15, y: -3 }}
-                        aria-label="GitHub"
+                {email && github && linkedin && (
+                    <motion.div
+                        className="flex items-center justify-center"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 2.8 }}
                     >
-                        <Github className="w-5 h-5" />
-                    </motion.a>
-
-                    <motion.a
-                        href={linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full bg-slate-800/30 backdrop-blur-sm border border-slate-600/50 flex items-center justify-center hover:border-[#0A66C2] transition-all"
-                        whileHover={{ scale: 1.15, y: -3 }}
-                        aria-label="LinkedIn"
-                    >
-                        <Linkedin className="w-5 h-5" />
-                    </motion.a>
-
-                    <motion.a
-                        href={`mailto:${email}`}
-                        className="w-10 h-10 rounded-full bg-slate-800/30 backdrop-blur-sm border border-slate-600/50 flex items-center justify-center hover:border-secondary transition-all"
-                        whileHover={{ scale: 1.15, y: -3 }}
-                        aria-label="Email"
-                    >
-                        <Mail className="w-5 h-5" />
-                    </motion.a>
-                </motion.div>
+                        <SocialLinks
+                            contactInfo={{ email, github, linkedin } as any}
+                            essentialsOnly={true}
+                            size="sm"
+                        />
+                    </motion.div>
+                )}
             </motion.div>
 
-            {/* Scroll Indicator */}
             <motion.div
                 className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-600 cursor-pointer"
                 animate={{ y: [0, 10, 0] }}
