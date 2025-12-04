@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { staggerContainer, staggerItem } from '@/lib/animations'
 import { useColorGradient } from '@/hooks/useColorGradient'
 import SocialLinks from './SocialLinks'
+import GradientText from './GradientText'
 
 interface HeroBannerProps {
     email?: string
@@ -111,7 +112,7 @@ export default function HeroBanner({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
                 >
-                    Hi, my name is
+                    Hi there 👋 I'm
                 </motion.p>
 
                 <motion.h1
@@ -120,14 +121,12 @@ export default function HeroBanner({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.8 }}
                 >
-                    <span
-                        className="bg-gradient-to-r bg-clip-text text-transparent bg-[length:200%_auto] transition-all duration-1000 inline-block"
-                        style={{
-                            backgroundImage: `linear-gradient(135deg, ${gradientColors.from} 0%, ${gradientColors.via} 50%, ${gradientColors.to} 100%)`,
-                        }}
+                    <GradientText
+                        gradientColors={gradientColors}
+                        className="transition-all duration-1000"
                     >
                         Sagar Sawuck
-                    </span>
+                    </GradientText>
                 </motion.h1>
 
                 <motion.h2
@@ -136,7 +135,6 @@ export default function HeroBanner({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 1.2 }}
                 >
-                    I build{' '}
                     <motion.span
                         className="inline-block"
                         animate={{
@@ -159,9 +157,37 @@ export default function HeroBanner({
                             backgroundClip: 'text',
                         }}
                     >
-                        exceptional
+                        Senior Fullstack Developer
                     </motion.span>{' '}
-                    digital experiences
+                    with 10+ years of experience. I build{' '}
+                    <GradientText gradientColors={gradientColors} animate>
+                        exceptional
+                    </GradientText>{' '}
+                    digital experiences{' '}
+                    <motion.span
+                        className="inline-block"
+                        animate={{
+                            backgroundPosition: [
+                                '0% 50%',
+                                '100% 50%',
+                                '0% 50%',
+                            ],
+                        }}
+                        transition={{
+                            duration: 5,
+                            repeat: Infinity,
+                            ease: 'linear',
+                        }}
+                        style={{
+                            backgroundImage: `linear-gradient(90deg, ${gradientColors.from}, ${gradientColors.via}, ${gradientColors.to}, ${gradientColors.from})`,
+                            backgroundSize: '200% auto',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                        }}
+                    >
+                        for people.
+                    </motion.span>
                 </motion.h2>
 
                 <motion.div

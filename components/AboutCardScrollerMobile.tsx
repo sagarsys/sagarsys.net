@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { renderMarkdown } from '@/lib/simple-markdown'
 import CardDotNavigation from './CardDotNavigation'
+import GradientText from './GradientText'
 
 interface AboutCard {
     title: string
@@ -70,14 +71,12 @@ export default function AboutCardScrollerMobile({
                     >
                         <div className="bg-slate-800/60 backdrop-blur-md border border-slate-700/60 rounded-3xl p-6 flex flex-col shadow-2xl">
                             <h3 className="text-2xl font-bold mb-4">
-                                <span
-                                    className="bg-gradient-to-r bg-clip-text text-transparent transition-all duration-1000"
-                                    style={{
-                                        backgroundImage: `linear-gradient(135deg, ${gradientColors.from}, ${gradientColors.via}, ${gradientColors.to})`,
-                                    }}
+                                <GradientText
+                                    gradientColors={gradientColors}
+                                    className="transition-all duration-1000"
                                 >
                                     {cards[activeCard].title}
-                                </span>
+                                </GradientText>
                             </h3>
                             <div className="space-y-2">
                                 {renderMarkdown(cards[activeCard].content)}

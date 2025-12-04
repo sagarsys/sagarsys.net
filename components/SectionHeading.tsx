@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useColorGradient } from '@/hooks/useColorGradient'
+import GradientText from './GradientText'
 
 interface SectionHeadingProps {
     title: string
@@ -35,14 +36,12 @@ export default function SectionHeading({
                 }`}
             >
                 <h2 className="text-4xl md:text-6xl font-bold mb-2">
-                    <span
-                        className="bg-gradient-to-r bg-clip-text text-transparent transition-all duration-1000"
-                        style={{
-                            backgroundImage: `linear-gradient(135deg, ${gradientColors.from} 0%, ${gradientColors.via} 50%, ${gradientColors.to} 100%)`,
-                        }}
+                    <GradientText
+                        gradientColors={gradientColors}
+                        className="transition-all duration-1000"
                     >
                         {title}
-                    </span>
+                    </GradientText>
                 </h2>
 
                 {/* Fixed width animated underline */}

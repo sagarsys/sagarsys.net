@@ -6,6 +6,7 @@ import { useColorGradient } from '@/hooks/useColorGradient'
 import AboutCardScrollerMobile from './AboutCardScrollerMobile'
 import CardNavigationArrows from './CardNavigationArrows'
 import CardDotNavigation from './CardDotNavigation'
+import GradientText from './GradientText'
 
 interface AboutCard {
     title: string
@@ -108,14 +109,12 @@ export default function AboutCardScroller({ content }: AboutCardScrollerProps) {
                         >
                             <div className="bg-slate-800/60 backdrop-blur-md border border-slate-700/60 rounded-3xl p-12 h-[600px] flex flex-col shadow-2xl">
                                 <h3 className="text-4xl font-bold mb-6">
-                                    <span
-                                        className="bg-gradient-to-r bg-clip-text text-transparent transition-all duration-1000"
-                                        style={{
-                                            backgroundImage: `linear-gradient(135deg, ${gradientColors.from}, ${gradientColors.via}, ${gradientColors.to})`,
-                                        }}
+                                    <GradientText
+                                        gradientColors={gradientColors}
+                                        className="transition-all duration-1000"
                                     >
                                         {card.title}
-                                    </span>
+                                    </GradientText>
                                 </h3>
                                 <div className="space-y-3 flex-1 overflow-y-auto custom-scrollbar pr-2">
                                     {renderMarkdown(card.content)}

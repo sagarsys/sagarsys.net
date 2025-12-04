@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useColorGradient } from '@/hooks/useColorGradient'
 import SocialLinks from './SocialLinks'
+import GradientText from './GradientText'
 import type { ContactInfo } from '@/types'
 
 interface FooterProps {
@@ -44,14 +45,13 @@ export default function Footer({ contactInfo }: FooterProps) {
                 >
                     <p className="mb-2">
                         Designed & Built by{' '}
-                        <span
-                            className="font-semibold bg-gradient-to-r bg-clip-text text-transparent transition-all duration-1000"
-                            style={{
-                                backgroundImage: `linear-gradient(90deg, ${gradientColors.from}, ${gradientColors.via}, ${gradientColors.to})`,
-                            }}
+                        <GradientText
+                            gradientColors={gradientColors}
+                            className="font-semibold transition-all duration-1000"
+                            animate
                         >
                             Sagar Sawuck
-                        </span>
+                        </GradientText>
                     </p>
                     <p>© {new Date().getFullYear()} All rights reserved.</p>
                 </motion.div>
