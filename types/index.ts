@@ -29,6 +29,12 @@ export interface ProjectFrontmatter {
         desktop?: string
     }
     order: number
+    // GitHub-specific fields (populated from API)
+    source?: 'markdown' | 'github'
+    stars?: number
+    forks?: number
+    language?: string
+    lastUpdated?: string
 }
 
 export interface AboutFrontmatter {
