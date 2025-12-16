@@ -12,7 +12,7 @@ import {
 import type { MarkdownContent, ProjectFrontmatter } from '@/types'
 
 // Default placeholder image for GitHub projects without custom images
-const DEFAULT_GITHUB_THUMB = 'images/github/default-project.png'
+const DEFAULT_GITHUB_THUMB = 'images/github/default.webp'
 
 /**
  * Transforms a GitHub repo + curation config into a project format
