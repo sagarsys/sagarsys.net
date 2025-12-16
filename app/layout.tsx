@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Titillium_Web, Play } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
+import HydrationFix from '@/components/HydrationFix'
 
 const titilliumWeb = Titillium_Web({
     weight: ['300', '400', '600', '700'],
@@ -18,17 +19,24 @@ const play = Play({
 })
 
 export const metadata: Metadata = {
-    title: 'Sagar Sawuck | Full Stack Developer',
+    title: 'Sagar Sawuck | Senior Fullstack Developer (TypeScript)',
     description:
-        'Full Stack Developer with expertise in React, Next.js, TypeScript, and modern web technologies. Building scalable and performant web applications.',
+        'Senior Fullstack Developer (Typescript) with 10+ years of experience. Front-end specialist with full-stack capabilities. Expertise in React, Next.js, Node.js, and modern web technologies. I build exceptional digital experiences for people.',
     keywords: [
-        'Full Stack Developer',
+        'Senior Fullstack Developer',
+        'TypeScript Developer',
         'React Developer',
-        'Next.js',
-        'TypeScript',
-        'Web Development',
+        'Next.js Developer',
+        'Node.js Developer',
+        'Full Stack Developer',
         'Frontend Developer',
-        'Backend Developer',
+        'Web Development',
+        'Clean Code',
+        'UX Design',
+        'Performance Optimization',
+        'AI Integration',
+        'Badhoevedorp',
+        'Netherlands',
     ],
     authors: [{ name: 'Sagar Sawuck' }],
     creator: 'Sagar Sawuck',
@@ -36,18 +44,25 @@ export const metadata: Metadata = {
         type: 'website',
         locale: 'en_US',
         url: 'https://sagarsys.net',
-        title: 'Sagar Sawuck | Full Stack Developer',
+        title: 'Sagar Sawuck | Senior Fullstack Developer (TypeScript)',
         description:
-            'Full Stack Developer specializing in React, Next.js, and TypeScript',
+            'Senior Fullstack Developer (Typescript) with 10+ years of experience. Front-end specialist with full-stack capabilities. Expertise in React, Next.js, Node.js, and modern web technologies. I build exceptional digital experiences for people.',
         siteName: 'Sagar Sawuck Portfolio',
         images: [
             {
-                url: 'https://i.ibb.co/jh6SRP9/sagarsys-og-img.png',
+                url: 'https://sagarsys.net/images/sagarsys_og_img.png',
                 width: 1200,
-                height: 627,
-                alt: 'Sagar Sawuck Portfolio',
+                height: 630,
+                alt: 'Sagar Sawuck - Senior Fullstack Developer (TypeScript) Portfolio',
             },
         ],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Sagar Sawuck | Senior Fullstack Developer (TypeScript)',
+        description:
+            'Senior Fullstack Developer (Typescript) with 10+ years of experience. Front-end specialist with full-stack capabilities. Expertise in React, Next.js, Node.js, and modern web technologies. I build exceptional digital experiences for people.',
+        images: ['https://sagarsys.net/images/sagarsys_og_img.png'],
     },
     icons: {
         icon: '/favicon.ico',
@@ -75,7 +90,9 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <body
                 className={`${titilliumWeb.variable} ${play.variable} antialiased`}
+                suppressHydrationWarning
             >
+                <HydrationFix />
                 <Providers>{children}</Providers>
             </body>
         </html>
