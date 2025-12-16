@@ -100,6 +100,44 @@ export async function fetchUserRepos(
 }
 
 /**
+ * Fetches the Open Graph image URL for a GitHub repository
+ * @param repo - Repository in format "owner/repo"
+ * @returns OG image URL or null if not found
+ */
+export async function fetchGitHubRepoImage(
+    repo: string
+): Promise<string | null> {
+    try {
+        // Fetch the repository page HTML to extract og:image
+        const response = await fetch(`https://github.com/${repo}`, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0',
+            },
+        })
+
+        if (!response.ok) {
+            return null
+        }
+
+        const html = await response.text()
+
+        // Extract og:image from meta tags
+        const ogImageMatch = html.match(
+            /<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i
+        )
+
+        if (ogImageMatch && ogImageMatch[1]) {
+            return ogImageMatch[1]
+        }
+
+        return null
+    } catch (error) {
+        console.error(`Failed to fetch OG image for ${repo}:`, error)
+        return null
+    }
+}
+
+/**
  * Fetches multiple repositories in parallel
  * @param repos - Array of repo strings in "owner/repo" format
  * @returns Array of repository data (nulls filtered out)

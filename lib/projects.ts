@@ -4,7 +4,11 @@
  */
 
 import { getProjects } from './markdown'
-import { fetchGitHubRepo, type GitHubRepo } from './github'
+import {
+    fetchGitHubRepo,
+    fetchGitHubRepoImage,
+    type GitHubRepo,
+} from './github'
 import {
     getCuratedGitHubProjects,
     type CuratedGitHubProject,
@@ -17,10 +21,19 @@ const DEFAULT_GITHUB_THUMB = 'images/github/default.webp'
 /**
  * Transforms a GitHub repo + curation config into a project format
  */
-function transformGitHubToProject(
+async function transformGitHubToProject(
     repo: GitHubRepo,
     config: CuratedGitHubProject
-): MarkdownContent<ProjectFrontmatter> {
+): Promise<MarkdownContent<ProjectFrontmatter>> {
+    // Determine the image to use (priority: custom override > GitHub OG image > default)
+    let thumbImage = config.overrides?.images?.thumb
+
+    if (!thumbImage) {
+        // Try to fetch the repository's Open Graph image
+        const repoImage = await fetchGitHubRepoImage(config.repo)
+        thumbImage = repoImage || DEFAULT_GITHUB_THUMB
+    }
+
     return {
         slug: `github-${repo.name}`,
         frontmatter: {
@@ -37,7 +50,7 @@ function transformGitHubToProject(
             githubUrl: repo.html_url,
             liveUrl: repo.homepage || undefined,
             images: {
-                thumb: config.overrides?.images?.thumb || DEFAULT_GITHUB_THUMB,
+                thumb: thumbImage,
                 mobile: config.overrides?.images?.mobile,
                 tablet: config.overrides?.images?.tablet,
                 desktop: config.overrides?.images?.desktop,
@@ -73,7 +86,7 @@ export async function getMergedProjects(): Promise<
     // Get curated GitHub projects config
     const curatedConfigs = getCuratedGitHubProjects()
 
-    // Fetch GitHub repos in parallel
+    // Fetch GitHub repos and transform them (including fetching OG images)
     const githubProjects = await Promise.all(
         curatedConfigs.map(async (config) => {
             const repo = await fetchGitHubRepo(config.repo)
@@ -81,7 +94,7 @@ export async function getMergedProjects(): Promise<
                 console.warn(`Could not fetch GitHub repo: ${config.repo}`)
                 return null
             }
-            return transformGitHubToProject(repo, config)
+            return await transformGitHubToProject(repo, config)
         })
     )
 
