@@ -15,3 +15,7 @@ order: 11
 - Integration of back-end services onto front-end templates
 - Website Creation and Maintenance tasks
 - Graphics Editing and Manipulation using Photoshop
+
+
+
+
