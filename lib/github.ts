@@ -40,7 +40,6 @@ export async function fetchGitHubRepo(
     try {
         const response = await fetch(`https://api.github.com/repos/${repo}`, {
             headers,
-            next: { revalidate: 3600 }, // Cache for 1 hour
         })
 
         if (!response.ok) {
@@ -76,7 +75,6 @@ export async function fetchUserRepos(
             `https://api.github.com/users/${username}/repos?sort=updated&per_page=${limit}`,
             {
                 headers,
-                next: { revalidate: 3600 }, // Cache for 1 hour
             }
         )
 
