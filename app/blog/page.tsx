@@ -2,9 +2,9 @@ import { getBlogPosts, getCategories, getTags } from '@/lib/blog'
 import BlogPostsList from '@/components/BlogPostsList'
 import TagFilters from '@/components/TagFilters'
 import CategoryFilters from '@/components/CategoryFilters'
-import SectionHeading from '@/components/SectionHeading'
 import AppBarClient from '@/components/AppBarClient'
 import ScrollTop from '@/components/ScrollTop'
+import Image from 'next/image'
 import { Suspense } from 'react'
 
 export const metadata = {
@@ -32,16 +32,36 @@ export default function BlogPage() {
             <AppBarClient />
             <ScrollTop />
 
-            {/* Page content */}
-            <main className="relative z-10 pt-20">
-                <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                    <SectionHeading
-                        title="Blog & Articles"
-                        subtitle="Thoughts, tutorials, and insights on web development"
-                    />
+            {/* Hero Banner */}
+            <div className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden mt-16">
+                <Image
+                    src="/images/blog/default.png"
+                    alt="Blog & Articles"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                />
+                {/* Gradient overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80" />
 
+                {/* Content overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center px-4 sm:px-6 lg:px-8">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+                            Blog & Articles
+                        </h1>
+                        <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto">
+                            Thoughts, tutorials, and insights on web development
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Page content */}
+            <main className="relative z-10">
+                <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
                     {/* Filters - Mobile: category on top, then tags. Desktop: tags sticky, category sidebar */}
-                    <div className="mt-12">
+                    <div>
                         {/* Mobile: Category filter on top */}
                         <div className="lg:hidden mb-6">
                             <CategoryFilters categories={categories} />
