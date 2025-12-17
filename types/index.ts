@@ -77,3 +77,15 @@ export interface PortfolioItemData {
     tech?: string[]
     [key: string]: any
 }
+
+export interface BlogPostFrontmatter {
+    title: string
+    description: string
+    date: string
+    author?: string
+    categories: string[]
+    tags: string[]
+    featured?: boolean
+    image?: string
+    order?: number
+}

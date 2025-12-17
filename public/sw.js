@@ -36,12 +36,16 @@ define(['./workbox-4754cb34'], function (e) {
         e.precacheAndRoute(
             [
                 {
-                    url: '/_next/static/6OUgfygLWVzpWGZHlkFku/_buildManifest.js',
-                    revision: 'ab85a76ef2d95a66e8a7e1082364d1de',
+                    url: '/_next/static/XG2SND6RKyHJs8LeVb2I0/_buildManifest.js',
+                    revision: '1e6afa622286451832b21c9f54210d5b',
                 },
                 {
-                    url: '/_next/static/6OUgfygLWVzpWGZHlkFku/_ssgManifest.js',
+                    url: '/_next/static/XG2SND6RKyHJs8LeVb2I0/_ssgManifest.js',
                     revision: 'b6652df95db52feb4daf4eca35380933',
+                },
+                {
+                    url: '/_next/static/chunks/223-4d82c5d0fa437100.js',
+                    revision: '4d82c5d0fa437100',
                 },
                 {
                     url: '/_next/static/chunks/255-c520f79d4610dfd8.js',
@@ -52,32 +56,48 @@ define(['./workbox-4754cb34'], function (e) {
                     revision: 'd02367c36e430f93',
                 },
                 {
+                    url: '/_next/static/chunks/388.17bededa0bbe7b2a.js',
+                    revision: '17bededa0bbe7b2a',
+                },
+                {
+                    url: '/_next/static/chunks/464-ffeebefcb2754c53.js',
+                    revision: 'ffeebefcb2754c53',
+                },
+                {
                     url: '/_next/static/chunks/4bd1b696-c023c6e3521b1417.js',
                     revision: 'c023c6e3521b1417',
                 },
                 {
-                    url: '/_next/static/chunks/783-af0b83f22253f796.js',
-                    revision: 'af0b83f22253f796',
+                    url: '/_next/static/chunks/619-e486f5444eed8003.js',
+                    revision: 'e486f5444eed8003',
                 },
                 {
-                    url: '/_next/static/chunks/840.f1001b42f64b85ec.js',
-                    revision: 'f1001b42f64b85ec',
+                    url: '/_next/static/chunks/840.027af5fc2857a18c.js',
+                    revision: '027af5fc2857a18c',
                 },
                 {
-                    url: '/_next/static/chunks/856.51816aecaea5060e.js',
-                    revision: '51816aecaea5060e',
+                    url: '/_next/static/chunks/862-5d264795459b0dd5.js',
+                    revision: '5d264795459b0dd5',
                 },
                 {
                     url: '/_next/static/chunks/app/_not-found/page-3e2566542598b567.js',
                     revision: '3e2566542598b567',
                 },
                 {
-                    url: '/_next/static/chunks/app/layout-f5098530a3cde7c9.js',
-                    revision: 'f5098530a3cde7c9',
+                    url: '/_next/static/chunks/app/blog/%5Bslug%5D/page-a2a56c34582c18f0.js',
+                    revision: 'a2a56c34582c18f0',
                 },
                 {
-                    url: '/_next/static/chunks/app/page-db6b81fec358ef8c.js',
-                    revision: 'db6b81fec358ef8c',
+                    url: '/_next/static/chunks/app/blog/page-aa1571d3b0eaf421.js',
+                    revision: 'aa1571d3b0eaf421',
+                },
+                {
+                    url: '/_next/static/chunks/app/layout-71edd9a5ddc897be.js',
+                    revision: '71edd9a5ddc897be',
+                },
+                {
+                    url: '/_next/static/chunks/app/page-8e641e0c0e3f8a9a.js',
+                    revision: '8e641e0c0e3f8a9a',
                 },
                 {
                     url: '/_next/static/chunks/framework-4e51298db41fcfd4.js',
@@ -104,12 +124,12 @@ define(['./workbox-4754cb34'], function (e) {
                     revision: '846118c33b2c0e922d7b3a7676f81f6f',
                 },
                 {
-                    url: '/_next/static/chunks/webpack-1702b89779ed2ad6.js',
-                    revision: '1702b89779ed2ad6',
+                    url: '/_next/static/chunks/webpack-90345910a9e89109.js',
+                    revision: '90345910a9e89109',
                 },
                 {
-                    url: '/_next/static/css/aeed4a032bc541b7.css',
-                    revision: 'aeed4a032bc541b7',
+                    url: '/_next/static/css/60dd14b9e2b65500.css',
+                    revision: '60dd14b9e2b65500',
                 },
                 {
                     url: '/_next/static/media/1dcb4bb6f2068eb9-s.p.woff2',
@@ -406,6 +426,82 @@ define(['./workbox-4754cb34'], function (e) {
                 {
                     url: '/images/biocom/biocom-thumb.webp',
                     revision: 'f8ca80f49b216d64b9af27bf0684eabe',
+                },
+                {
+                    url: '/images/blog/02-frontend-automation-with-github-actions-and-aws/gha-in-action-medium.webp',
+                    revision: 'aedb044b3aa1ef50ff21510a9488d7e9',
+                },
+                {
+                    url: '/images/blog/02-frontend-automation-with-github-actions-and-aws/gha-in-action-thumb.webp',
+                    revision: 'e72f536ebd436ca1560befd60c17ec3a',
+                },
+                {
+                    url: '/images/blog/02-frontend-automation-with-github-actions-and-aws/gha-in-action.png',
+                    revision: '7a0cc8e16f2fefe646a69e18b7649b30',
+                },
+                {
+                    url: '/images/blog/02-frontend-automation-with-github-actions-and-aws/gha-in-action.webp',
+                    revision: 'c3aa90eeaa919c6b8e154bb3223ed78c',
+                },
+                {
+                    url: '/images/blog/02-frontend-automation-with-github-actions-and-aws/github-actions-dashboard-large.webp',
+                    revision: 'df86894b444f2dadc86309a789ca385d',
+                },
+                {
+                    url: '/images/blog/02-frontend-automation-with-github-actions-and-aws/github-actions-dashboard-medium.webp',
+                    revision: 'c0091d2b34103f7889117504248d3940',
+                },
+                {
+                    url: '/images/blog/02-frontend-automation-with-github-actions-and-aws/github-actions-dashboard-thumb.webp',
+                    revision: 'f3a908500b34c36bca6cff48752d08c0',
+                },
+                {
+                    url: '/images/blog/02-frontend-automation-with-github-actions-and-aws/github-actions-dashboard.png',
+                    revision: 'f0efea75f4db23b67f07d013cffb35a9',
+                },
+                {
+                    url: '/images/blog/02-frontend-automation-with-github-actions-and-aws/github-actions-dashboard.webp',
+                    revision: '90c7ae9260553be8c1b3b2749dd9cda3',
+                },
+                {
+                    url: '/images/blog/default-1-large.webp',
+                    revision: '07595fc41e60bb982080bde205688f4f',
+                },
+                {
+                    url: '/images/blog/default-1-medium.webp',
+                    revision: '769fb9922d7e8218f28261328c8dad61',
+                },
+                {
+                    url: '/images/blog/default-1-thumb.webp',
+                    revision: '5775c4437ed116e131af85194cf8e150',
+                },
+                {
+                    url: '/images/blog/default-1.jpg',
+                    revision: 'ceea285adf30b22a89e7dc9e9397c45b',
+                },
+                {
+                    url: '/images/blog/default-1.webp',
+                    revision: '81b48bdf847fbb09ae7f15ebaa43cbb9',
+                },
+                {
+                    url: '/images/blog/default-large.webp',
+                    revision: '067fb3e5b15504be50c5eb545286c403',
+                },
+                {
+                    url: '/images/blog/default-medium.webp',
+                    revision: '2a8253047d344761768a7c99b2a2f3c8',
+                },
+                {
+                    url: '/images/blog/default-thumb.webp',
+                    revision: '9578db37672d8e0b85bef3eb4528d70e',
+                },
+                {
+                    url: '/images/blog/default.jpg',
+                    revision: '159e170cbdf514ccb2c4bac5940eaf2a',
+                },
+                {
+                    url: '/images/blog/default.webp',
+                    revision: 'eaaacc14b682b204edffe760127149b3',
                 },
                 {
                     url: '/images/github/bengalivo-desktop-large.webp',
@@ -853,7 +949,7 @@ define(['./workbox-4754cb34'], function (e) {
                 },
                 {
                     url: '/offline.html',
-                    revision: '604f14a82c87dd6c0585fc0e3d364a29',
+                    revision: '27fc648dbdb385970bf8e156fbb9c957',
                 },
                 {
                     url: '/robots.txt',

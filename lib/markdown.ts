@@ -6,6 +6,7 @@ import type {
     ProjectFrontmatter,
     AboutFrontmatter,
     ContactInfo,
+    BlogPostFrontmatter,
     MarkdownContent,
 } from '@/types'
 
