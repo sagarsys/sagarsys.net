@@ -82,7 +82,7 @@ export default function PortfolioItemDetailsDialogContent({
                             <video
                                 src={`/${video}`}
                                 controls
-                                className="w-full max-w-full md:max-w-4xl md:max-h-[50vh] mx-auto rounded-lg shadow-lg"
+                                className="w-full max-w-full md:max-w-[2000px] md:max-h-[50vh] mx-auto rounded-lg shadow-lg"
                                 playsInline
                                 autoPlay
                                 muted
@@ -96,7 +96,7 @@ export default function PortfolioItemDetailsDialogContent({
                                 alt={title}
                                 width={800}
                                 height={600}
-                                className="object-contain w-auto max-w-full md:max-w-4xl md:max-h-[50vh] mx-auto"
+                                className="object-contain w-auto max-w-full md:max-w-[2000px] md:max-h-[50vh] mx-auto"
                             />
                         )}
                     </div>

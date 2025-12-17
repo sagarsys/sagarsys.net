@@ -55,7 +55,7 @@ export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
     },
     {
         repo: 'sagarsys/tomato-farm',
-        order: 4,
+        order: 7,
         featured: true,
         overrides: {
             title: 'Tomato Farm',
@@ -68,7 +68,7 @@ export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
     },
     {
         repo: 'sagarsys/sagavortex',
-        order: 3,
+        order: 6,
         featured: true,
         overrides: {
             title: 'Sagavortex Art Gallery',
@@ -77,6 +77,29 @@ export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
                 thumb: 'images/github/sagavortex.png',
                 mobile: 'images/github/sagavortex_mobile.png',
                 desktop: 'images/github/sagavortex.png',
+            },
+        },
+    },
+    {
+        repo: 'sagarsys/bengalivo-redesign',
+        order: 5,
+        featured: true,
+        customDescription:
+            'A modern, elegant website for a Bengal cat breeder built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui. Features admin dashboard, multi-language support, and comprehensive SEO optimization.',
+        overrides: {
+            title: 'Bengalivo - Premium Bengal Cat Breeder Website',
+            tech: [
+                'Next.js',
+                'TypeScript',
+                'Tailwind CSS',
+                'shadcn/ui',
+                'Prisma',
+                'NextAuth.js',
+            ],
+            images: {
+                thumb: 'images/github/bengalivo.png',
+                mobile: 'images/github/bengalivo-mobile.png',
+                desktop: 'images/github/bengalivo-desktop.png',
             },
         },
     },
