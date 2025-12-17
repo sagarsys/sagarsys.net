@@ -37,7 +37,7 @@ export default function HashNavigationProvider({
         const hash = window.location.hash
         if (hash && hash !== '#' && !hasScrolledToHash.current) {
             setTargetHash(hash)
-            setActiveSection(hash)
+            setActiveSection(`/${hash}`) // Store as /# format to match nav hrefs
             hasScrolledToHash.current = true
 
             // Wait for page to fully render, then smooth scroll
@@ -83,7 +83,7 @@ export default function HashNavigationProvider({
                     distance < minDistance
                 ) {
                     minDistance = distance
-                    newActiveSection = `#${section.id}`
+                    newActiveSection = `/#${section.id}`
                 }
             })
 

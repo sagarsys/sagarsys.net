@@ -120,7 +120,10 @@ export default function AppBarClient() {
                                 item.href?.startsWith('/') &&
                                 item.href !== '/' &&
                                 !isHashLink
-                            const isActive = activeSection === href
+                            // Check if active: for blog, check pathname; for sections, check activeSection
+                            const isActive = isExternalLink
+                                ? window.location.pathname === href
+                                : activeSection === href
                             return (
                                 <motion.a
                                     key={item.name}
@@ -179,7 +182,10 @@ export default function AppBarClient() {
                                             item.href?.startsWith('/') &&
                                             item.href !== '/' &&
                                             !isHashLink
-                                        const isActive = activeSection === href
+                                        // Check if active: for blog, check pathname; for sections, check activeSection
+                                        const isActive = isExternalLink
+                                            ? window.location.pathname === href
+                                            : activeSection === href
                                         return (
                                             <a
                                                 key={item.name}
