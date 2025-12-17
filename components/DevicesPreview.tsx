@@ -32,6 +32,8 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
                         width={1200}
                         height={800}
                         className="w-full h-auto"
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, 1200px"
                         unoptimized
                     />
                 </div>
@@ -82,6 +84,8 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
                                 width={1200}
                                 height={800}
                                 className="w-full h-auto"
+                                loading="lazy"
+                                sizes="(max-width: 768px) 100vw, 1200px"
                                 unoptimized
                             />
                         </div>
@@ -97,6 +101,8 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
                                 width={768}
                                 height={1024}
                                 className="w-full h-auto"
+                                loading="lazy"
+                                sizes="(max-width: 768px) 100vw, 768px"
                                 unoptimized
                             />
                         </div>
@@ -112,6 +118,8 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
                                 width={375}
                                 height={812}
                                 className="w-full h-auto"
+                                loading="lazy"
+                                sizes="(max-width: 768px) 100vw, 375px"
                                 unoptimized
                             />
                         </div>
