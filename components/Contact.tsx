@@ -6,6 +6,7 @@ import EmailCard from './EmailCard'
 import ContactForm from './ContactForm'
 import SocialLinks from './SocialLinks'
 import { useColorGradient } from '@/hooks/useColorGradient'
+import { useHashNavigation } from './HashNavigationProvider'
 import type { ContactInfo } from '@/types'
 
 interface ContactProps {
@@ -19,6 +20,7 @@ export default function Contact({ contactInfo }: ContactProps) {
         : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' }
 
     const email = contactInfo?.email || 'sagar.sawuck@gmail.com'
+    const { instantAnimations } = useHashNavigation()
 
     return (
         <section id="contact" className="py-20 md:py-32 px-6 relative">
@@ -32,9 +34,10 @@ export default function Contact({ contactInfo }: ContactProps) {
                     {/* Left Column: Contact Info */}
                     <motion.div
                         className="space-y-6"
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: false, amount: 0.3 }}
+                        transition={{ duration: instantAnimations ? 0 : 0.6 }}
                     >
                         <EmailCard
                             email={email}
@@ -60,6 +63,7 @@ export default function Contact({ contactInfo }: ContactProps) {
                     <ContactForm
                         email={email}
                         gradientColors={gradientColors}
+                        instantAnimations={instantAnimations}
                     />
                 </div>
             </div>

@@ -8,11 +8,13 @@ import { Button } from './ui/button'
 interface ContactFormProps {
     email: string
     gradientColors: { from: string; via: string; to: string }
+    instantAnimations?: boolean
 }
 
 export default function ContactForm({
     email,
     gradientColors,
+    instantAnimations = false,
 }: ContactFormProps) {
     const [formData, setFormData] = useState({
         name: '',
@@ -33,9 +35,10 @@ export default function ContactForm({
 
     return (
         <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: instantAnimations ? 0 : 0.6 }}
         >
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
