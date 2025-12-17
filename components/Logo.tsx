@@ -8,6 +8,7 @@ export default function Logo() {
 
     return (
         <motion.a
+            href="/"
             onClick={handleScrollToTop}
             className="font-neuropol text-3xl md:text-4xl cursor-pointer relative group"
             whileHover={{ scale: 1.05 }}
