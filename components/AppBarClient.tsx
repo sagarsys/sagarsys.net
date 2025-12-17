@@ -9,6 +9,7 @@ import {
     Briefcase,
     FolderOpen,
     Mail,
+    BookOpen,
 } from 'lucide-react'
 import { motion, useScroll } from 'framer-motion'
 import Logo from './Logo'
@@ -21,13 +22,29 @@ export default function AppBarClient() {
     const [lastScrollY, setLastScrollY] = useState(0)
     const { scrollY } = useScroll()
 
-    const navItems = [
-        { name: 'home', label: 'Home', icon: Home },
-        { name: 'about', label: 'About', icon: User },
-        { name: 'skills', label: 'Skills', icon: Code },
-        { name: 'experience', label: 'Experience', icon: Briefcase },
-        { name: 'projects', label: 'Projects', icon: FolderOpen },
-        { name: 'contact', label: 'Contact', icon: Mail },
+    const navItems: Array<{
+        name: string
+        label: string
+        icon: React.ComponentType<{ className?: string }>
+        href?: string
+    }> = [
+        { name: 'home', label: 'Home', icon: Home, href: '/' },
+        { name: 'about', label: 'About', icon: User, href: '#about' },
+        { name: 'skills', label: 'Skills', icon: Code, href: '#skills' },
+        {
+            name: 'experience',
+            label: 'Experience',
+            icon: Briefcase,
+            href: '#experience',
+        },
+        {
+            name: 'projects',
+            label: 'Projects',
+            icon: FolderOpen,
+            href: '#projects',
+        },
+        { name: 'blog', label: 'Blog', icon: BookOpen, href: '/blog' },
+        { name: 'contact', label: 'Contact', icon: Mail, href: '#contact' },
     ]
 
     useEffect(() => {
@@ -81,20 +98,27 @@ export default function AppBarClient() {
 
                     {/* Desktop navigation */}
                     <div className="hidden md:flex items-center gap-1">
-                        {navItems.map((item) => (
-                            <motion.a
-                                key={item.name}
-                                href={`#${item.name}`}
-                                onClick={(event) =>
-                                    handleClick(event, item.name)
-                                }
-                                className="flex items-center gap-2 px-4 py-2 text-gray-300 hover:text-secondary transition-colors cursor-pointer font-medium rounded-lg hover:bg-secondary/5"
-                                whileHover={{ y: -2 }}
-                            >
-                                <item.icon className="w-4 h-4" />
-                                <span>{item.label}</span>
-                            </motion.a>
-                        ))}
+                        {navItems.map((item) => {
+                            const isExternalLink =
+                                item.href?.startsWith('/') && item.href !== '/'
+                            return (
+                                <motion.a
+                                    key={item.name}
+                                    href={item.href || `#${item.name}`}
+                                    onClick={
+                                        isExternalLink
+                                            ? undefined
+                                            : (event) =>
+                                                  handleClick(event, item.name)
+                                    }
+                                    className="flex items-center gap-2 px-4 py-2 text-gray-300 hover:text-secondary transition-colors cursor-pointer font-medium rounded-lg hover:bg-secondary/5"
+                                    whileHover={{ y: -2 }}
+                                >
+                                    <item.icon className="w-4 h-4" />
+                                    <span>{item.label}</span>
+                                </motion.a>
+                            )
+                        })}
                     </div>
 
                     {/* Mobile menu button */}
@@ -118,19 +142,32 @@ export default function AppBarClient() {
                                     className="flex flex-col space-y-2 mt-8"
                                     aria-label="mobile navigation"
                                 >
-                                    {navItems.map((item) => (
-                                        <a
-                                            key={item.name}
-                                            href={`#${item.name}`}
-                                            onClick={(event) =>
-                                                handleClick(event, item.name)
-                                            }
-                                            className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-secondary hover:bg-secondary/5 rounded-lg transition-all font-medium"
-                                        >
-                                            <item.icon className="w-5 h-5" />
-                                            <span>{item.label}</span>
-                                        </a>
-                                    ))}
+                                    {navItems.map((item) => {
+                                        const isExternalLink =
+                                            item.href?.startsWith('/') &&
+                                            item.href !== '/'
+                                        return (
+                                            <a
+                                                key={item.name}
+                                                href={
+                                                    item.href || `#${item.name}`
+                                                }
+                                                onClick={
+                                                    isExternalLink
+                                                        ? undefined
+                                                        : (event) =>
+                                                              handleClick(
+                                                                  event,
+                                                                  item.name
+                                                              )
+                                                }
+                                                className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-secondary hover:bg-secondary/5 rounded-lg transition-all font-medium"
+                                            >
+                                                <item.icon className="w-5 h-5" />
+                                                <span>{item.label}</span>
+                                            </a>
+                                        )
+                                    })}
                                 </nav>
                             </SheetContent>
                         </Sheet>

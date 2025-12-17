@@ -85,3 +85,71 @@
     line-height: 4rem;
   }
 }
+
+/* Markdown nested list styling */
+.markdown-ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.markdown-li {
+  position: relative;
+}
+
+/* Level 1 (default) - → in secondary color */
+.markdown-li-marker {
+  color: rgb(167, 139, 250); /* secondary color */
+}
+
+/* Level 2 - nested ul: ▸ in blue */
+.markdown-ul .markdown-ul .markdown-li-marker {
+  color: transparent;
+  position: relative;
+}
+
+.markdown-ul .markdown-ul .markdown-li-marker::before {
+  content: "▸";
+  color: rgb(96, 165, 250); /* blue-400 */
+  position: absolute;
+}
+
+/* Level 3 - nested ul: ▪ in purple */
+.markdown-ul .markdown-ul .markdown-ul .markdown-li-marker {
+  color: transparent;
+  position: relative;
+}
+
+.markdown-ul .markdown-ul .markdown-ul .markdown-li-marker::before {
+  content: "▪";
+  color: rgb(196, 181, 253); /* purple-400 */
+  position: absolute;
+}
+
+/* Level 4 - nested ul: • in pink */
+.markdown-ul .markdown-ul .markdown-ul .markdown-ul .markdown-li-marker {
+  color: transparent;
+  position: relative;
+}
+
+.markdown-ul
+  .markdown-ul
+  .markdown-ul
+  .markdown-ul
+  .markdown-li-marker::before {
+  content: "•";
+  color: rgb(244, 114, 182); /* pink-400 */
+  position: absolute;
+}
+
+/* Ordered lists - different numbering styles for nested levels */
+.markdown-ol {
+  list-style-type: decimal;
+}
+
+.markdown-ol .markdown-ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-ol .markdown-ol .markdown-ol {
+  list-style-type: lower-roman;
+}
