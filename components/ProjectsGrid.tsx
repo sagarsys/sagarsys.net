@@ -27,11 +27,11 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
     return (
         <>
             <motion.div
+                key={showAll ? 'all' : 'partial'}
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
                 variants={staggerContainer}
                 initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: '-100px' }}
+                animate="show"
             >
                 {displayedProjects.map((project) => (
                     <motion.div
@@ -92,25 +92,30 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                                 </p>
 
                                 {/* Tech Tags */}
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {project.frontmatter.tech
-                                        .slice(0, 3)
-                                        .map((tech) => (
-                                            <span
-                                                key={tech}
-                                                className="px-2 py-1 text-xs bg-gray-100 dark:bg-slate-700 rounded-full"
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    {project.frontmatter.tech.length > 3 && (
-                                        <span className="px-2 py-1 text-xs text-gray-500">
-                                            +
-                                            {project.frontmatter.tech.length -
-                                                3}
-                                        </span>
+                                {project.frontmatter.tech &&
+                                    Array.isArray(project.frontmatter.tech) &&
+                                    project.frontmatter.tech.length > 0 && (
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            {project.frontmatter.tech
+                                                .slice(0, 3)
+                                                .map((tech) => (
+                                                    <span
+                                                        key={tech}
+                                                        className="px-2 py-1 text-xs bg-gray-100 dark:bg-slate-700 rounded-full"
+                                                    >
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            {project.frontmatter.tech.length >
+                                                3 && (
+                                                <span className="px-2 py-1 text-xs text-gray-500">
+                                                    +
+                                                    {project.frontmatter.tech
+                                                        .length - 3}
+                                                </span>
+                                            )}
+                                        </div>
                                     )}
-                                </div>
 
                                 {/* Links and GitHub Stats */}
                                 <div className="flex items-center justify-between">

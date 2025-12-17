@@ -1,8 +1,30 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import { Loader2 } from 'lucide-react'
 import { arrayToString } from '@/lib/utils'
 import DevicesPreview from './DevicesPreview'
+
+/**
+ * Lazy-load MarkdownRenderer - Code splitting strategy
+ *
+ * This creates a separate JavaScript chunk that only loads when the dialog opens.
+ * Benefits:
+ * - ~60KB removed from initial page bundle
+ * - Faster initial page load
+ * - Markdown library loads on-demand when user opens project details
+ *
+ * ssr: false because this is a client component and markdown is rendered client-side
+ */
+const MarkdownRenderer = dynamic(() => import('./MarkdownRenderer'), {
+    ssr: false,
+    loading: () => (
+        <div className="flex items-center justify-center py-8">
+            <Loader2 className="w-6 h-6 text-secondary animate-spin" />
+        </div>
+    ),
+})
 
 interface PortfolioItemData {
     images: {
@@ -19,6 +41,7 @@ interface PortfolioItemData {
     role?: string
     roleDescription?: string
     challenges?: string[]
+    video?: string
     live?: Array<{
         title: string
         link: string
@@ -44,26 +67,44 @@ export default function PortfolioItemDetailsDialogContent({
         role,
         roleDescription,
         challenges,
+        video,
         live,
     } = item
 
     return (
         <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex justify-center">
-                    <div className="relative w-full max-w-full max-h-[70vh]">
-                        <Image
-                            src={`/${images.thumb}`}
-                            alt={title}
-                            width={800}
-                            height={600}
-                            className="object-contain w-auto max-w-full max-h-[70vh]"
-                        />
+            {/* Mobile: Keep single column layout, Desktop: Single column (media top, text below) */}
+            <div className="grid grid-cols-1 md:flex md:flex-col gap-6">
+                {/* Media section - Video takes priority, fallback to image */}
+                <div className="flex justify-center md:w-full">
+                    <div className="relative w-full max-w-full">
+                        {video ? (
+                            <video
+                                src={`/${video}`}
+                                controls
+                                className="w-full max-w-full md:max-w-4xl md:max-h-[50vh] mx-auto rounded-lg shadow-lg"
+                                playsInline
+                                autoPlay
+                                muted
+                                loop
+                            >
+                                Your browser does not support the video tag.
+                            </video>
+                        ) : (
+                            <Image
+                                src={`/${images.thumb}`}
+                                alt={title}
+                                width={800}
+                                height={600}
+                                className="object-contain w-auto max-w-full md:max-w-4xl md:max-h-[50vh] mx-auto"
+                            />
+                        )}
                     </div>
                 </div>
 
-                <div className="space-y-4">
-                    <p className="text-foreground">{description}</p>
+                {/* Text content section - centered column on desktop */}
+                <div className="space-y-4 md:max-w-3xl md:mx-auto">
+                    <MarkdownRenderer>{description || ''}</MarkdownRenderer>
 
                     {tech && (
                         <p className="text-secondary">

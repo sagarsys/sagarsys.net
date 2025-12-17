@@ -1,11 +1,26 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { renderMarkdown } from '@/lib/simple-markdown'
+import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react'
 import CardDotNavigation from './CardDotNavigation'
 import GradientText from './GradientText'
+
+/**
+ * Lazy-load MarkdownRenderer for mobile About section cards
+ *
+ * Loads only when cards are navigated to, keeping mobile bundle size small.
+ * Perfect for mobile where bandwidth and performance are critical.
+ */
+const MarkdownRenderer = dynamic(() => import('./MarkdownRenderer'), {
+    ssr: false,
+    loading: () => (
+        <div className="flex items-center justify-center py-6">
+            <Loader2 className="w-5 h-5 text-secondary animate-spin" />
+        </div>
+    ),
+})
 
 interface AboutCard {
     title: string
@@ -130,7 +145,9 @@ export default function AboutCardScrollerMobile({
                                 </GradientText>
                             </h3>
                             <div className="space-y-2">
-                                {renderMarkdown(cards[activeCard].content)}
+                                <MarkdownRenderer>
+                                    {cards[activeCard].content}
+                                </MarkdownRenderer>
                             </div>
                         </div>
                     </motion.div>

@@ -28,6 +28,7 @@ export interface ProjectFrontmatter {
         tablet?: string
         desktop?: string
     }
+    video?: string
     order: number
     // GitHub-specific fields (populated from API)
     source?: 'markdown' | 'github'

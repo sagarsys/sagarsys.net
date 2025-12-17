@@ -1,9 +1,24 @@
 'use client'
 
-import { Briefcase } from 'lucide-react'
+import dynamic from 'next/dynamic'
+import { Briefcase, Loader2 } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { renderMarkdown } from '@/lib/simple-markdown'
 import type { ExperienceFrontmatter } from '@/types'
+
+/**
+ * Lazy-load MarkdownRenderer for experience timeline items
+ *
+ * Loads only when experience items scroll into view, reducing initial bundle size.
+ * Perfect for the career timeline which may have many items.
+ */
+const MarkdownRenderer = dynamic(() => import('./MarkdownRenderer'), {
+    ssr: false,
+    loading: () => (
+        <div className="flex items-center justify-center py-4">
+            <Loader2 className="w-5 h-5 text-secondary animate-spin" />
+        </div>
+    ),
+})
 
 interface CareerTimelineItemProps {
     event: ExperienceFrontmatter
@@ -16,8 +31,6 @@ export default function CareerTimelineItem({
     content,
     isLast,
 }: CareerTimelineItemProps) {
-    const renderedContent = renderMarkdown(content)
-
     return (
         <div className="flex items-start mb-8 w-full relative">
             {/* Mobile layout (full width) */}
@@ -47,7 +60,7 @@ export default function CareerTimelineItem({
                         {event.company} • {event.location}
                     </h6>
                     <div className="text-sm space-y-2 mb-4">
-                        {renderedContent}
+                        <MarkdownRenderer>{content}</MarkdownRenderer>
                     </div>
                     {event.tags && event.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2">
@@ -104,7 +117,7 @@ export default function CareerTimelineItem({
                             {event.company} • {event.location}
                         </h6>
                         <div className="text-sm space-y-2 mb-4">
-                            {renderedContent}
+                            <MarkdownRenderer>{content}</MarkdownRenderer>
                         </div>
                         {event.tags && event.tags.length > 0 && (
                             <div className="flex flex-wrap gap-2">

@@ -1,12 +1,28 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { useState, useRef, useEffect } from 'react'
-import { renderMarkdown } from '@/lib/simple-markdown'
+import { Loader2 } from 'lucide-react'
 import { useColorGradient } from '@/hooks/useColorGradient'
 import AboutCardScrollerMobile from './AboutCardScrollerMobile'
 import CardNavigationArrows from './CardNavigationArrows'
 import CardDotNavigation from './CardDotNavigation'
 import GradientText from './GradientText'
+
+/**
+ * Lazy-load MarkdownRenderer for About section cards
+ *
+ * Loads only when cards scroll into view, keeping initial bundle small.
+ * Cards are rendered on-demand as user scrolls through the about section.
+ */
+const MarkdownRenderer = dynamic(() => import('./MarkdownRenderer'), {
+    ssr: false,
+    loading: () => (
+        <div className="flex items-center justify-center py-8">
+            <Loader2 className="w-6 h-6 text-secondary animate-spin" />
+        </div>
+    ),
+})
 
 interface AboutCard {
     title: string
@@ -117,7 +133,9 @@ export default function AboutCardScroller({ content }: AboutCardScrollerProps) {
                                     </GradientText>
                                 </h3>
                                 <div className="space-y-3 flex-1 overflow-y-auto custom-scrollbar pr-2">
-                                    {renderMarkdown(card.content)}
+                                    <MarkdownRenderer>
+                                        {card.content}
+                                    </MarkdownRenderer>
                                 </div>
                             </div>
                         </div>

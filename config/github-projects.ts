@@ -39,7 +39,7 @@ export interface CuratedGitHubProject {
 export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
     {
         repo: 'sagarsys/sagarsys.net',
-        order: 1,
+        order: 3,
         featured: true,
         customDescription:
             'Personal portfolio website built with Next.js 15, featuring glassmorphism design, dynamic color theming, and framer-motion animations.',
@@ -55,7 +55,7 @@ export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
     },
     {
         repo: 'sagarsys/tomato-farm',
-        order: 1,
+        order: 4,
         featured: true,
         overrides: {
             title: 'Tomato Farm',
@@ -68,7 +68,7 @@ export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
     },
     {
         repo: 'sagarsys/sagavortex',
-        order: 1,
+        order: 3,
         featured: true,
         overrides: {
             title: 'Sagavortex Art Gallery',
