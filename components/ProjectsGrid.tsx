@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { ExternalLink, Github, ChevronDown, Star, GitFork } from 'lucide-react'
 import { staggerContainer, staggerItem } from '@/lib/animations'
+import { getWebPImageSrc, generateSrcSet } from '@/lib/image-utils'
 import type { MarkdownContent, ProjectFrontmatter } from '@/types'
 import PortfolioItemDetailsDialog from './PortfolioItemDetailsDialog'
 import { Button } from './ui/button'
@@ -46,14 +47,9 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                             <div className="relative h-48 md:h-56 overflow-hidden bg-gray-200 dark:bg-slate-700">
                                 {project.frontmatter.images?.thumb && (
                                     <Image
-                                        src={
-                                            project.frontmatter.images.thumb.startsWith(
-                                                'http'
-                                            )
-                                                ? project.frontmatter.images
-                                                      .thumb
-                                                : `/${project.frontmatter.images.thumb}`
-                                        }
+                                        src={getWebPImageSrc(
+                                            project.frontmatter.images.thumb
+                                        )}
                                         alt={project.frontmatter.title}
                                         fill
                                         className="object-cover group-hover:scale-110 transition-transform duration-500"

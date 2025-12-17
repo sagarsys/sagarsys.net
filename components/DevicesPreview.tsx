@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Monitor, Tablet, Smartphone } from 'lucide-react'
+import { getWebPImageSrc } from '@/lib/image-utils'
 
 interface DevicesPreviewProps {
     images: {
@@ -27,7 +28,7 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
             <div className="my-8">
                 <div className="relative w-full rounded-lg overflow-hidden border border-slate-700">
                     <Image
-                        src={`/${singleImage}`}
+                        src={getWebPImageSrc(singleImage)}
                         alt="Project preview"
                         width={1200}
                         height={800}
@@ -79,7 +80,7 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
                     <TabsContent value="desktop">
                         <div className="relative w-full rounded-lg overflow-hidden border border-slate-700">
                             <Image
-                                src={`/${desktop}`}
+                                src={getWebPImageSrc(desktop)}
                                 alt="Desktop view"
                                 width={1200}
                                 height={800}
@@ -96,7 +97,7 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
                     <TabsContent value="tablet">
                         <div className="relative w-full max-w-2xl mx-auto rounded-lg overflow-hidden border border-slate-700">
                             <Image
-                                src={`/${tablet}`}
+                                src={getWebPImageSrc(tablet)}
                                 alt="Tablet view"
                                 width={768}
                                 height={1024}
@@ -113,7 +114,7 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
                     <TabsContent value="mobile">
                         <div className="relative w-full max-w-md mx-auto rounded-lg overflow-hidden border border-slate-700">
                             <Image
-                                src={`/${mobile}`}
+                                src={getWebPImageSrc(mobile)}
                                 alt="Mobile view"
                                 width={375}
                                 height={812}

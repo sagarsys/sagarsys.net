@@ -12,12 +12,45 @@ export interface ImageSizes {
 }
 
 /**
+ * Convert image path to WebP format
+ * Handles both local paths and external URLs
+ */
+export function getWebPImageSrc(basePath: string): string {
+    // If it's an external URL, return as-is
+    if (basePath.startsWith('http://') || basePath.startsWith('https://')) {
+        return basePath
+    }
+
+    // Remove leading slash if present
+    const cleanPath = basePath.startsWith('/') ? basePath.slice(1) : basePath
+
+    // If already WebP, return as-is
+    if (cleanPath.endsWith('.webp')) {
+        return `/${cleanPath}`
+    }
+
+    // Convert to WebP
+    const webpPath = cleanPath.replace(/\.(jpg|jpeg|png)$/i, '.webp')
+    return `/${webpPath}`
+}
+
+/**
  * Get the best image source for a given width
  * Returns WebP if available, falls back to original
  */
 export function getOptimizedImageSrc(basePath: string, width?: number): string {
+    // If it's an external URL, return as-is
+    if (basePath.startsWith('http://') || basePath.startsWith('https://')) {
+        return basePath
+    }
+
     // Remove leading slash if present
     const cleanPath = basePath.startsWith('/') ? basePath.slice(1) : basePath
+
+    // If already WebP, check for size suffix
+    if (cleanPath.endsWith('.webp')) {
+        return `/${cleanPath}`
+    }
 
     // Determine which size to use
     let sizeSuffix = ''
@@ -36,28 +69,31 @@ export function getOptimizedImageSrc(basePath: string, width?: number): string {
         /\.(jpg|jpeg|png)$/i,
         `${sizeSuffix}.webp`
     )
-    const originalPath = cleanPath.replace(/\.(jpg|jpeg|png)$/i, (match) => {
-        return sizeSuffix ? `${sizeSuffix}${match}` : match
-    })
-
-    // In a real implementation, you'd check if the file exists
-    // For now, we'll return the WebP path (browser will fallback if not found)
     return `/${webpPath}`
 }
 
 /**
  * Generate srcset for responsive images
+ * Returns WebP versions with multiple sizes
  */
 export function generateSrcSet(basePath: string): string {
+    // If it's an external URL, return empty (can't generate srcset)
+    if (basePath.startsWith('http://') || basePath.startsWith('https://')) {
+        return ''
+    }
+
+    // Remove leading slash if present
+    const cleanPath = basePath.startsWith('/') ? basePath.slice(1) : basePath
+
+    // If already WebP, extract base name
+    const baseName = cleanPath.replace(/\.(jpg|jpeg|png|webp)$/i, '')
+
     const sizes = ['thumb', 'medium', 'large']
     const widths = [400, 800, 1200]
 
     return sizes
         .map((size, index) => {
-            const webpPath = basePath.replace(
-                /\.(jpg|jpeg|png)$/i,
-                `-${size}.webp`
-            )
+            const webpPath = `${baseName}-${size}.webp`
             return `/${webpPath} ${widths[index]}w`
         })
         .join(', ')
