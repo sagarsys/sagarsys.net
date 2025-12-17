@@ -45,7 +45,7 @@ export default function BlogPage() {
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80" />
 
                 {/* Content overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-end justify-center pb-12">
                     <div className="text-center px-4 sm:px-6 lg:px-8">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
                             Blog & Articles
@@ -59,7 +59,7 @@ export default function BlogPage() {
 
             {/* Page content */}
             <main className="relative z-10">
-                <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 pb-12">
                     {/* Filters - Mobile: category on top, then tags. Desktop: tags sticky, category sidebar */}
                     <div>
                         {/* Mobile: Category filter on top */}
