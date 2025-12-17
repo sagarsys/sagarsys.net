@@ -3,6 +3,8 @@ import { Titillium_Web, Play } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import HydrationFix from '@/components/HydrationFix'
+import WebVitalsReporter from '@/components/WebVitalsReporter'
+import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration'
 
 const titilliumWeb = Titillium_Web({
     weight: ['300', '400', '600', '700'],
@@ -75,10 +77,13 @@ export const viewport: Viewport = {
     width: 'device-width',
     initialScale: 1,
     minimumScale: 1,
+    maximumScale: 5,
     themeColor: [
         { media: '(prefers-color-scheme: light)', color: '#FAFAFA' },
         { media: '(prefers-color-scheme: dark)', color: '#0A0A0F' },
     ],
+    userScalable: true,
+    viewportFit: 'cover',
 }
 
 export default function RootLayout({
@@ -88,11 +93,31 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
+            <head>
+                {/* DNS Prefetch for external resources */}
+                <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+                <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+                <link rel="dns-prefetch" href="https://api.github.com" />
+
+                {/* Preconnect for critical external resources */}
+                <link
+                    rel="preconnect"
+                    href="https://fonts.googleapis.com"
+                    crossOrigin="anonymous"
+                />
+                <link
+                    rel="preconnect"
+                    href="https://fonts.gstatic.com"
+                    crossOrigin="anonymous"
+                />
+            </head>
             <body
                 className={`${titilliumWeb.variable} ${play.variable} antialiased`}
                 suppressHydrationWarning
             >
                 <HydrationFix />
+                <WebVitalsReporter />
+                <ServiceWorkerRegistration />
                 <Providers>{children}</Providers>
             </body>
         </html>
