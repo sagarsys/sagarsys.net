@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { ExternalLink, Github, ChevronDown } from 'lucide-react'
+import { ExternalLink, Github, ChevronDown, Star, GitFork } from 'lucide-react'
 import { staggerContainer, staggerItem } from '@/lib/animations'
 import type { MarkdownContent, ProjectFrontmatter } from '@/types'
 import PortfolioItemDetailsDialog from './PortfolioItemDetailsDialog'
@@ -27,11 +27,11 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
     return (
         <>
             <motion.div
+                key={showAll ? 'all' : 'partial'}
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
                 variants={staggerContainer}
                 initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: '-100px' }}
+                animate="show"
             >
                 {displayedProjects.map((project) => (
                     <motion.div
@@ -46,7 +46,14 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                             <div className="relative h-48 md:h-56 overflow-hidden bg-gray-200 dark:bg-slate-700">
                                 {project.frontmatter.images?.thumb && (
                                     <Image
-                                        src={`/${project.frontmatter.images.thumb}`}
+                                        src={
+                                            project.frontmatter.images.thumb.startsWith(
+                                                'http'
+                                            )
+                                                ? project.frontmatter.images
+                                                      .thumb
+                                                : `/${project.frontmatter.images.thumb}`
+                                        }
                                         alt={project.frontmatter.title}
                                         fill
                                         className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -63,11 +70,21 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                                     <h3 className="text-xl font-bold group-hover:text-secondary transition-colors">
                                         {project.frontmatter.title}
                                     </h3>
-                                    {project.frontmatter.featured && (
-                                        <span className="px-2 py-1 text-xs bg-secondary/20 text-secondary rounded-full font-semibold">
-                                            Featured
-                                        </span>
-                                    )}
+                                    <div className="flex items-center gap-2">
+                                        {/* GitHub source badge */}
+                                        {project.frontmatter.source ===
+                                            'github' && (
+                                            <span className="px-2 py-1 text-xs bg-slate-700/50 text-gray-300 rounded-full flex items-center gap-1">
+                                                <Github className="w-3 h-3" />
+                                                OSS
+                                            </span>
+                                        )}
+                                        {project.frontmatter.featured && (
+                                            <span className="px-2 py-1 text-xs bg-secondary/20 text-secondary rounded-full font-semibold">
+                                                Featured
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
 
                                 <p className="text-sm text-gray-400 mb-4 line-clamp-2">
@@ -75,51 +92,93 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                                 </p>
 
                                 {/* Tech Tags */}
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {project.frontmatter.tech
-                                        .slice(0, 3)
-                                        .map((tech) => (
-                                            <span
-                                                key={tech}
-                                                className="px-2 py-1 text-xs bg-gray-100 dark:bg-slate-700 rounded-full"
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    {project.frontmatter.tech.length > 3 && (
-                                        <span className="px-2 py-1 text-xs text-gray-500">
-                                            +
-                                            {project.frontmatter.tech.length -
-                                                3}
-                                        </span>
+                                {project.frontmatter.tech &&
+                                    Array.isArray(project.frontmatter.tech) &&
+                                    project.frontmatter.tech.length > 0 && (
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            {project.frontmatter.tech
+                                                .slice(0, 3)
+                                                .map((tech) => (
+                                                    <span
+                                                        key={tech}
+                                                        className="px-2 py-1 text-xs bg-gray-100 dark:bg-slate-700 rounded-full"
+                                                    >
+                                                        {tech}
+                                                    </span>
+                                                ))}
+                                            {project.frontmatter.tech.length >
+                                                3 && (
+                                                <span className="px-2 py-1 text-xs text-gray-500">
+                                                    +
+                                                    {project.frontmatter.tech
+                                                        .length - 3}
+                                                </span>
+                                            )}
+                                        </div>
                                     )}
-                                </div>
 
-                                {/* Links */}
-                                <div className="flex gap-3">
-                                    {project.frontmatter.liveUrl && (
-                                        <a
-                                            href={project.frontmatter.liveUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center gap-1 text-sm text-secondary hover:underline"
-                                            onClick={(e) => e.stopPropagation()}
-                                        >
-                                            <ExternalLink className="w-4 h-4" />
-                                            Live
-                                        </a>
-                                    )}
-                                    {project.frontmatter.githubUrl && (
-                                        <a
-                                            href={project.frontmatter.githubUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center gap-1 text-sm text-gray-400 hover:text-secondary hover:underline"
-                                            onClick={(e) => e.stopPropagation()}
-                                        >
-                                            <Github className="w-4 h-4" />
-                                            Code
-                                        </a>
+                                {/* Links and GitHub Stats */}
+                                <div className="flex items-center justify-between">
+                                    <div className="flex gap-3">
+                                        {project.frontmatter.liveUrl && (
+                                            <a
+                                                href={
+                                                    project.frontmatter.liveUrl
+                                                }
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-1 text-sm text-secondary hover:underline"
+                                                onClick={(e) =>
+                                                    e.stopPropagation()
+                                                }
+                                            >
+                                                <ExternalLink className="w-4 h-4" />
+                                                Live
+                                            </a>
+                                        )}
+                                        {project.frontmatter.githubUrl && (
+                                            <a
+                                                href={
+                                                    project.frontmatter
+                                                        .githubUrl
+                                                }
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-1 text-sm text-gray-400 hover:text-secondary hover:underline"
+                                                onClick={(e) =>
+                                                    e.stopPropagation()
+                                                }
+                                            >
+                                                <Github className="w-4 h-4" />
+                                                Code
+                                            </a>
+                                        )}
+                                    </div>
+
+                                    {/* GitHub Stats - only for GitHub source projects */}
+                                    {project.frontmatter.source ===
+                                        'github' && (
+                                        <div className="flex items-center gap-3 text-xs text-gray-500">
+                                            {typeof project.frontmatter
+                                                .stars === 'number' && (
+                                                <span className="flex items-center gap-1">
+                                                    <Star className="w-3.5 h-3.5 fill-yellow-500/80 text-yellow-500" />
+                                                    {project.frontmatter.stars}
+                                                </span>
+                                            )}
+                                            {typeof project.frontmatter
+                                                .forks === 'number' &&
+                                                project.frontmatter.forks >
+                                                    0 && (
+                                                    <span className="flex items-center gap-1">
+                                                        <GitFork className="w-3.5 h-3.5" />
+                                                        {
+                                                            project.frontmatter
+                                                                .forks
+                                                        }
+                                                    </span>
+                                                )}
+                                        </div>
                                     )}
                                 </div>
                             </div>

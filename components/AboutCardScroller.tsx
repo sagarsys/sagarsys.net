@@ -1,12 +1,12 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { renderMarkdown } from '@/lib/simple-markdown'
 import { useColorGradient } from '@/hooks/useColorGradient'
 import AboutCardScrollerMobile from './AboutCardScrollerMobile'
 import CardNavigationArrows from './CardNavigationArrows'
 import CardDotNavigation from './CardDotNavigation'
 import GradientText from './GradientText'
+import MarkdownRenderer from './LazyMarkdownRenderer'
 
 interface AboutCard {
     title: string
@@ -117,7 +117,9 @@ export default function AboutCardScroller({ content }: AboutCardScrollerProps) {
                                     </GradientText>
                                 </h3>
                                 <div className="space-y-3 flex-1 overflow-y-auto custom-scrollbar pr-2">
-                                    {renderMarkdown(card.content)}
+                                    <MarkdownRenderer>
+                                        {card.content}
+                                    </MarkdownRenderer>
                                 </div>
                             </div>
                         </div>

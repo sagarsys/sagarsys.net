@@ -2,8 +2,8 @@
 
 import { Briefcase } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { renderMarkdown } from '@/lib/simple-markdown'
 import type { ExperienceFrontmatter } from '@/types'
+import MarkdownRenderer from './LazyMarkdownRenderer'
 
 interface CareerTimelineItemProps {
     event: ExperienceFrontmatter
@@ -16,8 +16,6 @@ export default function CareerTimelineItem({
     content,
     isLast,
 }: CareerTimelineItemProps) {
-    const renderedContent = renderMarkdown(content)
-
     return (
         <div className="flex items-start mb-8 w-full relative">
             {/* Mobile layout (full width) */}
@@ -47,7 +45,7 @@ export default function CareerTimelineItem({
                         {event.company} • {event.location}
                     </h6>
                     <div className="text-sm space-y-2 mb-4">
-                        {renderedContent}
+                        <MarkdownRenderer>{content}</MarkdownRenderer>
                     </div>
                     {event.tags && event.tags.length > 0 && (
                         <div className="flex flex-wrap gap-2">
@@ -104,7 +102,7 @@ export default function CareerTimelineItem({
                             {event.company} • {event.location}
                         </h6>
                         <div className="text-sm space-y-2 mb-4">
-                            {renderedContent}
+                            <MarkdownRenderer>{content}</MarkdownRenderer>
                         </div>
                         {event.tags && event.tags.length > 0 && (
                             <div className="flex flex-wrap gap-2">

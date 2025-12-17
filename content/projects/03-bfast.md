@@ -31,7 +31,7 @@ challenges:
 images:
     thumb: 'images/bfast/bfast-thumb.jpg'
     desktop: 'images/bfast/bfast-desktop.jpg'
-order: 3
+order: 6
 ---
 
 ## Overview

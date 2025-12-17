@@ -1,9 +1,13 @@
-import { getProjects } from '@/lib/markdown'
+import { getMergedProjects } from '@/lib/projects'
 import ProjectsGrid from './ProjectsGrid'
 import SectionHeading from './SectionHeading'
 
-export default function ProjectsShowcase() {
-    const projects = getProjects()
+/**
+ * Projects showcase section - displays curated markdown and GitHub projects
+ * This is an async Server Component that fetches GitHub data at build time (static export)
+ */
+export default async function ProjectsShowcase() {
+    const projects = await getMergedProjects()
 
     return (
         <section id="projects" className="py-20 md:py-32 px-6 relative">

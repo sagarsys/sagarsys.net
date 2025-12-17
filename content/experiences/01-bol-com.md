@@ -28,3 +28,7 @@ Architected and built a React platform enabling social media creators to launch 
 - **GitLab CI automation**: Built deployment pipelines to enforce code quality standards
 - **Cross-team collaboration**: Partnered with platform team to refine the newly ported React component library—first production implementation
 - **UX innovation**: Collaborated with designers to fine-tune user experiences; gathered alpha user feedback and iterated rapidly
+
+
+
+

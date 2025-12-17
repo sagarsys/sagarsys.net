@@ -35,7 +35,7 @@ images:
     mobile: 'images/kaufman/kaufman-mobile.jpg'
     tablet: 'images/kaufman/kaufman-tablet.jpg'
     desktop: 'images/kaufman/kaufman-desktop.jpg'
-order: 2
+order: 3
 ---
 
 ## Overview

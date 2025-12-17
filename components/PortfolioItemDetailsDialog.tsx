@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import {
     Dialog,
     DialogContent,
@@ -45,18 +46,50 @@ export default function PortfolioItemDetailsDialog({
     item,
 }: PortfolioItemDetailsDialogProps) {
     const { title, titleLink } = item
+    const contentRef = useRef<HTMLDivElement>(null)
+    const dialogContentRef = useRef<HTMLDivElement>(null)
+
+    // Reset scroll position when modal opens
+    useEffect(() => {
+        if (open) {
+            // Use requestAnimationFrame to ensure DOM is ready
+            requestAnimationFrame(() => {
+                // Reset scroll on both containers (mobile and desktop)
+                if (contentRef.current) {
+                    contentRef.current.scrollTop = 0
+                }
+                if (dialogContentRef.current) {
+                    dialogContentRef.current.scrollTop = 0
+                }
+            })
+            // Also handle async content loading with a small delay
+            const timeoutId = setTimeout(() => {
+                if (contentRef.current) {
+                    contentRef.current.scrollTop = 0
+                }
+                if (dialogContentRef.current) {
+                    dialogContentRef.current.scrollTop = 0
+                }
+            }, 100)
+
+            return () => clearTimeout(timeoutId)
+        }
+    }, [open, item.id])
 
     return (
         <Dialog open={open} onOpenChange={handleClose}>
-            <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
-                <DialogHeader>
+            <DialogContent
+                ref={dialogContentRef}
+                className="md:max-w-full md:max-h-screen md:h-screen md:w-screen md:rounded-none md:translate-x-0 md:translate-y-0 md:left-0 md:top-0 md:data-[state=open]:slide-in-from-left-0 md:data-[state=open]:slide-in-from-top-0 md:data-[state=closed]:slide-out-to-left-0 md:data-[state=closed]:slide-out-to-top-0 max-w-6xl max-h-[90vh] overflow-y-auto"
+            >
+                <DialogHeader className="md:px-8 md:pt-6">
                     <DialogTitle className="text-2xl">
                         {titleLink ? (
                             <a
                                 href={titleLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-secondary hover:underline"
+                                className="text-foreground hover:text-secondary hover:underline"
                             >
                                 {title}
                             </a>
@@ -65,8 +98,13 @@ export default function PortfolioItemDetailsDialog({
                         )}
                     </DialogTitle>
                 </DialogHeader>
-                <div className="border-t border-border my-4" />
-                <PortfolioItemDetailsDialogContent item={item} />
+                <div className="border-t border-border my-4 md:mx-8" />
+                <div
+                    ref={contentRef}
+                    className="md:overflow-y-auto md:h-[calc(100vh-140px)] md:px-8 md:pb-8"
+                >
+                    <PortfolioItemDetailsDialogContent item={item} />
+                </div>
             </DialogContent>
         </Dialog>
     )

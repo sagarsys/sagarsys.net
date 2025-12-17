@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { renderMarkdown } from '@/lib/simple-markdown'
 import CardDotNavigation from './CardDotNavigation'
 import GradientText from './GradientText'
+import MarkdownRenderer from './LazyMarkdownRenderer'
 
 interface AboutCard {
     title: string
@@ -130,7 +130,9 @@ export default function AboutCardScrollerMobile({
                                 </GradientText>
                             </h3>
                             <div className="space-y-2">
-                                {renderMarkdown(cards[activeCard].content)}
+                                <MarkdownRenderer>
+                                    {cards[activeCard].content}
+                                </MarkdownRenderer>
                             </div>
                         </div>
                     </motion.div>

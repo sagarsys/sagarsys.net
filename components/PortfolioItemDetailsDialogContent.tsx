@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { arrayToString } from '@/lib/utils'
 import DevicesPreview from './DevicesPreview'
+import MarkdownRenderer from './LazyMarkdownRenderer'
 
 interface PortfolioItemData {
     images: {
@@ -19,6 +20,7 @@ interface PortfolioItemData {
     role?: string
     roleDescription?: string
     challenges?: string[]
+    video?: string
     live?: Array<{
         title: string
         link: string
@@ -44,26 +46,44 @@ export default function PortfolioItemDetailsDialogContent({
         role,
         roleDescription,
         challenges,
+        video,
         live,
     } = item
 
     return (
         <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex justify-center">
-                    <div className="relative w-full max-w-full max-h-[70vh]">
-                        <Image
-                            src={`/${images.thumb}`}
-                            alt={title}
-                            width={800}
-                            height={600}
-                            className="object-contain w-auto max-w-full max-h-[70vh]"
-                        />
+            {/* Mobile: Keep single column layout, Desktop: Single column (media top, text below) */}
+            <div className="grid grid-cols-1 md:flex md:flex-col gap-6">
+                {/* Media section - Video takes priority, fallback to image */}
+                <div className="flex justify-center md:w-full">
+                    <div className="relative w-full max-w-full">
+                        {video ? (
+                            <video
+                                src={`/${video}`}
+                                controls
+                                className="w-full max-w-full md:max-w-[2000px] md:max-h-[50vh] mx-auto rounded-lg shadow-lg"
+                                playsInline
+                                autoPlay
+                                muted
+                                loop
+                            >
+                                Your browser does not support the video tag.
+                            </video>
+                        ) : (
+                            <Image
+                                src={`/${images.thumb}`}
+                                alt={title}
+                                width={800}
+                                height={600}
+                                className="object-contain w-auto max-w-full md:max-w-[2000px] md:max-h-[50vh] mx-auto"
+                            />
+                        )}
                     </div>
                 </div>
 
-                <div className="space-y-4">
-                    <p className="text-foreground">{description}</p>
+                {/* Text content section - centered column on desktop */}
+                <div className="space-y-4 md:max-w-3xl md:mx-auto">
+                    <MarkdownRenderer>{description || ''}</MarkdownRenderer>
 
                     {tech && (
                         <p className="text-secondary">

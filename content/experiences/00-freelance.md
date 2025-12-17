@@ -14,3 +14,7 @@ featured: true
 - Web development (specializing in NodeJs)
 - Frontend consulting
 - Wordpress, Banners, Brochures, Logo design, Custom webapp development
+
+
+
+
