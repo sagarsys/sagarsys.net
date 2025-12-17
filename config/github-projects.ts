@@ -39,29 +39,47 @@ export interface CuratedGitHubProject {
 export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
     {
         repo: 'sagarsys/sagarsys.net',
-        order: 10,
+        order: 1,
         featured: true,
         customDescription:
             'Personal portfolio website built with Next.js 15, featuring glassmorphism design, dynamic color theming, and framer-motion animations.',
         overrides: {
-            title: 'Portfolio Website',
+            title: 'Sagarsys Portfolio Website',
             tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
             images: {
-                thumb: 'images/github/portfolio-thumb.png',
+                thumb: 'images/github/sagarsys.net.png',
+                mobile: 'images/github/sagarsys.net_mobile.png',
+                desktop: 'images/github/sagarsys.net.png',
             },
         },
     },
-    // Add more curated repos below as needed
-    // Example:
-    // {
-    //     repo: 'sagarsys/another-project',
-    //     order: 11,
-    //     featured: false,
-    //     overrides: {
-    //         title: 'Project Name',
-    //         tech: ['React', 'Node.js'],
-    //     },
-    // },
+    {
+        repo: 'sagarsys/tomato-farm',
+        order: 1,
+        featured: true,
+        overrides: {
+            title: 'Tomato Farm',
+            tech: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+            images: {
+                thumb: 'images/github/tomato-farm.png',
+                desktop: 'images/github/tomato-farm.png',
+            },
+        },
+    },
+    {
+        repo: 'sagarsys/sagavortex',
+        order: 1,
+        featured: true,
+        overrides: {
+            title: 'Sagavortex Art Gallery',
+            tech: ['React', 'TypeScript', 'Material UI', 'Next JS'],
+            images: {
+                thumb: 'images/github/sagavortex.png',
+                mobile: 'images/github/sagavortex_mobile.png',
+                desktop: 'images/github/sagavortex.png',
+            },
+        },
+    },
 ]
 
 /**
