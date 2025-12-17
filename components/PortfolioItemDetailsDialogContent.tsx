@@ -1,30 +1,9 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { Loader2 } from 'lucide-react'
 import { arrayToString } from '@/lib/utils'
 import DevicesPreview from './DevicesPreview'
-
-/**
- * Lazy-load MarkdownRenderer - Code splitting strategy
- *
- * This creates a separate JavaScript chunk that only loads when the dialog opens.
- * Benefits:
- * - ~60KB removed from initial page bundle
- * - Faster initial page load
- * - Markdown library loads on-demand when user opens project details
- *
- * ssr: false because this is a client component and markdown is rendered client-side
- */
-const MarkdownRenderer = dynamic(() => import('./MarkdownRenderer'), {
-    ssr: false,
-    loading: () => (
-        <div className="flex items-center justify-center py-8">
-            <Loader2 className="w-6 h-6 text-secondary animate-spin" />
-        </div>
-    ),
-})
+import MarkdownRenderer from './LazyMarkdownRenderer'
 
 interface PortfolioItemData {
     images: {

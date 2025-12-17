@@ -1,24 +1,9 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-import { Briefcase, Loader2 } from 'lucide-react'
+import { Briefcase } from 'lucide-react'
 import { motion } from 'framer-motion'
 import type { ExperienceFrontmatter } from '@/types'
-
-/**
- * Lazy-load MarkdownRenderer for experience timeline items
- *
- * Loads only when experience items scroll into view, reducing initial bundle size.
- * Perfect for the career timeline which may have many items.
- */
-const MarkdownRenderer = dynamic(() => import('./MarkdownRenderer'), {
-    ssr: false,
-    loading: () => (
-        <div className="flex items-center justify-center py-4">
-            <Loader2 className="w-5 h-5 text-secondary animate-spin" />
-        </div>
-    ),
-})
+import MarkdownRenderer from './LazyMarkdownRenderer'
 
 interface CareerTimelineItemProps {
     event: ExperienceFrontmatter
