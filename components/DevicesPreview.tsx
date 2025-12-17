@@ -24,6 +24,7 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
 
     if (imageCount === 1) {
         const singleImage = desktop || tablet || mobile
+        if (!singleImage) return null
         return (
             <div className="my-8">
                 <div className="relative w-full rounded-lg overflow-hidden border border-slate-700">
