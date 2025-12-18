@@ -22,7 +22,7 @@ export default function Footer({ contactInfo }: FooterProps) {
         <footer className="relative py-12 px-6 border-t border-slate-800">
             <div className="max-w-7xl mx-auto">
                 {/* 3-Column Layout: KVK | Socials | Copyright */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr_1.2fr] gap-8 items-start">
                     {/* Left: Business Information */}
                     <motion.div
                         className="text-center md:text-left"
@@ -34,19 +34,29 @@ export default function Footer({ contactInfo }: FooterProps) {
                             (contactInfo.kvk || contactInfo.vat) && (
                                 <div className="space-y-3">
                                     {contactInfo.tradeName && (
-                                        <div className="flex items-center gap-2 text-gray-300 text-sm justify-center md:justify-start">
-                                            <Building2 className="w-4 h-4 text-secondary flex-shrink-0" />
-                                            <span className="font-medium">
+                                        <div className="flex items-start gap-2 text-gray-300 text-sm justify-center md:justify-start">
+                                            <Building2 className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                                            <span className="font-medium leading-snug">
                                                 {contactInfo.tradeName}
                                             </span>
                                         </div>
                                     )}
-                                    <div className="space-y-1 text-xs text-gray-500">
+                                    <div className="space-y-1.5 text-sm text-gray-400">
                                         {contactInfo.kvk && (
-                                            <p>KVK: {contactInfo.kvk}</p>
+                                            <p>
+                                                <span className="text-gray-500">
+                                                    KVK:
+                                                </span>{' '}
+                                                {contactInfo.kvk}
+                                            </p>
                                         )}
                                         {contactInfo.vat && (
-                                            <p>BTW/VAT: {contactInfo.vat}</p>
+                                            <p>
+                                                <span className="text-gray-500">
+                                                    BTW/VAT:
+                                                </span>{' '}
+                                                {contactInfo.vat}
+                                            </p>
                                         )}
                                     </div>
                                 </div>
