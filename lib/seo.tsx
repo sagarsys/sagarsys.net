@@ -21,6 +21,14 @@ export const SITE_CONFIG = {
 }
 
 /**
+ * Format date to ISO 8601 with timezone for structured data
+ */
+function formatDateForSchema(dateString: string): string {
+    const date = new Date(dateString)
+    return date.toISOString()
+}
+
+/**
  * Generate canonical URL
  */
 export function generateCanonicalUrl(path: string = ''): string {
@@ -40,6 +48,11 @@ export function generatePersonSchema() {
         image: SITE_CONFIG.ogImage,
         jobTitle: 'Senior Fullstack Developer',
         description: SITE_CONFIG.description,
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Badhoevedorp',
+            addressCountry: 'NL',
+        },
         sameAs: [
             SITE_CONFIG.links.github,
             SITE_CONFIG.links.linkedin,
@@ -133,8 +146,10 @@ export function generateArticleSchema(article: {
         description: article.description,
         url: article.url,
         image: article.image || SITE_CONFIG.ogImage,
-        datePublished: article.datePublished,
-        dateModified: article.dateModified || article.datePublished,
+        datePublished: formatDateForSchema(article.datePublished),
+        dateModified: formatDateForSchema(
+            article.dateModified || article.datePublished
+        ),
         author: {
             '@type': 'Person',
             name: article.author || SITE_CONFIG.name,
@@ -179,8 +194,10 @@ export function generateBlogPostingSchema(post: {
         description: post.description,
         url: post.url,
         image: post.image || SITE_CONFIG.ogImage,
-        datePublished: post.datePublished,
-        dateModified: post.dateModified || post.datePublished,
+        datePublished: formatDateForSchema(post.datePublished),
+        dateModified: formatDateForSchema(
+            post.dateModified || post.datePublished
+        ),
         author: {
             '@type': 'Person',
             name: post.author || SITE_CONFIG.name,
