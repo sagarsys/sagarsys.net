@@ -77,35 +77,46 @@ export function logMetric(metric: Metric) {
 }
 
 /**
- * Send metric to analytics (optional)
+ * Send metric to analytics
  *
- * You can integrate with:
- * - Google Analytics
- * - Vercel Analytics
- * - Custom analytics endpoint
+ * Integrates with Google Analytics via GTM/GA4
  */
 export function sendToAnalytics(metric: Metric) {
     const report = formatMetric(metric)
 
-    // Example: Send to custom endpoint
-    // fetch('/api/analytics', {
-    //     method: 'POST',
-    //     body: JSON.stringify(report),
-    //     headers: { 'Content-Type': 'application/json' },
-    // })
-
-    // Example: Send to Google Analytics
-    // if (typeof window !== 'undefined' && (window as any).gtag) {
-    //     (window as any).gtag('event', report.name, {
-    //         value: Math.round(report.value),
-    //         metric_rating: report.rating,
-    //         metric_id: report.id,
-    //         metric_delta: Math.round(report.delta),
-    //     })
-    // }
-
-    // For now, just log in development
+    // Log in development
     logMetric(metric)
+
+    // Send to Google Analytics if available
+    if (typeof window !== 'undefined') {
+        // Try GTM data layer first
+        if ((window as any).dataLayer) {
+            ;(window as any).dataLayer.push({
+                event: 'web_vitals',
+                event_category: 'Web Vitals',
+                event_label: report.name,
+                value: Math.round(report.value),
+                metric_id: report.id,
+                metric_value: Math.round(report.value),
+                metric_delta: Math.round(report.delta),
+                metric_rating: report.rating,
+                non_interaction: true,
+            })
+        }
+
+        // Also try direct gtag if available
+        if ((window as any).gtag) {
+            ;(window as any).gtag('event', report.name, {
+                event_category: 'Web Vitals',
+                event_label: report.name,
+                value: Math.round(report.value),
+                metric_id: report.id,
+                metric_delta: Math.round(report.delta),
+                metric_rating: report.rating,
+                non_interaction: true,
+            })
+        }
+    }
 }
 
 /**

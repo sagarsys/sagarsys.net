@@ -2,7 +2,7 @@
 email: 'sagar.sawuck@gmail.com'
 github: 'https://github.com/sagarsys'
 linkedin: 'https://linkedin.com/in/sagarsys/'
-twitter: 'https://twitter.com/sagarsys'
+twitter: 'https://twitter.com/sagavortex'
 instagram: 'https://instagram.com/sagavortex.life'
 youtube: 'https://www.youtube.com/channel/UCZmvx7n2wV69KSXeH8VZcZg'
 soundcloud: 'https://soundcloud.com/sagarsys'
