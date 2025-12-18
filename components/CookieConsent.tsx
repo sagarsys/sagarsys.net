@@ -177,7 +177,7 @@ export default function CookieConsent() {
                                 By continuing to use this site, you acknowledge
                                 our use of cookies.{' '}
                                 <a
-                                    href="#privacy"
+                                    href="/privacy"
                                     className="text-secondary hover:underline"
                                 >
                                     Privacy Policy

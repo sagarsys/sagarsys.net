@@ -26,6 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: 'daily' as const,
             priority: 0.9,
         },
+        {
+            url: `${baseUrl}/privacy`,
+            lastModified: new Date(),
+            changeFrequency: 'yearly' as const,
+            priority: 0.5,
+        },
     ]
 
     // Dynamic blog posts
