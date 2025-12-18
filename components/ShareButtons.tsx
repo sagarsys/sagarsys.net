@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Share2, Twitter, Linkedin, Facebook, Link2, Check } from 'lucide-react'
+import { trackClick } from '@/lib/analytics'
 
 interface ShareButtonsProps {
     url: string
@@ -28,6 +29,13 @@ export default function ShareButtons({
         const encodedUrl = encodeURIComponent(fullUrl)
         const encodedTitle = encodeURIComponent(title)
         const encodedDescription = encodeURIComponent(description || '')
+
+        // Track share click
+        trackClick(`share_${platform}`, {
+            content_type: 'blog_post',
+            content_title: title,
+            share_platform: platform,
+        })
 
         let shareUrl = ''
 

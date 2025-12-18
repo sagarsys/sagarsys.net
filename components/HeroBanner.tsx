@@ -5,6 +5,7 @@ import { Download, ArrowDown, Sparkles } from 'lucide-react'
 import { useEffect } from 'react'
 import { staggerContainer, staggerItem } from '@/lib/animations'
 import { useColorGradient } from '@/hooks/useColorGradient'
+import { trackDownload } from '@/lib/analytics'
 import SocialLinks from './SocialLinks'
 import GradientText from './GradientText'
 
@@ -47,6 +48,7 @@ export default function HeroBanner({
     }, [mouseX, mouseY])
 
     const handleDownloadCV = () => {
+        trackDownload('Sagar-Sawuck-CV-2025.pdf', 'pdf')
         window.open('/assets/Sagar-Sawuck-CV-2025.pdf', '_blank')
     }
 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { X, Cookie, Shield, Info } from 'lucide-react'
 import { shouldShowConsentBanner, setConsent, hasConsent } from '@/lib/consent'
+import { trackEvent } from '@/lib/analytics'
 
 /**
  * CookieConsent component
@@ -20,6 +21,11 @@ export default function CookieConsent() {
     }, [])
 
     const handleAccept = () => {
+        trackEvent({
+            action: 'cookie_consent',
+            category: 'privacy',
+            label: 'accepted',
+        })
         setConsent({ analytics: true })
         setShowBanner(false)
 
@@ -30,6 +36,11 @@ export default function CookieConsent() {
     }
 
     const handleDecline = () => {
+        trackEvent({
+            action: 'cookie_consent',
+            category: 'privacy',
+            label: 'declined',
+        })
         setConsent({ analytics: false })
         setShowBanner(false)
     }

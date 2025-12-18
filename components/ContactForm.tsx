@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Send } from 'lucide-react'
 import { Button } from './ui/button'
+import { trackFormSubmit } from '@/lib/analytics'
 
 interface ContactFormProps {
     email: string
@@ -24,6 +25,12 @@ export default function ContactForm({
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
+
+        // Track form submission
+        trackFormSubmit('contact_form', {
+            form_location: 'contact_section',
+        })
+
         const subject = encodeURIComponent(
             `Portfolio Contact from ${formData.name}`
         )
