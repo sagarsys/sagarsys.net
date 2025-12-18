@@ -56,6 +56,9 @@ export interface ContactInfo {
     soundcloud: string
     stackblitz: string
     codeSandbox: string
+    kvk?: string
+    vat?: string
+    tradeName?: string
 }
 
 export interface MarkdownContent<T> {

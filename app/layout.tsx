@@ -9,11 +9,13 @@ import HashNavigationProvider from '@/components/HashNavigationProvider'
 import AppBarClient from '@/components/AppBarClient'
 import GoogleTagManager from '@/components/GoogleTagManager'
 import CookieConsent from '@/components/CookieConsent'
+import Footer from '@/components/Footer'
 import {
     generatePersonSchema,
     generateWebSiteSchema,
     generateOrganizationSchema,
 } from '@/lib/seo'
+import { getContactInfo } from '@/lib/markdown'
 
 const titilliumWeb = Titillium_Web({
     weight: ['300', '400', '600', '700'],
@@ -118,6 +120,9 @@ export default function RootLayout({
     // Get GTM ID from environment variable
     const gtmId = process.env.NEXT_PUBLIC_GTM_ID || ''
 
+    // Get contact info for footer
+    const contactData = getContactInfo()
+
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
@@ -179,6 +184,7 @@ export default function RootLayout({
                     <HashNavigationProvider>
                         <AppBarClient />
                         {children}
+                        <Footer contactInfo={contactData?.frontmatter} />
                     </HashNavigationProvider>
                 </Providers>
             </body>

@@ -8,10 +8,9 @@ youtube: 'https://www.youtube.com/channel/UCZmvx7n2wV69KSXeH8VZcZg'
 soundcloud: 'https://soundcloud.com/sagarsys'
 stackblitz: 'https://stackblitz.com/@sagarsys'
 codeSandbox: 'https://codesandbox.io/u/sagarsys/'
+kvk: '91451396'
+vat: 'NL004897176B58'
+tradeName: 'SagaVortex | Sagarsys web solutions'
 ---
 
 Get in touch via email or let's connect on socials!
-
-
-
-
