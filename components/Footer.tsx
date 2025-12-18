@@ -72,13 +72,13 @@ export default function Footer({ contactInfo }: FooterProps) {
 
                     {/* Right: Copyright and Links */}
                     <motion.div
-                        className="text-center md:text-right text-sm text-gray-400"
+                        className="text-sm text-gray-400 flex flex-col items-center md:items-end"
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 }}
                     >
-                        <p className="mb-3">
+                        <p className="mb-3 text-center md:text-right">
                             Designed & Built by{' '}
                             <GradientText
                                 gradientColors={gradientColors}
@@ -88,7 +88,7 @@ export default function Footer({ contactInfo }: FooterProps) {
                                 Sagar Sawuck
                             </GradientText>
                         </p>
-                        <div className="flex flex-col gap-2 text-xs mb-3">
+                        <div className="flex flex-col items-center md:items-end gap-2 text-xs mb-3">
                             <Link
                                 href="/privacy"
                                 className="hover:text-secondary transition-colors"
