@@ -13,6 +13,7 @@ import {
     Hash,
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { trackClick } from '@/lib/analytics'
 
 interface FloatingShareButtonProps {
     url: string
@@ -40,6 +41,14 @@ export default function FloatingShareButton({
         const encodedUrl = encodeURIComponent(fullUrl)
         const encodedTitle = encodeURIComponent(title)
         const encodedDescription = encodeURIComponent(description || '')
+
+        // Track share click
+        trackClick(`share_${platform}`, {
+            content_type: 'blog_post',
+            content_title: title,
+            share_platform: platform,
+            share_location: 'floating_button',
+        })
 
         let shareUrl = ''
 

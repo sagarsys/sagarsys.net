@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useColorGradient } from '@/hooks/useColorGradient'
+import { trackClick } from '@/lib/analytics'
 import SocialLinks from './SocialLinks'
 import GradientText from './GradientText'
 import type { ContactInfo } from '@/types'
@@ -107,6 +108,9 @@ export default function Footer({ contactInfo }: FooterProps) {
                             </Link>
                             <button
                                 onClick={() => {
+                                    trackClick('cookie_preferences_reset', {
+                                        location: 'footer',
+                                    })
                                     localStorage.removeItem('cookie-consent')
                                     window.location.reload()
                                 }}

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { getSocialLinks, getEssentialLinks } from '@/config/social-links'
+import { trackOutboundLink } from '@/lib/analytics'
 import type { ContactInfo } from '@/types'
 
 interface SocialLinksProps {
@@ -51,6 +52,7 @@ export default function SocialLinks({
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackOutboundLink(social.url)}
                         className={`${
                             sizeClasses[size]
                         } rounded-full bg-slate-700 text-gray-300 flex items-center justify-center transition-all ${

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { ExternalLink, Github, ChevronDown, Star, GitFork } from 'lucide-react'
 import { staggerContainer, staggerItem } from '@/lib/animations'
 import { getWebPImageSrc, generateSrcSet } from '@/lib/image-utils'
+import { trackClick } from '@/lib/analytics'
 import type { MarkdownContent, ProjectFrontmatter } from '@/types'
 import PortfolioItemDetailsDialog from './PortfolioItemDetailsDialog'
 import { Button } from './ui/button'
@@ -45,7 +46,13 @@ export default function ProjectsGrid({
                         className="group cursor-pointer"
                         variants={staggerItem}
                         whileHover={{ y: -10 }}
-                        onClick={() => setSelectedProject(project)}
+                        onClick={() => {
+                            trackClick('project_details', {
+                                project_title: project.frontmatter.title,
+                                project_id: project.slug,
+                            })
+                            setSelectedProject(project)
+                        }}
                     >
                         <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all">
                             {/* Project Image */}

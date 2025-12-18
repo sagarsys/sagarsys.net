@@ -5,6 +5,7 @@ import { Providers } from './providers'
 import HydrationFix from '@/components/HydrationFix'
 import WebVitalsReporter from '@/components/WebVitalsReporter'
 import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration'
+import EngagementTracker from '@/components/EngagementTracker'
 import HashNavigationProvider from '@/components/HashNavigationProvider'
 import AppBarClient from '@/components/AppBarClient'
 import GoogleTagManager from '@/components/GoogleTagManager'
@@ -178,6 +179,7 @@ export default function RootLayout({
                 <HydrationFix />
                 <WebVitalsReporter />
                 <ServiceWorkerRegistration />
+                <EngagementTracker />
                 {gtmId && <GoogleTagManager gtmId={gtmId} />}
                 <CookieConsent />
                 <Providers>
