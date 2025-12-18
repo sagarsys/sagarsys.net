@@ -1,4 +1,3 @@
-import AppBarClient from '@/components/AppBarClient'
 import HeroBanner from '@/components/HeroBanner'
 import About from '@/components/About'
 import SkillsShowcase from '@/components/SkillsShowcase'
@@ -9,7 +8,6 @@ import Footer from '@/components/Footer'
 import ScrollTop from '@/components/ScrollTop'
 import ParticleBackground from '@/components/ParticleBackground'
 import ScrollbarSync from '@/components/ScrollbarSync'
-import HashNavigationProvider from '@/components/HashNavigationProvider'
 import ViewTransitions from './ViewTransitions'
 import { getContactInfo } from '@/lib/markdown'
 
@@ -17,7 +15,7 @@ export default function Home() {
     const contactData = getContactInfo()
 
     return (
-        <HashNavigationProvider>
+        <>
             <ViewTransitions />
             <div className="min-h-screen relative">
                 {/* Particle Background - subtle, throughout the page */}
@@ -28,7 +26,6 @@ export default function Home() {
 
                 {/* Fixed elements */}
                 <div id="back-to-top-anchor" className="h-0 min-h-0" />
-                <AppBarClient />
                 <ScrollTop />
 
                 {/* Page content */}
@@ -46,6 +43,6 @@ export default function Home() {
                     <Footer contactInfo={contactData?.frontmatter} />
                 </main>
             </div>
-        </HashNavigationProvider>
+        </>
     )
 }

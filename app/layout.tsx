@@ -5,6 +5,8 @@ import { Providers } from './providers'
 import HydrationFix from '@/components/HydrationFix'
 import WebVitalsReporter from '@/components/WebVitalsReporter'
 import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration'
+import HashNavigationProvider from '@/components/HashNavigationProvider'
+import AppBarClient from '@/components/AppBarClient'
 
 const titilliumWeb = Titillium_Web({
     weight: ['300', '400', '600', '700'],
@@ -118,7 +120,12 @@ export default function RootLayout({
                 <HydrationFix />
                 <WebVitalsReporter />
                 <ServiceWorkerRegistration />
-                <Providers>{children}</Providers>
+                <Providers>
+                    <HashNavigationProvider>
+                        <AppBarClient />
+                        {children}
+                    </HashNavigationProvider>
+                </Providers>
             </body>
         </html>
     )

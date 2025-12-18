@@ -6,7 +6,6 @@ import ShareButtons from '@/components/ShareButtons'
 import FloatingShareButton from '@/components/FloatingShareButton'
 import FloatingBackButton from '@/components/FloatingBackButton'
 import Breadcrumb from '@/components/Breadcrumb'
-import AppBarClient from '@/components/AppBarClient'
 import ScrollTop from '@/components/ScrollTop'
 import { Calendar, Clock, Tag } from 'lucide-react'
 import Image from 'next/image'
@@ -82,7 +81,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="min-h-screen relative">
             {/* Fixed elements */}
             <div id="back-to-top-anchor" className="h-0 min-h-0" />
-            <AppBarClient />
             <ScrollTop />
 
             {/* Hero Banner with Overlay */}

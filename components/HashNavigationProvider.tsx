@@ -1,17 +1,20 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 
 interface HashNavigationContextType {
     instantAnimations: boolean
     targetHash: string | null
     activeSection: string | null
+    currentPath: string
 }
 
 const HashNavigationContext = createContext<HashNavigationContextType>({
     instantAnimations: false,
     targetHash: null,
     activeSection: null,
+    currentPath: '/',
 })
 
 export const useHashNavigation = () => useContext(HashNavigationContext)
@@ -29,6 +32,7 @@ export default function HashNavigationProvider({
     const [targetHash, setTargetHash] = useState<string | null>(null)
     const [activeSection, setActiveSection] = useState<string | null>(null)
     const hasScrolledToHash = useRef(false)
+    const pathname = usePathname() // Reactive pathname from Next.js
 
     useEffect(() => {
         if (typeof window === 'undefined') return
@@ -61,35 +65,49 @@ export default function HashNavigationProvider({
 
     useEffect(() => {
         if (typeof window === 'undefined') return
+        // Only track sections on homepage
+        if (pathname !== '/') {
+            setActiveSection(null)
+            return
+        }
 
         // Track active section with better logic
         const updateActiveSection = () => {
             const sections = document.querySelectorAll('section[id]')
-            const scrollPos = window.scrollY + 200 // Generous offset
-            const windowHeight = window.innerHeight
+            const scrollY = window.scrollY
+            const navBarHeight = 80
+
+            // If at the very top (before first section), show "Home" as active
+            if (scrollY < 100) {
+                setActiveSection(null) // null means Home is active
+                return
+            }
 
             let newActiveSection: string | null = null
-            let minDistance = Infinity
+            let minTop = Infinity
 
             sections.forEach((section) => {
                 const element = section as HTMLElement
                 const rect = element.getBoundingClientRect()
-                const distance = Math.abs(rect.top)
+                const sectionTop = rect.top
 
-                // Section is in viewport and closest to top
+                // Section top is above the threshold (in view or passed)
+                // Pick the one closest to the navbar
                 if (
-                    rect.top < windowHeight &&
-                    rect.bottom > 0 &&
-                    distance < minDistance
+                    sectionTop < navBarHeight + 100 &&
+                    sectionTop > -rect.height + 100
                 ) {
-                    minDistance = distance
-                    newActiveSection = `/#${section.id}`
+                    if (Math.abs(sectionTop) < Math.abs(minTop)) {
+                        minTop = sectionTop
+                        newActiveSection = `/#${section.id}`
+                    }
                 }
             })
 
-            if (newActiveSection && newActiveSection !== activeSection) {
-                setActiveSection(newActiveSection)
-            }
+            // Only update if changed
+            setActiveSection((prev) =>
+                newActiveSection !== prev ? newActiveSection : prev
+            )
         }
 
         // Initial check after a delay
@@ -99,7 +117,7 @@ export default function HashNavigationProvider({
         let scrollTimeout: NodeJS.Timeout
         const handleScroll = () => {
             clearTimeout(scrollTimeout)
-            scrollTimeout = setTimeout(updateActiveSection, 150)
+            scrollTimeout = setTimeout(updateActiveSection, 100)
         }
 
         window.addEventListener('scroll', handleScroll, { passive: true })
@@ -109,11 +127,16 @@ export default function HashNavigationProvider({
             clearTimeout(scrollTimeout)
             window.removeEventListener('scroll', handleScroll)
         }
-    }, [activeSection])
+    }, [pathname])
 
     return (
         <HashNavigationContext.Provider
-            value={{ instantAnimations, targetHash, activeSection }}
+            value={{
+                instantAnimations,
+                targetHash,
+                activeSection,
+                currentPath: pathname,
+            }}
         >
             {children}
         </HashNavigationContext.Provider>

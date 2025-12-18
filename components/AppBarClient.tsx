@@ -22,7 +22,7 @@ export default function AppBarClient() {
     const [isVisible, setIsVisible] = useState(true)
     const [lastScrollY, setLastScrollY] = useState(0)
     const { scrollY } = useScroll()
-    const { activeSection } = useHashNavigation()
+    const { activeSection, currentPath } = useHashNavigation()
 
     const navItems: Array<{
         name: string
@@ -120,9 +120,14 @@ export default function AppBarClient() {
                                 item.href?.startsWith('/') &&
                                 item.href !== '/' &&
                                 !isHashLink
-                            // Check if active: for blog, check pathname; for sections, check activeSection
+                            // Check if active:
+                            // - Blog: pathname starts with /blog
+                            // - Home: on homepage with no active section
+                            // - Sections: activeSection matches href
                             const isActive = isExternalLink
-                                ? window.location.pathname === href
+                                ? currentPath.startsWith(href)
+                                : href === '/'
+                                ? currentPath === '/' && !activeSection
                                 : activeSection === href
                             return (
                                 <motion.a
@@ -182,9 +187,15 @@ export default function AppBarClient() {
                                             item.href?.startsWith('/') &&
                                             item.href !== '/' &&
                                             !isHashLink
-                                        // Check if active: for blog, check pathname; for sections, check activeSection
+                                        // Check if active:
+                                        // - Blog: pathname starts with /blog
+                                        // - Home: on homepage with no active section
+                                        // - Sections: activeSection matches href
                                         const isActive = isExternalLink
-                                            ? window.location.pathname === href
+                                            ? currentPath.startsWith(href)
+                                            : href === '/'
+                                            ? currentPath === '/' &&
+                                              !activeSection
                                             : activeSection === href
                                         return (
                                             <a
