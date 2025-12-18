@@ -8,6 +8,7 @@ import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration'
 import HashNavigationProvider from '@/components/HashNavigationProvider'
 import AppBarClient from '@/components/AppBarClient'
 import GoogleTagManager from '@/components/GoogleTagManager'
+import CookieConsent from '@/components/CookieConsent'
 import {
     generatePersonSchema,
     generateWebSiteSchema,
@@ -173,6 +174,7 @@ export default function RootLayout({
                 <WebVitalsReporter />
                 <ServiceWorkerRegistration />
                 {gtmId && <GoogleTagManager gtmId={gtmId} />}
+                <CookieConsent />
                 <Providers>
                     <HashNavigationProvider>
                         <AppBarClient />

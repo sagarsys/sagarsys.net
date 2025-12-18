@@ -1,5 +1,8 @@
 import { MetadataRoute } from 'next'
 
+// Required for static export
+export const dynamic = 'force-static'
+
 /**
  * Generate dynamic robots.txt
  *

@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next'
 import { getBlogPosts } from '@/lib/blog'
 
+// Required for static export
+export const dynamic = 'force-static'
+
 /**
  * Generate dynamic sitemap for all pages
  *
