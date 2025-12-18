@@ -37,7 +37,9 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
                             {item.label}
                         </Link>
                     ) : (
-                        <span className="text-gray-300">{item.label}</span>
+                        <span className="text-gray-300 truncate max-w-[150px] md:max-w-none">
+                            {item.label}
+                        </span>
                     )}
                 </React.Fragment>
             ))}

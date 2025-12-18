@@ -83,7 +83,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div id="back-to-top-anchor" className="h-0 min-h-0" />
             <ScrollTop />
 
-            {/* Hero Banner with Overlay */}
+            {/* Hero Banner with Overlay - mt-16 accounts for fixed header */}
             <div className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden">
                 <Image
                     src={heroImage}
@@ -98,7 +98,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 {/* Content overlay */}
                 <div className="absolute inset-0 flex items-end">
                     <div className="w-full bg-black/70 backdrop-blur-sm border-t border-slate-700/50">
-                        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
                             {/* Categories */}
                             {post.frontmatter.categories &&
                                 post.frontmatter.categories.length > 0 && (
@@ -117,12 +117,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                 )}
 
                             {/* Title */}
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+                            <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold text-white mb-2 md:mb-4">
                                 {post.frontmatter.title}
                             </h1>
 
-                            {/* Description */}
-                            <p className="text-xl text-gray-200 mb-6">
+                            {/* Description - hidden on mobile */}
+                            <p className="hidden md:block text-xl text-gray-200 mb-6">
                                 {post.frontmatter.description}
                             </p>
 
@@ -141,10 +141,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                 )}
                             </div>
 
-                            {/* Tags */}
+                            {/* Tags - hidden on mobile */}
                             {post.frontmatter.tags &&
                                 post.frontmatter.tags.length > 0 && (
-                                    <div className="flex flex-wrap gap-2 mb-4">
+                                    <div className="hidden md:flex flex-wrap gap-2 mb-4">
                                         {post.frontmatter.tags.map((tag) => (
                                             <span
                                                 key={tag}
@@ -157,12 +157,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                     </div>
                                 )}
 
-                            {/* Share buttons */}
-                            <ShareButtons
-                                url={`/blog/${post.slug}`}
-                                title={post.frontmatter.title}
-                                description={post.frontmatter.description}
-                            />
+                            {/* Share buttons - hidden on mobile (floating button available) */}
+                            <div className="hidden md:block">
+                                <ShareButtons
+                                    url={`/blog/${post.slug}`}
+                                    title={post.frontmatter.title}
+                                    description={post.frontmatter.description}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -203,6 +205,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                             title={post.frontmatter.title}
                             description={post.frontmatter.description}
                         />
+
+                        {/* Tags - visible on mobile only */}
+                        {post.frontmatter.tags &&
+                            post.frontmatter.tags.length > 0 && (
+                                <div className="md:hidden flex flex-wrap gap-2 mt-6">
+                                    {post.frontmatter.tags.map((tag) => (
+                                        <span
+                                            key={tag}
+                                            className="px-3 py-1 bg-slate-700/50 text-gray-200 rounded-full text-sm border border-slate-600/50 flex items-center gap-1"
+                                        >
+                                            <Tag className="w-3 h-3" />
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
                     </footer>
                 </article>
             </main>

@@ -9,6 +9,8 @@ import {
     Facebook,
     Link2,
     Check,
+    MessageCircle,
+    Hash,
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -51,6 +53,12 @@ export default function FloatingShareButton({
             case 'facebook':
                 shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`
                 break
+            case 'whatsapp':
+                shareUrl = `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`
+                break
+            case 'slack':
+                shareUrl = `https://slack.com/share?url=${encodedUrl}&text=${encodedTitle}`
+                break
             case 'copy':
                 try {
                     await navigator.clipboard.writeText(fullUrl)
@@ -75,15 +83,30 @@ export default function FloatingShareButton({
     }
 
     return (
-        <div className="fixed right-6 top-1/2 -translate-y-1/2 z-40">
-            {/* Share menu */}
+        <div className="fixed right-6 top-24 z-40">
+            {/* Toggle button - always in same position */}
+            <motion.button
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-14 h-14 bg-secondary/90 hover:bg-secondary backdrop-blur-md border border-secondary/50 rounded-full shadow-lg flex items-center justify-center transition-all"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Share"
+            >
+                {isOpen ? (
+                    <X className="w-6 h-6 text-white" />
+                ) : (
+                    <Share2 className="w-6 h-6 text-white" />
+                )}
+            </motion.button>
+
+            {/* Share menu - positioned below button */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8, y: -20 }}
+                        initial={{ opacity: 0, scale: 0.8, y: -10 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.8, y: -20 }}
-                        className="mb-4 bg-slate-900/95 backdrop-blur-md border border-slate-700/50 rounded-lg p-3 shadow-xl"
+                        exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                        className="absolute right-0 top-16 mt-2 bg-slate-900/95 backdrop-blur-md border border-slate-700/50 rounded-lg p-3 shadow-xl"
                     >
                         <div className="flex flex-col gap-2">
                             <button
@@ -117,6 +140,26 @@ export default function FloatingShareButton({
                                 </span>
                             </button>
                             <button
+                                onClick={() => handleShare('whatsapp')}
+                                className="flex items-center gap-3 px-4 py-2 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700/50 rounded-lg transition-all hover:border-green-500/50 text-left"
+                                aria-label="Share on WhatsApp"
+                            >
+                                <MessageCircle className="w-4 h-4 text-green-500" />
+                                <span className="text-sm text-gray-300">
+                                    WhatsApp
+                                </span>
+                            </button>
+                            <button
+                                onClick={() => handleShare('slack')}
+                                className="flex items-center gap-3 px-4 py-2 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700/50 rounded-lg transition-all hover:border-purple-500/50 text-left"
+                                aria-label="Share on Slack"
+                            >
+                                <Hash className="w-4 h-4 text-purple-500" />
+                                <span className="text-sm text-gray-300">
+                                    Slack
+                                </span>
+                            </button>
+                            <button
                                 onClick={() => handleShare('copy')}
                                 className="flex items-center gap-3 px-4 py-2 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700/50 rounded-lg transition-all hover:border-secondary/50 text-left"
                                 aria-label="Copy link"
@@ -141,21 +184,6 @@ export default function FloatingShareButton({
                     </motion.div>
                 )}
             </AnimatePresence>
-
-            {/* Toggle button */}
-            <motion.button
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-14 h-14 bg-secondary/90 hover:bg-secondary backdrop-blur-md border border-secondary/50 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Share"
-            >
-                {isOpen ? (
-                    <X className="w-6 h-6 text-white" />
-                ) : (
-                    <Share2 className="w-6 h-6 text-white" />
-                )}
-            </motion.button>
         </div>
     )
 }

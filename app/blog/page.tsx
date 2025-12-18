@@ -31,7 +31,7 @@ export default function BlogPage() {
             <ScrollTop />
 
             {/* Hero Banner */}
-            <div className="relative w-full h-[50vh] md:h-[60vh] max-h-[500px] overflow-hidden mt-16">
+            <div className="relative w-full h-[30vh] md:h-[60vh] max-h-[500px] overflow-hidden">
                 <Image
                     src="/images/blog/default.png"
                     alt="Blog & Articles"
