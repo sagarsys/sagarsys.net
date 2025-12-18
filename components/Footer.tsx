@@ -91,7 +91,7 @@ export default function Footer({ contactInfo }: FooterProps) {
                         <div className="flex flex-col items-center md:items-end gap-2 text-xs mb-3">
                             <Link
                                 href="/privacy"
-                                className="hover:text-secondary transition-colors"
+                                className="text-secondary hover:text-orange-400 transition-colors"
                             >
                                 Privacy Policy
                             </Link>
@@ -100,7 +100,7 @@ export default function Footer({ contactInfo }: FooterProps) {
                                     localStorage.removeItem('cookie-consent')
                                     window.location.reload()
                                 }}
-                                className="hover:text-secondary transition-colors cursor-pointer"
+                                className="text-secondary hover:text-orange-400 transition-colors cursor-pointer"
                             >
                                 Cookie Preferences
                             </button>
