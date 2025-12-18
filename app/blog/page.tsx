@@ -2,7 +2,6 @@ import { getBlogPosts, getCategories, getTags } from '@/lib/blog'
 import BlogPostsList from '@/components/BlogPostsList'
 import TagFilters from '@/components/TagFilters'
 import CategoryFilters from '@/components/CategoryFilters'
-import AppBarClient from '@/components/AppBarClient'
 import ScrollTop from '@/components/ScrollTop'
 import Image from 'next/image'
 import { Suspense } from 'react'
@@ -29,11 +28,10 @@ export default function BlogPage() {
         <div className="min-h-screen relative">
             {/* Fixed elements */}
             <div id="back-to-top-anchor" className="h-0 min-h-0" />
-            <AppBarClient />
             <ScrollTop />
 
             {/* Hero Banner */}
-            <div className="relative w-full h-[50vh] md:h-[60vh] max-h-[500px] overflow-hidden mt-16">
+            <div className="relative w-full h-[30vh] md:h-[60vh] max-h-[500px] overflow-hidden">
                 <Image
                     src="/images/blog/default.png"
                     alt="Blog & Articles"

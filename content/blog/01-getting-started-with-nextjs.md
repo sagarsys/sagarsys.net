@@ -33,9 +33,9 @@ Next.js 15 introduces several major improvements:
 
 To create a new Next.js 15 project, use the following command:
 
-\`\`\`bash
+```bash
 npx create-next-app@latest my-app
-\`\`\`
+```
 
 This will create a new Next.js project with all the latest features and best practices.
 
@@ -43,18 +43,18 @@ This will create a new Next.js project with all the latest features and best pra
 
 The App Router is the new routing system in Next.js 15. It uses a file-system based routing approach:
 
-\`\`\`typescript
+```typescript
 // app/page.tsx
 export default function Home() {
   return <div>Home Page</div>
 }
-\`\`\`
+```
 
 ## Server Components
 
 Server Components allow you to fetch data directly in your components without needing API routes:
 
-\`\`\`typescript
+```typescript
 // app/posts/page.tsx
 async function getPosts() {
   const res = await fetch('<https://api.example.com/posts>')
@@ -74,7 +74,7 @@ export default async function PostsPage() {
     </div>
   )
 }
-\`\`\`
+```
 
 ## Best Practices
 

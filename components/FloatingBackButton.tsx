@@ -12,7 +12,10 @@ import { motion } from 'framer-motion'
  */
 export default function FloatingBackButton({ href }: { href: string }) {
     return (
-        <Link href={href} className="fixed left-6 top-24 z-40 group">
+        <Link
+            href={href}
+            className="hidden md:block fixed left-6 top-24 z-40 group"
+        >
             <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}

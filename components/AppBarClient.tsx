@@ -15,12 +15,14 @@ import { motion, useScroll } from 'framer-motion'
 import Logo from './Logo'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
+import { useHashNavigation } from './HashNavigationProvider'
 
 export default function AppBarClient() {
     const [isOpen, setIsOpen] = useState(false)
     const [isVisible, setIsVisible] = useState(true)
     const [lastScrollY, setLastScrollY] = useState(0)
     const { scrollY } = useScroll()
+    const { activeSection, currentPath } = useHashNavigation()
 
     const navItems: Array<{
         name: string
@@ -29,22 +31,22 @@ export default function AppBarClient() {
         href?: string
     }> = [
         { name: 'home', label: 'Home', icon: Home, href: '/' },
-        { name: 'about', label: 'About', icon: User, href: '#about' },
-        { name: 'skills', label: 'Skills', icon: Code, href: '#skills' },
+        { name: 'about', label: 'About', icon: User, href: '/#about' },
+        { name: 'skills', label: 'Skills', icon: Code, href: '/#skills' },
         {
             name: 'experience',
             label: 'Experience',
             icon: Briefcase,
-            href: '#experience',
+            href: '/#experience',
         },
         {
             name: 'projects',
             label: 'Projects',
             icon: FolderOpen,
-            href: '#projects',
+            href: '/#projects',
         },
         { name: 'blog', label: 'Blog', icon: BookOpen, href: '/blog' },
-        { name: 'contact', label: 'Contact', icon: Mail, href: '#contact' },
+        { name: 'contact', label: 'Contact', icon: Mail, href: '/#contact' },
     ]
 
     useEffect(() => {
@@ -67,18 +69,30 @@ export default function AppBarClient() {
 
     const handleClick = (
         event: React.MouseEvent<HTMLAnchorElement>,
-        navItem: string
+        navItem: string,
+        href: string
     ) => {
         event.preventDefault()
-        const anchor = document.getElementById(navItem)
-        if (anchor) {
-            const navBarHeight = 60
-            const isMobileView = window.innerWidth < 768
-            const scrollY = isMobileView
-                ? anchor.offsetTop
-                : anchor.offsetTop - navBarHeight
-            window.scrollTo({ top: scrollY, behavior: 'smooth' })
-            setIsOpen(false)
+        setIsOpen(false)
+
+        // Check if we're on the homepage already
+        if (window.location.pathname === '/') {
+            // Already on homepage - smooth scroll to section
+            const anchor = document.getElementById(navItem)
+            if (anchor) {
+                const navBarHeight = 60
+                const isMobileView = window.innerWidth < 768
+                const scrollY = isMobileView
+                    ? anchor.offsetTop
+                    : anchor.offsetTop - navBarHeight
+                window.scrollTo({ top: scrollY, behavior: 'smooth' })
+
+                // Update URL hash without scrolling
+                window.history.pushState(null, '', href)
+            }
+        } else {
+            // Navigate to homepage, then scroll after load
+            window.location.href = href
         }
     }
 
@@ -99,19 +113,41 @@ export default function AppBarClient() {
                     {/* Desktop navigation */}
                     <div className="hidden md:flex items-center gap-1">
                         {navItems.map((item) => {
+                            const href = item.href || `#${item.name}`
+                            // External link is a path change (not hash-only or homepage with hash)
+                            const isHashLink = href.includes('#')
                             const isExternalLink =
-                                item.href?.startsWith('/') && item.href !== '/'
+                                item.href?.startsWith('/') &&
+                                item.href !== '/' &&
+                                !isHashLink
+                            // Check if active:
+                            // - Blog: pathname starts with /blog
+                            // - Home: on homepage with no active section
+                            // - Sections: activeSection matches href
+                            const isActive = isExternalLink
+                                ? currentPath.startsWith(href)
+                                : href === '/'
+                                ? currentPath === '/' && !activeSection
+                                : activeSection === href
                             return (
                                 <motion.a
                                     key={item.name}
-                                    href={item.href || `#${item.name}`}
+                                    href={href}
                                     onClick={
                                         isExternalLink
                                             ? undefined
                                             : (event) =>
-                                                  handleClick(event, item.name)
+                                                  handleClick(
+                                                      event,
+                                                      item.name,
+                                                      href
+                                                  )
                                     }
-                                    className="flex items-center gap-2 px-4 py-2 text-gray-300 hover:text-secondary transition-colors cursor-pointer font-medium rounded-lg hover:bg-secondary/5"
+                                    className={`flex items-center gap-2 px-4 py-2 transition-colors cursor-pointer font-medium rounded-lg hover:bg-secondary/5 ${
+                                        isActive
+                                            ? 'text-secondary bg-secondary/10'
+                                            : 'text-gray-300 hover:text-secondary'
+                                    }`}
                                     whileHover={{ y: -2 }}
                                 >
                                     <item.icon className="w-4 h-4" />
@@ -143,25 +179,43 @@ export default function AppBarClient() {
                                     aria-label="mobile navigation"
                                 >
                                     {navItems.map((item) => {
+                                        const href =
+                                            item.href || `#${item.name}`
+                                        // External link is a path change (not hash-only or homepage with hash)
+                                        const isHashLink = href.includes('#')
                                         const isExternalLink =
                                             item.href?.startsWith('/') &&
-                                            item.href !== '/'
+                                            item.href !== '/' &&
+                                            !isHashLink
+                                        // Check if active:
+                                        // - Blog: pathname starts with /blog
+                                        // - Home: on homepage with no active section
+                                        // - Sections: activeSection matches href
+                                        const isActive = isExternalLink
+                                            ? currentPath.startsWith(href)
+                                            : href === '/'
+                                            ? currentPath === '/' &&
+                                              !activeSection
+                                            : activeSection === href
                                         return (
                                             <a
                                                 key={item.name}
-                                                href={
-                                                    item.href || `#${item.name}`
-                                                }
+                                                href={href}
                                                 onClick={
                                                     isExternalLink
                                                         ? undefined
                                                         : (event) =>
                                                               handleClick(
                                                                   event,
-                                                                  item.name
+                                                                  item.name,
+                                                                  href
                                                               )
                                                 }
-                                                className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:text-secondary hover:bg-secondary/5 rounded-lg transition-all font-medium"
+                                                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all font-medium ${
+                                                    isActive
+                                                        ? 'text-secondary bg-secondary/10'
+                                                        : 'text-gray-300 hover:text-secondary hover:bg-secondary/5'
+                                                }`}
                                             >
                                                 <item.icon className="w-5 h-5" />
                                                 <span>{item.label}</span>

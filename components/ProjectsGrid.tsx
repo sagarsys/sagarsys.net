@@ -12,9 +12,13 @@ import { Button } from './ui/button'
 
 interface ProjectsGridProps {
     projects: MarkdownContent<ProjectFrontmatter>[]
+    instantAnimations?: boolean
 }
 
-export default function ProjectsGrid({ projects }: ProjectsGridProps) {
+export default function ProjectsGrid({
+    projects,
+    instantAnimations = false,
+}: ProjectsGridProps) {
     const [selectedProject, setSelectedProject] =
         useState<MarkdownContent<ProjectFrontmatter> | null>(null)
     const [showAll, setShowAll] = useState(false)
@@ -33,6 +37,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                 variants={staggerContainer}
                 initial="hidden"
                 animate="show"
+                transition={instantAnimations ? { duration: 0 } : undefined}
             >
                 {displayedProjects.map((project) => (
                     <motion.div

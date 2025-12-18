@@ -4,18 +4,23 @@ import { motion } from 'framer-motion'
 import { useColorGradient } from '@/hooks/useColorGradient'
 import GradientText from './GradientText'
 
+import { useHashNavigation } from './HashNavigationProvider'
+
 interface SectionHeadingProps {
     title: string
     subtitle?: string
     centered?: boolean
+    skipAnimation?: boolean
 }
 
 export default function SectionHeading({
     title,
     subtitle,
     centered = true,
+    skipAnimation = false,
 }: SectionHeadingProps) {
     const { colors, mounted } = useColorGradient()
+    const { instantAnimations } = useHashNavigation()
     const gradientColors = mounted
         ? colors
         : { from: '#a78bfa', via: '#f472b6', to: '#a78bfa' }
@@ -25,10 +30,10 @@ export default function SectionHeading({
             className={
                 centered ? 'text-center mb-16 md:mb-24' : 'mb-16 md:mb-24'
             }
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: instantAnimations ? 0 : 0.6 }}
         >
             <div
                 className={`relative ${
