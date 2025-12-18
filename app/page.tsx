@@ -4,7 +4,6 @@ import SkillsShowcase from '@/components/SkillsShowcase'
 import Career from '@/components/Career'
 import ProjectsShowcase from '@/components/ProjectsShowcase'
 import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
 import ScrollTop from '@/components/ScrollTop'
 import ParticleBackground from '@/components/ParticleBackground'
 import ScrollbarSync from '@/components/ScrollbarSync'
@@ -40,7 +39,6 @@ export default function Home() {
                     <Career />
                     <ProjectsShowcase />
                     <Contact contactInfo={contactData?.frontmatter} />
-                    <Footer contactInfo={contactData?.frontmatter} />
                 </main>
             </div>
         </>

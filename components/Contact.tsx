@@ -44,6 +44,44 @@ export default function Contact({ contactInfo }: ContactProps) {
                             gradientColors={gradientColors}
                         />
 
+                        {/* Business Details */}
+                        {contactInfo &&
+                            (contactInfo.kvk || contactInfo.vat) && (
+                                <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 shadow-md">
+                                    <p className="text-sm text-gray-400 mb-4">
+                                        Business Information
+                                    </p>
+                                    <div className="space-y-2 text-sm text-gray-300">
+                                        {contactInfo.tradeName && (
+                                            <p>
+                                                <span className="text-gray-400">
+                                                    Trade Name:
+                                                </span>{' '}
+                                                <span className="text-white font-medium">
+                                                    {contactInfo.tradeName}
+                                                </span>
+                                            </p>
+                                        )}
+                                        {contactInfo.kvk && (
+                                            <p>
+                                                <span className="text-gray-400">
+                                                    KVK:
+                                                </span>{' '}
+                                                {contactInfo.kvk}
+                                            </p>
+                                        )}
+                                        {contactInfo.vat && (
+                                            <p>
+                                                <span className="text-gray-400">
+                                                    BTW/VAT:
+                                                </span>{' '}
+                                                {contactInfo.vat}
+                                            </p>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+
                         {/* Social Links - All platforms */}
                         {contactInfo && (
                             <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 shadow-md">
