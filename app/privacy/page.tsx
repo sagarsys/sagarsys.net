@@ -1,5 +1,5 @@
-import ScrollTop from '@/components/ScrollTop'
-import Breadcrumb from '@/components/Breadcrumb'
+import ScrollTop from '@/components/features/navigation/ScrollTop'
+import Breadcrumb from '@/components/features/navigation/Breadcrumb'
 import { Shield } from 'lucide-react'
 
 export const metadata = {

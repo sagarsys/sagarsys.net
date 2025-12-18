@@ -1,8 +1,8 @@
 import { getBlogPosts, getCategories, getTags } from '@/lib/blog'
-import BlogPostsList from '@/components/BlogPostsList'
-import TagFilters from '@/components/TagFilters'
-import CategoryFilters from '@/components/CategoryFilters'
-import ScrollTop from '@/components/ScrollTop'
+import BlogPostsList from '@/components/features/blog/BlogPostsList'
+import TagFilters from '@/components/features/blog/TagFilters'
+import CategoryFilters from '@/components/features/blog/CategoryFilters'
+import ScrollTop from '@/components/features/navigation/ScrollTop'
 import Image from 'next/image'
 import { Suspense } from 'react'
 

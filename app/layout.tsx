@@ -2,15 +2,16 @@ import type { Metadata, Viewport } from 'next'
 import { Titillium_Web, Play } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
-import HydrationFix from '@/components/HydrationFix'
-import WebVitalsReporter from '@/components/WebVitalsReporter'
-import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration'
+import HydrationFix from '@/components/shared/layout/HydrationFix'
+import WebVitalsReporter from '@/components/features/analytics/WebVitalsReporter'
+import ServiceWorkerRegistration from '@/components/features/analytics/ServiceWorkerRegistration'
 import EngagementTracker from '@/components/EngagementTracker'
-import HashNavigationProvider from '@/components/HashNavigationProvider'
-import AppBarClient from '@/components/AppBarClient'
-import GoogleTagManager from '@/components/GoogleTagManager'
-import CookieConsent from '@/components/CookieConsent'
-import Footer from '@/components/Footer'
+import HashNavigationProvider from '@/components/shared/layout/HashNavigationProvider'
+import AppBarClient from '@/components/features/navigation/AppBarClient'
+import GoogleTagManager from '@/components/features/analytics/GoogleTagManager'
+import CookieConsent from '@/components/features/cookie-consent/CookieConsent'
+import Footer from '@/components/shared/layout/Footer'
+import SkipLink from '@/components/shared/accessibility/SkipLink'
 import {
     generatePersonSchema,
     generateWebSiteSchema,
@@ -182,10 +183,11 @@ export default function RootLayout({
                 <EngagementTracker />
                 {gtmId && <GoogleTagManager gtmId={gtmId} />}
                 <CookieConsent />
+                <SkipLink />
                 <Providers>
                     <HashNavigationProvider>
                         <AppBarClient />
-                        {children}
+                        <main id="main-content">{children}</main>
                         <Footer contactInfo={contactData?.frontmatter} />
                     </HashNavigationProvider>
                 </Providers>
