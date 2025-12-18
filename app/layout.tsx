@@ -7,6 +7,15 @@ import WebVitalsReporter from '@/components/WebVitalsReporter'
 import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration'
 import HashNavigationProvider from '@/components/HashNavigationProvider'
 import AppBarClient from '@/components/AppBarClient'
+import GoogleTagManager from '@/components/GoogleTagManager'
+import CookieConsent from '@/components/CookieConsent'
+import Footer from '@/components/Footer'
+import {
+    generatePersonSchema,
+    generateWebSiteSchema,
+    generateOrganizationSchema,
+} from '@/lib/seo'
+import { getContactInfo } from '@/lib/markdown'
 
 const titilliumWeb = Titillium_Web({
     weight: ['300', '400', '600', '700'],
@@ -23,6 +32,7 @@ const play = Play({
 })
 
 export const metadata: Metadata = {
+    metadataBase: new URL('https://sagarsys.net'),
     title: 'Sagar Sawuck | Senior Fullstack Developer (TypeScript)',
     description:
         'Senior Fullstack Developer (Typescript) with 10+ years of experience. Front-end specialist with full-stack capabilities. Expertise in React, Next.js, Node.js, and modern web technologies. I build exceptional digital experiences for people.',
@@ -44,6 +54,20 @@ export const metadata: Metadata = {
     ],
     authors: [{ name: 'Sagar Sawuck' }],
     creator: 'Sagar Sawuck',
+    alternates: {
+        canonical: 'https://sagarsys.net',
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
     openGraph: {
         type: 'website',
         locale: 'en_US',
@@ -93,13 +117,47 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
+    // Get GTM ID from environment variable
+    const gtmId = process.env.NEXT_PUBLIC_GTM_ID || ''
+
+    // Get contact info for footer
+    const contactData = getContactInfo()
+
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
+                {/* JSON-LD Structured Data */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(generatePersonSchema()),
+                    }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(generateWebSiteSchema()),
+                    }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(generateOrganizationSchema()),
+                    }}
+                />
+
                 {/* DNS Prefetch for external resources */}
                 <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
                 <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
                 <link rel="dns-prefetch" href="https://api.github.com" />
+                <link
+                    rel="dns-prefetch"
+                    href="https://www.googletagmanager.com"
+                />
+                <link
+                    rel="dns-prefetch"
+                    href="https://www.google-analytics.com"
+                />
 
                 {/* Preconnect for critical external resources */}
                 <link
@@ -120,10 +178,13 @@ export default function RootLayout({
                 <HydrationFix />
                 <WebVitalsReporter />
                 <ServiceWorkerRegistration />
+                {gtmId && <GoogleTagManager gtmId={gtmId} />}
+                <CookieConsent />
                 <Providers>
                     <HashNavigationProvider>
                         <AppBarClient />
                         {children}
+                        <Footer contactInfo={contactData?.frontmatter} />
                     </HashNavigationProvider>
                 </Providers>
             </body>

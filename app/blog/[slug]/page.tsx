@@ -9,6 +9,11 @@ import Breadcrumb from '@/components/Breadcrumb'
 import ScrollTop from '@/components/ScrollTop'
 import { Calendar, Clock, Tag } from 'lucide-react'
 import Image from 'next/image'
+import {
+    generateBlogPostMetadata,
+    generateArticleSchema,
+    generateBreadcrumbSchema,
+} from '@/lib/seo'
 
 interface BlogPostPageProps {
     params: Promise<{
@@ -39,19 +44,15 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
         }
     }
 
-    const heroImage = post.frontmatter.image || '/images/blog/default.jpg'
-
-    return {
-        title: `${post.frontmatter.title} | Sagar Sawuck Blog`,
+    return generateBlogPostMetadata({
+        title: post.frontmatter.title,
         description: post.frontmatter.description,
-        openGraph: {
-            title: post.frontmatter.title,
-            description: post.frontmatter.description,
-            type: 'article',
-            publishedTime: post.frontmatter.date,
-            images: [{ url: heroImage }],
-        },
-    }
+        slug: post.slug,
+        image: post.frontmatter.image,
+        date: post.frontmatter.date,
+        categories: post.frontmatter.categories,
+        tags: post.frontmatter.tags,
+    })
 }
 
 /**
@@ -76,9 +77,45 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     )
 
     const heroImage = post.frontmatter.image || '/images/blog/default.jpg'
+    const wordCount = post.content.split(/\s+/).length
+
+    // Generate structured data
+    const articleSchema = generateArticleSchema({
+        title: post.frontmatter.title,
+        description: post.frontmatter.description,
+        url: `https://sagarsys.net/blog/${post.slug}`,
+        image: heroImage,
+        datePublished: post.frontmatter.date,
+        author: post.frontmatter.author || 'Sagar Sawuck',
+        tags: post.frontmatter.tags,
+        categories: post.frontmatter.categories,
+    })
+
+    const breadcrumbSchema = generateBreadcrumbSchema([
+        { name: 'Home', url: 'https://sagarsys.net' },
+        { name: 'Blog', url: 'https://sagarsys.net/blog' },
+        {
+            name: post.frontmatter.title,
+            url: `https://sagarsys.net/blog/${post.slug}`,
+        },
+    ])
 
     return (
         <div className="min-h-screen relative">
+            {/* JSON-LD Structured Data */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(articleSchema),
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbSchema),
+                }}
+            />
+
             {/* Fixed elements */}
             <div id="back-to-top-anchor" className="h-0 min-h-0" />
             <ScrollTop />

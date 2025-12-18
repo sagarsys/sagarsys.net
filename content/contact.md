@@ -2,16 +2,15 @@
 email: 'sagar.sawuck@gmail.com'
 github: 'https://github.com/sagarsys'
 linkedin: 'https://linkedin.com/in/sagarsys/'
-twitter: 'https://twitter.com/sagarsys'
+twitter: 'https://twitter.com/sagavortex'
 instagram: 'https://instagram.com/sagavortex.life'
 youtube: 'https://www.youtube.com/channel/UCZmvx7n2wV69KSXeH8VZcZg'
 soundcloud: 'https://soundcloud.com/sagarsys'
 stackblitz: 'https://stackblitz.com/@sagarsys'
 codeSandbox: 'https://codesandbox.io/u/sagarsys/'
+kvk: '91451396'
+vat: 'NL004897176B58'
+tradeName: 'SagaVortex | Sagarsys web solutions'
 ---
 
 Get in touch via email or let's connect on socials!
-
-
-
-
