@@ -38,15 +38,26 @@ function initDataLayer(hasConsent: boolean = false) {
         window.dataLayer.push(arguments)
     }
 
-    // Set consent state based on whether user has already consented
-    const consentState = hasConsent ? 'granted' : 'denied'
+    // Always start with denied defaults (Google's recommended approach)
     window.gtag('consent', 'default', {
-        analytics_storage: consentState,
-        ad_storage: consentState,
-        ad_user_data: consentState,
-        ad_personalization: consentState,
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
     })
-    console.log(`GTM: Consent initialized as ${consentState}`)
+    console.log('GTM: Consent defaults set to denied')
+
+    // If user has already consented, immediately update to granted
+    // This triggers GA4 tags that wait for consent update event
+    if (hasConsent) {
+        window.gtag('consent', 'update', {
+            analytics_storage: 'granted',
+            ad_storage: 'granted',
+            ad_user_data: 'granted',
+            ad_personalization: 'granted',
+        })
+        console.log('GTM: Consent updated to granted (user already consented)')
+    }
 }
 
 /**
