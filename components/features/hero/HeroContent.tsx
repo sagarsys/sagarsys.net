@@ -12,6 +12,7 @@ interface HeroContentProps {
  * HeroContent component
  *
  * Main text content for hero banner (title, subtitle, tech stack)
+ * Timings reduced for better LCP while keeping Framer Motion animations
  */
 export default function HeroContent({ gradientColors }: HeroContentProps) {
     return (
@@ -26,17 +27,17 @@ export default function HeroContent({ gradientColors }: HeroContentProps) {
                 className="text-secondary text-xl md:text-2xl mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
             >
                 Hi there 👋 &nbsp; I'm
             </motion.p>
 
-            {/* Name */}
+            {/* Name - reduced delay for faster LCP */}
             <motion.h1
                 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.8 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
             >
                 <GradientText
                     gradientColors={gradientColors}
@@ -46,12 +47,12 @@ export default function HeroContent({ gradientColors }: HeroContentProps) {
                 </GradientText>
             </motion.h1>
 
-            {/* Title & Description */}
+            {/* Title & Description - LCP ELEMENT */}
             <motion.h2
                 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-400 mb-8 md:mb-12"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 1.2 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
             >
                 <motion.span
                     className="inline-block"
@@ -105,7 +106,7 @@ export default function HeroContent({ gradientColors }: HeroContentProps) {
                 className="flex flex-wrap justify-center gap-3 mb-8 md:mb-12"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 1.6 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
             >
                 {['TypeScript', 'React', 'Next.js', 'Node.js', 'AWS'].map(
                     (tech, i) => (
@@ -115,8 +116,8 @@ export default function HeroContent({ gradientColors }: HeroContentProps) {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{
-                                delay: 1.8 + i * 0.15,
-                                duration: 0.5,
+                                delay: 0.6 + i * 0.08,
+                                duration: 0.4,
                             }}
                             whileHover={{
                                 y: -2,

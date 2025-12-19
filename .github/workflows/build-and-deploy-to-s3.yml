@@ -44,7 +44,60 @@ jobs:
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                   aws-region: us-east-1
 
-            - name: Deploy to S3
+            - name: Deploy to S3 with cache headers
               run: |
-                  aws s3 sync build/ s3://${{ secrets.AWS_BUCKET_NAME }} --delete
+                  # HTML files: no-cache (always fetch fresh)
+                  aws s3 sync build/ s3://${{ secrets.AWS_BUCKET_NAME }} \
+                    --exclude "*" \
+                    --include "*.html" \
+                    --cache-control "public, max-age=0, must-revalidate" \
+                    --delete
+
+                  # JS/CSS with hashed filenames: cache for 1 year (immutable)
+                  aws s3 sync build/ s3://${{ secrets.AWS_BUCKET_NAME }} \
+                    --exclude "*" \
+                    --include "*.js" \
+                    --include "*.css" \
+                    --cache-control "public, max-age=31536000, immutable"
+
+                  # Images: cache for 1 year
+                  aws s3 sync build/ s3://${{ secrets.AWS_BUCKET_NAME }} \
+                    --exclude "*" \
+                    --include "*.webp" \
+                    --include "*.png" \
+                    --include "*.jpg" \
+                    --include "*.jpeg" \
+                    --include "*.gif" \
+                    --include "*.svg" \
+                    --include "*.ico" \
+                    --cache-control "public, max-age=31536000, immutable"
+
+                  # Fonts: cache for 1 year
+                  aws s3 sync build/ s3://${{ secrets.AWS_BUCKET_NAME }} \
+                    --exclude "*" \
+                    --include "*.woff" \
+                    --include "*.woff2" \
+                    --include "*.ttf" \
+                    --include "*.eot" \
+                    --cache-control "public, max-age=31536000, immutable"
+
+                  # Other files (JSON, XML, etc): cache for 1 day
+                  aws s3 sync build/ s3://${{ secrets.AWS_BUCKET_NAME }} \
+                    --exclude "*.html" \
+                    --exclude "*.js" \
+                    --exclude "*.css" \
+                    --exclude "*.webp" \
+                    --exclude "*.png" \
+                    --exclude "*.jpg" \
+                    --exclude "*.jpeg" \
+                    --exclude "*.gif" \
+                    --exclude "*.svg" \
+                    --exclude "*.ico" \
+                    --exclude "*.woff" \
+                    --exclude "*.woff2" \
+                    --exclude "*.ttf" \
+                    --exclude "*.eot" \
+                    --cache-control "public, max-age=86400"
+
+                  # Invalidate CloudFront cache for immediate updates
                   aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/*"
