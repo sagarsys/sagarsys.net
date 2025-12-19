@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Monitor, Tablet, Smartphone } from 'lucide-react'
+import { Monitor, Tablet, Smartphone, GitCompare } from 'lucide-react'
 import { getWebPImageSrc } from '@/lib/image-utils'
 
 interface DevicesPreviewProps {
@@ -12,17 +12,34 @@ interface DevicesPreviewProps {
         tablet?: string
         mobile?: string
     }
+    beforeImages?: {
+        desktop?: string
+        mobile?: string
+        description?: string
+    }
+    title?: string
 }
 
-export default function DevicesPreview({ images }: DevicesPreviewProps) {
+export default function DevicesPreview({
+    images,
+    beforeImages,
+    title = 'Project',
+}: DevicesPreviewProps) {
     const { desktop, tablet, mobile } = images
+    const [comparisonView, setComparisonView] = useState<'desktop' | 'mobile'>(
+        'desktop'
+    )
 
-    // If only one image type, show it directly
+    // Check if we have before/after comparison available
+    const hasComparison =
+        beforeImages && (beforeImages.desktop || beforeImages.mobile)
+
+    // If only one image type and no comparison, show it directly
     const imageCount = [desktop, tablet, mobile].filter(Boolean).length
 
-    if (imageCount === 0) return null
+    if (imageCount === 0 && !hasComparison) return null
 
-    if (imageCount === 1) {
+    if (imageCount === 1 && !hasComparison) {
         const singleImage = desktop || tablet || mobile
         if (!singleImage) return null
         return (
@@ -43,11 +60,21 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
         )
     }
 
-    // Multiple images - show tabs
+    // Calculate number of tabs needed
+    const tabCount =
+        [desktop, tablet, mobile].filter(Boolean).length +
+        (hasComparison ? 1 : 0)
+
+    // Multiple images or comparison - show tabs
     return (
         <div className="my-8">
             <Tabs defaultValue="desktop" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-6">
+                <TabsList
+                    className={`grid w-full mb-6`}
+                    style={{
+                        gridTemplateColumns: `repeat(${tabCount}, minmax(0, 1fr))`,
+                    }}
+                >
                     {desktop && (
                         <TabsTrigger
                             value="desktop"
@@ -73,6 +100,17 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
                         >
                             <Smartphone className="w-4 h-4" />
                             <span className="hidden sm:inline">Mobile</span>
+                        </TabsTrigger>
+                    )}
+                    {hasComparison && (
+                        <TabsTrigger
+                            value="comparison"
+                            className="flex items-center gap-2"
+                        >
+                            <GitCompare className="w-4 h-4" />
+                            <span className="hidden sm:inline">
+                                Before/After
+                            </span>
                         </TabsTrigger>
                     )}
                 </TabsList>
@@ -124,6 +162,116 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
                                 sizes="(max-width: 768px) 100vw, 375px"
                                 unoptimized
                             />
+                        </div>
+                    </TabsContent>
+                )}
+
+                {/* Before/After Comparison Tab */}
+                {hasComparison && beforeImages && (
+                    <TabsContent value="comparison" className="space-y-4">
+                        {/* Device toggle within comparison */}
+                        <div className="flex justify-center gap-2">
+                            {beforeImages.desktop && desktop && (
+                                <button
+                                    onClick={() => setComparisonView('desktop')}
+                                    className={`px-4 py-2 text-sm rounded-lg transition-colors flex items-center gap-2 ${
+                                        comparisonView === 'desktop'
+                                            ? 'bg-secondary text-black font-medium'
+                                            : 'bg-slate-700/50 text-gray-300 hover:bg-slate-600/50'
+                                    }`}
+                                >
+                                    <Monitor className="w-4 h-4" />
+                                    Desktop
+                                </button>
+                            )}
+                            {beforeImages.mobile && mobile && (
+                                <button
+                                    onClick={() => setComparisonView('mobile')}
+                                    className={`px-4 py-2 text-sm rounded-lg transition-colors flex items-center gap-2 ${
+                                        comparisonView === 'mobile'
+                                            ? 'bg-secondary text-black font-medium'
+                                            : 'bg-slate-700/50 text-gray-300 hover:bg-slate-600/50'
+                                    }`}
+                                >
+                                    <Smartphone className="w-4 h-4" />
+                                    Mobile
+                                </button>
+                            )}
+                        </div>
+
+                        {beforeImages.description && (
+                            <p className="text-sm text-gray-400 italic text-center">
+                                {beforeImages.description}
+                            </p>
+                        )}
+
+                        {/* Side-by-side comparison */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {/* Before */}
+                            <div className="space-y-2">
+                                <span className="inline-block px-3 py-1 text-xs font-semibold bg-red-500/20 text-red-400 rounded-full">
+                                    Before
+                                </span>
+                                <div className="relative rounded-lg overflow-hidden border border-slate-700/50 bg-slate-800/30">
+                                    <Image
+                                        src={getWebPImageSrc(
+                                            comparisonView === 'desktop'
+                                                ? beforeImages.desktop || ''
+                                                : beforeImages.mobile || ''
+                                        )}
+                                        alt={`${title} - Before`}
+                                        width={
+                                            comparisonView === 'mobile'
+                                                ? 400
+                                                : 800
+                                        }
+                                        height={
+                                            comparisonView === 'mobile'
+                                                ? 800
+                                                : 600
+                                        }
+                                        className={`object-contain w-full ${
+                                            comparisonView === 'mobile'
+                                                ? 'max-h-[500px]'
+                                                : 'max-h-[400px]'
+                                        }`}
+                                        unoptimized
+                                    />
+                                </div>
+                            </div>
+
+                            {/* After */}
+                            <div className="space-y-2">
+                                <span className="inline-block px-3 py-1 text-xs font-semibold bg-green-500/20 text-green-400 rounded-full">
+                                    After
+                                </span>
+                                <div className="relative rounded-lg overflow-hidden border border-secondary/30 bg-slate-800/30">
+                                    <Image
+                                        src={getWebPImageSrc(
+                                            comparisonView === 'desktop'
+                                                ? desktop || ''
+                                                : mobile || ''
+                                        )}
+                                        alt={`${title} - After`}
+                                        width={
+                                            comparisonView === 'mobile'
+                                                ? 400
+                                                : 800
+                                        }
+                                        height={
+                                            comparisonView === 'mobile'
+                                                ? 800
+                                                : 600
+                                        }
+                                        className={`object-contain w-full ${
+                                            comparisonView === 'mobile'
+                                                ? 'max-h-[500px]'
+                                                : 'max-h-[400px]'
+                                        }`}
+                                        unoptimized
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </TabsContent>
                 )}

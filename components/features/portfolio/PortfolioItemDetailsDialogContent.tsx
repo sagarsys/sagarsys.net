@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { ExternalLink, Github, Star, GitFork } from 'lucide-react'
 import { arrayToString } from '@/lib/utils'
 import DevicesPreview from './DevicesPreview'
-import BeforeAfterComparison from './BeforeAfterComparison'
 import MarkdownRenderer from '@/components/shared/media/LazyMarkdownRenderer'
 
 interface PortfolioItemData {
@@ -205,18 +204,6 @@ export default function PortfolioItemDetailsDialogContent({
                 </div>
             </div>
 
-            {/* Before/After Comparison for redesign projects */}
-            {beforeImages && (beforeImages.desktop || beforeImages.mobile) && (
-                <BeforeAfterComparison
-                    beforeImages={beforeImages}
-                    afterImages={{
-                        desktop: images.desktop,
-                        mobile: images.mobile,
-                    }}
-                    title={title}
-                />
-            )}
-
             {/* Live Examples */}
             {live && live.length > 0 && (
                 <div className="my-8">
@@ -252,8 +239,12 @@ export default function PortfolioItemDetailsDialogContent({
                 </div>
             )}
 
-            {/* Device Preview - Desktop/Tablet/Mobile */}
-            <DevicesPreview images={images} />
+            {/* Device Preview - Desktop/Tablet/Mobile + Before/After */}
+            <DevicesPreview
+                images={images}
+                beforeImages={beforeImages}
+                title={title}
+            />
         </div>
     )
 }
