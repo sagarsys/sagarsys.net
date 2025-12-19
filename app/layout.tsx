@@ -120,8 +120,9 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
-    // Get GTM ID from environment variable
+    // Get analytics IDs from environment variables
     const gtmId = process.env.NEXT_PUBLIC_GTM_ID || ''
+    const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''
 
     // Get contact info for footer
     const contactData = getContactInfo()
@@ -182,7 +183,12 @@ export default function RootLayout({
                 <WebVitalsReporter />
                 <ServiceWorkerRegistration />
                 <EngagementTracker />
-                {gtmId && <GoogleTagManager gtmId={gtmId} />}
+                {(gtmId || gaMeasurementId) && (
+                    <GoogleTagManager
+                        gtmId={gtmId}
+                        gaMeasurementId={gaMeasurementId}
+                    />
+                )}
                 <CookieConsent />
                 <SkipLink />
                 <Providers>

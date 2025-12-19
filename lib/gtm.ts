@@ -1,7 +1,7 @@
 /**
- * Google Tag Manager (GTM) utilities
+ * Google Tag Manager (GTM) and GA4 utilities
  *
- * Implements lazy loading for GTM to improve initial page load performance
+ * Implements lazy loading for GTM/GA4 to improve initial page load performance
  */
 
 declare global {
@@ -13,6 +13,7 @@ declare global {
 
 let gtmLoaded = false
 let gtmLoadPromise: Promise<void> | null = null
+let ga4Loaded = false
 
 /**
  * Check if Do Not Track is enabled
@@ -184,4 +185,37 @@ export function setupLazyGTM(
  */
 export function isGTMLoaded(): boolean {
     return gtmLoaded && typeof window !== 'undefined' && !!window.dataLayer
+}
+
+/**
+ * Load GA4 directly (bypasses GTM if GA4 tag isn't configured there)
+ * @param measurementId - GA4 Measurement ID (G-XXXXXXX)
+ */
+export function loadGA4(measurementId: string): void {
+    if (typeof window === 'undefined' || ga4Loaded || !measurementId) return
+
+    // Ensure dataLayer and gtag exist
+    window.dataLayer = window.dataLayer || []
+    if (!window.gtag) {
+        window.gtag = function gtag() {
+            window.dataLayer.push(arguments)
+        }
+    }
+
+    // Load gtag.js script
+    const script = document.createElement('script')
+    script.async = true
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`
+
+    script.onload = () => {
+        // Configure GA4
+        window.gtag('js', new Date())
+        window.gtag('config', measurementId, {
+            send_page_view: true,
+        })
+        ga4Loaded = true
+        console.log(`GA4: Loaded and configured with ${measurementId}`)
+    }
+
+    document.head.appendChild(script)
 }
