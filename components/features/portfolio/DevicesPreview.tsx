@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Monitor, Tablet, Smartphone, GitCompare } from 'lucide-react'
 import { getWebPImageSrc } from '@/lib/image-utils'
+import BeforeAfterComparison from './BeforeAfterComparison'
 
 interface DevicesPreviewProps {
     images: {
@@ -26,9 +26,6 @@ export default function DevicesPreview({
     title = 'Project',
 }: DevicesPreviewProps) {
     const { desktop, tablet, mobile } = images
-    const [comparisonView, setComparisonView] = useState<'desktop' | 'mobile'>(
-        'desktop'
-    )
 
     // Check if we have before/after comparison available
     const hasComparison =
@@ -171,117 +168,12 @@ export default function DevicesPreview({
 
                 {/* Before/After Comparison Tab */}
                 {hasComparison && beforeImages && (
-                    <TabsContent value="comparison" className="space-y-4">
-                        {/* Device toggle within comparison */}
-                        <div className="flex justify-center gap-2">
-                            {beforeImages.desktop && desktop && (
-                                <button
-                                    onClick={() => setComparisonView('desktop')}
-                                    className={`px-4 py-2 text-sm rounded-lg transition-colors flex items-center gap-2 ${
-                                        comparisonView === 'desktop'
-                                            ? 'bg-secondary text-black font-medium'
-                                            : 'bg-slate-700/50 text-gray-300 hover:bg-slate-600/50'
-                                    }`}
-                                >
-                                    <Monitor className="w-4 h-4" />
-                                    Desktop
-                                </button>
-                            )}
-                            {beforeImages.mobile && mobile && (
-                                <button
-                                    onClick={() => setComparisonView('mobile')}
-                                    className={`px-4 py-2 text-sm rounded-lg transition-colors flex items-center gap-2 ${
-                                        comparisonView === 'mobile'
-                                            ? 'bg-secondary text-black font-medium'
-                                            : 'bg-slate-700/50 text-gray-300 hover:bg-slate-600/50'
-                                    }`}
-                                >
-                                    <Smartphone className="w-4 h-4" />
-                                    Mobile
-                                </button>
-                            )}
-                        </div>
-
-                        {beforeImages.description && (
-                            <p className="text-sm text-gray-400 italic text-center">
-                                {beforeImages.description}
-                            </p>
-                        )}
-
-                        {/* Side-by-side comparison */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {/* Before */}
-                            <div className="space-y-2">
-                                <span className="inline-block px-3 py-1 text-xs font-semibold bg-red-500/20 text-red-400 rounded-full">
-                                    Before
-                                </span>
-                                <div
-                                    className={`relative rounded-lg overflow-hidden border border-slate-700/50 bg-slate-800/30 ${
-                                        comparisonView === 'mobile'
-                                            ? 'max-w-md mx-auto'
-                                            : ''
-                                    }`}
-                                >
-                                    <Image
-                                        src={`/${
-                                            comparisonView === 'desktop'
-                                                ? beforeImages.desktop || ''
-                                                : beforeImages.mobile || ''
-                                        }`}
-                                        alt={`${title} - Before`}
-                                        width={
-                                            comparisonView === 'mobile'
-                                                ? 375
-                                                : 1200
-                                        }
-                                        height={
-                                            comparisonView === 'mobile'
-                                                ? 812
-                                                : 800
-                                        }
-                                        className="w-full h-auto"
-                                        loading="lazy"
-                                        unoptimized
-                                    />
-                                </div>
-                            </div>
-
-                            {/* After */}
-                            <div className="space-y-2">
-                                <span className="inline-block px-3 py-1 text-xs font-semibold bg-green-500/20 text-green-400 rounded-full">
-                                    After
-                                </span>
-                                <div
-                                    className={`relative rounded-lg overflow-hidden border border-secondary/30 bg-slate-800/30 ${
-                                        comparisonView === 'mobile'
-                                            ? 'max-w-md mx-auto'
-                                            : ''
-                                    }`}
-                                >
-                                    <Image
-                                        src={getWebPImageSrc(
-                                            comparisonView === 'desktop'
-                                                ? desktop || ''
-                                                : mobile || ''
-                                        )}
-                                        alt={`${title} - After`}
-                                        width={
-                                            comparisonView === 'mobile'
-                                                ? 375
-                                                : 1200
-                                        }
-                                        height={
-                                            comparisonView === 'mobile'
-                                                ? 812
-                                                : 800
-                                        }
-                                        className="w-full h-auto"
-                                        loading="lazy"
-                                        unoptimized
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                    <TabsContent value="comparison">
+                        <BeforeAfterComparison
+                            beforeImages={beforeImages}
+                            afterImages={{ desktop, mobile }}
+                            title={title}
+                        />
                     </TabsContent>
                 )}
             </Tabs>
