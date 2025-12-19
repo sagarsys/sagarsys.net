@@ -5,7 +5,7 @@ import Career from '@/components/career/Career'
 import ProjectsShowcase from '@/components/features/portfolio/ProjectsShowcase'
 import Contact from '@/components/features/contact/Contact'
 import ScrollTop from '@/components/features/navigation/ScrollTop'
-import ParticleBackground from '@/components/shared/animations/ParticleBackground'
+import LazyParticleBackground from '@/components/shared/animations/LazyParticleBackground'
 import ScrollbarSync from '@/components/shared/layout/ScrollbarSync'
 import ViewTransitions from './ViewTransitions'
 import { getContactInfo } from '@/lib/markdown'
@@ -17,8 +17,8 @@ export default function Home() {
         <>
             <ViewTransitions />
             <div className="min-h-screen relative">
-                {/* Particle Background - subtle, throughout the page */}
-                <ParticleBackground />
+                {/* Particle Background - lazy-loaded, non-critical for LCP */}
+                <LazyParticleBackground />
 
                 {/* Scrollbar color sync */}
                 <ScrollbarSync />

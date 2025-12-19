@@ -9,7 +9,7 @@ interface AppBarMobileProps {
     isOpen: boolean
     setIsOpen: (open: boolean) => void
     currentPath: string
-    activeSection: string
+    activeSection: string | null
     onItemClick: (
         event: React.MouseEvent<HTMLAnchorElement>,
         navItem: string,

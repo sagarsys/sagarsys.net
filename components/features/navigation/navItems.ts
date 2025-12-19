@@ -48,7 +48,7 @@ export const navItems: NavItem[] = [
 export function isNavItemActive(
     item: NavItem,
     currentPath: string,
-    activeSection: string
+    activeSection: string | null
 ): boolean {
     const { href } = item
     const isHashLink = href.includes('#')

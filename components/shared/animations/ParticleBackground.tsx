@@ -11,6 +11,13 @@ interface Particle {
     hue: number
 }
 
+/**
+ * ParticleBackground - Decorative animated particle canvas
+ * Optimized for performance:
+ * - Cached scrollHeight to avoid layout thrashing
+ * - Reduced particle count on mobile
+ * - Uses requestAnimationFrame for smooth animation
+ */
 export default function ParticleBackground() {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const { theme } = useTheme()
@@ -18,6 +25,8 @@ export default function ParticleBackground() {
     const mouseRef = useRef({ x: 0, y: 0 })
     const scrollRef = useRef(0)
     const hueRef = useRef(0)
+    // Cache scrollHeight to avoid forced reflows on every frame
+    const scrollHeightRef = useRef(0)
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -26,16 +35,25 @@ export default function ParticleBackground() {
         const ctx = canvas.getContext('2d')
         if (!ctx) return
 
+        // Cache scroll height (only update on resize)
+        const updateScrollHeight = () => {
+            scrollHeightRef.current = Math.max(
+                1,
+                document.documentElement.scrollHeight - window.innerHeight
+            )
+        }
+
         // Set canvas size
         const resizeCanvas = () => {
             canvas.width = window.innerWidth
             canvas.height = window.innerHeight
+            updateScrollHeight()
         }
         resizeCanvas()
 
-        // Responsive particle count
+        // Responsive particle count - fewer on mobile for better performance
         const isMobile = window.innerWidth < 768
-        const particleCount = isMobile ? 30 : 60
+        const particleCount = isMobile ? 20 : 50
 
         // Initialize particles
         if (particlesRef.current.length === 0) {
@@ -55,10 +73,8 @@ export default function ParticleBackground() {
         function animate() {
             if (!ctx || !canvas) return
 
-            // Subtle scroll-based opacity
-            const scrollPercent =
-                scrollRef.current /
-                (document.documentElement.scrollHeight - window.innerHeight)
+            // Use cached scrollHeight to avoid layout thrashing
+            const scrollPercent = scrollRef.current / scrollHeightRef.current
             const baseOpacity = 0.7 - scrollPercent * 0.3 // More visible particles
 
             ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -121,7 +137,7 @@ export default function ParticleBackground() {
 
         animate()
 
-        // Event listeners
+        // Event listeners with passive flag for better scroll performance
         const handleResize = () => {
             resizeCanvas()
         }
@@ -130,19 +146,13 @@ export default function ParticleBackground() {
             scrollRef.current = window.scrollY
         }
 
-        const handleMouseMove = (e: MouseEvent) => {
-            mouseRef.current = { x: e.clientX, y: e.clientY }
-        }
-
         window.addEventListener('resize', handleResize, { passive: true })
         window.addEventListener('scroll', handleScroll, { passive: true })
-        window.addEventListener('mousemove', handleMouseMove, { passive: true })
 
         return () => {
             cancelAnimationFrame(animationFrameId)
             window.removeEventListener('resize', handleResize)
             window.removeEventListener('scroll', handleScroll)
-            window.removeEventListener('mousemove', handleMouseMove)
         }
     }, [theme])
 

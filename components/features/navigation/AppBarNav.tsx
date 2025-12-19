@@ -5,7 +5,7 @@ import { navItems, isNavItemActive, type NavItem } from './navItems'
 
 interface AppBarNavProps {
     currentPath: string
-    activeSection: string
+    activeSection: string | null
     onItemClick: (
         event: React.MouseEvent<HTMLAnchorElement>,
         navItem: string,

@@ -16,10 +16,6 @@ image: /images/blog/02-frontend-automation-with-github-actions-and-aws/gha-in-ac
 order: 2
 ---
 
-## Table of Contents
-
-<TOCInline toc={props.toc} exclude={["Table of Contents"]} toHeading={2, 3} />
-
 ## TL;DR The problem: Automating AWS deployments
 
 I recently updated [my developer website](https://sagarsys.net) after almost 3 years! Following an epic battle with the usual node module dependencies update (the struggle is real :D), I ran into another issue: **deployment**.
