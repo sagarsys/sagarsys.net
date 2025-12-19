@@ -65,10 +65,13 @@ export default function DevicesPreview({
         [desktop, tablet, mobile].filter(Boolean).length +
         (hasComparison ? 1 : 0)
 
+    // Determine default tab - prioritize comparison if available
+    const defaultTab = hasComparison ? 'comparison' : 'desktop'
+
     // Multiple images or comparison - show tabs
     return (
         <div className="my-8">
-            <Tabs defaultValue="desktop" className="w-full">
+            <Tabs defaultValue={defaultTab} className="w-full">
                 <TabsList
                     className={`grid w-full mb-6`}
                     style={{
@@ -212,29 +215,32 @@ export default function DevicesPreview({
                                 <span className="inline-block px-3 py-1 text-xs font-semibold bg-red-500/20 text-red-400 rounded-full">
                                     Before
                                 </span>
-                                <div className="relative rounded-lg overflow-hidden border border-slate-700/50 bg-slate-800/30">
+                                <div
+                                    className={`relative rounded-lg overflow-hidden border border-slate-700/50 bg-slate-800/30 ${
+                                        comparisonView === 'mobile'
+                                            ? 'max-w-md mx-auto'
+                                            : ''
+                                    }`}
+                                >
                                     <Image
-                                        src={getWebPImageSrc(
+                                        src={`/${
                                             comparisonView === 'desktop'
                                                 ? beforeImages.desktop || ''
                                                 : beforeImages.mobile || ''
-                                        )}
+                                        }`}
                                         alt={`${title} - Before`}
                                         width={
                                             comparisonView === 'mobile'
-                                                ? 400
-                                                : 800
+                                                ? 375
+                                                : 1200
                                         }
                                         height={
                                             comparisonView === 'mobile'
-                                                ? 800
-                                                : 600
+                                                ? 812
+                                                : 800
                                         }
-                                        className={`object-contain w-full ${
-                                            comparisonView === 'mobile'
-                                                ? 'max-h-[500px]'
-                                                : 'max-h-[400px]'
-                                        }`}
+                                        className="w-full h-auto"
+                                        loading="lazy"
                                         unoptimized
                                     />
                                 </div>
@@ -245,7 +251,13 @@ export default function DevicesPreview({
                                 <span className="inline-block px-3 py-1 text-xs font-semibold bg-green-500/20 text-green-400 rounded-full">
                                     After
                                 </span>
-                                <div className="relative rounded-lg overflow-hidden border border-secondary/30 bg-slate-800/30">
+                                <div
+                                    className={`relative rounded-lg overflow-hidden border border-secondary/30 bg-slate-800/30 ${
+                                        comparisonView === 'mobile'
+                                            ? 'max-w-md mx-auto'
+                                            : ''
+                                    }`}
+                                >
                                     <Image
                                         src={getWebPImageSrc(
                                             comparisonView === 'desktop'
@@ -255,19 +267,16 @@ export default function DevicesPreview({
                                         alt={`${title} - After`}
                                         width={
                                             comparisonView === 'mobile'
-                                                ? 400
-                                                : 800
+                                                ? 375
+                                                : 1200
                                         }
                                         height={
                                             comparisonView === 'mobile'
-                                                ? 800
-                                                : 600
+                                                ? 812
+                                                : 800
                                         }
-                                        className={`object-contain w-full ${
-                                            comparisonView === 'mobile'
-                                                ? 'max-h-[500px]'
-                                                : 'max-h-[400px]'
-                                        }`}
+                                        className="w-full h-auto"
+                                        loading="lazy"
                                         unoptimized
                                     />
                                 </div>
