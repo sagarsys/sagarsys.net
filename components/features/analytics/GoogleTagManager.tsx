@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { setupLazyGTM } from '@/lib/gtm'
+import { setupLazyGTM, updateGTMConsent } from '@/lib/gtm'
 import { hasConsent, getConsent } from '@/lib/consent'
 
 interface GoogleTagManagerProps {
@@ -53,6 +53,11 @@ export default function GoogleTagManager({
         console.log('GTM: Consent given, initializing')
         // Setup lazy loading
         setupLazyGTM(gtmId, delayMs)
+
+        // Signal consent to GTM after a short delay to ensure GTM is ready
+        setTimeout(() => {
+            updateGTMConsent(true)
+        }, delayMs + 500)
     }, [gtmId, delayMs, consentGiven])
 
     // Noscript fallback for non-JavaScript users (only if consent given)

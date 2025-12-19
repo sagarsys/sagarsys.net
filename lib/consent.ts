@@ -4,6 +4,8 @@
  * Handles GDPR-compliant cookie consent for analytics and tracking
  */
 
+import { updateGTMConsent } from './gtm'
+
 export type ConsentPreferences = {
     analytics: boolean
     timestamp: number
@@ -48,6 +50,10 @@ export function setConsent(preferences: Omit<ConsentPreferences, 'timestamp'>) {
 
     try {
         localStorage.setItem(CONSENT_KEY, JSON.stringify(data))
+
+        // Update GTM consent state
+        updateGTMConsent(preferences.analytics)
+
         // Dispatch event for components to react to consent changes
         window.dispatchEvent(
             new CustomEvent('consentChange', { detail: preferences })

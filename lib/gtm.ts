@@ -29,13 +29,38 @@ export function isDNTEnabled(): boolean {
 }
 
 /**
- * Initialize GTM data layer
+ * Initialize GTM data layer with consent defaults
  */
 function initDataLayer() {
     window.dataLayer = window.dataLayer || []
     window.gtag = function gtag() {
         window.dataLayer.push(arguments)
     }
+
+    // Set default consent state (denied until user accepts)
+    window.gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500,
+    })
+}
+
+/**
+ * Update consent state - call this when user accepts cookies
+ */
+export function updateGTMConsent(granted: boolean) {
+    if (typeof window === 'undefined' || !window.gtag) return
+
+    const state = granted ? 'granted' : 'denied'
+    window.gtag('consent', 'update', {
+        analytics_storage: state,
+        ad_storage: state,
+        ad_user_data: state,
+        ad_personalization: state,
+    })
+    console.log(`GTM: Consent updated to ${state}`)
 }
 
 /**
