@@ -85,6 +85,7 @@ export function loadGTM(
 
     // Respect Do Not Track
     if (isDNTEnabled()) {
+        console.log('GTM: Do Not Track is enabled, skipping analytics')
         return Promise.resolve()
     }
 

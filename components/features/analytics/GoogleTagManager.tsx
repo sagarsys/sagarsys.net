@@ -44,6 +44,8 @@ export default function GoogleTagManager({
         // Only load analytics if user has given consent
         if (!consentGiven) return
 
+        console.log('GTM: Initializing analytics')
+
         // Setup GTM lazy loading if GTM ID provided
         if (gtmId) {
             setupLazyGTM(gtmId, delayMs, true)
