@@ -99,6 +99,12 @@ export function generateOrganizationSchema() {
         description: SITE_CONFIG.description,
         url: SITE_CONFIG.url,
         logo: SITE_CONFIG.ogImage,
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Badhoevedorp',
+            addressRegion: 'North Holland',
+            addressCountry: 'NL',
+        },
         sameAs: [
             SITE_CONFIG.links.github,
             SITE_CONFIG.links.linkedin,
