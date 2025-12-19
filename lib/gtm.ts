@@ -29,16 +29,15 @@ export function isDNTEnabled(): boolean {
 }
 
 /**
- * Initialize GTM data layer with consent state
- * @param hasConsent - Whether user has already given consent
+ * Initialize GTM data layer with consent defaults (always denied initially)
  */
-function initDataLayer(hasConsent: boolean = false) {
+function initDataLayer() {
     window.dataLayer = window.dataLayer || []
     window.gtag = function gtag() {
         window.dataLayer.push(arguments)
     }
 
-    // Always start with denied defaults (Google's recommended approach)
+    // Set consent defaults to denied - this MUST happen before GTM loads
     window.gtag('consent', 'default', {
         analytics_storage: 'denied',
         ad_storage: 'denied',
@@ -46,18 +45,6 @@ function initDataLayer(hasConsent: boolean = false) {
         ad_personalization: 'denied',
     })
     console.log('GTM: Consent defaults set to denied')
-
-    // If user has already consented, immediately update to granted
-    // This triggers GA4 tags that wait for consent update event
-    if (hasConsent) {
-        window.gtag('consent', 'update', {
-            analytics_storage: 'granted',
-            ad_storage: 'granted',
-            ad_user_data: 'granted',
-            ad_personalization: 'granted',
-        })
-        console.log('GTM: Consent updated to granted (user already consented)')
-    }
 }
 
 /**
@@ -105,8 +92,8 @@ export function loadGTM(
 
     gtmLoadPromise = new Promise<void>((resolve, reject) => {
         try {
-            // Initialize data layer with consent state
-            initDataLayer(hasConsent)
+            // Initialize data layer with consent defaults (denied)
+            initDataLayer()
 
             // Create script element
             const script = document.createElement('script')
@@ -116,6 +103,24 @@ export function loadGTM(
             script.onload = () => {
                 gtmLoaded = true
                 console.log('GTM: Script loaded successfully')
+
+                // IMPORTANT: Send consent update AFTER GTM has loaded
+                // This ensures GTM processes the consent change and fires GA4 tags
+                if (hasConsent) {
+                    // Small delay to ensure GTM has fully initialized
+                    setTimeout(() => {
+                        window.gtag('consent', 'update', {
+                            analytics_storage: 'granted',
+                            ad_storage: 'granted',
+                            ad_user_data: 'granted',
+                            ad_personalization: 'granted',
+                        })
+                        console.log(
+                            'GTM: Consent updated to granted (post-load)'
+                        )
+                    }, 100)
+                }
+
                 resolve()
             }
 
