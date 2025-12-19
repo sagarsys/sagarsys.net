@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Download, ArrowDown } from 'lucide-react'
+import { Download } from 'lucide-react'
 import { trackDownload } from '@/lib/analytics'
 import SocialLinks from '@/components/features/contact/SocialLinks'
 import type { ContactInfo } from '@/types'
@@ -30,11 +30,6 @@ export default function HeroActions({
         if (projectsSection) {
             projectsSection.scrollIntoView({ behavior: 'smooth' })
         }
-    }
-
-    const scrollToAbout = () => {
-        const about = document.getElementById('about')
-        about?.scrollIntoView({ behavior: 'smooth' })
     }
 
     return (
@@ -105,23 +100,6 @@ export default function HeroActions({
                         />
                     </motion.div>
                 )}
-
-            {/* Scroll Indicator */}
-            <motion.div
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-600 cursor-pointer"
-                animate={{ y: [0, 10, 0] }}
-                transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                }}
-                onClick={scrollToAbout}
-            >
-                <div className="flex flex-col items-center gap-2">
-                    <span className="text-sm font-medium">Scroll Down</span>
-                    <ArrowDown className="w-6 h-6" />
-                </div>
-            </motion.div>
         </>
     )
 }

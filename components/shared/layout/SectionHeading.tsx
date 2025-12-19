@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useColorGradient } from '@/hooks/useColorGradient'
 import GradientText from '@/components/shared/animations/GradientText'
 
-import { useHashNavigation } from './HashNavigationProvider'
+import { useHashNavigation } from '@/components/shared/layout/HashNavigationProvider'
 
 interface SectionHeadingProps {
     title: string

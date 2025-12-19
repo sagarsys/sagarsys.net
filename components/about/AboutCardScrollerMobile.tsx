@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import CardDotNavigation from './CardDotNavigation'
+import CardDotNavigation from '@/components/CardDotNavigation'
 import GradientText from '@/components/shared/animations/GradientText'
-import MarkdownRenderer from './LazyMarkdownRenderer'
+import MarkdownRenderer from '@/components/shared/media/LazyMarkdownRenderer'
 
 interface AboutCard {
     title: string

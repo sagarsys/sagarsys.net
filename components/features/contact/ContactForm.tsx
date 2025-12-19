@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Send } from 'lucide-react'
-import { Button } from '@/components/shared/ui/button'
+import { Button } from '@/components/ui/button'
 import { trackFormSubmit } from '@/lib/analytics'
 
 interface ContactFormProps {

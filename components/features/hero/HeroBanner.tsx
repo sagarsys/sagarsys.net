@@ -1,5 +1,7 @@
 'use client'
 
+import { motion } from 'framer-motion'
+import { ArrowDown } from 'lucide-react'
 import { useColorGradient } from '@/hooks/useColorGradient'
 import { useMouseParallax } from '@/hooks/useMouseParallax'
 import HeroOrbs from './HeroOrbs'
@@ -42,12 +44,36 @@ export default function HeroBanner({
                 gradientColors={gradientColors}
             />
 
-            <HeroContent gradientColors={gradientColors} />
+            {/* Main content wrapper for proper vertical stacking */}
+            <div className="relative z-10 flex flex-col items-center">
+                <HeroContent gradientColors={gradientColors} />
 
-            <HeroActions
-                gradientColors={gradientColors}
-                contactInfo={{ email, github, linkedin }}
-            />
+                <HeroActions
+                    gradientColors={gradientColors}
+                    contactInfo={{ email, github, linkedin }}
+                />
+            </div>
+
+            {/* Scroll Indicator - positioned relative to section */}
+            <motion.div
+                className="absolute bottom-20 left-1/2 -translate-x-1/2 text-gray-600 cursor-pointer z-10"
+                animate={{ y: [0, 10, 0] }}
+                transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                }}
+                onClick={() => {
+                    document
+                        .getElementById('about')
+                        ?.scrollIntoView({ behavior: 'smooth' })
+                }}
+            >
+                <div className="flex flex-col items-center gap-2">
+                    <span className="text-sm font-medium">Scroll Down</span>
+                    <ArrowDown className="w-6 h-6" />
+                </div>
+            </motion.div>
         </section>
     )
 }

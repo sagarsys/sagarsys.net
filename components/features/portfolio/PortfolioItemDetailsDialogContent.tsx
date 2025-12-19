@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { arrayToString } from '@/lib/utils'
 import DevicesPreview from './DevicesPreview'
-import MarkdownRenderer from './LazyMarkdownRenderer'
+import MarkdownRenderer from '@/components/shared/media/LazyMarkdownRenderer'
 
 interface PortfolioItemData {
     images: {

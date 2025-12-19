@@ -35,6 +35,7 @@ jobs:
               env:
                   NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
                   NEXT_PUBLIC_GTM_ID: ${{ secrets.NEXT_PUBLIC_GTM_ID }}
+                  GITHUB_TOKEN: ${{ secrets.GH_API_TOKEN }}
 
             - name: Configure AWS credentials
               uses: aws-actions/configure-aws-credentials@v4

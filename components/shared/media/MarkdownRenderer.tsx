@@ -22,6 +22,9 @@ interface MarkdownRendererProps {
 }
 
 export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
+    // Pre-process content to remove unsupported MDX components like <TOCInline>
+    const processedContent = children.replace(/<TOCInline[^>]*\/>/g, '')
+
     // Custom components to match existing styling
     const components: Components = {
         // H2 headings: ## Heading
@@ -42,19 +45,23 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
                 {children}
             </p>
         ),
-        // Unordered lists - CSS will handle nested styling
+        // Unordered lists - arrow markers via CSS
         ul: ({ children }) => (
-            <ul className="space-y-2 my-4 list-none markdown-ul">{children}</ul>
+            <ul className="space-y-2 my-4 max-w-full markdown-ul">
+                {children}
+            </ul>
         ),
-        // Ordered lists - CSS will handle nested styling
+        // Ordered lists - native decimal numbering with overflow handling
         ol: ({ children }) => (
-            <ol className="space-y-2 my-4 ml-6 markdown-ol">{children}</ol>
+            <ol className="space-y-2 my-4 max-w-full markdown-ol pl-6">
+                {children}
+            </ol>
         ),
-        // List items with custom markers - CSS will handle different levels
+        // List items - flex layout with arrow marker and overflow handling
         li: ({ children }) => (
-            <li className="markdown-li flex gap-3 text-lg text-gray-100">
+            <li className="markdown-li flex gap-2 text-lg text-gray-100 [&>ul]:mt-2 [&>ol]:mt-2">
                 <span className="markdown-li-marker mt-1 flex-shrink-0">→</span>
-                <span>{children}</span>
+                <div className="min-w-0 flex-1 overflow-x-auto">{children}</div>
             </li>
         ),
         // Links - with special styling for PDF files
@@ -115,8 +122,11 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
                         margin: '1rem 0',
                         fontSize: '0.875rem',
                         lineHeight: '1.5',
+                        overflowX: 'auto',
+                        maxWidth: '100%',
                     }}
                     PreTag="div"
+                    wrapLongLines={false}
                 >
                     {String(children).replace(/\n$/, '')}
                 </SyntaxHighlighter>
@@ -133,8 +143,10 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
     }
 
     return (
-        <div className="prose prose-invert max-w-none">
-            <ReactMarkdown components={components}>{children}</ReactMarkdown>
+        <div className="prose prose-invert max-w-none overflow-x-hidden">
+            <ReactMarkdown components={components}>
+                {processedContent}
+            </ReactMarkdown>
         </div>
     )
 }

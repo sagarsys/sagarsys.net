@@ -141,9 +141,22 @@
   position: absolute;
 }
 
-/* Ordered lists - different numbering styles for nested levels */
+/* Ordered lists - show numbers, hide arrow markers */
 .markdown-ol {
   list-style-type: decimal;
+  list-style-position: outside;
+}
+
+.markdown-ol > .markdown-li {
+  display: list-item;
+}
+
+.markdown-ol > .markdown-li > .markdown-li-marker {
+  display: none;
+}
+
+.markdown-ol > .markdown-li > div {
+  display: inline;
 }
 
 .markdown-ol .markdown-ol {
@@ -152,6 +165,15 @@
 
 .markdown-ol .markdown-ol .markdown-ol {
   list-style-type: lower-roman;
+}
+
+/* Ordered list marker color */
+.markdown-ol {
+  color: rgb(167, 139, 250); /* secondary color for numbers */
+}
+
+.markdown-ol > .markdown-li {
+  color: rgb(243, 244, 246); /* gray-100 for text */
 }
 
 /* ============================================

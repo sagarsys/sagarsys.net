@@ -6,7 +6,7 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-} from '@/components/shared/ui/dialog'
+} from '@/components/ui/dialog'
 import PortfolioItemDetailsDialogContent from './PortfolioItemDetailsDialogContent'
 
 interface PortfolioItemData {
@@ -80,9 +80,10 @@ export default function PortfolioItemDetailsDialog({
         <Dialog open={open} onOpenChange={handleClose}>
             <DialogContent
                 ref={dialogContentRef}
-                className="md:max-w-full md:max-h-screen md:h-screen md:w-screen md:rounded-none md:translate-x-0 md:translate-y-0 md:left-0 md:top-0 md:data-[state=open]:slide-in-from-left-0 md:data-[state=open]:slide-in-from-top-0 md:data-[state=closed]:slide-out-to-left-0 md:data-[state=closed]:slide-out-to-top-0 max-w-6xl max-h-[90vh] overflow-y-auto"
+                aria-describedby={undefined}
+                className="md:max-w-full md:max-h-screen md:h-screen md:w-screen md:rounded-none md:translate-x-0 md:translate-y-0 md:left-0 md:top-0 md:data-[state=open]:slide-in-from-left-0 md:data-[state=open]:slide-in-from-top-0 md:data-[state=closed]:slide-out-to-left-0 md:data-[state=closed]:slide-out-to-top-0 max-w-6xl max-h-[90vh] flex flex-col overflow-hidden"
             >
-                <DialogHeader className="md:px-8 md:pt-6">
+                <DialogHeader className="md:px-8 md:pt-6 flex-shrink-0">
                     <DialogTitle className="text-2xl">
                         {titleLink ? (
                             <a
@@ -98,10 +99,10 @@ export default function PortfolioItemDetailsDialog({
                         )}
                     </DialogTitle>
                 </DialogHeader>
-                <div className="border-t border-border my-4 md:mx-8" />
+                <div className="border-t border-border my-4 md:mx-8 flex-shrink-0" />
                 <div
                     ref={contentRef}
-                    className="md:overflow-y-auto md:h-[calc(100vh-140px)] md:px-8 md:pb-8"
+                    className="overflow-y-auto flex-1 md:px-8 md:pb-8"
                 >
                     <PortfolioItemDetailsDialogContent item={item} />
                 </div>

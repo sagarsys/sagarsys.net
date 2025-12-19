@@ -1,7 +1,7 @@
 'use client'
 
-import { Sheet, SheetContent, SheetTrigger } from '@/components/shared/ui/sheet'
-import { Button } from '@/components/shared/ui/button'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
 import { navItems, isNavItemActive } from './navItems'
 

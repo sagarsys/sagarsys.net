@@ -5,7 +5,7 @@ import CareerTimelineItem from './CareerTimelineItem'
 import { motion, AnimatePresence } from 'framer-motion'
 import { staggerContainer } from '@/lib/animations'
 import type { MarkdownContent, ExperienceFrontmatter } from '@/types'
-import { Button } from '@/components/shared/ui/button'
+import { Button } from '@/components/ui/button'
 import { ChevronDown } from 'lucide-react'
 
 interface CareerTimelineProps {

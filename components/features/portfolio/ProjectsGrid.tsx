@@ -5,8 +5,8 @@ import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { staggerContainer } from '@/lib/animations'
 import type { MarkdownContent, ProjectFrontmatter } from '@/types'
-import PortfolioItemDetailsDialog from '@/components/PortfolioItemDetailsDialog'
-import { Button } from '@/components/shared/ui/button'
+import PortfolioItemDetailsDialog from './PortfolioItemDetailsDialog'
+import { Button } from '@/components/ui/button'
 import ProjectCard from './ProjectCard'
 
 interface ProjectsGridProps {

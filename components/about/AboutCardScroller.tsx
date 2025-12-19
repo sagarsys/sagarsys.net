@@ -3,10 +3,10 @@
 import { useState, useRef, useEffect } from 'react'
 import { useColorGradient } from '@/hooks/useColorGradient'
 import AboutCardScrollerMobile from './AboutCardScrollerMobile'
-import CardNavigationArrows from './CardNavigationArrows'
-import CardDotNavigation from './CardDotNavigation'
+import CardNavigationArrows from '@/components/CardNavigationArrows'
+import CardDotNavigation from '@/components/CardDotNavigation'
 import GradientText from '@/components/shared/animations/GradientText'
-import MarkdownRenderer from './LazyMarkdownRenderer'
+import MarkdownRenderer from '@/components/shared/media/LazyMarkdownRenderer'
 
 interface AboutCard {
     title: string

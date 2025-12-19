@@ -52,6 +52,7 @@ export const metadata: Metadata = {
         'Performance Optimization',
         'AI Integration',
         'Badhoevedorp',
+        'Amsterdam',
         'Netherlands',
     ],
     authors: [{ name: 'Sagar Sawuck' }],

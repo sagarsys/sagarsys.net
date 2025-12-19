@@ -2,12 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from '@/components/shared/ui/tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Monitor, Tablet, Smartphone } from 'lucide-react'
 import { getWebPImageSrc } from '@/lib/image-utils'
 

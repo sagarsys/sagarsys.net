@@ -6,7 +6,7 @@ import EmailCard from './EmailCard'
 import ContactForm from './ContactForm'
 import SocialLinks from '@/components/features/contact/SocialLinks'
 import { useColorGradient } from '@/hooks/useColorGradient'
-import { useHashNavigation } from './HashNavigationProvider'
+import { useHashNavigation } from '@/components/shared/layout/HashNavigationProvider'
 import type { ContactInfo } from '@/types'
 
 interface ContactProps {

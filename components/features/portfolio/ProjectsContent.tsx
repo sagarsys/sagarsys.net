@@ -1,8 +1,8 @@
 'use client'
 
-import ProjectsGrid from './features/portfolio/ProjectsGrid'
+import ProjectsGrid from './ProjectsGrid'
 import SectionHeading from '@/components/shared/layout/SectionHeading'
-import { useHashNavigation } from './HashNavigationProvider'
+import { useHashNavigation } from '@/components/shared/layout/HashNavigationProvider'
 import type { MarkdownContent, ProjectFrontmatter } from '@/types'
 
 interface ProjectsContentProps {

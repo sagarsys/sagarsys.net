@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import SectionHeading from '@/components/shared/layout/SectionHeading'
-import { Button } from '@/components/shared/ui/button'
+import { Button } from '@/components/ui/button'
 import { SKILLS } from '@/config/skills'
 
 export default function SkillsShowcase() {

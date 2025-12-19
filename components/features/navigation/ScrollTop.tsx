@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { handleScrollToTop } from '@/lib/utils'
-import { Button } from '@/components/shared/ui/button'
+import { Button } from '@/components/ui/button'
 import { ChevronUp } from 'lucide-react'
 
 interface ScrollTopProps {

@@ -3,7 +3,7 @@
 import { Briefcase } from 'lucide-react'
 import { motion } from 'framer-motion'
 import type { ExperienceFrontmatter } from '@/types'
-import MarkdownRenderer from './LazyMarkdownRenderer'
+import MarkdownRenderer from '@/components/shared/media/LazyMarkdownRenderer'
 
 interface CareerTimelineItemProps {
     event: ExperienceFrontmatter

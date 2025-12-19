@@ -166,7 +166,6 @@ Next up, we need to configure the [Github secrets](https://docs.github.com/en/ac
      - Name: `AWS_ACCESS_KEY_ID`, Value: `[Your Access Key ID]`
      - Name: `AWS_SECRET_ACCESS_KEY`, Value: `[Your Secret Access Key]`
 2. Use in GitHub Actions:
-
    - In the Github workflow, the AWS action can now be use these secrets like this:
 
      ```yaml
