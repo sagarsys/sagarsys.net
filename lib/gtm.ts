@@ -29,22 +29,24 @@ export function isDNTEnabled(): boolean {
 }
 
 /**
- * Initialize GTM data layer with consent defaults
+ * Initialize GTM data layer with consent state
+ * @param hasConsent - Whether user has already given consent
  */
-function initDataLayer() {
+function initDataLayer(hasConsent: boolean = false) {
     window.dataLayer = window.dataLayer || []
     window.gtag = function gtag() {
         window.dataLayer.push(arguments)
     }
 
-    // Set default consent state (denied until user accepts)
+    // Set consent state based on whether user has already consented
+    const consentState = hasConsent ? 'granted' : 'denied'
     window.gtag('consent', 'default', {
-        analytics_storage: 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        wait_for_update: 500,
+        analytics_storage: consentState,
+        ad_storage: consentState,
+        ad_user_data: consentState,
+        ad_personalization: consentState,
     })
+    console.log(`GTM: Consent initialized as ${consentState}`)
 }
 
 /**
@@ -65,8 +67,13 @@ export function updateGTMConsent(granted: boolean) {
 
 /**
  * Load GTM script
+ * @param gtmId - Google Tag Manager container ID
+ * @param hasConsent - Whether user has already given consent
  */
-export function loadGTM(gtmId: string): Promise<void> {
+export function loadGTM(
+    gtmId: string,
+    hasConsent: boolean = false
+): Promise<void> {
     // Return existing promise if already loading
     if (gtmLoadPromise) return gtmLoadPromise
 
@@ -87,8 +94,8 @@ export function loadGTM(gtmId: string): Promise<void> {
 
     gtmLoadPromise = new Promise<void>((resolve, reject) => {
         try {
-            // Initialize data layer
-            initDataLayer()
+            // Initialize data layer with consent state
+            initDataLayer(hasConsent)
 
             // Create script element
             const script = document.createElement('script')
@@ -120,8 +127,15 @@ export function loadGTM(gtmId: string): Promise<void> {
 /**
  * Setup lazy loading for GTM
  * Loads after user interaction or after a delay
+ * @param gtmId - Google Tag Manager container ID
+ * @param delayMs - Delay in milliseconds before loading
+ * @param hasConsent - Whether user has already given consent
  */
-export function setupLazyGTM(gtmId: string, delayMs: number = 5000) {
+export function setupLazyGTM(
+    gtmId: string,
+    delayMs: number = 5000,
+    hasConsent: boolean = false
+) {
     if (typeof window === 'undefined') return
 
     let loaded = false
@@ -129,7 +143,7 @@ export function setupLazyGTM(gtmId: string, delayMs: number = 5000) {
     const load = () => {
         if (loaded) return
         loaded = true
-        loadGTM(gtmId)
+        loadGTM(gtmId, hasConsent)
     }
 
     // Load after delay
