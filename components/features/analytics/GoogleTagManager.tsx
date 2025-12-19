@@ -44,8 +44,6 @@ export default function GoogleTagManager({
         // Only load analytics if user has given consent
         if (!consentGiven) return
 
-        console.log('GTM: Initializing analytics')
-
         // Setup GTM lazy loading if GTM ID provided
         if (gtmId) {
             setupLazyGTM(gtmId, delayMs, true)
@@ -58,6 +56,8 @@ export default function GoogleTagManager({
                 loadGA4(gaMeasurementId)
             }, delayMs)
         }
+
+        console.log('Analytics: Loaded')
     }, [gtmId, gaMeasurementId, delayMs, consentGiven])
 
     // Noscript fallback for non-JavaScript users (only if consent given)
