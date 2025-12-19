@@ -27,6 +27,9 @@ const SIZES = {
     large: 1200,
 }
 
+// WebP format limits
+const WEBP_MAX_DIMENSION = 16383
+
 /**
  * Check if file is an image
  */
@@ -63,8 +66,26 @@ async function optimizeImage(imagePath) {
 
         console.log(`🖼️  Optimizing ${imagePath}...`)
 
-        const image = sharp(imagePath)
+        let image = sharp(imagePath)
         const metadata = await image.metadata()
+
+        // Check if image exceeds WebP dimension limits
+        const needsResize =
+            metadata.width > WEBP_MAX_DIMENSION ||
+            metadata.height > WEBP_MAX_DIMENSION
+
+        if (needsResize) {
+            console.log(
+                `   ⚠️  Image exceeds WebP max dimension (${WEBP_MAX_DIMENSION}px), resizing...`
+            )
+            // Resize to fit within WebP limits while maintaining aspect ratio
+            image = sharp(imagePath).resize({
+                width: Math.min(metadata.width, WEBP_MAX_DIMENSION),
+                height: Math.min(metadata.height, WEBP_MAX_DIMENSION),
+                fit: 'inside',
+                withoutEnlargement: true,
+            })
+        }
 
         // Generate WebP version (main optimization)
         const webpPath = getOptimizedFilename(imagePath, 'webp')
