@@ -45,7 +45,6 @@ function initDataLayer() {
         ad_user_data: 'denied',
         ad_personalization: 'denied',
     })
-    console.log('GTM: Consent defaults set to denied')
 }
 
 /**
@@ -61,7 +60,6 @@ export function updateGTMConsent(granted: boolean) {
         ad_user_data: state,
         ad_personalization: state,
     })
-    console.log(`GTM: Consent updated to ${state}`)
 }
 
 /**
@@ -87,7 +85,6 @@ export function loadGTM(
 
     // Respect Do Not Track
     if (isDNTEnabled()) {
-        console.log('GTM: Do Not Track is enabled, skipping analytics')
         return Promise.resolve()
     }
 
@@ -103,12 +100,10 @@ export function loadGTM(
 
             script.onload = () => {
                 gtmLoaded = true
-                console.log('GTM: Script loaded successfully')
 
-                // IMPORTANT: Send consent update AFTER GTM has loaded
+                // Send consent update AFTER GTM has loaded
                 // This ensures GTM processes the consent change and fires GA4 tags
                 if (hasConsent) {
-                    // Small delay to ensure GTM has fully initialized
                     setTimeout(() => {
                         window.gtag('consent', 'update', {
                             analytics_storage: 'granted',
@@ -116,9 +111,6 @@ export function loadGTM(
                             ad_user_data: 'granted',
                             ad_personalization: 'granted',
                         })
-                        console.log(
-                            'GTM: Consent updated to granted (post-load)'
-                        )
                     }, 100)
                 }
 
@@ -214,7 +206,6 @@ export function loadGA4(measurementId: string): void {
             send_page_view: true,
         })
         ga4Loaded = true
-        console.log(`GA4: Loaded and configured with ${measurementId}`)
     }
 
     document.head.appendChild(script)

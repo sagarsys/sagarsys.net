@@ -42,12 +42,7 @@ export default function GoogleTagManager({
 
     useEffect(() => {
         // Only load analytics if user has given consent
-        if (!consentGiven) {
-            console.log('GTM: Waiting for user consent')
-            return
-        }
-
-        console.log('GTM: Consent given, initializing analytics')
+        if (!consentGiven) return
 
         // Setup GTM lazy loading if GTM ID provided
         if (gtmId) {
