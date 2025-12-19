@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { ExternalLink, Github, Star, GitFork } from 'lucide-react'
 import { arrayToString } from '@/lib/utils'
 import DevicesPreview from './DevicesPreview'
 import MarkdownRenderer from '@/components/shared/media/LazyMarkdownRenderer'
@@ -12,6 +13,11 @@ interface PortfolioItemData {
         tablet?: string
         desktop?: string
     }
+    beforeImages?: {
+        desktop?: string
+        mobile?: string
+        description?: string
+    }
     title: string
     description: string
     tech?: string[]
@@ -21,6 +27,11 @@ interface PortfolioItemData {
     roleDescription?: string
     challenges?: string[]
     video?: string
+    liveUrl?: string
+    githubUrl?: string
+    stars?: number
+    forks?: number
+    source?: 'markdown' | 'github'
     live?: Array<{
         title: string
         link: string
@@ -38,6 +49,7 @@ export default function PortfolioItemDetailsDialogContent({
 }: PortfolioItemDetailsDialogContentProps) {
     const {
         images,
+        beforeImages,
         title,
         description,
         tech,
@@ -48,6 +60,11 @@ export default function PortfolioItemDetailsDialogContent({
         challenges,
         video,
         live,
+        liveUrl,
+        githubUrl,
+        stars,
+        forks,
+        source,
     } = item
 
     return (
@@ -80,6 +97,50 @@ export default function PortfolioItemDetailsDialogContent({
                         )}
                     </div>
                 </div>
+
+                {/* Project Links and Stats */}
+                {(liveUrl || githubUrl || source === 'github') && (
+                    <div className="flex flex-wrap items-center justify-center gap-4 py-2">
+                        {liveUrl && (
+                            <a
+                                href={liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/20 text-secondary rounded-lg hover:bg-secondary/30 transition-colors font-medium"
+                            >
+                                <ExternalLink className="w-4 h-4" />
+                                View Live Site
+                            </a>
+                        )}
+                        {githubUrl && (
+                            <a
+                                href={githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-4 py-2 bg-slate-700/50 text-gray-200 rounded-lg hover:bg-slate-600/50 transition-colors font-medium"
+                            >
+                                <Github className="w-4 h-4" />
+                                View Source Code
+                            </a>
+                        )}
+                        {source === 'github' && (
+                            <div className="flex items-center gap-4 text-sm text-gray-400">
+                                {typeof stars === 'number' && (
+                                    <span className="flex items-center gap-1.5">
+                                        <Star className="w-4 h-4 fill-yellow-500/80 text-yellow-500" />
+                                        {stars} stars
+                                    </span>
+                                )}
+                                {typeof forks === 'number' && forks > 0 && (
+                                    <span className="flex items-center gap-1.5">
+                                        <GitFork className="w-4 h-4" />
+                                        {forks} forks
+                                    </span>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                )}
 
                 {/* Text content section - centered column on desktop */}
                 <div className="space-y-4 md:max-w-3xl md:mx-auto">
@@ -178,8 +239,12 @@ export default function PortfolioItemDetailsDialogContent({
                 </div>
             )}
 
-            {/* Device Preview - Desktop/Tablet/Mobile */}
-            <DevicesPreview images={images} />
+            {/* Device Preview - Desktop/Tablet/Mobile + Before/After */}
+            <DevicesPreview
+                images={images}
+                beforeImages={beforeImages}
+                title={title}
+            />
         </div>
     )
 }

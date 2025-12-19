@@ -55,6 +55,7 @@ async function transformGitHubToProject(
                 tablet: config.overrides?.images?.tablet,
                 desktop: config.overrides?.images?.desktop,
             },
+            beforeImages: config.overrides?.beforeImages,
             order: config.order,
             // GitHub-specific metadata
             source: 'github',

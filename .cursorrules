@@ -74,6 +74,12 @@ When responding to questions, use the Chain of Thought method. Outline a detaile
 **Code change = potential for bugs and technical debt.**
 **Always commit files logically when asked**
 
+# Git Commit Rules
+
+**NEVER commit and push without asking the user first.**
+**Always ask for confirmation before running git commit or git push.**
+**Group related changes into logical commits.**
+
 * Follow user's requirements carefully & to the letter.
 * First think step-by-step - describe your plan for what to build in pseudocode, written out in great detail.
 * Confirm, then write the code!

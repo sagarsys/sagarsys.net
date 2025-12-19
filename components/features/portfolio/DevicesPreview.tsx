@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Monitor, Tablet, Smartphone } from 'lucide-react'
+import { Monitor, Tablet, Smartphone, GitCompare } from 'lucide-react'
 import { getWebPImageSrc } from '@/lib/image-utils'
+import BeforeAfterComparison from './BeforeAfterComparison'
 
 interface DevicesPreviewProps {
     images: {
@@ -12,17 +12,31 @@ interface DevicesPreviewProps {
         tablet?: string
         mobile?: string
     }
+    beforeImages?: {
+        desktop?: string
+        mobile?: string
+        description?: string
+    }
+    title?: string
 }
 
-export default function DevicesPreview({ images }: DevicesPreviewProps) {
+export default function DevicesPreview({
+    images,
+    beforeImages,
+    title = 'Project',
+}: DevicesPreviewProps) {
     const { desktop, tablet, mobile } = images
 
-    // If only one image type, show it directly
+    // Check if we have before/after comparison available
+    const hasComparison =
+        beforeImages && (beforeImages.desktop || beforeImages.mobile)
+
+    // If only one image type and no comparison, show it directly
     const imageCount = [desktop, tablet, mobile].filter(Boolean).length
 
-    if (imageCount === 0) return null
+    if (imageCount === 0 && !hasComparison) return null
 
-    if (imageCount === 1) {
+    if (imageCount === 1 && !hasComparison) {
         const singleImage = desktop || tablet || mobile
         if (!singleImage) return null
         return (
@@ -43,11 +57,24 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
         )
     }
 
-    // Multiple images - show tabs
+    // Calculate number of tabs needed
+    const tabCount =
+        [desktop, tablet, mobile].filter(Boolean).length +
+        (hasComparison ? 1 : 0)
+
+    // Determine default tab - prioritize comparison if available
+    const defaultTab = hasComparison ? 'comparison' : 'desktop'
+
+    // Multiple images or comparison - show tabs
     return (
         <div className="my-8">
-            <Tabs defaultValue="desktop" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-6">
+            <Tabs defaultValue={defaultTab} className="w-full">
+                <TabsList
+                    className={`grid w-full mb-6`}
+                    style={{
+                        gridTemplateColumns: `repeat(${tabCount}, minmax(0, 1fr))`,
+                    }}
+                >
                     {desktop && (
                         <TabsTrigger
                             value="desktop"
@@ -73,6 +100,17 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
                         >
                             <Smartphone className="w-4 h-4" />
                             <span className="hidden sm:inline">Mobile</span>
+                        </TabsTrigger>
+                    )}
+                    {hasComparison && (
+                        <TabsTrigger
+                            value="comparison"
+                            className="flex items-center gap-2"
+                        >
+                            <GitCompare className="w-4 h-4" />
+                            <span className="hidden sm:inline">
+                                Before/After
+                            </span>
                         </TabsTrigger>
                     )}
                 </TabsList>
@@ -125,6 +163,17 @@ export default function DevicesPreview({ images }: DevicesPreviewProps) {
                                 unoptimized
                             />
                         </div>
+                    </TabsContent>
+                )}
+
+                {/* Before/After Comparison Tab */}
+                {hasComparison && beforeImages && (
+                    <TabsContent value="comparison">
+                        <BeforeAfterComparison
+                            beforeImages={beforeImages}
+                            afterImages={{ desktop, mobile }}
+                            title={title}
+                        />
                     </TabsContent>
                 )}
             </Tabs>
