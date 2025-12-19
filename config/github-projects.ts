@@ -29,6 +29,12 @@ export interface CuratedGitHubProject {
             tablet?: string
             desktop?: string
         }
+        /** Before images for comparison (e.g., redesign projects) */
+        beforeImages?: {
+            desktop?: string
+            mobile?: string
+            description?: string
+        }
     }
 }
 
@@ -84,22 +90,47 @@ export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
         repo: 'sagarsys/bengalivo-redesign',
         order: 5,
         featured: true,
-        customDescription:
-            'A modern, elegant website for a Bengal cat breeder built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui. Features admin dashboard, multi-language support, and comprehensive SEO optimization.',
+        customDescription: `**Complete website redesign and migration** from WordPress to Next.js for a Bengal cat breeder.
+
+## My Role
+I handled the entire project end-to-end: requirements gathering, UI/UX design, frontend development, backend implementation, and deployment.
+
+## Key Highlights
+- **Full-stack development**: Built with Next.js 15, TypeScript, Tailwind CSS, and shadcn/ui
+- **Admin dashboard**: Custom CMS with SQLite database using Prisma ORM and Google OAuth authentication
+- **Internationalization**: Multi-language support (English/Dutch) with react-i18next
+- **SEO optimized**: Comprehensive meta tags, structured data, and sitemap generation
+- **Responsive design**: Fully responsive with beautiful Framer Motion animations
+- **Modern architecture**: Server components, API routes, and optimized image loading
+
+## The Problem
+The original WordPress site had a **completely broken mobile experience** (see before screenshot) and outdated design that didn't reflect the premium quality of the Bengal cat breeder.
+
+## The Solution
+A complete redesign with a modern black and gold theme, elegant typography, and smooth animations that creates a premium feel matching the quality of the cats being bred.`,
         overrides: {
-            title: 'Bengalivo - Premium Bengal Cat Breeder Website',
+            title: 'Bengalivo - Complete Website Redesign',
             tech: [
                 'Next.js',
                 'TypeScript',
                 'Tailwind CSS',
                 'shadcn/ui',
                 'Prisma',
+                'SQLite',
                 'NextAuth.js',
+                'Framer Motion',
+                'i18n',
             ],
             images: {
                 thumb: 'images/github/bengalivo.png',
                 mobile: 'images/github/bengalivo-mobile.png',
                 desktop: 'images/github/bengalivo-desktop.png',
+            },
+            beforeImages: {
+                desktop: 'images/github/bengalivo-desktop-before.png',
+                mobile: 'images/github/bengalivo-mobile-before.png',
+                description:
+                    'Original WordPress site with broken mobile layout and outdated design',
             },
         },
     },

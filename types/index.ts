@@ -28,6 +28,12 @@ export interface ProjectFrontmatter {
         tablet?: string
         desktop?: string
     }
+    /** Before images for comparison (e.g., redesign projects) */
+    beforeImages?: {
+        desktop?: string
+        mobile?: string
+        description?: string
+    }
     video?: string
     order: number
     // GitHub-specific fields (populated from API)
