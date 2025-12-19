@@ -45,3 +45,8 @@ public/images/**/*.webp
 .specstory/history/2025-12-03_14-49Z-untitled.md
 .specstory/**/*.md
 tsconfig.tsbuildinfo
+
+# Auto-generated files
+next-env.d.ts
+public/sw.js
+public/workbox-*.js
