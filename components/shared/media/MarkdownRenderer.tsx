@@ -2,6 +2,7 @@
 
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import type { Components } from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { nightOwl as theme } from 'react-syntax-highlighter/dist/cjs/styles/prism'
@@ -140,11 +141,40 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
         em: ({ children }) => (
             <em className="italic text-gray-100">{children}</em>
         ),
+        // Tables - GitHub Flavored Markdown support
+        table: ({ children }) => (
+            <div className="overflow-x-auto my-6">
+                <table className="min-w-full border-collapse border border-slate-600 rounded-lg overflow-hidden">
+                    {children}
+                </table>
+            </div>
+        ),
+        thead: ({ children }) => (
+            <thead className="bg-slate-800/80">{children}</thead>
+        ),
+        tbody: ({ children }) => (
+            <tbody className="divide-y divide-slate-700">{children}</tbody>
+        ),
+        tr: ({ children }) => (
+            <tr className="hover:bg-slate-700/30 transition-colors">
+                {children}
+            </tr>
+        ),
+        th: ({ children }) => (
+            <th className="px-4 py-3 text-left text-sm font-semibold text-secondary border-b border-slate-600">
+                {children}
+            </th>
+        ),
+        td: ({ children }) => (
+            <td className="px-4 py-3 text-sm text-gray-100 border-slate-700">
+                {children}
+            </td>
+        ),
     }
 
     return (
         <div className="prose prose-invert max-w-none overflow-x-hidden">
-            <ReactMarkdown components={components}>
+            <ReactMarkdown components={components} remarkPlugins={[remarkGfm]}>
                 {processedContent}
             </ReactMarkdown>
         </div>
