@@ -4,9 +4,8 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import type { Components } from 'react-markdown'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { nightOwl as theme } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import { Download, FileText } from 'lucide-react'
+import CodeBlock from './CodeBlock'
 
 /**
  * MarkdownRenderer - Lazy-loaded markdown renderer with custom styling
@@ -15,8 +14,10 @@ import { Download, FileText } from 'lucide-react'
  * Tailwind classes that match the existing design system.
  *
  * Code Splitting: This component is lazy-loaded using Next.js dynamic() imports
- * in the parent components, so the ~60KB react-markdown library is NOT included
- * in the initial bundle. It only loads when markdown content needs to be rendered.
+ * in the parent components, so it's NOT included in the initial bundle.
+ *
+ * Syntax Highlighting: Uses Shiki (~30KB) instead of react-syntax-highlighter (~200KB+)
+ * for much lighter bundle size with the same VS Code-quality highlighting.
  */
 interface MarkdownRendererProps {
     children: string
@@ -28,21 +29,27 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
 
     // Custom components to match existing styling
     const components: Components = {
-        // H2 headings: ## Heading
+        // H2 headings: ## Heading - larger with more breathing room
         h2: ({ children }) => (
-            <h2 className="text-2xl font-bold text-white mt-8 mb-4">
+            <h2 className="text-3xl font-bold text-white mt-12 mb-5 border-b border-slate-700/50 pb-3">
                 {children}
             </h2>
         ),
         // H3 headings: ### Heading
         h3: ({ children }) => (
-            <h3 className="text-xl font-bold text-white mt-6 mb-3">
+            <h3 className="text-2xl font-semibold text-white mt-10 mb-4">
                 {children}
             </h3>
         ),
-        // Paragraphs
+        // H4 headings: #### Heading
+        h4: ({ children }) => (
+            <h4 className="text-xl font-semibold text-gray-100 mt-8 mb-3">
+                {children}
+            </h4>
+        ),
+        // Paragraphs - more breathing room
         p: ({ children }) => (
-            <p className="text-lg text-gray-100 leading-relaxed mb-4">
+            <p className="text-lg text-gray-100 leading-relaxed mb-6">
                 {children}
             </p>
         ),
@@ -98,10 +105,14 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
         code: ({ children, className, ...props }) => {
             // Check if it's a code block (has className with language) or inline code
             const match = /language-(\w+)/.exec(className || '')
-            const language = match ? match[1] : ''
-            const isInline = !className || !match
+            const language = match ? match[1] : 'text'
+            const codeString = String(children)
 
-            if (isInline) {
+            // Code blocks have newlines, inline code doesn't
+            const hasNewlines = codeString.includes('\n')
+            const isCodeBlock = hasNewlines || className
+
+            if (!isCodeBlock) {
                 return (
                     <code
                         className="px-2 py-1 bg-slate-700 rounded text-sm text-secondary"
@@ -112,25 +123,12 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
                 )
             }
 
-            // Code blocks with syntax highlighting
+            // Code blocks with Shiki syntax highlighting
             return (
-                <SyntaxHighlighter
+                <CodeBlock
+                    code={codeString.replace(/\n$/, '')}
                     language={language}
-                    style={theme as any}
-                    customStyle={{
-                        borderRadius: '0.5rem',
-                        padding: '1rem',
-                        margin: '1rem 0',
-                        fontSize: '0.875rem',
-                        lineHeight: '1.5',
-                        overflowX: 'auto',
-                        maxWidth: '100%',
-                    }}
-                    PreTag="div"
-                    wrapLongLines={false}
-                >
-                    {String(children).replace(/\n$/, '')}
-                </SyntaxHighlighter>
+                />
             )
         },
         // Bold text

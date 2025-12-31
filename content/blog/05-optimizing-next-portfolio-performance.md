@@ -162,10 +162,12 @@ So I pushed back:
 
 The result? A **middle ground** that worked:
 
-- **Greeting**: 0.5s → 0.3s
-- **Name (h1)**: 0.8s → 0.3s
-- **Title (h2 - LCP)**: 1.2s → **0.5s** ← the critical one
-- **Tech pills**: 1.6s → 0.5s
+| Element | Original Delay | Optimized Delay |
+|---------|----------------|-----------------|
+| Greeting | 0.5s | 0.3s |
+| Name (h1) | 0.8s | 0.3s |
+| Title (h2 - LCP) | 1.2s | **0.5s** ← critical |
+| Tech pills | 1.6s | 0.5s |
 
 The LCP delay dropped from 1.2s to 0.5s - still animated, but not blocking the Lighthouse score.
 
