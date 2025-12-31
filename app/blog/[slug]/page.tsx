@@ -120,8 +120,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div id="back-to-top-anchor" className="h-0 min-h-0" />
             <ScrollTop />
 
-            {/* Hero Banner with Overlay - mt-16 accounts for fixed header */}
-            <div className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden">
+            {/* Hero Banner with Overlay - pulls up under navbar for full-bleed effect */}
+            <div className="relative w-full min-h-[60vh] md:min-h-[70vh] -mt-[60px] overflow-hidden">
                 <Image
                     src={heroImage}
                     alt={post.frontmatter.title}
@@ -130,12 +130,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     priority
                 />
                 {/* Gradient overlay for better text readability */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
 
                 {/* Content overlay */}
                 <div className="absolute inset-0 flex items-end">
-                    <div className="w-full bg-black/70 backdrop-blur-sm border-t border-slate-700/50">
-                        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
+                    <div className="w-full max-w-4xl mx-auto bg-black/40 backdrop-blur-sm border-t border-slate-700/30 shadow-[0_0_30px_15px_rgba(0,0,0,0.4)] rounded-t-3xl">
+                        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
                             {/* Categories */}
                             {post.frontmatter.categories &&
                                 post.frontmatter.categories.length > 0 && (
