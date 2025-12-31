@@ -2,6 +2,7 @@ import { getBlogPost, getBlogPosts } from '@/lib/blog'
 import { calculateReadingTime } from '@/lib/reading-time'
 import { notFound } from 'next/navigation'
 import LazyMarkdownRenderer from '@/components/shared/media/LazyMarkdownRenderer'
+import LazyParticleBackground from '@/components/shared/animations/LazyParticleBackground'
 import ShareButtons from '@/components/features/blog/ShareButtons'
 import FloatingShareButton from '@/components/features/blog/FloatingShareButton'
 import FloatingBackButton from '@/components/features/blog/FloatingBackButton'
@@ -119,6 +120,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {/* Fixed elements */}
             <div id="back-to-top-anchor" className="h-0 min-h-0" />
             <ScrollTop />
+
+            {/* Particle Background */}
+            <LazyParticleBackground />
 
             {/* Hero Banner with Overlay - pulls up under navbar for full-bleed effect */}
             <div className="relative w-full min-h-[60vh] md:min-h-[70vh] -mt-[60px] overflow-hidden">

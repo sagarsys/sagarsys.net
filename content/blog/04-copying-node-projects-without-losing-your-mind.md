@@ -56,7 +56,7 @@ node copy-projects.js
 
 Follow the prompts, grab a coffee (a quick one this time), and you're done!
 
-```
+```bash
 🚀 Project Copy Script
 ======================================================================
 Enter the source directory path: /Users/me/projects
