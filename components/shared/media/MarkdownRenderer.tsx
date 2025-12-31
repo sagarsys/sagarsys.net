@@ -67,8 +67,8 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
         ),
         // List items - flex layout with arrow marker and overflow handling
         li: ({ children }) => (
-            <li className="markdown-li flex gap-2 text-lg text-gray-100 [&>ul]:mt-2 [&>ol]:mt-2">
-                <span className="markdown-li-marker mt-1 flex-shrink-0">→</span>
+            <li className="markdown-li flex gap-2 text-lg text-gray-100 [&>ul]:mt-2 [&>ol]:mt-2 [&>p]:mb-0 [&>div>p]:mb-0">
+                <span className="markdown-li-marker flex-shrink-0">→</span>
                 <div className="min-w-0 flex-1 overflow-x-auto">{children}</div>
             </li>
         ),
@@ -139,6 +139,14 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
         em: ({ children }) => (
             <em className="italic text-gray-100">{children}</em>
         ),
+        // Blockquotes - styled with left border accent
+        blockquote: ({ children }) => (
+            <blockquote className="my-6 pl-6 border-l-4 border-secondary/60 bg-slate-800/30 py-4 pr-4 rounded-r-lg italic text-gray-200 [&>p]:mb-0 [&>p:last-child]:mb-0">
+                {children}
+            </blockquote>
+        ),
+        // Horizontal rule
+        hr: () => <hr className="my-10 border-slate-700/50" />,
         // Tables - GitHub Flavored Markdown support
         table: ({ children }) => (
             <div className="overflow-x-auto my-6">
