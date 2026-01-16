@@ -21,8 +21,8 @@ export default function HeroActions({
     contactInfo,
 }: HeroActionsProps) {
     const handleDownloadCV = () => {
-        trackDownload('Sagar-Sawuck-CV-2025.pdf', 'pdf')
-        window.open('/assets/Sagar-Sawuck-CV-2025.pdf', '_blank')
+        trackDownload('Sagar-Sawuck-CV-Jan-26.pdf', 'pdf')
+        window.open('/assets/Sagar-Sawuck-CV-Jan-26.pdf', '_blank')
     }
 
     const scrollToProjects = () => {
