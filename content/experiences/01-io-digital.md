@@ -2,7 +2,7 @@
 title: 'Software Specialist (Senior Frontend Consultant)'
 company: 'iO Digital'
 startDate: 'Jan 2025'
-endDate: 'Present'
+endDate: 'Dec 2025'
 location: 'Amsterdam, NL'
 description:
     'Building and innovating internal tools with AI-augmented interfaces'
