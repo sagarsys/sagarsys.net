@@ -163,7 +163,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                             </h1>
 
                             {/* Description - hidden on mobile */}
-                            <p className="hidden md:block text-xl text-gray-200 mb-6">
+                            <p className="hidden md:block text-xl text-secondary font-bold mb-6">
                                 {post.frontmatter.description}
                             </p>
 

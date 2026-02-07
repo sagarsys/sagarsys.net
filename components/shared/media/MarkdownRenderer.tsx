@@ -29,6 +29,12 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
 
     // Custom components to match existing styling
     const components: Components = {
+        // H1 headings: # Heading - larger with more breathing room
+        h1: ({ children }) => (
+            <h1 className="text-4xl font-bold text-white mt-12 mb-5 border-b border-slate-700/50 pb-3">
+                {children}
+            </h1>
+        ),
         // H2 headings: ## Heading - larger with more breathing room
         h2: ({ children }) => (
             <h2 className="text-3xl font-bold text-white mt-12 mb-5 border-b border-slate-700/50 pb-3">
@@ -68,7 +74,7 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
         // List items - flex layout with arrow marker and overflow handling
         li: ({ children }) => (
             <li className="markdown-li flex gap-2 text-lg text-gray-100 [&>ul]:mt-2 [&>ol]:mt-2 [&>p]:mb-0 [&>div>p]:mb-0">
-                <span className="markdown-li-marker flex-shrink-0">→</span>
+                <span className="markdown-li-marker shrink-0">→</span>
                 <div className="min-w-0 flex-1 overflow-x-auto">{children}</div>
             </li>
         ),
