@@ -1,5 +1,5 @@
 ---
-title: Building a Tiny Redux-Like Store in React (By Accident) While Shipping a Music Player 
+title: Advanced React state management… via a music player 
 description: A story-driven, step-by-step guide to building an external store with React Context + useSyncExternalStore, using a music player as the hands-on problem. Includes shuffle/repeat, selectors/actions, and a seek bar without render spam. 
 date: 2026-02-09 
 author: Sagar Sawuck 
@@ -15,7 +15,7 @@ tags:
   - Architecture 
   - Audio 
 featured: true 
-image: /images/blog/07-building-a-redux-like-store-react/cover.png
+image: /images/blog/07-advanced-react-state-management-music-player/cover.png
 order: 7 
 ---
 
@@ -33,7 +33,7 @@ This article is a practical, story-driven deep dive into how those ideas fit tog
 
 ## Defining the problem — what are we actually building?
 
-![Building music interface in Amsterdam](/images/blog/07-building-a-redux-like-store-react/1.webp)
+![Building music interface in Amsterdam](/images/blog/07-advanced-react-state-management-music-player/1.webp)
 
 At a distance, a music player looks simple:
 
@@ -109,7 +109,7 @@ Instead of storing state *inside* React, we move it **outside** and let React su
 
 This is exactly what `useSyncExternalStore` was designed for.
 
-![React component flow with external store](/images/blog/07-building-a-redux-like-store-react/2.png)
+![React component flow with external store](/images/blog/07-advanced-react-state-management-music-player/2.png)
 _External Store Flow_
 
 ### Iteration 3 — Selectors and actions
@@ -199,7 +199,7 @@ At its core, it’s just:
 
 ### State shape – why these fields exist
 
-![UI subscriptions map overview](/images/blog/07-building-a-redux-like-store-react/3.png)
+![UI subscriptions map overview](/images/blog/07-advanced-react-state-management-music-player/3.png)
 _UI subscriptions map overview_
 
 These three fields are *the* core identity & lookup trick:
@@ -279,7 +279,7 @@ A selector hook answers one question:
 
 ### The idea in one sentence
 
-![State management pipeline flowchart](/images/blog/07-building-a-redux-like-store-react/4.png)
+![State management pipeline flowchart](/images/blog/07-advanced-react-state-management-music-player/4.png)
  _Selector Pipeline_
 
 We subscribe to store updates, **compute a selected slice**, and only trigger a re-render if that slice actually changed.
@@ -378,7 +378,7 @@ Why this works well:
 * Dragging the slider dispatches `seek()` to the store
 * Only components selecting `currentTime` re-render frequently
 
-![Seek Bar Loop](/images/blog/07-building-a-redux-like-store-react/5.png)
+![Seek Bar Loop](/images/blog/07-advanced-react-state-management-music-player/5.png)
 _Seek Bar Loop_
 
 ## Challenge #2: Shuffle/loop logic without chaos (predictable playback)
@@ -394,7 +394,7 @@ That’s why shuffle keeps two pieces of state:
 
 That’s it. Once you have those two, “next” and “prev” become predictable. So “next” becomes “move forward in the shuffled order”, not “roll the dice again”.
 
-![Shuffle Mechanics](/images/blog/07-building-a-redux-like-store-react/7.png)
+![Shuffle Mechanics](/images/blog/07-advanced-react-state-management-music-player/7.png)
 _Shuffle Mechanics_
 
 ### Loop mechanics
@@ -407,7 +407,7 @@ Loop modes (`off | all | one`) influence what happens at the edges:
 
 Cycling loop mode is a small UX detail that becomes a big code-quality test if it’s spread across components.
 
-![Loop Modes](/images/blog/07-building-a-redux-like-store-react/6.png)
+![Loop Modes](/images/blog/07-advanced-react-state-management-music-player/6.png)
 _Loop Modes_
 
 ## UI integration — keeping components boring (on purpose)
@@ -455,14 +455,14 @@ A few important subtleties:
 
 So playback progress updates won’t force your entire UI to re-render — only the parts that care.
 
-![UI Subscriptions Map](/images/blog/07-building-a-redux-like-store-react/10.png)
+![UI Subscriptions Map](/images/blog/07-advanced-react-state-management-music-player/10.png)
 _UI Subscriptions Map_
 
 ## A full flow: what happens when `next` is clicked?
 
 Let’s do a practical “click → sound” timeline for `playNext`, because this is where the architecture clicks into place.
 
-![Click to Playback Timeline](/images/blog/07-building-a-redux-like-store-react/8.png)
+![Click to Playback Timeline](/images/blog/07-advanced-react-state-management-music-player/8.png)
 _Click to Playback Timeline_
 
 ### Step 0: the UI event
@@ -598,4 +598,4 @@ You’ve unlocked the ancient developer achievement:
 GitHub repo: https://github.com/sagarsys/react-music-player     
 Demo: https://sagar-music-player.vercel.app/
 
-![music player screenshot](/images/blog/07-building-a-redux-like-store-react/screenshot.png)
+![music player screenshot](/images/blog/07-advanced-react-state-management-music-player/screenshot.png)
