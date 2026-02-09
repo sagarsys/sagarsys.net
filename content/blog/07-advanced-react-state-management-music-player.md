@@ -33,7 +33,7 @@ This article is a practical, story-driven deep dive into how those ideas fit tog
 
 ## Defining the problem — what are we actually building?
 
-![Building music interface in Amsterdam](/images/blog/07-advanced-react-state-management-music-player/1.webp)
+![Building music interface in Amsterdam](/images/blog/07-advanced-react-state-management-music-player/cover.png)
 
 At a distance, a music player looks simple:
 
