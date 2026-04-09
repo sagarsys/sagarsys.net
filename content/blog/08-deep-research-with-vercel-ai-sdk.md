@@ -1,6 +1,6 @@
 ---
 title: Building a Deep Research Chatbot with Vercel AI SDK
-description: "A practical 7–10 minute walkthrough of building a deep-research chatbot with Vercel AI SDK + Exa: query expansion, web sourcing, recursive research, and a streamed markdown report."
+description: Build a deep research chatbot with Vercel AI SDK, from query generation and web search to recursive follow-ups, structured output and streamed reports.
 date: 2026-04-08
 author: Sagar Sawuck
 categories:
