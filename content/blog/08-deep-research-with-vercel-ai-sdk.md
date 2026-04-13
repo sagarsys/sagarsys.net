@@ -166,8 +166,7 @@ The recursive function in `agents.ts` expands the research by:
 - generating queries (breadth)
 - processing them
 - generating follow-ups
-- calling itself with depth 
-- 1 and reduced breadth
+- calling itself with depth - 1 and reduced breadth
 
 This is the core “deep research” behavior, and it’s intentionally bounded: in `stream-utils.ts`, depth and breadth are set to 2 by default.
 
