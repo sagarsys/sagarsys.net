@@ -21,7 +21,7 @@ order: 8
 
 # Building a Deep Research Chatbot with Vercel AI SDK
 
-I’ve been playing around with the **Vercel AI SDK** lately, and it’s one of those tools that feels friendly surprisingly quickly. It gives you a clean TypeScript-first way to work with models, structured output, and “agent-ish” flows without turning your app into a spaghetti buffet. The official docs describe it as a TypeScript toolkit for building AI apps and agents across frameworks like React and Next.js. citeturn17view0
+I’ve been playing around with the **Vercel AI SDK** lately, and it’s one of those tools that feels friendly surprisingly quickly. It gives you a clean TypeScript-first way to work with models, structured output, and “agent-ish” flows without turning your app into a spaghetti buffet. The official docs describe it as a TypeScript toolkit for building AI apps and agents across frameworks like React and Next.js.
 
 In this post we’ll build a **deep research chatbot**: you ask a question, it fans out into search queries, pulls web sources, extracts learnings + follow-up questions, and finally writes a **markdown report**—while streaming progress updates back to the UI. 
 
@@ -166,8 +166,9 @@ The recursive function in `agents.ts` expands the research by:
 - generating queries (breadth)
 - processing them
 - generating follow-ups
-- calling itself with depth - 1 and reduced breadth
-- 
+- calling itself with depth 
+- 1 and reduced breadth
+
 This is the core “deep research” behavior, and it’s intentionally bounded: in `stream-utils.ts`, depth and breadth are set to 2 by default.
 
 That default is a good starting point for most people:
