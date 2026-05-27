@@ -531,28 +531,36 @@ This separation felt natural:
 ```txt
 React frontend on Vercel
         -> calls
-Spring Boot API on Render
+Dockerized Spring Boot API on Render
         -> connects to
 PostgreSQL on Render
 ```
 
-The Java app itself was **not packaged with Docker**. Render can build and run the Spring Boot app directly from the repository, using the project’s build configuration.
+### Render: Java + Spring Boot + PostgreSQL
 
-At a high level, the backend deployment involved:
+The backend is prepared for a **Docker-based deployment on Render**. This keeps the Java runtime predictable, which is useful because the project uses **Java 26**. Instead of relying on whatever Java version the platform provides, the Dockerfile defines the runtime environment explicitly.
 
-- Building the Spring Boot app on Render
-- Setting environment variables for database connection details
-- Connecting the API to a managed PostgreSQL database
-- Making sure CORS allowed the Vercel frontend URL
+The deployment setup includes:
 
-Docker was still useful locally, but mainly for development infrastructure:
+- `Dockerfile` and `.dockerignore` for packaging the Spring Boot API
+- `render.yaml` for the Render service configuration
+- GitHub Actions workflows for CI and deployment
+- Render PostgreSQL for the production database
+
+At a high level, the CI/CD flow is:
 
 ```txt
-Local development
-React app -> Spring Boot API -> PostgreSQL in Docker
+Pull request / push to main
+        -> run tests
+        -> verify Docker build
+        -> deploy to Render after CI succeeds
 ```
 
-That made it easy to spin up a local database without installing PostgreSQL directly on my machine.
+Render automatic deploys are disabled, so GitHub Actions can control production deployment through a Render deploy hook.
+
+A small caveat: if you use Render’s free tier, the backend may sleep after inactivity, so the first request can be slower.
+
+### Vercel: React + Vite
 
 For the frontend, Vercel was straightforward:
 
@@ -561,6 +569,7 @@ For the frontend, Vercel was straightforward:
 - Deploy from GitHub
 - Let Vercel handle previews and production builds
 
+---
 The important lesson here was simple:
 
 > **A full-stack app is not complete until the deployment story works too.**
