@@ -153,10 +153,6 @@ A complete redesign with a modern black and gold theme, elegant typography, and 
                 'LLMs / Agents',
                 'React',
             ],
-            images: {
-                thumb: 'images/github/vercel-ai-deep-research-chatbot.png',
-                desktop: 'images/github/vercel-ai-deep-research-chatbot.png',
-            },
         },
     },
     {
@@ -240,6 +236,15 @@ A complete redesign with a modern black and gold theme, elegant typography, and 
         overrides: {
             title: 'React Feedback Popup',
             tech: ['React', 'TypeScript', 'Component Library'],
+        },
+    },
+    {
+        repo: 'sagarsys/sagavortex-print-brochure',
+        order: 20,
+        customDescription: `**Print brochure design** for SagaVortex Art Photography — a print-ready, layout-focused brochure built in HTML/CSS for the photography business.`,
+        overrides: {
+            title: 'SagaVortex Print Brochure',
+            tech: ['HTML', 'CSS', 'Print Design'],
         },
     },
 ]
