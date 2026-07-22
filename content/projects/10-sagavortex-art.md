@@ -13,6 +13,7 @@ roleDescription:
     'Designed the brand identity and full site experience for SagaVortex Art Photography — art direction, information architecture, layout and content — implemented on Squarespace.'
 images:
     thumb: 'images/sagavortex-art/sagavortex-art.png'
+    mobile: 'images/sagavortex-art/sagavortex-art-mobile.png'
     desktop: 'images/sagavortex-art/sagavortex-art.png'
 order: 17.5
 ---

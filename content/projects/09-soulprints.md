@@ -14,6 +14,7 @@ roleDescription:
     'A founder project under SagaVortex — designed and built the fine-art print storefront end-to-end: art direction, editorial layout, motion, and the buying experience.'
 images:
     thumb: 'images/soulprints/soulprints.png'
+    mobile: 'images/soulprints/soulprints-mobile.png'
     desktop: 'images/soulprints/soulprints.png'
 order: 8.5
 ---

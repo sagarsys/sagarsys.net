@@ -190,6 +190,7 @@ A complete redesign with a modern black and gold theme, elegant typography, and 
             tech: ['Vue 3', 'TypeScript', 'Vite', 'TVMaze API'],
             images: {
                 thumb: 'images/github/vue3-tvmaze.png',
+                mobile: 'images/github/vue3-tvmaze-mobile.png',
                 desktop: 'images/github/vue3-tvmaze.png',
             },
         },
