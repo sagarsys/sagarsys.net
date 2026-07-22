@@ -1,8 +1,8 @@
 ---
 title: 'Senior Front-end Developer'
 company: 'IPEDIS'
-startDate: 'Sep 2018'
-endDate: 'Sep 2019'
+startDate: 'Sep 2017'
+endDate: 'Sep 2018'
 location: 'Quatre Bornes, Mauritius'
 description: 'Lead frontend for accessible document virtualization platform'
 tags:

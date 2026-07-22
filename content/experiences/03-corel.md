@@ -1,7 +1,7 @@
 ---
 title: 'Full-stack Developer'
 company: 'Corel Corporation'
-startDate: 'Jul 2022'
+startDate: 'Aug 2022'
 endDate: 'Oct 2022'
 location: 'Ebene, Mauritius / Remote'
 description: 'Mind mapping software development for enterprise teams'

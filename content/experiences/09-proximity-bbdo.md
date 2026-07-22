@@ -2,7 +2,7 @@
 title: 'Frontend Developer'
 company: 'Proximity BBDO Indian Ocean'
 startDate: 'Jun 2016'
-endDate: 'Aug 2018'
+endDate: 'Sep 2017'
 location: 'Quatre Bornes, Mauritius'
 description: 'Developed websites for P&G brands and real estate clients'
 tags:

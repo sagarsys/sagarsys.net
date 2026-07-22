@@ -1,8 +1,8 @@
 ---
-title: 'Senior Software Developer'
+title: 'Software Developer'
 company: 'Maureva'
 startDate: 'Jun 2019'
-endDate: 'Oct 2020'
+endDate: 'Dec 2020'
 location: 'Ebene, Mauritius'
 description: 'Modernized revenue accounting platform for airline providers'
 tags:

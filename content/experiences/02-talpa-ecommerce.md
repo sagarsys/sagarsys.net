@@ -1,6 +1,6 @@
 ---
 title: 'Full-stack JavaScript Developer'
-company: 'Talpa eCommerce'
+company: 'Talpa Network'
 startDate: 'Oct 2022'
 endDate: 'Nov 2024'
 location: 'Amsterdam, NL'

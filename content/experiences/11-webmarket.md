@@ -1,8 +1,8 @@
 ---
 title: 'Webmaster / integrator'
 company: 'Webmarket'
-startDate: 'Nov 2015'
-endDate: 'Apr 2016'
+startDate: 'Oct 2015'
+endDate: 'May 2016'
 location: 'Tamarin, Mauritius'
 description: 'WordPress theme development and responsive design'
 tags: ['WordPress', 'PHP', 'Photoshop', 'Responsive Design']
