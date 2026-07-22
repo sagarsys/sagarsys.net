@@ -33,7 +33,7 @@ images:
     mobile: 'images/biocom/biocom-mobile.jpg'
     tablet: 'images/biocom/biocom-tablet.jpg'
     desktop: 'images/biocom/biocom-desktop.jpg'
-order: 12
+order: 10
 ---
 
 ## Overview

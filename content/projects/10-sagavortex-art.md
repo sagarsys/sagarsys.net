@@ -15,7 +15,7 @@ images:
     thumb: 'images/sagavortex-art/sagavortex-art.png'
     mobile: 'images/sagavortex-art/sagavortex-art-mobile.png'
     desktop: 'images/sagavortex-art/sagavortex-art.png'
-order: 19
+order: 11
 ---
 
 ## Overview

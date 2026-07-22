@@ -61,7 +61,7 @@ export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
     },
     {
         repo: 'sagarsys/tomato-farm',
-        order: 14,
+        order: 15,
         featured: false,
         overrides: {
             title: 'Tomato Farm',
@@ -74,7 +74,7 @@ export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
     },
     {
         repo: 'sagarsys/sagavortex',
-        order: 11,
+        order: 14,
         featured: true,
         overrides: {
             title: 'Sagavortex Art Gallery',
@@ -154,14 +154,14 @@ A complete redesign with a modern black and gold theme, elegant typography, and 
                 'React',
             ],
             images: {
-                thumb: 'images/github/vercel-ai-deep-research-chatbot.webp',
-                desktop: 'images/github/vercel-ai-deep-research-chatbot.webp',
+                thumb: 'images/github/vercel-ai-deep-research-chatbot.gif',
+                desktop: 'images/github/vercel-ai-deep-research-chatbot.gif',
             },
         },
     },
     {
         repo: 'sagarsys/photography-booking-app',
-        order: 9,
+        order: 13,
         featured: true,
         customDescription: `**Full-stack booking platform** for a photography business — a Java + Spring Boot REST API paired with a React/TypeScript (Vite) frontend.
 
@@ -187,7 +187,7 @@ A complete redesign with a modern black and gold theme, elegant typography, and 
     },
     {
         repo: 'sagarsys/vue3-tvmaze',
-        order: 13,
+        order: 9,
         customDescription: `**TV discovery app** built with Vue 3 and TypeScript on the TVMaze API — browse, search and explore shows with a clean, responsive interface.`,
         overrides: {
             title: 'Vue 3 TV Discovery',
@@ -201,7 +201,7 @@ A complete redesign with a modern black and gold theme, elegant typography, and 
     },
     {
         repo: 'sagarsys/ai-mood-journal',
-        order: 15,
+        order: 16,
         customDescription: `**AI journaling app** that analyses entries to surface mood insights and patterns over time. Built with Next.js and React.`,
         overrides: {
             title: 'AI Mood Journal',
@@ -210,7 +210,7 @@ A complete redesign with a modern black and gold theme, elegant typography, and 
     },
     {
         repo: 'sagarsys/react-music-player',
-        order: 16,
+        order: 17,
         customDescription: `**Music player** built with React and TypeScript — playback controls, track list, shuffle and loop modes, with a polished animated UI.`,
         overrides: {
             title: 'React Music Player',
@@ -223,7 +223,7 @@ A complete redesign with a modern black and gold theme, elegant typography, and 
     },
     {
         repo: 'sagarsys/zod-returns',
-        order: 17,
+        order: 18,
         customDescription: `**"Zod Returns" talk demo** — companion project to my iO Frontend Day talk on runtime data validation with Zod in TypeScript. Shows schema-first validation patterns for safer data at the boundaries.`,
         overrides: {
             title: 'Zod Returns — Talk Demo',
@@ -236,7 +236,7 @@ A complete redesign with a modern black and gold theme, elegant typography, and 
     },
     {
         repo: 'sagarsys/react-feedback-popup',
-        order: 18,
+        order: 19,
         customDescription: `**Reusable feedback-popup component** for React — a self-contained, typed widget for collecting user feedback, designed for drop-in reuse across projects.`,
         overrides: {
             title: 'React Feedback Popup',

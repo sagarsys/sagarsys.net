@@ -16,7 +16,7 @@ images:
     thumb: 'images/soulprints/soulprints.png'
     mobile: 'images/soulprints/soulprints-mobile.png'
     desktop: 'images/soulprints/soulprints.png'
-order: 10
+order: 12
 ---
 
 ## Overview
