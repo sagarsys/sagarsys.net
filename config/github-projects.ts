@@ -154,8 +154,8 @@ A complete redesign with a modern black and gold theme, elegant typography, and 
                 'React',
             ],
             images: {
-                thumb: 'images/github/vercel-ai-deep-research-chatbot.gif',
-                desktop: 'images/github/vercel-ai-deep-research-chatbot.gif',
+                thumb: 'images/github/vercel-ai-deep-research-chatbot.webp',
+                desktop: 'images/github/vercel-ai-deep-research-chatbot.webp',
             },
         },
     },
