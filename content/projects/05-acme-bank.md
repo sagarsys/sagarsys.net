@@ -9,7 +9,7 @@ images:
     mobile: 'images/acme/acme-mobile.jpg'
     tablet: 'images/acme/acme-tablet.jpg'
     desktop: 'images/acme/acme-desktop.jpg'
-order: 9
+order: 19
 ---
 
 ## Overview

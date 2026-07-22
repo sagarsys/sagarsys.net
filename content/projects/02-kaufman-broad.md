@@ -3,7 +3,7 @@ title: 'Kaufman & Broad'
 titleLink: 'https://www.kaufmanbroad.fr/'
 description: 'Real-estate website for publicly traded construction company'
 tech: ['Vanilla JS', 'Gulp', 'Foundation', 'jQuery', 'CSS3', 'Drupal']
-featured: true
+featured: false
 liveUrl: 'https://www.kaufmanbroad.fr/'
 client: 'Proximity BBDO / Kaufman & Broad'
 clientLink: 'https://www.proximity.mu/'
@@ -35,7 +35,7 @@ images:
     mobile: 'images/kaufman/kaufman-mobile.jpg'
     tablet: 'images/kaufman/kaufman-tablet.jpg'
     desktop: 'images/kaufman/kaufman-desktop.jpg'
-order: 3
+order: 15
 ---
 
 ## Overview

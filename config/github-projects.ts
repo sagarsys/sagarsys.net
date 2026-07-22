@@ -45,7 +45,7 @@ export interface CuratedGitHubProject {
 export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
     {
         repo: 'sagarsys/sagarsys.net',
-        order: 3,
+        order: 5,
         featured: true,
         customDescription:
             'Personal portfolio website built with Next.js 15, featuring glassmorphism design, dynamic color theming, and framer-motion animations.',
@@ -61,7 +61,7 @@ export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
     },
     {
         repo: 'sagarsys/tomato-farm',
-        order: 7,
+        order: 6,
         featured: true,
         overrides: {
             title: 'Tomato Farm',
@@ -74,7 +74,7 @@ export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
     },
     {
         repo: 'sagarsys/sagavortex',
-        order: 6,
+        order: 9,
         featured: true,
         overrides: {
             title: 'Sagavortex Art Gallery',
@@ -88,7 +88,7 @@ export const CURATED_GITHUB_PROJECTS: CuratedGitHubProject[] = [
     },
     {
         repo: 'sagarsys/bengalivo-redesign',
-        order: 5,
+        order: 1,
         featured: true,
         customDescription: `**Complete website redesign and migration** from WordPress to Next.js for a Bengal cat breeder.
 
@@ -132,6 +132,114 @@ A complete redesign with a modern black and gold theme, elegant typography, and 
                 description:
                     'Original WordPress site with broken mobile layout and outdated design',
             },
+        },
+    },
+    {
+        repo: 'sagarsys/vercel-ai-deep-research-chatbot',
+        order: 3,
+        featured: true,
+        customDescription: `**AI deep-research agent** built on the Vercel AI SDK. Give it a question and it plans a multi-step research process, calls tools to gather sources, and synthesises a cited answer — streamed live into a Next.js chat UI.
+
+## Highlights
+- **Agentic workflow**: multi-step planning, tool use, and synthesis with the Vercel AI SDK
+- **Streaming UX**: token-by-token responses with tool-call visibility
+- **Modern stack**: Next.js, React, TypeScript, server actions`,
+        overrides: {
+            title: 'AI Deep Research Chatbot',
+            tech: [
+                'Next.js',
+                'TypeScript',
+                'Vercel AI SDK',
+                'LLMs / Agents',
+                'React',
+            ],
+            images: {
+                thumb: 'images/github/vercel-ai-deep-research-chatbot.png',
+                desktop: 'images/github/vercel-ai-deep-research-chatbot.png',
+            },
+        },
+    },
+    {
+        repo: 'sagarsys/photography-booking-app',
+        order: 7,
+        featured: true,
+        customDescription: `**Full-stack booking platform** for a photography business — a Java + Spring Boot REST API paired with a React/TypeScript (Vite) frontend.
+
+## Highlights
+- **Backend**: Spring Boot REST API with booking logic and persistence
+- **Frontend**: React + TypeScript on Vite, typed API integration
+- **End-to-end ownership**: demonstrates full-stack range beyond the JS ecosystem`,
+        overrides: {
+            title: 'Photography Booking App',
+            tech: [
+                'Java',
+                'Spring Boot',
+                'REST API',
+                'React',
+                'TypeScript',
+                'Vite',
+            ],
+            images: {
+                thumb: 'images/github/photography-booking-app.png',
+                desktop: 'images/github/photography-booking-app.png',
+            },
+        },
+    },
+    {
+        repo: 'sagarsys/vue3-tvmaze',
+        order: 11,
+        customDescription: `**TV discovery app** built with Vue 3 and TypeScript on the TVMaze API — browse, search and explore shows with a clean, responsive interface.`,
+        overrides: {
+            title: 'Vue 3 TV Discovery',
+            tech: ['Vue 3', 'TypeScript', 'Vite', 'TVMaze API'],
+            images: {
+                thumb: 'images/github/vue3-tvmaze.png',
+                desktop: 'images/github/vue3-tvmaze.png',
+            },
+        },
+    },
+    {
+        repo: 'sagarsys/ai-mood-journal',
+        order: 12,
+        customDescription: `**AI journaling app** that analyses entries to surface mood insights and patterns over time. Built with Next.js and React.`,
+        overrides: {
+            title: 'AI Mood Journal',
+            tech: ['Next.js', 'React', 'TypeScript', 'LLMs'],
+        },
+    },
+    {
+        repo: 'sagarsys/react-music-player',
+        order: 13,
+        customDescription: `**Music player** built with React and TypeScript — playback controls, track list, shuffle and loop modes, with a polished animated UI.`,
+        overrides: {
+            title: 'React Music Player',
+            tech: ['React', 'TypeScript', 'CSS3 Animations'],
+            images: {
+                thumb: 'images/github/react-music-player.png',
+                desktop: 'images/github/react-music-player.png',
+            },
+        },
+    },
+    {
+        repo: 'sagarsys/zod-returns',
+        order: 14,
+        customDescription: `**"Zod Returns" talk demo** — companion project to my iO Frontend Day talk on runtime data validation with Zod in TypeScript. Shows schema-first validation patterns for safer data at the boundaries.`,
+        overrides: {
+            title: 'Zod Returns — Talk Demo',
+            tech: ['TypeScript', 'Zod', 'React'],
+            images: {
+                thumb: 'images/github/zod-returns.png',
+                desktop: 'images/github/zod-returns.png',
+            },
+        },
+    },
+    {
+        repo: 'sagarsys/react-feedback-popup',
+        order: 17,
+        customDescription: `**Reusable feedback-popup component** for React — a self-contained, typed widget for collecting user feedback, designed for drop-in reuse across projects.`,
+        overrides: {
+            title: 'React Feedback Popup',
+            tech: ['React', 'TypeScript', 'Component Library'],
         },
     },
 ]

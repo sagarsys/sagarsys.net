@@ -36,7 +36,7 @@ images:
     mobile: 'images/actievandedag/actievandedag-mobile.png'
     desktop: 'images/actievandedag/actievandedag.png'
 video: 'images/actievandedag/actievandedag.mp4'
-order: 2
+order: 4
 ---
 
 ## Overview

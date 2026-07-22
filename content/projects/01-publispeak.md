@@ -48,7 +48,7 @@ images:
     mobile: 'images/publispeak/publispeak-mobile.jpg'
     tablet: 'images/publispeak/publispeak-tablet.jpg'
     desktop: 'images/publispeak/publispeak-desktop.jpg'
-order: 1
+order: 8
 ---
 
 ## Overview

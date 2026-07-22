@@ -33,6 +33,7 @@
     "lint": "next lint",
     "optimize:images": "node scripts/optimize-images.js",
     "blog:generate": "node scripts/generate-blog-from-file.js",
+    "screenshots:projects": "node scripts/capture-project-screenshots.js",
     "prettier:cli": "prettier \"**/*.{js,jsx,ts,tsx,html,css,scss,json}\"",
     "prettier:check": "npm run prettier:cli -- -l",
     "prettier:fix": "npm run prettier:cli -- --write",

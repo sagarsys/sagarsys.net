@@ -5,7 +5,7 @@ description:
     'Desktop-based mini-game applications for interactive kiosks with data
     collection'
 tech: ['Node.js', 'Express', 'Electron', 'SQLite', 'Vue.js']
-featured: true
+featured: false
 liveUrl: 'https://www.bfast-system.com/'
 client: 'BFAST System'
 clientLink: 'https://www.bfast-system.com/'
@@ -31,7 +31,7 @@ challenges:
 images:
     thumb: 'images/bfast/bfast-thumb.jpg'
     desktop: 'images/bfast/bfast-desktop.jpg'
-order: 6
+order: 16
 ---
 
 ## Overview
