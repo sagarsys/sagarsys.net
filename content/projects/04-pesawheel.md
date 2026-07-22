@@ -8,7 +8,7 @@ images:
     thumb: 'images/pesawheel/pesawheel-desktop.jpg'
     mobile: 'images/pesawheel/pesawheel-mobile.jpg'
     desktop: 'images/pesawheel/pesawheel-desktop.jpg'
-order: 18
+order: 20
 ---
 
 ## Overview
