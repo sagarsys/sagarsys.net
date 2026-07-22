@@ -153,6 +153,10 @@ A complete redesign with a modern black and gold theme, elegant typography, and 
                 'LLMs / Agents',
                 'React',
             ],
+            images: {
+                thumb: 'images/github/vercel-ai-deep-research-chatbot.gif',
+                desktop: 'images/github/vercel-ai-deep-research-chatbot.gif',
+            },
         },
     },
     {
